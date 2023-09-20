@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		34694D392ABB58B1003D4362 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34694D382ABB58B1003D4362 /* Storage.swift */; };
 		F282BEAB2ABB09CE0073D130 /* SubscriptionToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = F282BEAA2ABB09CE0073D130 /* SubscriptionToken.swift */; };
 		F2CACC4C2ABACDA600CB2BE4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2CACC4B2ABACDA600CB2BE4 /* AppDelegate.swift */; };
 		F2CACC502ABACDA700CB2BE4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F2CACC4F2ABACDA700CB2BE4 /* Assets.xcassets */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		34694D382ABB58B1003D4362 /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		F282BEAA2ABB09CE0073D130 /* SubscriptionToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionToken.swift; sourceTree = "<group>"; };
 		F2CACC482ABACDA600CB2BE4 /* Americano.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Americano.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2CACC4B2ABACDA600CB2BE4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -59,6 +61,7 @@
 			isa = PBXGroup;
 			children = (
 				F2CACC4B2ABACDA600CB2BE4 /* AppDelegate.swift */,
+				34694D382ABB58B1003D4362 /* Storage.swift */,
 				F2CACC5C2ABAD6C200CB2BE4 /* AppState.swift */,
 				F2CACC5A2ABAD17100CB2BE4 /* MenuBarItemController.swift */,
 				F2CACC5E2ABADBCA00CB2BE4 /* CaffeinateController.swift */,
@@ -145,6 +148,7 @@
 				F282BEAB2ABB09CE0073D130 /* SubscriptionToken.swift in Sources */,
 				F2CACC4C2ABACDA600CB2BE4 /* AppDelegate.swift in Sources */,
 				F2CACC5B2ABAD17100CB2BE4 /* MenuBarItemController.swift in Sources */,
+				34694D392ABB58B1003D4362 /* Storage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

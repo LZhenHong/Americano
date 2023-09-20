@@ -88,4 +88,8 @@ class MenuBarItemController {
 
         btn.image = NSImage(systemSymbolName: name, accessibilityDescription: "Americano")
     }
+
+    deinit {
+        token.unseal()
+    }
 }
