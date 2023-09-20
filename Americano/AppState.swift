@@ -5,4 +5,8 @@
 //  Created by Eden on 2023/9/20.
 //
 
-import Foundation
+import Combine
+
+class AppState: ObservableObject {
+    @Published var preventSleep = false
+}

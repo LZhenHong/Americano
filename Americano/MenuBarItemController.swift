@@ -17,10 +17,13 @@ class MenuBarItemController {
     private let logger = Logger(subsystem: "io.lzhlovesjyq.Americano",
                                 category: "MenuBarItemController")
 
+    private let token = SubscriptionToken()
     private var statusItem: NSStatusItem!
     private var menu: NSMenu!
 
     func setUp() {
+        subscribeSignals()
+
         statusItem = setUpStatusItem()
         menu = setUpMenu()
     }
@@ -49,14 +52,33 @@ class MenuBarItemController {
 
         switch (event.type) {
         case .leftMouseUp:
-            logger.debug("Left mouse up")
-            changeMenuBarItemImageWith(name: .CupOn)
+            AppDelegate.appState.preventSleep = true
         case .rightMouseUp:
-            logger.debug("Right mouse up")
-            changeMenuBarItemImageWith(name: .CupOff)
+            AppDelegate.appState.preventSleep = false
         default:
-            logger.debug("Do nothing")
+            logger.debug("Do nothing.")
         }
+    }
+
+    private func setUpMenu() -> NSMenu? {
+        let menu = NSMenu()
+        // TODO: 创建菜单栏
+        return menu
+    }
+
+    private func subscribeSignals() {
+        AppDelegate.appState.$preventSleep
+            .receive(on: DispatchQueue.main)
+#if DEBUG
+            .print()
+#endif
+            .sink { [weak self] preventSleep in
+                guard let self = self else {
+                    return
+                }
+                self.changeMenuBarItemImageWith(name: preventSleep ? .CupOn : .CupOff)
+            }
+            .seal(in: token)
     }
 
     private func changeMenuBarItemImageWith(name: String) {
@@ -65,11 +87,5 @@ class MenuBarItemController {
         }
 
         btn.image = NSImage(systemSymbolName: name, accessibilityDescription: "Americano")
-    }
-
-    private func setUpMenu() -> NSMenu? {
-        let menu = NSMenu()
-        // TODO: 创建菜单栏
-        return menu
     }
 }

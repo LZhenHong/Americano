@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F282BEAB2ABB09CE0073D130 /* SubscriptionToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = F282BEAA2ABB09CE0073D130 /* SubscriptionToken.swift */; };
 		F2CACC4C2ABACDA600CB2BE4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2CACC4B2ABACDA600CB2BE4 /* AppDelegate.swift */; };
 		F2CACC502ABACDA700CB2BE4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F2CACC4F2ABACDA700CB2BE4 /* Assets.xcassets */; };
 		F2CACC532ABACDA700CB2BE4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F2CACC512ABACDA700CB2BE4 /* Main.storyboard */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F282BEAA2ABB09CE0073D130 /* SubscriptionToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionToken.swift; sourceTree = "<group>"; };
 		F2CACC482ABACDA600CB2BE4 /* Americano.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Americano.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2CACC4B2ABACDA600CB2BE4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F2CACC4F2ABACDA700CB2BE4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -60,6 +62,7 @@
 				F2CACC5C2ABAD6C200CB2BE4 /* AppState.swift */,
 				F2CACC5A2ABAD17100CB2BE4 /* MenuBarItemController.swift */,
 				F2CACC5E2ABADBCA00CB2BE4 /* CaffeinateController.swift */,
+				F282BEAA2ABB09CE0073D130 /* SubscriptionToken.swift */,
 				F2CACC4F2ABACDA700CB2BE4 /* Assets.xcassets */,
 				F2CACC512ABACDA700CB2BE4 /* Main.storyboard */,
 				F2CACC542ABACDA700CB2BE4 /* Americano.entitlements */,
@@ -139,6 +142,7 @@
 			files = (
 				F2CACC5F2ABADBCA00CB2BE4 /* CaffeinateController.swift in Sources */,
 				F2CACC5D2ABAD6C200CB2BE4 /* AppState.swift in Sources */,
+				F282BEAB2ABB09CE0073D130 /* SubscriptionToken.swift in Sources */,
 				F2CACC4C2ABACDA600CB2BE4 /* AppDelegate.swift in Sources */,
 				F2CACC5B2ABAD17100CB2BE4 /* MenuBarItemController.swift in Sources */,
 			);

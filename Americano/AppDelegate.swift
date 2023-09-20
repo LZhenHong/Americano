@@ -9,6 +9,7 @@ import Cocoa
 
 @main
 class AppDelegate: NSObject, NSApplicationDelegate {
+    static let appState = AppState()
     private let itemController = MenuBarItemController()
     private let caffController = CaffeinateController()
 
