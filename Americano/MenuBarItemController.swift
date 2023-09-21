@@ -150,7 +150,7 @@ final class MenuBarItemController {
                 guard let self = self else {
                     return
                 }
-                self.changeMenuBarItemImageWith(name: preventSleep ? .CupOn : .CupOff)
+                self.changeMenuBarItemImage(with: preventSleep ? .CupOn : .CupOff)
 
                 self.menu.item(withTag: .FiveMinutesTag)?.isEnabled = !preventSleep
                 self.menu.item(withTag: .InfinityTag)?.isEnabled = !preventSleep
@@ -159,7 +159,7 @@ final class MenuBarItemController {
             .seal(in: token)
     }
 
-    private func changeMenuBarItemImageWith(name: String) {
+    private func changeMenuBarItemImage(with name: String) {
         guard let btn = statusItem?.button else {
             return
         }
