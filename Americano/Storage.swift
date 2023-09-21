@@ -2,7 +2,7 @@
 //  Storage.swift
 //  Americano
 //
-//  Created by LZhenHong on 2023/9/21.
+//  Created by Eden on 2023/9/21.
 //
 
 import Foundation
@@ -11,18 +11,15 @@ import Foundation
 struct Storage<T: Codable> {
     private let key: String
     private let defaultValue: T
-
-    private var userStorage: UserDefaults {
-        UserDefaults.standard
-    }
+    private let storage: UserDefaults
 
     var wrappedValue: T {
         set {
             let data = try? JSONEncoder().encode(newValue)
-            userStorage.set(data, forKey: key)
+            storage.set(data, forKey: key)
         }
         get {
-            guard let data = userStorage.object(forKey: key) as? Data else {
+            guard let data = storage.object(forKey: key) as? Data else {
                 return defaultValue
             }
             let value = try? JSONDecoder().decode(T.self, from: data)
@@ -30,8 +27,9 @@ struct Storage<T: Codable> {
         }
     }
 
-    init(key: String, defalutValue: T) {
+    init(key: String, defalutValue: T, storage: UserDefaults = .standard) {
         self.key = key
         self.defaultValue = defalutValue
+        self.storage = storage
     }
 }
