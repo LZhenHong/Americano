@@ -148,6 +148,8 @@ final class MenuBarItemController {
     }
 
     @objc private func enterScreenSaver() {
+        /// Stop caffeinate is needed.
+        AppDelegate.caffController.stop()
         AppDelegate.screenController.run()
     }
 
