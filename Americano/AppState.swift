@@ -7,6 +7,6 @@
 
 import Combine
 
-class AppState: ObservableObject {
+final class AppState: ObservableObject {
     @Published var preventSleep = false
 }

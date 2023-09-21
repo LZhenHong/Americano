@@ -13,7 +13,7 @@ fileprivate extension String {
     static let CupOff = "cup.and.saucer"
 }
 
-class MenuBarItemController {
+final class MenuBarItemController {
     private let logger = Logger(subsystem: "io.lzhlovesjyq.Americano",
                                 category: "MenuBarItemController")
 
@@ -22,10 +22,10 @@ class MenuBarItemController {
     private var menu: NSMenu!
 
     func setUp() {
-        subscribeSignals()
-
         statusItem = setUpStatusItem()
         menu = setUpMenu()
+
+        subscribeSignals()
     }
 
     private func setUpStatusItem() -> NSStatusItem? {
@@ -39,25 +39,51 @@ class MenuBarItemController {
         btn.image?.isTemplate = true
 
         btn.target = self
-        btn.action = #selector(onStatusBarItemHandle)
+        btn.action = #selector(onStatusBarItemHandle(_:))
         btn.sendAction(on: [.leftMouseUp, .rightMouseUp])
 
         return statusItem
     }
 
-    @objc private func onStatusBarItemHandle() {
+    @objc private func onStatusBarItemHandle(_ sender: NSStatusBarButton) {
         guard let event = NSApp.currentEvent else {
             return
         }
 
         switch (event.type) {
         case .leftMouseUp:
-            AppDelegate.appState.preventSleep = true
+            showMenu(sender)
         case .rightMouseUp:
-            AppDelegate.appState.preventSleep = false
+            logger.debug("Right mouse up.")
         default:
             logger.debug("Do nothing.")
         }
+    }
+
+    private func showMenu(_ sender: NSStatusBarButton) {
+        // guard let event = NSApp.currentEvent else {
+        //    return
+        // }
+        // This method doesn't show menu at right place.
+        // NSMenu.popUpContextMenu(menu, with: event, for: sender)
+
+        // This method was deprecated in macos 10.14.
+        // item.popUpMenu(menu)
+
+        // Make app active.
+        if #available(macOS 14.0, *) {
+            NSApp.activate()
+        } else {
+            NSApp.activate(ignoringOtherApps: true)
+        }
+        // workaround: https://stackoverflow.com/a/57612963/5350993
+        showMenu(menu, for: statusItem)
+    }
+
+    private func showMenu(_ menu: NSMenu, for item: NSStatusItem) {
+        item.menu = menu
+        item.button?.performClick(nil)
+        item.menu = nil
     }
 
     private func setUpMenu() -> NSMenu? {

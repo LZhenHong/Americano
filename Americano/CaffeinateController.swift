@@ -7,4 +7,4 @@
 
 import Foundation
 
-class CaffeinateController { }
+final class CaffeinateController { }
