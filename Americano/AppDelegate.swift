@@ -11,6 +11,7 @@ import Cocoa
 class AppDelegate: NSObject, NSApplicationDelegate {
     static let appState = AppState()
     static let caffController = CaffeinateController()
+    static let screenController = ScreenSaverController()
     static let itemController = MenuBarItemController()
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {

@@ -97,12 +97,16 @@ final class MenuBarItemController {
         menu.autoenablesItems = false
 
         let items: [MenuItem] = [
-            .action(title: "Five Minutes", tag: .FiveMinutesTag, selector: #selector(startFiveMinutesCaffeinate)),
-            .action(title: "Infinite", tag: .InfinityTag, selector: #selector(startInfiniteCaffinate)),
+            .action(title: "Five Minutes", selector: #selector(startFiveMinutesCaffeinate), tag: .FiveMinutesTag),
+            .action(title: "Infinite", selector: #selector(startInfiniteCaffinate), tag: .InfinityTag),
             .separator,
-            .action(title: "Stop", tag: .StopTag, selector: #selector(stopCaffinate)),
+            .action(title: "Stop", selector: #selector(stopCaffinate), tag: .StopTag),
+//            .separator,
+//            .action(title: "Sleep", selector: #selector(sleep)),
             .separator,
-            .action(title: "Quit", tag: .QuitTag, selector: #selector(quitApp), keyEquivalent: "Q")
+            .action(title: "Enter Screen Saver", selector: #selector(enterScreenSaver)),
+            .separator,
+            .action(title: "Quit", selector: #selector(quitApp), keyEquivalent: "Q")
         ]
         items
             .map(createMenuItem(_:))
@@ -115,7 +119,15 @@ final class MenuBarItemController {
         switch (menuItem) {
         case .separator:
             return NSMenuItem.separator()
-        case .action(let title, let tag, let selector, let key):
+        case .section(let title):
+            if #available(macOS 14.0, *) {
+                return NSMenuItem.sectionHeader(title: title)
+            } else {
+                let item = NSMenuItem(title: title, action: nil, keyEquivalent: "")
+                item.isEnabled = false
+                return item
+            }
+        case .action(let title, let selector, let tag, let key):
             let item = NSMenuItem(title: title, action: selector, keyEquivalent: key)
             item.tag = tag
             item.target = self
@@ -133,6 +145,18 @@ final class MenuBarItemController {
 
     @objc private func stopCaffinate() {
         AppDelegate.caffController.stop()
+    }
+
+    @objc private func enterScreenSaver() {
+        AppDelegate.screenController.run()
+    }
+
+    @objc private func sleep() {
+        let process = Process()
+        process.launchPath = "/usr/bin/pmset"
+        process.arguments = ["sleepnow"]
+        process.launch()
+        process.waitUntilExit()
     }
 
     @objc private func quitApp() {
@@ -173,12 +197,12 @@ final class MenuBarItemController {
 
 enum MenuItem {
     case separator
-    case action(title: String, tag: Int, selector: Selector?, keyEquivalent: String = "")
+    case section(title: String)
+    case action(title: String, selector: Selector?, tag: Int = 0, keyEquivalent: String = "")
 }
 
 extension Int {
     static let FiveMinutesTag = 1001
     static let InfinityTag = 1002
     static let StopTag = 2001
-    static let QuitTag = 3001
 }

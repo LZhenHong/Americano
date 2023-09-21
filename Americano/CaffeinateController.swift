@@ -11,28 +11,21 @@ import os.log
 let ONE_MINUTE_IN_SECONDS = 60
 
 // caffeinate Man Page: https://ss64.com/osx/caffeinate.html
-final class CaffeinateController {
+final class CaffeinateController: BinWrapper {
     private let logger = Logger(subsystem: "io.lzhlovesjyq.Americano",
                                 category: "CaffeinateController")
 
     private var caffeinate: Process?
 
-    var running: Bool {
-        guard let running = caffeinate?.isRunning else {
-            return false
+    var process: Process? {
+        get {
+            caffeinate
         }
-        return running
     }
 
-    var caffeinateBinPath: String {
+    var binPath: String {
         get {
             "/usr/bin/caffeinate"
-        }
-    }
-
-    var isValid: Bool {
-        get {
-            FileManager.default.fileExists(atPath: caffeinateBinPath)
         }
     }
 
@@ -56,7 +49,7 @@ final class CaffeinateController {
     }
     
     private func start(time: TimeInterval) -> Bool {
-        caffeinate = newCaffeinateProcess()
+        caffeinate = newProcess()
         guard time > 0, let caffeinate else {
             return false
         }
@@ -83,12 +76,6 @@ final class CaffeinateController {
         return false
     }
 
-    private func newCaffeinateProcess() -> Process? {
-        let process = Process()
-        process.launchPath = caffeinateBinPath
-        return process
-    }
-
     private func observeCaffeinateProcessExit() {
         DispatchQueue.global(qos: .background).async { [weak self] in
             guard let self,
@@ -102,7 +89,7 @@ final class CaffeinateController {
     }
 
     func stop() {
-        guard running else {
+        guard let _ = self.caffeinate else {
             return
         }
         stopCurrent()
