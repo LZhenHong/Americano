@@ -54,7 +54,12 @@ final class MenuBarItemController {
         case .leftMouseUp:
             showMenu(sender)
         case .rightMouseUp:
-            logger.debug("Right mouse up.")
+            if AppDelegate.caffController.running {
+                AppDelegate.caffController.stop()
+            } else {
+                // Start a infinite caffeinate process.
+                AppDelegate.caffController.start()
+            }
         default:
             logger.debug("Do nothing.")
         }
@@ -67,15 +72,15 @@ final class MenuBarItemController {
         // This method doesn't show menu at right place.
         // NSMenu.popUpContextMenu(menu, with: event, for: sender)
 
-        // This method was deprecated in macos 10.14.
-        // item.popUpMenu(menu)
+        // This method was deprecated in macOS 10.14.
+        // statusItem.popUpMenu(menu)
 
         // Make app active.
-        if #available(macOS 14.0, *) {
-            NSApp.activate()
-        } else {
-            NSApp.activate(ignoringOtherApps: true)
-        }
+        // if #available(macOS 14.0, *) {
+        //    NSApp.activate()
+        // } else {
+        //    NSApp.activate(ignoringOtherApps: true)
+        // }
         // workaround: https://stackoverflow.com/a/57612963/5350993
         showMenu(menu, for: statusItem)
     }
@@ -88,8 +93,51 @@ final class MenuBarItemController {
 
     private func setUpMenu() -> NSMenu? {
         let menu = NSMenu()
-        // TODO: 创建菜单栏
+        // https://github.com/onmyway133/blog/issues/428
+        menu.autoenablesItems = false
+
+        let items: [MenuItem] = [
+            .action(title: "Five Minutes", tag: .FiveMinutesTag, selector: #selector(startFiveMinutesCaffeinate)),
+            .action(title: "Infinite", tag: .InfinityTag, selector: #selector(startInfiniteCaffinate)),
+            .separator,
+            .action(title: "Stop", tag: .StopTag, selector: #selector(stopCaffinate)),
+            .separator,
+            .action(title: "Quit", tag: .QuitTag, selector: #selector(quitApp), keyEquivalent: "Q")
+        ]
+        items
+            .map(createMenuItem(_:))
+            .forEach(menu.addItem(_:))
+
         return menu
+    }
+
+    private func createMenuItem(_ menuItem: MenuItem) -> NSMenuItem {
+        switch (menuItem) {
+        case .separator:
+            return NSMenuItem.separator()
+        case .action(let title, let tag, let selector, let key):
+            let item = NSMenuItem(title: title, action: selector, keyEquivalent: key)
+            item.tag = tag
+            item.target = self
+            return item
+        }
+    }
+
+    @objc private func startFiveMinutesCaffeinate() {
+        AppDelegate.caffController.start(time: TimeInterval(5 * ONE_MINUTE_IN_SECONDS))
+    }
+
+    @objc private func startInfiniteCaffinate() {
+        AppDelegate.caffController.start()
+    }
+
+    @objc private func stopCaffinate() {
+        AppDelegate.caffController.stop()
+    }
+
+    @objc private func quitApp() {
+        AppDelegate.caffController.stop()
+        NSApplication.shared.terminate(self)
     }
 
     private func subscribeSignals() {
@@ -103,6 +151,10 @@ final class MenuBarItemController {
                     return
                 }
                 self.changeMenuBarItemImageWith(name: preventSleep ? .CupOn : .CupOff)
+
+                self.menu.item(withTag: .FiveMinutesTag)?.isEnabled = !preventSleep
+                self.menu.item(withTag: .InfinityTag)?.isEnabled = !preventSleep
+                self.menu.item(withTag: .StopTag)?.isEnabled = preventSleep
             }
             .seal(in: token)
     }
@@ -111,11 +163,22 @@ final class MenuBarItemController {
         guard let btn = statusItem?.button else {
             return
         }
-
         btn.image = NSImage(systemSymbolName: name, accessibilityDescription: "Americano")
     }
 
     deinit {
         token.unseal()
     }
+}
+
+enum MenuItem {
+    case separator
+    case action(title: String, tag: Int, selector: Selector?, keyEquivalent: String = "")
+}
+
+extension Int {
+    static let FiveMinutesTag = 1001
+    static let InfinityTag = 1002
+    static let StopTag = 2001
+    static let QuitTag = 3001
 }

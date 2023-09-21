@@ -10,11 +10,11 @@ import Cocoa
 @main
 class AppDelegate: NSObject, NSApplicationDelegate {
     static let appState = AppState()
-    private let itemController = MenuBarItemController()
-    private let caffController = CaffeinateController()
+    static let caffController = CaffeinateController()
+    static let itemController = MenuBarItemController()
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        itemController.setUp()
+        AppDelegate.itemController.setUp()
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
