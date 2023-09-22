@@ -12,10 +12,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     static let appState = AppState()
     static let caffWrapper = CaffeinateWrapper()
     static let screenWrapper = ScreenSaverWrapper()
-    static let itemController = MenuBarItemController()
+    static let barItemController = MenuBarItemController()
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        AppDelegate.itemController.setUp()
+        AppDelegate.barItemController.setUp()
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {

@@ -45,6 +45,43 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F2A013B32ABD3F9B006883D3 /* Wrapper */ = {
+			isa = PBXGroup;
+			children = (
+				F2CACC5E2ABADBCA00CB2BE4 /* CaffeinateWrapper.swift */,
+				F25A297B2ABC6C200022E08E /* ScreenSaverWrapper.swift */,
+				F25A297D2ABC6C720022E08E /* BinWrapper.swift */,
+			);
+			path = Wrapper;
+			sourceTree = "<group>";
+		};
+		F2A013B42ABD3FB4006883D3 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				F2CACC5C2ABAD6C200CB2BE4 /* AppState.swift */,
+				34694D382ABB58B1003D4362 /* Storage.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		F2A013B52ABD3FCD006883D3 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				F282BEAA2ABB09CE0073D130 /* SubscriptionToken.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		F2A013B62ABD3FDD006883D3 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				F2CACC542ABACDA700CB2BE4 /* Americano.entitlements */,
+				F2CACC4F2ABACDA700CB2BE4 /* Assets.xcassets */,
+				F2CACC512ABACDA700CB2BE4 /* Main.storyboard */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		F2CACC3F2ABACDA600CB2BE4 = {
 			isa = PBXGroup;
 			children = (
@@ -65,16 +102,11 @@
 			isa = PBXGroup;
 			children = (
 				F2CACC4B2ABACDA600CB2BE4 /* AppDelegate.swift */,
-				34694D382ABB58B1003D4362 /* Storage.swift */,
-				F2CACC5C2ABAD6C200CB2BE4 /* AppState.swift */,
-				F282BEAA2ABB09CE0073D130 /* SubscriptionToken.swift */,
 				F2CACC5A2ABAD17100CB2BE4 /* MenuBarItemController.swift */,
-				F2CACC5E2ABADBCA00CB2BE4 /* CaffeinateWrapper.swift */,
-				F25A297B2ABC6C200022E08E /* ScreenSaverWrapper.swift */,
-				F25A297D2ABC6C720022E08E /* BinWrapper.swift */,
-				F2CACC4F2ABACDA700CB2BE4 /* Assets.xcassets */,
-				F2CACC512ABACDA700CB2BE4 /* Main.storyboard */,
-				F2CACC542ABACDA700CB2BE4 /* Americano.entitlements */,
+				F2A013B42ABD3FB4006883D3 /* Data */,
+				F2A013B32ABD3F9B006883D3 /* Wrapper */,
+				F2A013B52ABD3FCD006883D3 /* Utils */,
+				F2A013B62ABD3FDD006883D3 /* Resources */,
 			);
 			path = Americano;
 			sourceTree = "<group>";
@@ -297,7 +329,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = Americano/Americano.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Americano/Resources/Americano.entitlements;
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -326,7 +358,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = Americano/Americano.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Americano/Resources/Americano.entitlements;
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
