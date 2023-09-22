@@ -1,5 +1,5 @@
 //
-//  ScreenSaverController.swift
+//  ScreenSaverWrapper.swift
 //  Americano
 //
 //  Created by Eden on 2023/9/21.
@@ -8,7 +8,7 @@
 import Foundation
 import os.log
 
-final class ScreenSaverController: BinWrapper {
+final class ScreenSaverWrapper: BinWrapper {
     let logger = Logger(subsystem: "io.lzhlovesjyq.Americano", category: "ScreenSaverController")
     
     var binPath: String {

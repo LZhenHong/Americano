@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		34694D392ABB58B1003D4362 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34694D382ABB58B1003D4362 /* Storage.swift */; };
-		F25A297C2ABC6C200022E08E /* ScreenSaverController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F25A297B2ABC6C200022E08E /* ScreenSaverController.swift */; };
+		F25A297C2ABC6C200022E08E /* ScreenSaverWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F25A297B2ABC6C200022E08E /* ScreenSaverWrapper.swift */; };
 		F25A297E2ABC6C720022E08E /* BinWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F25A297D2ABC6C720022E08E /* BinWrapper.swift */; };
 		F282BEAB2ABB09CE0073D130 /* SubscriptionToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = F282BEAA2ABB09CE0073D130 /* SubscriptionToken.swift */; };
 		F2CACC4C2ABACDA600CB2BE4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2CACC4B2ABACDA600CB2BE4 /* AppDelegate.swift */; };
@@ -16,12 +16,12 @@
 		F2CACC532ABACDA700CB2BE4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F2CACC512ABACDA700CB2BE4 /* Main.storyboard */; };
 		F2CACC5B2ABAD17100CB2BE4 /* MenuBarItemController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2CACC5A2ABAD17100CB2BE4 /* MenuBarItemController.swift */; };
 		F2CACC5D2ABAD6C200CB2BE4 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2CACC5C2ABAD6C200CB2BE4 /* AppState.swift */; };
-		F2CACC5F2ABADBCA00CB2BE4 /* CaffeinateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2CACC5E2ABADBCA00CB2BE4 /* CaffeinateController.swift */; };
+		F2CACC5F2ABADBCA00CB2BE4 /* CaffeinateWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2CACC5E2ABADBCA00CB2BE4 /* CaffeinateWrapper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		34694D382ABB58B1003D4362 /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
-		F25A297B2ABC6C200022E08E /* ScreenSaverController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenSaverController.swift; sourceTree = "<group>"; };
+		F25A297B2ABC6C200022E08E /* ScreenSaverWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenSaverWrapper.swift; sourceTree = "<group>"; };
 		F25A297D2ABC6C720022E08E /* BinWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinWrapper.swift; sourceTree = "<group>"; };
 		F282BEAA2ABB09CE0073D130 /* SubscriptionToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionToken.swift; sourceTree = "<group>"; };
 		F2CACC482ABACDA600CB2BE4 /* Americano.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Americano.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -31,7 +31,7 @@
 		F2CACC542ABACDA700CB2BE4 /* Americano.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Americano.entitlements; sourceTree = "<group>"; };
 		F2CACC5A2ABAD17100CB2BE4 /* MenuBarItemController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarItemController.swift; sourceTree = "<group>"; };
 		F2CACC5C2ABAD6C200CB2BE4 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
-		F2CACC5E2ABADBCA00CB2BE4 /* CaffeinateController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaffeinateController.swift; sourceTree = "<group>"; };
+		F2CACC5E2ABADBCA00CB2BE4 /* CaffeinateWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaffeinateWrapper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,8 +69,8 @@
 				F2CACC5C2ABAD6C200CB2BE4 /* AppState.swift */,
 				F282BEAA2ABB09CE0073D130 /* SubscriptionToken.swift */,
 				F2CACC5A2ABAD17100CB2BE4 /* MenuBarItemController.swift */,
-				F2CACC5E2ABADBCA00CB2BE4 /* CaffeinateController.swift */,
-				F25A297B2ABC6C200022E08E /* ScreenSaverController.swift */,
+				F2CACC5E2ABADBCA00CB2BE4 /* CaffeinateWrapper.swift */,
+				F25A297B2ABC6C200022E08E /* ScreenSaverWrapper.swift */,
 				F25A297D2ABC6C720022E08E /* BinWrapper.swift */,
 				F2CACC4F2ABACDA700CB2BE4 /* Assets.xcassets */,
 				F2CACC512ABACDA700CB2BE4 /* Main.storyboard */,
@@ -149,9 +149,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F2CACC5F2ABADBCA00CB2BE4 /* CaffeinateController.swift in Sources */,
+				F2CACC5F2ABADBCA00CB2BE4 /* CaffeinateWrapper.swift in Sources */,
 				F25A297E2ABC6C720022E08E /* BinWrapper.swift in Sources */,
-				F25A297C2ABC6C200022E08E /* ScreenSaverController.swift in Sources */,
+				F25A297C2ABC6C200022E08E /* ScreenSaverWrapper.swift in Sources */,
 				F2CACC5D2ABAD6C200CB2BE4 /* AppState.swift in Sources */,
 				F282BEAB2ABB09CE0073D130 /* SubscriptionToken.swift in Sources */,
 				F2CACC4C2ABACDA600CB2BE4 /* AppDelegate.swift in Sources */,

@@ -54,11 +54,11 @@ final class MenuBarItemController {
         case .leftMouseUp:
             showMenu(sender)
         case .rightMouseUp:
-            if AppDelegate.caffController.running {
-                AppDelegate.caffController.stop()
+            if AppDelegate.caffWrapper.running {
+                AppDelegate.caffWrapper.stop()
             } else {
                 // Start a infinite caffeinate process.
-                AppDelegate.caffController.start()
+                AppDelegate.caffWrapper.start()
             }
         default:
             logger.debug("Do nothing.")
@@ -87,6 +87,7 @@ final class MenuBarItemController {
 
     private func showMenu(_ menu: NSMenu, for item: NSStatusItem) {
         item.menu = menu
+        /// tricks
         item.button?.performClick(nil)
         item.menu = nil
     }
@@ -136,21 +137,21 @@ final class MenuBarItemController {
     }
 
     @objc private func startFiveMinutesCaffeinate() {
-        AppDelegate.caffController.start(time: TimeInterval(5 * ONE_MINUTE_IN_SECONDS))
+        AppDelegate.caffWrapper.start(time: TimeInterval(5 * ONE_MINUTE_IN_SECONDS))
     }
 
     @objc private func startInfiniteCaffinate() {
-        AppDelegate.caffController.start()
+        AppDelegate.caffWrapper.start()
     }
 
     @objc private func stopCaffinate() {
-        AppDelegate.caffController.stop()
+        AppDelegate.caffWrapper.stop()
     }
 
     @objc private func enterScreenSaver() {
-        /// Stop caffeinate is needed.
-        AppDelegate.caffController.stop()
-        AppDelegate.screenController.run()
+        /// Stop caffeinate if needed.
+        AppDelegate.caffWrapper.stop()
+        AppDelegate.screenWrapper.run()
     }
 
     @objc private func sleep() {
@@ -162,7 +163,7 @@ final class MenuBarItemController {
     }
 
     @objc private func quitApp() {
-        AppDelegate.caffController.stop()
+        AppDelegate.caffWrapper.stop()
         NSApplication.shared.terminate(self)
     }
 

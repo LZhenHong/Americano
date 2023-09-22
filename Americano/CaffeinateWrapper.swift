@@ -1,5 +1,5 @@
 //
-//  CaffeinateController.swift
+//  CaffeinateWrapper.swift
 //  Americano
 //
 //  Created by Eden on 2023/9/20.
@@ -11,7 +11,7 @@ import os.log
 let ONE_MINUTE_IN_SECONDS = 60
 
 // caffeinate Man Page: https://ss64.com/osx/caffeinate.html
-final class CaffeinateController: BinWrapper {
+final class CaffeinateWrapper: BinWrapper {
     private let logger = Logger(subsystem: "io.lzhlovesjyq.Americano",
                                 category: "CaffeinateController")
 
