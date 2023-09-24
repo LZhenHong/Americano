@@ -13,6 +13,12 @@ fileprivate extension String {
     static let CupOff = "cup.and.saucer"
 }
 
+fileprivate extension Int {
+    static let FiveMinutesTag = 1001
+    static let InfinityTag = 1002
+    static let StopTag = 2001
+}
+
 final class MenuBarItemController {
     private let logger = Logger(subsystem: "io.lzhlovesjyq.Americano",
                                 category: "MenuBarItemController")
@@ -93,47 +99,22 @@ final class MenuBarItemController {
     }
 
     private func setUpMenu() -> NSMenu? {
-        let menu = NSMenu()
+        let menu = createMenu()
         // https://github.com/onmyway133/blog/issues/428
         menu.autoenablesItems = false
-
-        let items: [MenuItem] = [
-            .action(title: "Five Minutes", selector: #selector(startFiveMinutesCaffeinate), tag: .FiveMinutesTag),
-            .action(title: "Infinite", selector: #selector(startInfiniteCaffinate), tag: .InfinityTag),
-            .separator,
-            .action(title: "Stop", selector: #selector(stopCaffinate), tag: .StopTag),
-//            .separator,
-//            .action(title: "Sleep", selector: #selector(sleep)),
-            .separator,
-            .action(title: "Enter Screen Saver", selector: #selector(enterScreenSaver)),
-            .separator,
-            .action(title: "Quit", selector: #selector(quitApp), keyEquivalent: "Q")
-        ]
-        items
-            .map(createMenuItem(_:))
-            .forEach(menu.addItem(_:))
-
         return menu
     }
 
-    private func createMenuItem(_ menuItem: MenuItem) -> NSMenuItem {
-        switch (menuItem) {
-        case .separator:
-            return NSMenuItem.separator()
-        case .section(let title):
-            if #available(macOS 14.0, *) {
-                return NSMenuItem.sectionHeader(title: title)
-            } else {
-                let item = NSMenuItem(title: title, action: nil, keyEquivalent: "")
-                item.isEnabled = false
-                return item
-            }
-        case .action(let title, let selector, let tag, let key):
-            let item = NSMenuItem(title: title, action: selector, keyEquivalent: key)
-            item.tag = tag
-            item.target = self
-            return item
-        }
+    @MenuBuilder
+    private func createMenu() -> NSMenu {
+        NSMenuItem.action(title: "Five Minutes", target: self, selector: #selector(startFiveMinutesCaffeinate), tag: .FiveMinutesTag)
+        NSMenuItem.action(title: "Infinite", target: self, selector: #selector(startInfiniteCaffinate), tag: .InfinityTag)
+        NSMenuItem.separator()
+        NSMenuItem.action(title: "Stop", target: self, selector: #selector(stopCaffinate), tag: .StopTag)
+        NSMenuItem.separator()
+        NSMenuItem.action(title: "Enter Screen Saver", target: self, selector: #selector(enterScreenSaver))
+        NSMenuItem.separator()
+        NSMenuItem.action(title: "Quit", target: self, selector: #selector(quitApp), keyEquivalent: "Q")
     }
 
     @objc private func startFiveMinutesCaffeinate() {
@@ -196,16 +177,4 @@ final class MenuBarItemController {
     deinit {
         token.unseal()
     }
-}
-
-enum MenuItem {
-    case separator
-    case section(title: String)
-    case action(title: String, selector: Selector?, tag: Int = 0, keyEquivalent: String = "")
-}
-
-extension Int {
-    static let FiveMinutesTag = 1001
-    static let InfinityTag = 1002
-    static let StopTag = 2001
 }
