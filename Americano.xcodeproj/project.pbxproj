@@ -12,6 +12,7 @@
 		F25A297C2ABC6C200022E08E /* ScreenSaverWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F25A297B2ABC6C200022E08E /* ScreenSaverWrapper.swift */; };
 		F25A297E2ABC6C720022E08E /* BinWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F25A297D2ABC6C720022E08E /* BinWrapper.swift */; };
 		F282BEAB2ABB09CE0073D130 /* SubscriptionToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = F282BEAA2ABB09CE0073D130 /* SubscriptionToken.swift */; };
+		F2C843122AC13A4200B27309 /* MenuItemExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2C843112AC13A4200B27309 /* MenuItemExt.swift */; };
 		F2CACC4C2ABACDA600CB2BE4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2CACC4B2ABACDA600CB2BE4 /* AppDelegate.swift */; };
 		F2CACC502ABACDA700CB2BE4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F2CACC4F2ABACDA700CB2BE4 /* Assets.xcassets */; };
 		F2CACC532ABACDA700CB2BE4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F2CACC512ABACDA700CB2BE4 /* Main.storyboard */; };
@@ -26,6 +27,7 @@
 		F25A297B2ABC6C200022E08E /* ScreenSaverWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenSaverWrapper.swift; sourceTree = "<group>"; };
 		F25A297D2ABC6C720022E08E /* BinWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinWrapper.swift; sourceTree = "<group>"; };
 		F282BEAA2ABB09CE0073D130 /* SubscriptionToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionToken.swift; sourceTree = "<group>"; };
+		F2C843112AC13A4200B27309 /* MenuItemExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemExt.swift; sourceTree = "<group>"; };
 		F2CACC482ABACDA600CB2BE4 /* Americano.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Americano.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2CACC4B2ABACDA600CB2BE4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F2CACC4F2ABACDA700CB2BE4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -71,6 +73,7 @@
 			children = (
 				F282BEAA2ABB09CE0073D130 /* SubscriptionToken.swift */,
 				341E6BBF2AC080850043E97A /* MenuBuilder.swift */,
+				F2C843112AC13A4200B27309 /* MenuItemExt.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -189,6 +192,7 @@
 				F25A297C2ABC6C200022E08E /* ScreenSaverWrapper.swift in Sources */,
 				F2CACC5D2ABAD6C200CB2BE4 /* AppState.swift in Sources */,
 				F282BEAB2ABB09CE0073D130 /* SubscriptionToken.swift in Sources */,
+				F2C843122AC13A4200B27309 /* MenuItemExt.swift in Sources */,
 				341E6BC02AC080850043E97A /* MenuBuilder.swift in Sources */,
 				F2CACC4C2ABACDA600CB2BE4 /* AppDelegate.swift in Sources */,
 				F2CACC5B2ABAD17100CB2BE4 /* MenuBarItemController.swift in Sources */,

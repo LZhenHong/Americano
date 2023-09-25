@@ -107,32 +107,35 @@ final class MenuBarItemController {
 
     @MenuBuilder
     private func createMenu() -> NSMenu {
-        NSMenuItem.action(title: "Five Minutes", target: self, selector: #selector(startFiveMinutesCaffeinate), tag: .FiveMinutesTag)
-        NSMenuItem.action(title: "Infinite", target: self, selector: #selector(startInfiniteCaffinate), tag: .InfinityTag)
+        NSMenuItem("Five Minutes")
+            .tag(.FiveMinutesTag)
+            .onSelect {
+                AppDelegate.caffWrapper.start(time: TimeInterval(5 * ONE_MINUTE_IN_SECONDS))
+            }
+        NSMenuItem("Infinite")
+            .tag(.InfinityTag)
+            .onSelect {
+                AppDelegate.caffWrapper.start()
+            }
         NSMenuItem.separator()
-        NSMenuItem.action(title: "Stop", target: self, selector: #selector(stopCaffinate), tag: .StopTag)
+        NSMenuItem("Stop")
+            .tag(.StopTag)
+            .onSelect {
+                AppDelegate.caffWrapper.stop()
+            }
         NSMenuItem.separator()
-        NSMenuItem.action(title: "Enter Screen Saver", target: self, selector: #selector(enterScreenSaver))
+        NSMenuItem("Enter Screen Saver")
+            .onSelect {
+                /// Stop caffeinate if needed.
+                AppDelegate.caffWrapper.stop()
+                AppDelegate.screenWrapper.run()
+            }
         NSMenuItem.separator()
-        NSMenuItem.action(title: "Quit", target: self, selector: #selector(quitApp), keyEquivalent: "Q")
-    }
-
-    @objc private func startFiveMinutesCaffeinate() {
-        AppDelegate.caffWrapper.start(time: TimeInterval(5 * ONE_MINUTE_IN_SECONDS))
-    }
-
-    @objc private func startInfiniteCaffinate() {
-        AppDelegate.caffWrapper.start()
-    }
-
-    @objc private func stopCaffinate() {
-        AppDelegate.caffWrapper.stop()
-    }
-
-    @objc private func enterScreenSaver() {
-        /// Stop caffeinate if needed.
-        AppDelegate.caffWrapper.stop()
-        AppDelegate.screenWrapper.run()
+        NSMenuItem("Quit")
+            .onSelect {
+                AppDelegate.caffWrapper.stop()
+                NSApplication.shared.terminate(self)
+            }
     }
 
     @objc private func sleep() {
@@ -141,11 +144,6 @@ final class MenuBarItemController {
         process.arguments = ["sleepnow"]
         process.launch()
         process.waitUntilExit()
-    }
-
-    @objc private func quitApp() {
-        AppDelegate.caffWrapper.stop()
-        NSApplication.shared.terminate(self)
     }
 
     private func subscribeSignals() {
