@@ -42,7 +42,7 @@ final class MenuBarItemController {
             return nil
         }
 
-        btn.image = NSImage(systemSymbolName: "cup.and.saucer.fill", accessibilityDescription: "Americano")
+        btn.image = NSImage(systemSymbolName: .CupOn, accessibilityDescription: "Americano")
         btn.image?.size = NSSize(width: 18, height: 18)
         btn.image?.isTemplate = true
 
