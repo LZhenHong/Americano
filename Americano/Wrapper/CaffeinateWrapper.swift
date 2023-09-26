@@ -12,7 +12,7 @@ let ONE_MINUTE_IN_SECONDS = 60
 
 // caffeinate Man Page: https://ss64.com/osx/caffeinate.html
 final class CaffeinateWrapper: BinWrapper {
-    private let logger = Logger(subsystem: "io.lzhlovesjyq.Americano",
+    private let logger = Logger(subsystem: AppDelegate.bundleIdentifier,
                                 category: "CaffeinateController")
 
     private var caffeinate: Process?

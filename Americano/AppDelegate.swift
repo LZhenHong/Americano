@@ -9,6 +9,10 @@ import Cocoa
 
 @main
 class AppDelegate: NSObject, NSApplicationDelegate {
+    static var bundleIdentifier: String {
+        Bundle.main.bundleIdentifier ?? "io.lzhlovesjyq.Americano"
+    }
+
     static let appState = AppState()
     static let caffWrapper = CaffeinateWrapper()
     static let screenWrapper = ScreenSaverWrapper()
