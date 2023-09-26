@@ -139,14 +139,6 @@ final class MenuBarItemController {
             }
     }
 
-    @objc private func sleep() {
-        let process = Process()
-        process.launchPath = "/usr/bin/pmset"
-        process.arguments = ["sleepnow"]
-        process.launch()
-        process.waitUntilExit()
-    }
-
     private func subscribeSignals() {
         let preventSleepSignal = AppDelegate.appState.$preventSleep.receive(on: DispatchQueue.main)
         preventSleepSignal
@@ -169,6 +161,13 @@ final class MenuBarItemController {
         bindMenuItem(.InfinityTag, with: oppsitePublisher)
     }
 
+    private func changeMenuBarItemImage(with name: String) {
+        guard let btn = statusItem?.button else {
+            return
+        }
+        btn.image = NSImage(systemSymbolName: name, accessibilityDescription: "Americano")
+    }
+
     private func bindMenuItem(_ tag: Int, with signal: AnyPublisher<Bool, Never>) {
         guard let item = menu.item(withTag: tag) else {
             return
@@ -176,12 +175,5 @@ final class MenuBarItemController {
         signal
             .assign(to: \.isEnabled, on: item)
             .store(in: &subscriptions)
-    }
-
-    private func changeMenuBarItemImage(with name: String) {
-        guard let btn = statusItem?.button else {
-            return
-        }
-        btn.image = NSImage(systemSymbolName: name, accessibilityDescription: "Americano")
     }
 }
