@@ -167,8 +167,11 @@ final class MenuBarItemController {
         bindMenuItemEnable(.FiveMinutesTag, with: oppsitePublisher)
         bindMenuItemEnable(.InfinityTag, with: oppsitePublisher)
 
-        LaunchAtLogin.publisher
+        AppDelegate.appState.$launchAtLogin
             .receive(on: DispatchQueue.main)
+#if DEBUG
+            .print()
+#endif
             .sink { [weak self] in
                 guard let self = self, let item = self.menu.item(withTag: .LaunchAtLoginTag) else {
                     return
