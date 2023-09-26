@@ -6,6 +6,7 @@
 //
 
 import Cocoa
+import Combine
 import os.log
 
 fileprivate extension String {
@@ -23,7 +24,7 @@ final class MenuBarItemController {
     private let logger = Logger(subsystem: "io.lzhlovesjyq.Americano",
                                 category: "MenuBarItemController")
 
-    private let token = SubscriptionToken()
+    private var subscriptions = Set<AnyCancellable>()
     private var statusItem: NSStatusItem!
     private var menu: NSMenu!
 
@@ -147,22 +148,34 @@ final class MenuBarItemController {
     }
 
     private func subscribeSignals() {
-        AppDelegate.appState.$preventSleep
-            .receive(on: DispatchQueue.main)
+        let preventSleepSignal = AppDelegate.appState.$preventSleep.receive(on: DispatchQueue.main)
+        preventSleepSignal
+            .map({ $0 ? String.CupOn : String.CupOff })
 #if DEBUG
             .print()
 #endif
-            .sink { [weak self] preventSleep in
+            .sink { [weak self] imgName in
                 guard let self = self else {
                     return
                 }
-                self.changeMenuBarItemImage(with: preventSleep ? .CupOn : .CupOff)
-
-                self.menu.item(withTag: .FiveMinutesTag)?.isEnabled = !preventSleep
-                self.menu.item(withTag: .InfinityTag)?.isEnabled = !preventSleep
-                self.menu.item(withTag: .StopTag)?.isEnabled = preventSleep
+                self.changeMenuBarItemImage(with: imgName)
             }
-            .seal(in: token)
+            .store(in: &subscriptions)
+
+        let anyPublisher = preventSleepSignal.eraseToAnyPublisher()
+        bindMenuItem(.StopTag, with: anyPublisher)
+        let oppsitePublisher = anyPublisher.map(!).eraseToAnyPublisher()
+        bindMenuItem(.FiveMinutesTag, with: oppsitePublisher)
+        bindMenuItem(.InfinityTag, with: oppsitePublisher)
+    }
+
+    private func bindMenuItem(_ tag: Int, with signal: AnyPublisher<Bool, Never>) {
+        guard let item = menu.item(withTag: tag) else {
+            return
+        }
+        signal
+            .assign(to: \.isEnabled, on: item)
+            .store(in: &subscriptions)
     }
 
     private func changeMenuBarItemImage(with name: String) {
@@ -170,9 +183,5 @@ final class MenuBarItemController {
             return
         }
         btn.image = NSImage(systemSymbolName: name, accessibilityDescription: "Americano")
-    }
-
-    deinit {
-        token.unseal()
     }
 }
