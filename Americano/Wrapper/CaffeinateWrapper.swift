@@ -77,7 +77,7 @@ final class CaffeinateWrapper: BinWrapper {
     }
 
     private func observeCaffeinateProcessExit() {
-        DispatchQueue.global(qos: .background).async { [weak self] in
+        let runner = { [weak self] in
             guard let self,
                   let caffeinate = self.caffeinate else {
                 AppDelegate.appState.preventSleep = false
@@ -86,6 +86,12 @@ final class CaffeinateWrapper: BinWrapper {
             caffeinate.waitUntilExit()
             self.stop()
         }
+        Task {
+            runner()
+        }
+//        DispatchQueue.global(qos: .background).async {
+//            runner()
+//        }
     }
 
     func stop() {
