@@ -33,7 +33,7 @@ final class MenuBarItemController {
         statusItem = setUpStatusItem()
         menu = setUpMenu()
 
-        subscribeSignals()
+        subscribePublishers()
     }
 
     private func setUpStatusItem() -> NSStatusItem? {
@@ -146,9 +146,9 @@ final class MenuBarItemController {
             }
     }
 
-    private func subscribeSignals() {
-        let preventSleepSignal = AppDelegate.appState.$preventSleep.receive(on: DispatchQueue.main)
-        preventSleepSignal
+    private func subscribePublishers() {
+        let preventSleepPublisher = AppDelegate.appState.$preventSleep.receive(on: DispatchQueue.main)
+        preventSleepPublisher
             .map({ $0 ? String.CupOn : String.CupOff })
 #if DEBUG
             .print()
@@ -161,7 +161,7 @@ final class MenuBarItemController {
             }
             .store(in: &subscriptions)
 
-        let anyPublisher = preventSleepSignal.eraseToAnyPublisher()
+        let anyPublisher = preventSleepPublisher.eraseToAnyPublisher()
         bindMenuItemEnable(.StopTag, with: anyPublisher)
         let oppsitePublisher = anyPublisher.map(!).eraseToAnyPublisher()
         bindMenuItemEnable(.FiveMinutesTag, with: oppsitePublisher)
@@ -188,11 +188,11 @@ final class MenuBarItemController {
         btn.image = NSImage(systemSymbolName: name, accessibilityDescription: "Americano")
     }
 
-    private func bindMenuItemEnable(_ tag: Int, with signal: AnyPublisher<Bool, Never>) {
+    private func bindMenuItemEnable(_ tag: Int, with publisher: AnyPublisher<Bool, Never>) {
         guard let item = menu.item(withTag: tag) else {
             return
         }
-        signal
+        publisher
             .assign(to: \.isEnabled, on: item)
             .store(in: &subscriptions)
     }

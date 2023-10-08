@@ -42,7 +42,7 @@ extension NSMenuItem {
     }
 
     @discardableResult
-    func onEnable(_ signal: AnyPublisher<Bool, Never>) -> Self {
+    func onEnable(_ publisher: AnyPublisher<Bool, Never>) -> Self {
         return self
     }
 
