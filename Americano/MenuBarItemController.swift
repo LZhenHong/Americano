@@ -14,13 +14,6 @@ fileprivate extension String {
     static let CupOff = "cup.and.saucer"
 }
 
-fileprivate extension Int {
-    static let FiveMinutesTag = 1001
-    static let InfinityTag = 1002
-    static let StopTag = 2001
-    static let LaunchAtLoginTag = 3001
-}
-
 final class MenuBarItemController {
     private let logger = Logger(subsystem: AppDelegate.bundleIdentifier,
                                 category: "MenuBarItemController")
@@ -28,6 +21,12 @@ final class MenuBarItemController {
     private var subscriptions = Set<AnyCancellable>()
     private var statusItem: NSStatusItem!
     private var menu: NSMenu!
+
+    private var awakePublisher: AnyPublisher<Bool, Never> {
+        get {
+            AppDelegate.appState.$preventSleep.eraseToAnyPublisher()
+        }
+    }
 
     func setUp() {
         statusItem = setUpStatusItem()
@@ -109,46 +108,51 @@ final class MenuBarItemController {
 
     @MenuBuilder
     private func createMenu() -> NSMenu {
-//        NSMenuItem("Five Minutes")
-//            .tag(.FiveMinutesTag)
-//            .onSelect {
-//                AppDelegate.caffWrapper.start(time: TimeInterval(5 * ONE_MINUTE_IN_SECONDS))
-//            }
-        NSMenuItem("Keep Awake")
-            .tag(.InfinityTag)
+        MenuItemBuilder()
+            .title("Keep Awake")
+            .onEnable(awakePublisher.map(!).eraseToAnyPublisher())
             .onSelect {
                 AppDelegate.caffWrapper.start()
             }
+            .build()
         NSMenuItem.separator()
-        NSMenuItem("Stop")
-            .tag(.StopTag)
+        MenuItemBuilder()
+            .title("Stop")
+            .onEnable(awakePublisher)
             .onSelect {
                 AppDelegate.caffWrapper.stop()
             }
+            .build()
         NSMenuItem.separator()
-        NSMenuItem("Enter Screen Saver")
+        MenuItemBuilder()
+            .title("Enter Screen Saver")
             .onSelect {
                 /// Stop caffeinate if needed.
                 AppDelegate.caffWrapper.stop()
                 AppDelegate.screenWrapper.run()
             }
+            .build()
         NSMenuItem.separator()
-        NSMenuItem("Launch At Login")
-            .tag(.LaunchAtLoginTag)
+        MenuItemBuilder()
+            .title("Launch At Login")
+            .onHighlight(AppDelegate.appState.$launchAtLogin.eraseToAnyPublisher())
             .onSelect {
                 LaunchAtLogin.toggle()
             }
+            .build()
         NSMenuItem.separator()
-        NSMenuItem("Quit")
+        MenuItemBuilder()
+            .title("Quit")
             .onSelect {
                 AppDelegate.caffWrapper.stop()
                 NSApplication.shared.terminate(self)
             }
+            .build()
     }
 
     private func subscribePublishers() {
-        let preventSleepPublisher = AppDelegate.appState.$preventSleep.receive(on: DispatchQueue.main)
-        preventSleepPublisher
+        awakePublisher
+            .receive(on: DispatchQueue.main)
             .map({ $0 ? String.CupOn : String.CupOff })
 #if DEBUG
             .print()
@@ -160,25 +164,6 @@ final class MenuBarItemController {
                 self.changeMenuBarItemImage(with: $0)
             }
             .store(in: &subscriptions)
-
-        let anyPublisher = preventSleepPublisher.eraseToAnyPublisher()
-        bindMenuItemEnable(.StopTag, with: anyPublisher)
-        let oppsitePublisher = anyPublisher.map(!).eraseToAnyPublisher()
-        bindMenuItemEnable(.FiveMinutesTag, with: oppsitePublisher)
-        bindMenuItemEnable(.InfinityTag, with: oppsitePublisher)
-
-        AppDelegate.appState.$launchAtLogin
-            .receive(on: DispatchQueue.main)
-#if DEBUG
-            .print()
-#endif
-            .sink { [weak self] in
-                guard let self = self, let item = self.menu.item(withTag: .LaunchAtLoginTag) else {
-                    return
-                }
-                item.state = $0 ? .on : .off
-            }
-            .store(in: &subscriptions)
     }
 
     private func changeMenuBarItemImage(with name: String) {
@@ -186,14 +171,5 @@ final class MenuBarItemController {
             return
         }
         btn.image = NSImage(systemSymbolName: name, accessibilityDescription: "Americano")
-    }
-
-    private func bindMenuItemEnable(_ tag: Int, with publisher: AnyPublisher<Bool, Never>) {
-        guard let item = menu.item(withTag: tag) else {
-            return
-        }
-        publisher
-            .assign(to: \.isEnabled, on: item)
-            .store(in: &subscriptions)
     }
 }
