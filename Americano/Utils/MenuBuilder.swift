@@ -9,9 +9,25 @@ import AppKit
 
 @resultBuilder
 enum MenuBuilder {
-    static func buildBlock(_ components: NSMenuItem...) -> NSMenu {
-        let menu = NSMenu()
-        components.forEach(menu.addItem(_:))
-        return menu
+    static func buildBlock(_ components: [NSMenuItem]...) -> [NSMenuItem] {
+        components.flatMap { $0 }
+    }
+
+    static func buildExpression(_ expression: MenuItemBuilder?) -> [NSMenuItem] {
+        guard let expression else {
+            return []
+        }
+        return [expression.build()]
+    }
+
+    static func buildExpression(_ expression: NSMenuItem) -> [NSMenuItem] {
+        [expression]
+    }
+}
+
+extension NSMenu {
+    convenience init(@MenuBuilder _ builder: () -> [NSMenuItem]) {
+        self.init()
+        items = builder()
     }
 }

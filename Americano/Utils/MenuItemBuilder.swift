@@ -8,6 +8,19 @@
 import AppKit
 import Combine
 
+final class MenuInvoker {
+    static let shared = MenuInvoker()
+
+    private init() { }
+
+    @objc func execute(_ item: NSMenuItem) {
+        guard let (handler, _) = item.representedObject as? (() -> Void, Set<AnyCancellable>) else {
+            return
+        }
+        handler()
+    }
+}
+
 final class MenuItemBuilder {
     private let menuItem = NSMenuItem()
     private var subscriptions = Set<AnyCancellable>()
@@ -20,23 +33,19 @@ final class MenuItemBuilder {
 
     @discardableResult
     func onSelect(_ handler: @escaping () -> Void) -> Self {
-        menuItem.target = self
-        menuItem.action = #selector(execute(_:))
-        menuItem.representedObject = handler
+        menuItem.target = MenuInvoker.shared
+        menuItem.action = #selector(MenuInvoker.execute(_:))
+        menuItem.representedObject = (handler, subscriptions)
         return self
-    }
-
-    @objc private func execute(_ item: NSMenuItem) {
-        guard let handler = item.representedObject as? () -> Void else {
-            return
-        }
-        handler()
     }
 
     @discardableResult
     func onEnable(_ publisher: AnyPublisher<Bool, Never>) -> Self {
         publisher
             .receive(on: DispatchQueue.main)
+#if DEBUG
+            .print()
+#endif
             .assign(to: \.isEnabled, on: menuItem)
             .store(in: &subscriptions)
         return self
@@ -47,6 +56,9 @@ final class MenuItemBuilder {
         publisher
             .receive(on: DispatchQueue.main)
             .map({ $0 ? NSControl.StateValue.on : NSControl.StateValue.off })
+#if DEBUG
+            .print()
+#endif
             .assign(to: \.state, on: menuItem)
             .store(in: &subscriptions)
         return self

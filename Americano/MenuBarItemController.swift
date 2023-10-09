@@ -106,48 +106,44 @@ final class MenuBarItemController {
         return menu
     }
 
-    @MenuBuilder
     private func createMenu() -> NSMenu {
-        MenuItemBuilder()
-            .title("Keep Awake")
-            .onEnable(awakePublisher.map(!).eraseToAnyPublisher())
-            .onSelect {
-                AppDelegate.caffWrapper.start()
-            }
-            .build()
-        NSMenuItem.separator()
-        MenuItemBuilder()
-            .title("Stop")
-            .onEnable(awakePublisher)
-            .onSelect {
-                AppDelegate.caffWrapper.stop()
-            }
-            .build()
-        NSMenuItem.separator()
-        MenuItemBuilder()
-            .title("Enter Screen Saver")
-            .onSelect {
-                /// Stop caffeinate if needed.
-                AppDelegate.caffWrapper.stop()
-                AppDelegate.screenWrapper.run()
-            }
-            .build()
-        NSMenuItem.separator()
-        MenuItemBuilder()
-            .title("Launch At Login")
-            .onHighlight(AppDelegate.appState.$launchAtLogin.eraseToAnyPublisher())
-            .onSelect {
-                LaunchAtLogin.toggle()
-            }
-            .build()
-        NSMenuItem.separator()
-        MenuItemBuilder()
-            .title("Quit")
-            .onSelect {
-                AppDelegate.caffWrapper.stop()
-                NSApplication.shared.terminate(self)
-            }
-            .build()
+        NSMenu  {
+            MenuItemBuilder()
+                .title("Keep Awake")
+                .onEnable(awakePublisher.map(!).eraseToAnyPublisher())
+                .onSelect {
+                    AppDelegate.caffWrapper.start()
+                }
+            NSMenuItem.separator()
+            MenuItemBuilder()
+                .title("Stop")
+                .onEnable(awakePublisher)
+                .onSelect {
+                    AppDelegate.caffWrapper.stop()
+                }
+            NSMenuItem.separator()
+            MenuItemBuilder()
+                .title("Enter Screen Saver")
+                .onSelect {
+                    /// Stop caffeinate if needed.
+                    AppDelegate.caffWrapper.stop()
+                    AppDelegate.screenWrapper.run()
+                }
+            NSMenuItem.separator()
+            MenuItemBuilder()
+                .title("Launch At Login")
+                .onHighlight(AppDelegate.appState.$launchAtLogin.eraseToAnyPublisher())
+                .onSelect {
+                    LaunchAtLogin.toggle()
+                }
+            NSMenuItem.separator()
+            MenuItemBuilder()
+                .title("Quit")
+                .onSelect {
+                    AppDelegate.caffWrapper.stop()
+                    NSApplication.shared.terminate(self)
+                }
+        }
     }
 
     private func subscribePublishers() {
