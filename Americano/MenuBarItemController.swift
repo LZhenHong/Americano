@@ -41,6 +41,9 @@ final class MenuBarItemController {
             return nil
         }
 
+        statusItem.isVisible = true
+        statusItem.behavior = .terminationOnRemoval
+
         btn.image = NSImage(systemSymbolName: .CupOn, accessibilityDescription: "Americano")
         btn.image?.size = NSSize(width: 18, height: 18)
         btn.image?.isTemplate = true
@@ -138,6 +141,10 @@ final class MenuBarItemController {
                 }
             NSMenuItem.separator()
             MenuItemBuilder()
+                .title("Setting")
+                .shortcuts(",")
+            NSMenuItem.separator()
+            MenuItemBuilder()
                 .title("Quit")
                 .onSelect {
                     AppDelegate.caffWrapper.stop()
@@ -167,5 +174,12 @@ final class MenuBarItemController {
             return
         }
         btn.image = NSImage(systemSymbolName: name, accessibilityDescription: "Americano")
+    }
+
+    private func changeMenuBarItemToolTip(with tip: String) {
+        guard let btn = statusItem?.button else {
+            return
+        }
+        btn.toolTip = tip
     }
 }

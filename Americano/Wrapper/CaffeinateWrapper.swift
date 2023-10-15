@@ -101,4 +101,8 @@ final class CaffeinateWrapper: BinWrapper {
         stopCurrent()
         AppDelegate.appState.preventSleep = false
     }
+
+    deinit {
+        stop()
+    }
 }

@@ -70,6 +70,12 @@ final class MenuItemBuilder {
         return self
     }
 
+    @discardableResult
+    func shortcuts(_ sc: String) -> Self {
+        menuItem.keyEquivalent = sc
+        return self
+    }
+
     func build() -> NSMenuItem {
         return menuItem
     }
