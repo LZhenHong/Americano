@@ -143,6 +143,9 @@ final class MenuBarItemController {
             MenuItemBuilder()
                 .title("Setting")
                 .shortcuts(",")
+                .onSelect {
+                    SettingWindow.shared.makeKeyAndOrderFront(nil)
+                }
             NSMenuItem.separator()
             MenuItemBuilder()
                 .title("Quit")
