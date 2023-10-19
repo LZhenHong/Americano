@@ -38,7 +38,8 @@ extension AppDelegate: SettingWindowDataSource {
     func settingTabViewItems(_ window: SettingWindow) -> [any SettingContentRepresentable] {
         return [
             SettingGeneralViewController(),
-            SettingIntervalViewController()
+            SettingIntervalViewController(),
+            SettingAboutViewController()
         ]
     }
 }

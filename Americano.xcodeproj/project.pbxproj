@@ -24,6 +24,7 @@
 		F2EF3AD62AE1111A00F2C26F /* SettingContentRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EF3AD52AE1111A00F2C26F /* SettingContentRepresentable.swift */; };
 		F2EF3AD82AE1297F00F2C26F /* SettingGeneralViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EF3AD72AE1297F00F2C26F /* SettingGeneralViewController.swift */; };
 		F2EF3ADA2AE130AB00F2C26F /* SettingIntervalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EF3AD92AE130AB00F2C26F /* SettingIntervalViewController.swift */; };
+		F2EF3ADC2AE14F1700F2C26F /* SettingAboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EF3ADB2AE14F1700F2C26F /* SettingAboutViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,7 @@
 		F2EF3AD52AE1111A00F2C26F /* SettingContentRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingContentRepresentable.swift; sourceTree = "<group>"; };
 		F2EF3AD72AE1297F00F2C26F /* SettingGeneralViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingGeneralViewController.swift; sourceTree = "<group>"; };
 		F2EF3AD92AE130AB00F2C26F /* SettingIntervalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingIntervalViewController.swift; sourceTree = "<group>"; };
+		F2EF3ADB2AE14F1700F2C26F /* SettingAboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingAboutViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +68,7 @@
 				F2EF3AD52AE1111A00F2C26F /* SettingContentRepresentable.swift */,
 				F2EF3AD72AE1297F00F2C26F /* SettingGeneralViewController.swift */,
 				F2EF3AD92AE130AB00F2C26F /* SettingIntervalViewController.swift */,
+				F2EF3ADB2AE14F1700F2C26F /* SettingAboutViewController.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -216,6 +219,7 @@
 				F25A297C2ABC6C200022E08E /* ScreenSaverWrapper.swift in Sources */,
 				F2EF3ADA2AE130AB00F2C26F /* SettingIntervalViewController.swift in Sources */,
 				F2EF3AD62AE1111A00F2C26F /* SettingContentRepresentable.swift in Sources */,
+				F2EF3ADC2AE14F1700F2C26F /* SettingAboutViewController.swift in Sources */,
 				F2CACC5D2ABAD6C200CB2BE4 /* AppState.swift in Sources */,
 				F282BEAB2ABB09CE0073D130 /* SubscriptionToken.swift in Sources */,
 				F2294E782AC30EF70085448F /* LaunchAtLogin.swift in Sources */,
