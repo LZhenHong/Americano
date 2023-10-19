@@ -21,6 +21,9 @@
 		F2CACC5B2ABAD17100CB2BE4 /* MenuBarItemController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2CACC5A2ABAD17100CB2BE4 /* MenuBarItemController.swift */; };
 		F2CACC5D2ABAD6C200CB2BE4 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2CACC5C2ABAD6C200CB2BE4 /* AppState.swift */; };
 		F2CACC5F2ABADBCA00CB2BE4 /* CaffeinateWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2CACC5E2ABADBCA00CB2BE4 /* CaffeinateWrapper.swift */; };
+		F2EF3AD62AE1111A00F2C26F /* SettingContentRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EF3AD52AE1111A00F2C26F /* SettingContentRepresentable.swift */; };
+		F2EF3AD82AE1297F00F2C26F /* SettingGeneralViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EF3AD72AE1297F00F2C26F /* SettingGeneralViewController.swift */; };
+		F2EF3ADA2AE130AB00F2C26F /* SettingIntervalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EF3AD92AE130AB00F2C26F /* SettingIntervalViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +43,9 @@
 		F2CACC5A2ABAD17100CB2BE4 /* MenuBarItemController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarItemController.swift; sourceTree = "<group>"; };
 		F2CACC5C2ABAD6C200CB2BE4 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		F2CACC5E2ABADBCA00CB2BE4 /* CaffeinateWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaffeinateWrapper.swift; sourceTree = "<group>"; };
+		F2EF3AD52AE1111A00F2C26F /* SettingContentRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingContentRepresentable.swift; sourceTree = "<group>"; };
+		F2EF3AD72AE1297F00F2C26F /* SettingGeneralViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingGeneralViewController.swift; sourceTree = "<group>"; };
+		F2EF3AD92AE130AB00F2C26F /* SettingIntervalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingIntervalViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,12 +59,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		F256B3472ADDA0BC00470219 /* Setting */ = {
+		F256B3472ADDA0BC00470219 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
 				F256B3482ADDA0D400470219 /* SettingWindow.swift */,
+				F2EF3AD52AE1111A00F2C26F /* SettingContentRepresentable.swift */,
+				F2EF3AD72AE1297F00F2C26F /* SettingGeneralViewController.swift */,
+				F2EF3AD92AE130AB00F2C26F /* SettingIntervalViewController.swift */,
 			);
-			path = Setting;
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		F2A013B32ABD3F9B006883D3 /* Wrapper */ = {
@@ -124,7 +133,7 @@
 				F2CACC5A2ABAD17100CB2BE4 /* MenuBarItemController.swift */,
 				F2A013B42ABD3FB4006883D3 /* Data */,
 				F2A013B32ABD3F9B006883D3 /* Wrapper */,
-				F256B3472ADDA0BC00470219 /* Setting */,
+				F256B3472ADDA0BC00470219 /* Settings */,
 				F2A013B52ABD3FCD006883D3 /* Utils */,
 				F2A013B62ABD3FDD006883D3 /* Resources */,
 			);
@@ -205,9 +214,12 @@
 				F2CACC5F2ABADBCA00CB2BE4 /* CaffeinateWrapper.swift in Sources */,
 				F25A297E2ABC6C720022E08E /* BinWrapper.swift in Sources */,
 				F25A297C2ABC6C200022E08E /* ScreenSaverWrapper.swift in Sources */,
+				F2EF3ADA2AE130AB00F2C26F /* SettingIntervalViewController.swift in Sources */,
+				F2EF3AD62AE1111A00F2C26F /* SettingContentRepresentable.swift in Sources */,
 				F2CACC5D2ABAD6C200CB2BE4 /* AppState.swift in Sources */,
 				F282BEAB2ABB09CE0073D130 /* SubscriptionToken.swift in Sources */,
 				F2294E782AC30EF70085448F /* LaunchAtLogin.swift in Sources */,
+				F2EF3AD82AE1297F00F2C26F /* SettingGeneralViewController.swift in Sources */,
 				341E6BC02AC080850043E97A /* MenuBuilder.swift in Sources */,
 				F2CACC4C2ABACDA600CB2BE4 /* AppDelegate.swift in Sources */,
 				F2B9D84E2AC4A548006737D0 /* MenuItemBuilder.swift in Sources */,

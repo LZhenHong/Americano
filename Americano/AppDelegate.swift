@@ -20,6 +20,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         AppDelegate.barItemController.setUp()
+
+        SettingWindow.shared.dataSource = self
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
@@ -29,5 +31,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationSupportsSecureRestorableState(_ app: NSApplication) -> Bool {
         return true
+    }
+}
+
+extension AppDelegate: SettingWindowDataSource {
+    func settingTabViewItems(_ window: SettingWindow) -> [any SettingContentRepresentable] {
+        return [
+            SettingGeneralViewController(),
+            SettingIntervalViewController()
+        ]
     }
 }
