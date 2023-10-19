@@ -1,15 +1,13 @@
 //
-//  SettingAboutViewController.swift
+//  AboutSetting.swift
 //  Americano
 //
 //  Created by Eden on 2023/10/19.
 //
 
-import Cocoa
+import SwiftUI
 
-final class SettingAboutViewController: NSViewController, SettingContentRepresentable {
-    typealias ContentViewController = SettingAboutViewController
-
+struct AboutSetting: SettingContentRepresentable {
     var tabViewImage: NSImage? {
         get {
             NSImage(systemSymbolName: "info.circle", accessibilityDescription: nil)
@@ -20,9 +18,5 @@ final class SettingAboutViewController: NSViewController, SettingContentRepresen
         get {
             "About"
         }
-    }
-
-    override func loadView() {
-        view = NSView()
     }
 }

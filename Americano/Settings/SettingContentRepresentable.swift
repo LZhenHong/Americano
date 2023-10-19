@@ -6,10 +6,9 @@
 //
 
 import Cocoa
+import SwiftUI
 
-protocol SettingContentRepresentable: AnyObject {
-    associatedtype ContentViewController: NSViewController
-
+protocol SettingContentRepresentable {
     var tabViewImage: NSImage? { get }
     var preferredTitle: String { get }
 }
@@ -17,9 +16,8 @@ protocol SettingContentRepresentable: AnyObject {
 extension SettingContentRepresentable {
     var tabViewItem: NSTabViewItem {
         get {
-            let vc = ContentViewController()
-            vc.title = preferredTitle
-            let item = NSTabViewItem(viewController: vc)
+            let viewController = SettingViewController(representable: self)
+            let item = NSTabViewItem(viewController: viewController)
             item.image = tabViewImage
             item.label = preferredTitle
             return item

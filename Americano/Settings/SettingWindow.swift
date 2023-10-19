@@ -12,12 +12,10 @@ protocol SettingWindowDataSource: AnyObject {
 }
 
 final class SettingWindow: NSWindow {
-    static let shared = SettingWindow()
-
     weak var dataSource: SettingWindowDataSource?
     private(set) var tabViewController: NSTabViewController
 
-    private init() {
+    init() {
         tabViewController = NSTabViewController()
 
         super.init(contentRect: .zero, styleMask: [.titled, .closable], backing: .buffered, defer: false)
@@ -39,7 +37,7 @@ final class SettingWindow: NSWindow {
             .forEach(tabViewController.addTabViewItem(_:))
 
         NSApplication.shared.activate(ignoringOtherApps: true)
-        makeKeyAndOrderFront(nil)
+        makeKeyAndOrderFront(self)
         center()
     }
 }
