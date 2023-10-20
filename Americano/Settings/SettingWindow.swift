@@ -37,7 +37,12 @@ final class SettingWindow: NSWindow {
             .forEach(tabViewController.addTabViewItem(_:))
 
         NSApplication.shared.activate(ignoringOtherApps: true)
-        makeKeyAndOrderFront(self)
+        makeKeyAndOrderFront(NSApp)
         center()
+    }
+
+    // https://github.com/onmyway133/blog/issues/312
+    override func close() {
+        self.orderOut(NSApp)
     }
 }
