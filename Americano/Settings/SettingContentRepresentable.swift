@@ -28,7 +28,11 @@ extension SettingContentRepresentable {
 
 extension SettingContentRepresentable {
     var view: AnyView {
-        Text(preferredTitle)
-            .eraseToAnyView()
+        HStack {
+            Text(preferredTitle)
+                .background(Color.red)
+        }
+        .frame(width: 500, height: 400)
+        .eraseToAnyView()
     }
 }

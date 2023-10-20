@@ -10,6 +10,7 @@ import SwiftUI
 
 final class SettingViewController: NSViewController {
     private let representable: SettingContentRepresentable
+    private var constrains: [NSLayoutConstraint] = []
 
     init(representable: SettingContentRepresentable) {
         self.representable = representable
@@ -28,6 +29,6 @@ final class SettingViewController: NSViewController {
 
         let hostingView = NSHostingView(rootView: representable.view)
         view.addSubview(hostingView)
-        hostingView.constrainToSuperviewBounds()
+        constrains = hostingView.constrainToSuperviewBounds()
     }
 }

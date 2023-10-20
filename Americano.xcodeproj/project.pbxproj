@@ -10,7 +10,7 @@
 		341E6BC02AC080850043E97A /* MenuBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341E6BBF2AC080850043E97A /* MenuBuilder.swift */; };
 		34694D392ABB58B1003D4362 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34694D382ABB58B1003D4362 /* Storage.swift */; };
 		F2294E782AC30EF70085448F /* LaunchAtLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2294E772AC30EF70085448F /* LaunchAtLogin.swift */; };
-		F256B3492ADDA0D400470219 /* SettingWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F256B3482ADDA0D400470219 /* SettingWindow.swift */; };
+		F256B3492ADDA0D400470219 /* SettingWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F256B3482ADDA0D400470219 /* SettingWindowController.swift */; };
 		F256B34B2AE19AD000470219 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F256B34A2AE19AD000470219 /* SettingViewController.swift */; };
 		F25A297C2ABC6C200022E08E /* ScreenSaverWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F25A297B2ABC6C200022E08E /* ScreenSaverWrapper.swift */; };
 		F25A297E2ABC6C720022E08E /* BinWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F25A297D2ABC6C720022E08E /* BinWrapper.swift */; };
@@ -33,7 +33,7 @@
 		341E6BBF2AC080850043E97A /* MenuBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBuilder.swift; sourceTree = "<group>"; };
 		34694D382ABB58B1003D4362 /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		F2294E772AC30EF70085448F /* LaunchAtLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchAtLogin.swift; sourceTree = "<group>"; };
-		F256B3482ADDA0D400470219 /* SettingWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingWindow.swift; sourceTree = "<group>"; };
+		F256B3482ADDA0D400470219 /* SettingWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingWindowController.swift; sourceTree = "<group>"; };
 		F256B34A2AE19AD000470219 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		F25A297B2ABC6C200022E08E /* ScreenSaverWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenSaverWrapper.swift; sourceTree = "<group>"; };
 		F25A297D2ABC6C720022E08E /* BinWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinWrapper.swift; sourceTree = "<group>"; };
@@ -68,7 +68,7 @@
 		F256B3472ADDA0BC00470219 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
-				F256B3482ADDA0D400470219 /* SettingWindow.swift */,
+				F256B3482ADDA0D400470219 /* SettingWindowController.swift */,
 				F256B34A2AE19AD000470219 /* SettingViewController.swift */,
 				F2EF3AD52AE1111A00F2C26F /* SettingContentRepresentable.swift */,
 				F2EF3AD72AE1297F00F2C26F /* GeneralSetting.swift */,
@@ -219,7 +219,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F256B3492ADDA0D400470219 /* SettingWindow.swift in Sources */,
+				F256B3492ADDA0D400470219 /* SettingWindowController.swift in Sources */,
 				F2CACC5F2ABADBCA00CB2BE4 /* CaffeinateWrapper.swift in Sources */,
 				F291C25D2AE2137F007F152C /* ViewUtils.swift in Sources */,
 				F25A297E2ABC6C720022E08E /* BinWrapper.swift in Sources */,

@@ -144,9 +144,11 @@ final class MenuBarItemController {
                 .title("Setting")
                 .shortcuts(",")
                 .onSelect {
-                    let window = SettingWindow()
-                    window.dataSource = self
-                    window.show()
+                    SettingWindowController(settings: [
+                        GeneralSetting(),
+                        IntervalSetting(),
+                        AboutSetting()
+                    ]).show()
                 }
             NSMenuItem.separator()
             MenuItemBuilder()
@@ -186,15 +188,5 @@ final class MenuBarItemController {
             return
         }
         btn.toolTip = tip
-    }
-}
-
-extension MenuBarItemController: SettingWindowDataSource {
-    func settingTabViewItems(_ window: SettingWindow) -> [SettingContentRepresentable] {
-        return [
-            GeneralSetting(),
-            IntervalSetting(),
-            AboutSetting()
-        ]
     }
 }
