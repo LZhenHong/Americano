@@ -190,7 +190,7 @@ final class MenuBarItemController {
 }
 
 extension MenuBarItemController: SettingWindowDataSource {
-    func settingTabViewItems(_ window: SettingWindow) -> [any SettingContentRepresentable] {
+    func settingTabViewItems(_ window: SettingWindow) -> [SettingContentRepresentable] {
         return [
             GeneralSetting(),
             IntervalSetting(),

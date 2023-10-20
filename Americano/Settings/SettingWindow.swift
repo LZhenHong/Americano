@@ -8,7 +8,7 @@
 import Cocoa
 
 protocol SettingWindowDataSource: AnyObject {
-    func settingTabViewItems(_ window: SettingWindow) -> [any SettingContentRepresentable]
+    func settingTabViewItems(_ window: SettingWindow) -> [SettingContentRepresentable]
 }
 
 final class SettingWindow: NSWindow {

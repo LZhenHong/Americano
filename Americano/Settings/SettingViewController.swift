@@ -9,9 +9,9 @@ import Cocoa
 import SwiftUI
 
 final class SettingViewController: NSViewController {
-    private let representable: any SettingContentRepresentable
+    private let representable: SettingContentRepresentable
 
-    init(representable: any SettingContentRepresentable) {
+    init(representable: SettingContentRepresentable) {
         self.representable = representable
         super.init(nibName: nil, bundle: nil)
     }
@@ -26,7 +26,8 @@ final class SettingViewController: NSViewController {
         view = NSView()
         view.translatesAutoresizingMaskIntoConstraints = false
 
-//        let hostingView = NSHostingView(rootView: representable.content)
-//        view.addSubview(hostingView)
+        let hostingView = NSHostingView(rootView: representable.view)
+        view.addSubview(hostingView)
+        hostingView.constrainToSuperviewBounds()
     }
 }

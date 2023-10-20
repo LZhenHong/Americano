@@ -11,6 +11,7 @@ import SwiftUI
 protocol SettingContentRepresentable {
     var tabViewImage: NSImage? { get }
     var preferredTitle: String { get }
+    @ViewBuilder var view: AnyView { get }
 }
 
 extension SettingContentRepresentable {
@@ -22,5 +23,12 @@ extension SettingContentRepresentable {
             item.label = preferredTitle
             return item
         }
+    }
+}
+
+extension SettingContentRepresentable {
+    var view: AnyView {
+        Text(preferredTitle)
+            .eraseToAnyView()
     }
 }
