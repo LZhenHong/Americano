@@ -9,14 +9,10 @@ import SwiftUI
 
 struct IntervalSetting: SettingContentRepresentable {
     var tabViewImage: NSImage? {
-        get {
-            NSImage(systemSymbolName: "timer", accessibilityDescription: nil)
-        }
+        NSImage(systemSymbolName: "timer", accessibilityDescription: nil)
     }
 
     var preferredTitle: String {
-        get {
-            "Awake Interval"
-        }
+        "Awake Interval"
     }
 }

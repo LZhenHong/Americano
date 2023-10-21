@@ -144,11 +144,12 @@ final class MenuBarItemController {
                 .title("Setting")
                 .shortcuts(",")
                 .onSelect {
-                    SettingWindowController(settings: [
+                    let settings: [SettingContentRepresentable] = [
                         GeneralSetting(),
                         IntervalSetting(),
                         AboutSetting()
-                    ]).show()
+                    ]
+                    SettingWindowController(settings: settings).show()
                 }
             NSMenuItem.separator()
             MenuItemBuilder()

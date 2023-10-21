@@ -9,14 +9,10 @@ import SwiftUI
 
 struct AboutSetting: SettingContentRepresentable {
     var tabViewImage: NSImage? {
-        get {
-            NSImage(systemSymbolName: "info.circle", accessibilityDescription: nil)
-        }
+        NSImage(systemSymbolName: "info.circle", accessibilityDescription: nil)
     }
 
     var preferredTitle: String {
-        get {
-            "About"
-        }
+        "About"
     }
 }

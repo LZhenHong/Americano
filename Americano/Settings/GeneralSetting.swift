@@ -9,14 +9,29 @@ import SwiftUI
 
 struct GeneralSetting: SettingContentRepresentable {
     var tabViewImage: NSImage? {
-        get {
-             NSImage(systemSymbolName: "gearshape", accessibilityDescription: nil)
-        }
+        NSImage(systemSymbolName: "gearshape", accessibilityDescription: nil)
     }
 
     var preferredTitle: String {
-        get {
-            "General"
+        "General"
+    }
+
+    var view: AnyView {
+        GeneralSettingView()
+            .padding()
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .eraseToAnyView()
+    }
+}
+
+struct GeneralSettingView: View {
+    @State private var launchAtLogin = AppDelegate.appState.launchAtLogin
+
+    var body: some View {
+        Form {
+            Toggle(isOn: $launchAtLogin) {
+                Text("Launch At Login")
+            }
         }
     }
 }
