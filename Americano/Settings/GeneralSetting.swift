@@ -17,7 +17,7 @@ struct GeneralSetting: SettingContentRepresentable {
     }
 
     var view: AnyView {
-        GeneralSettingView()
+        GeneralSettingView(state: AppDelegate.appState)
             .padding()
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .eraseToAnyView()
@@ -25,13 +25,14 @@ struct GeneralSetting: SettingContentRepresentable {
 }
 
 struct GeneralSettingView: View {
-    @State private var launchAtLogin = AppDelegate.appState.launchAtLogin
+    @ObservedObject var state: AppState
 
     var body: some View {
         Form {
-            Toggle(isOn: $launchAtLogin) {
-                Text("Launch At Login")
-            }
+            Toggle("Launch At Login", isOn: $state.launchAtLogin)
+                .onChange(of: state.launchAtLogin, perform: { _ in
+                    LaunchAtLogin.toggle()
+                })
         }
     }
 }
