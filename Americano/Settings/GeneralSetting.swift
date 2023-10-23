@@ -17,9 +17,8 @@ struct GeneralSetting: SettingContentRepresentable {
     }
 
     var view: AnyView {
-        GeneralSettingView(state: AppDelegate.appState)
+        GeneralSettingView(state: .shared)
             .padding()
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
             .eraseToAnyView()
     }
 }
@@ -33,6 +32,11 @@ struct GeneralSettingView: View {
                 .onChange(of: state.launchAtLogin, perform: { _ in
                     LaunchAtLogin.toggle()
                 })
+            Text("Automatically opens the app when you start your Mac.")
+                .settingPropmt()
+            Toggle("Auto start when launch", isOn: $state.autoStart)
+            Text("Auto starts preventing sleep when launched.")
+                .settingPropmt()
         }
     }
 }

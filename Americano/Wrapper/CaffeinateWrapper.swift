@@ -64,7 +64,7 @@ final class CaffeinateWrapper: BinWrapper {
         do {
             try caffeinate.run()
             
-            AppDelegate.appState.preventSleep = true
+            AppState.shared.preventSleep = true
             if time.isFinite {
                 observeCaffeinateProcessExit()
             }
@@ -80,7 +80,7 @@ final class CaffeinateWrapper: BinWrapper {
         let runner = { [weak self] in
             guard let self,
                   let caffeinate = self.caffeinate else {
-                AppDelegate.appState.preventSleep = false
+                AppState.shared.preventSleep = false
                 return
             }
             caffeinate.waitUntilExit()
@@ -99,7 +99,7 @@ final class CaffeinateWrapper: BinWrapper {
             return
         }
         stopCurrent()
-        AppDelegate.appState.preventSleep = false
+        AppState.shared.preventSleep = false
     }
 
     deinit {

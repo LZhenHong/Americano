@@ -24,7 +24,7 @@ final class MenuBarItemController {
 
     private var awakePublisher: AnyPublisher<Bool, Never> {
         get {
-            AppDelegate.appState.$preventSleep.eraseToAnyPublisher()
+            AppState.shared.$preventSleep.eraseToAnyPublisher()
         }
     }
 
@@ -135,7 +135,7 @@ final class MenuBarItemController {
             NSMenuItem.separator()
             MenuItemBuilder()
                 .title("Launch At Login")
-                .onHighlight(AppDelegate.appState.$launchAtLogin.eraseToAnyPublisher())
+                .onHighlight(AppState.shared.$launchAtLogin.eraseToAnyPublisher())
                 .onSelect {
                     LaunchAtLogin.toggle()
                 }

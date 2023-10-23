@@ -27,6 +27,11 @@ extension NSView {
 }
 
 extension View {
+    func settingPropmt() -> some View {
+        font(.system(size: 11))
+            .foregroundColor(.secondary)
+    }
+
     func eraseToAnyView() -> AnyView {
         AnyView(self)
     }

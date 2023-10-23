@@ -7,6 +7,8 @@
 
 import Foundation
 
+/// SwiftUI has `AppStorage` propertyWrapper also, this just for practice.
+
 @propertyWrapper
 struct Storage<T: Codable> {
     private let key: String
@@ -32,4 +34,8 @@ struct Storage<T: Codable> {
         self.defaultValue = defalutValue
         self.storage = storage
     }
+}
+
+extension UserDefaults {
+    static let shared = UserDefaults(suiteName: "\(AppDelegate.bundleIdentifier).userdefaults")!
 }

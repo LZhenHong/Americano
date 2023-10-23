@@ -13,7 +13,6 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         Bundle.main.bundleIdentifier ?? "io.lzhlovesjyq.Americano"
     }
 
-    static let appState = AppState()
     static let caffWrapper = CaffeinateWrapper()
     static let screenWrapper = ScreenSaverWrapper()
     static let barItemController = MenuBarItemController()

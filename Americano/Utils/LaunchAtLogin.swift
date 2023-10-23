@@ -27,7 +27,7 @@ enum LaunchAtLogin {
             } else {
                 try SMAppService.mainApp.register()
             }
-            AppDelegate.appState.launchAtLogin = isEnabled
+            AppState.shared.launchAtLogin = isEnabled
         } catch {
             logger.error("Failed to \(isEnabled ? "unregister" : "register") launch at login: \(error)")
         }
