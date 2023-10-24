@@ -27,8 +27,9 @@ final class SettingViewController: NSViewController {
         view = NSView()
         view.translatesAutoresizingMaskIntoConstraints = false
 
-        let hostingView = NSHostingView(rootView: representable.view)
-        view.addSubview(hostingView)
-        constrains = hostingView.constrainToSuperviewBounds()
+        let hostingViewController = NSHostingController(rootView: representable.view)
+        addChild(hostingViewController)
+        view.addSubview(hostingViewController.view)
+        constrains = hostingViewController.view.constrainToSuperviewBounds()
     }
 }

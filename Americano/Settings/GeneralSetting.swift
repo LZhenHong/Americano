@@ -18,7 +18,6 @@ struct GeneralSetting: SettingContentRepresentable {
 
     var view: AnyView {
         GeneralSettingView(state: .shared)
-            .padding()
             .eraseToAnyView()
     }
 }
@@ -38,5 +37,10 @@ struct GeneralSettingView: View {
             Text("Auto starts preventing sleep when launched.")
                 .settingPropmt()
         }
+        .padding()
     }
+}
+
+#Preview {
+    GeneralSettingView(state: .sample)
 }

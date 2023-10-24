@@ -16,8 +16,19 @@ final class AppState: ObservableObject {
 
     static let shared = AppState()
 
-    private init() { }
+    fileprivate init() { }
 }
+
+#if DEBUG
+extension AppState {
+    static var sample = {
+        let state = AppState()
+        state.launchAtLogin = false
+        state.autoStart = true
+        return state
+    }()
+}
+#endif
 
 extension String {
     static let AutoStartPrefKey = "\(AppDelegate.bundleIdentifier).autostart"
