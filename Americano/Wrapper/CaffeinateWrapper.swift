@@ -77,18 +77,28 @@ final class CaffeinateWrapper: BinWrapper {
     }
 
     private func observeCaffeinateProcessExit() {
-        let runner = { [weak self] in
-            guard let self,
-                  let caffeinate = self.caffeinate else {
-                AppState.shared.preventSleep = false
+        guard let caffeinate else {
+            return
+        }
+        caffeinate.terminationHandler = { [weak self] _ in
+            guard let self else {
                 return
             }
-            caffeinate.waitUntilExit()
             self.stop()
         }
-        Task {
-            runner()
-        }
+
+//        let runner = { [weak self] in
+//            guard let self,
+//                  let caffeinate = self.caffeinate else {
+//                AppState.shared.preventSleep = false
+//                return
+//            }
+//            caffeinate.waitUntilExit()
+//            self.stop()
+//        }
+//        Task {
+//            runner()
+//        }
 //        DispatchQueue.global(qos: .background).async {
 //            runner()
 //        }
