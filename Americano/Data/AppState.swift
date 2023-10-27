@@ -14,6 +14,7 @@ final class AppState: ObservableObject {
     // TODO: - Try use marco.
     @AppStorage(.AutoStartPrefKey, store: .shared) var autoStart = false
     @AppStorage(.EnterScreenSaverPrefKey, store: .shared) var enterScreenSaver = false
+    @AppStorage(.AwakeDurationsPrefKey, store: .shared) var awakeDurations = AwakeDurations()
 
     static let shared = AppState()
 
@@ -35,4 +36,5 @@ extension AppState {
 extension String {
     static let AutoStartPrefKey = "\(AppDelegate.bundleIdentifier).autostart"
     static let EnterScreenSaverPrefKey = "\(AppDelegate.bundleIdentifier).enterscreensaver"
+    static let AwakeDurationsPrefKey = "\(AppDelegate.bundleIdentifier).awaydurations"
 }

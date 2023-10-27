@@ -10,6 +10,7 @@
 		341E6BC02AC080850043E97A /* MenuBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341E6BBF2AC080850043E97A /* MenuBuilder.swift */; };
 		34694D392ABB58B1003D4362 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34694D382ABB58B1003D4362 /* Storage.swift */; };
 		F2294E782AC30EF70085448F /* LaunchAtLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2294E772AC30EF70085448F /* LaunchAtLogin.swift */; };
+		F2489C442AE976A900B5E17B /* AwakeDurations.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2489C432AE976A900B5E17B /* AwakeDurations.swift */; };
 		F256B3492ADDA0D400470219 /* SettingWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F256B3482ADDA0D400470219 /* SettingWindowController.swift */; };
 		F256B34B2AE19AD000470219 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F256B34A2AE19AD000470219 /* SettingViewController.swift */; };
 		F25A297C2ABC6C200022E08E /* ScreenSaverWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F25A297B2ABC6C200022E08E /* ScreenSaverWrapper.swift */; };
@@ -33,6 +34,7 @@
 		341E6BBF2AC080850043E97A /* MenuBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBuilder.swift; sourceTree = "<group>"; };
 		34694D382ABB58B1003D4362 /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		F2294E772AC30EF70085448F /* LaunchAtLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchAtLogin.swift; sourceTree = "<group>"; };
+		F2489C432AE976A900B5E17B /* AwakeDurations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AwakeDurations.swift; sourceTree = "<group>"; };
 		F256B3482ADDA0D400470219 /* SettingWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingWindowController.swift; sourceTree = "<group>"; };
 		F256B34A2AE19AD000470219 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		F25A297B2ABC6C200022E08E /* ScreenSaverWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenSaverWrapper.swift; sourceTree = "<group>"; };
@@ -93,6 +95,7 @@
 			children = (
 				F2CACC5C2ABAD6C200CB2BE4 /* AppState.swift */,
 				34694D382ABB58B1003D4362 /* Storage.swift */,
+				F2489C432AE976A900B5E17B /* AwakeDurations.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -233,6 +236,7 @@
 				F2294E782AC30EF70085448F /* LaunchAtLogin.swift in Sources */,
 				F2EF3AD82AE1297F00F2C26F /* GeneralSetting.swift in Sources */,
 				341E6BC02AC080850043E97A /* MenuBuilder.swift in Sources */,
+				F2489C442AE976A900B5E17B /* AwakeDurations.swift in Sources */,
 				F2CACC4C2ABACDA600CB2BE4 /* AppDelegate.swift in Sources */,
 				F2B9D84E2AC4A548006737D0 /* MenuItemBuilder.swift in Sources */,
 				F2CACC5B2ABAD17100CB2BE4 /* MenuBarItemController.swift in Sources */,
@@ -378,14 +382,15 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Americano/Resources/Americano.entitlements;
-				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_IDENTITY = "-";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = V65YCRQZ2M;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "冰美式";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_LSUIElement = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_NSMainStoryboardFile = Main;
@@ -409,14 +414,15 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Americano/Resources/Americano.entitlements;
-				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_IDENTITY = "-";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = V65YCRQZ2M;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "冰美式";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_LSUIElement = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_NSMainStoryboardFile = Main;

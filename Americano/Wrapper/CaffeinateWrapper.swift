@@ -45,6 +45,7 @@ final class CaffeinateWrapper: BinWrapper {
         }
         caffeinate.terminate()
         caffeinate.waitUntilExit()
+        caffeinate.terminationHandler = nil
         self.caffeinate = nil
     }
     
