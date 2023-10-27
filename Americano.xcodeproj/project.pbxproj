@@ -18,6 +18,7 @@
 		F282BEAB2ABB09CE0073D130 /* SubscriptionToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = F282BEAA2ABB09CE0073D130 /* SubscriptionToken.swift */; };
 		F291C25D2AE2137F007F152C /* ViewUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F291C25C2AE2137F007F152C /* ViewUtils.swift */; };
 		F2B9D84E2AC4A548006737D0 /* MenuItemBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B9D84D2AC4A548006737D0 /* MenuItemBuilder.swift */; };
+		F2C0DFFE2AEBBCE900970BFA /* Array+Raw.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2C0DFFD2AEBBCE900970BFA /* Array+Raw.swift */; };
 		F2CACC4C2ABACDA600CB2BE4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2CACC4B2ABACDA600CB2BE4 /* AppDelegate.swift */; };
 		F2CACC502ABACDA700CB2BE4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F2CACC4F2ABACDA700CB2BE4 /* Assets.xcassets */; };
 		F2CACC532ABACDA700CB2BE4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F2CACC512ABACDA700CB2BE4 /* Main.storyboard */; };
@@ -42,6 +43,7 @@
 		F282BEAA2ABB09CE0073D130 /* SubscriptionToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionToken.swift; sourceTree = "<group>"; };
 		F291C25C2AE2137F007F152C /* ViewUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewUtils.swift; sourceTree = "<group>"; };
 		F2B9D84D2AC4A548006737D0 /* MenuItemBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemBuilder.swift; sourceTree = "<group>"; };
+		F2C0DFFD2AEBBCE900970BFA /* Array+Raw.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Raw.swift"; sourceTree = "<group>"; };
 		F2CACC482ABACDA600CB2BE4 /* Americano.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Americano.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2CACC4B2ABACDA600CB2BE4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F2CACC4F2ABACDA700CB2BE4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -108,6 +110,7 @@
 				F2B9D84D2AC4A548006737D0 /* MenuItemBuilder.swift */,
 				F282BEAA2ABB09CE0073D130 /* SubscriptionToken.swift */,
 				F291C25C2AE2137F007F152C /* ViewUtils.swift */,
+				F2C0DFFD2AEBBCE900970BFA /* Array+Raw.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -232,6 +235,7 @@
 				F2EF3AD62AE1111A00F2C26F /* SettingContentRepresentable.swift in Sources */,
 				F2EF3ADC2AE14F1700F2C26F /* AboutSetting.swift in Sources */,
 				F2CACC5D2ABAD6C200CB2BE4 /* AppState.swift in Sources */,
+				F2C0DFFE2AEBBCE900970BFA /* Array+Raw.swift in Sources */,
 				F282BEAB2ABB09CE0073D130 /* SubscriptionToken.swift in Sources */,
 				F2294E782AC30EF70085448F /* LaunchAtLogin.swift in Sources */,
 				F2EF3AD82AE1297F00F2C26F /* GeneralSetting.swift in Sources */,
@@ -383,7 +387,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Americano/Resources/Americano.entitlements;
 				CODE_SIGN_IDENTITY = "-";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -415,7 +419,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Americano/Resources/Americano.entitlements;
 				CODE_SIGN_IDENTITY = "-";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;

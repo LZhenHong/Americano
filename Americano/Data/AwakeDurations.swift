@@ -43,12 +43,12 @@ public struct AwakeDurations: RawRepresentable {
     }
 
     public init?(rawValue: String) {
-        let intervals = [Interval](rawValue: rawValue) ?? []
-        self.intervals = intervals.isEmpty ? defaultIntervals : intervals
+        let intervals = Array<Interval>(rawValue: rawValue) ?? []
+        self.init(intervals)
     }
 
-    public init() {
-        
+    public init(_ intervals: [Interval] = []) {
+        self.intervals = intervals.isEmpty ? defaultIntervals : intervals
     }
 
     mutating func appendInterval(_ time: TimeInterval, as default: Bool = false) -> Bool {
@@ -79,23 +79,5 @@ public struct AwakeDurations: RawRepresentable {
             return
         }
         removeInterval(at: index)
-    }
-}
-
-extension Array: RawRepresentable where Element == AwakeDurations.Interval {
-    public var rawValue: String {
-        guard let data = try? JSONEncoder().encode(self),
-              let val = String(data: data, encoding: .utf8) else {
-            return "[]"
-        }
-        return val
-    }
-
-    public init?(rawValue: String) {
-        guard let data = rawValue.data(using: .utf8),
-              let val = try? JSONDecoder().decode([Element].self, from: data) else {
-            return nil
-        }
-        self = val
     }
 }
