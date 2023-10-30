@@ -3,7 +3,7 @@
 ## TODOs
 
 - [ ] Write Setting window with SwiftUI
-  - [ ] Activate on Launch
+  - [x] Activate on Launch
   - [ ] Activate ScreenSaver
   - [ ] Allow Display Sleep
 - [ ] Custom awake interval

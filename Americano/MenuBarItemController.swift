@@ -164,9 +164,10 @@ final class MenuBarItemController {
     private func subscribePublishers() {
         awakePublisher
             .receive(on: DispatchQueue.main)
+            .debounce(for: .milliseconds(100), scheduler: DispatchQueue.main)
             .map({ $0 ? String.CupOn : String.CupOff })
 #if DEBUG
-            .print()
+            .print("Status Bar Item")
 #endif
             .sink { [weak self] in
                 guard let self = self else {

@@ -19,6 +19,11 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         AppDelegate.barItemController.setUp()
+
+        /// Activate on Launch
+        if AppState.shared.autoStart {
+            AppDelegate.caffWrapper.start()
+        }
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {

@@ -44,7 +44,7 @@ final class MenuItemBuilder {
         publisher
             .receive(on: DispatchQueue.main)
 #if DEBUG
-            .print()
+            .print("Menu Item onEnable")
 #endif
             .assign(to: \.isEnabled, on: menuItem)
             .store(in: &subscriptions)
@@ -57,7 +57,7 @@ final class MenuItemBuilder {
             .receive(on: DispatchQueue.main)
             .map({ $0 ? NSControl.StateValue.on : NSControl.StateValue.off })
 #if DEBUG
-            .print()
+            .print("Menu Item onHighlight")
 #endif
             .assign(to: \.state, on: menuItem)
             .store(in: &subscriptions)
