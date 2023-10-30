@@ -51,6 +51,7 @@ public struct AwakeDurations: RawRepresentable {
         self.intervals = intervals.isEmpty ? defaultIntervals : intervals
     }
 
+    @discardableResult
     mutating func appendInterval(_ time: TimeInterval, as default: Bool = false) -> Bool {
         var interval = Interval(time: time, default: `default`)
         guard !intervals.contains(interval) else {
@@ -67,17 +68,19 @@ public struct AwakeDurations: RawRepresentable {
         return true
     }
 
-    mutating func removeInterval(at index: Int) {
+    @discardableResult
+    mutating func removeInterval(at index: Int) -> Interval? {
         guard intervals.indices.contains(index) else {
-            return
+            return nil
         }
-        intervals.remove(at: index)
+        return intervals.remove(at: index)
     }
 
-    mutating func removeInterval(_ interval: Interval) {
+    @discardableResult
+    mutating func removeInterval(_ interval: Interval) -> Interval? {
         guard let index = intervals.firstIndex(of: interval) else {
-            return
+            return nil
         }
-        removeInterval(at: index)
+        return removeInterval(at: index)
     }
 }

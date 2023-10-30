@@ -9,18 +9,36 @@ import Foundation
 
 extension Array: RawRepresentable where Element: Codable {
     public var rawValue: String {
-        guard let data = try? JSONEncoder().encode(self),
-              let val = String(data: data, encoding: .utf8) else {
+        do {
+            let encoder = JSONEncoder()
+            encoder.nonConformingFloatEncodingStrategy = .convertToString(positiveInfinity: "inf",
+                                                                          negativeInfinity: "-inf",
+                                                                          nan: "NaN")
+            let data = try encoder.encode(self)
+            let val = String(data: data, encoding: .utf8)
+            return val ?? "[]"
+        } catch {
+            print("Encode array error: \(error)")
             return "[]"
         }
-        return val
     }
 
     public init?(rawValue: String) {
-        guard let data = rawValue.data(using: .utf8),
-              let val = try? JSONDecoder().decode([Element].self, from: data) else {
+        do {
+            let data = rawValue.data(using: .utf8)
+            guard let data else {
+                return nil
+            }
+
+            let decoder = JSONDecoder()
+            decoder.nonConformingFloatDecodingStrategy = .convertFromString(positiveInfinity: "inf",
+                                                                            negativeInfinity: "-inf",
+                                                                            nan: "NaN")
+            let val = try decoder.decode([Element].self, from: data)
+            self = val
+        } catch {
+            print("Decode array error: \(error)")
             return nil
         }
-        self = val
     }
 }
