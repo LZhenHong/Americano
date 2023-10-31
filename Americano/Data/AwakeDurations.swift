@@ -8,7 +8,11 @@
 import Foundation
 
 public struct AwakeDurations: RawRepresentable {
-    public struct Interval: Codable, Equatable {
+    public struct Interval: Codable, Equatable, Identifiable, Hashable {
+        public var id: TimeInterval {
+            time
+        }
+
         static let infinity = Interval(time: .infinity)
 
         let time: TimeInterval

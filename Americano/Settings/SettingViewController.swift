@@ -32,4 +32,10 @@ final class SettingViewController: NSViewController {
         view.addSubview(hostingViewController.view)
         constrains = hostingViewController.view.constrainToSuperviewBounds()
     }
+
+    override func viewWillAppear() {
+        super.viewWillAppear()
+
+        preferredContentSize = view.fittingSize
+    }
 }
