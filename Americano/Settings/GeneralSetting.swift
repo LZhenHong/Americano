@@ -39,6 +39,9 @@ struct GeneralSettingView: View {
             Toggle("Activate ScreenSaver when nap", isOn: $state.activateScreenSaver)
             Text("Automatically activate ScreenSaver when prevention is over.")
                 .settingPropmt()
+            Toggle("Allow Display Sleep", isOn: $state.allowDisplaySleep)
+            Text("Allow the display go to sleep.")
+                .settingPropmt()
         }
         .padding()
     }

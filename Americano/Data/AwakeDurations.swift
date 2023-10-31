@@ -9,6 +9,8 @@ import Foundation
 
 public struct AwakeDurations: RawRepresentable {
     public struct Interval: Codable, Equatable {
+        static let infinity = Interval(time: .infinity)
+
         let time: TimeInterval
         private (set) var `default` = false
 
@@ -36,6 +38,10 @@ public struct AwakeDurations: RawRepresentable {
             Interval(time: 60 * 60),
             Interval(time: 3 * 60 * 60)
         ]
+    }
+
+    var `default`: Interval {
+        intervals.first { $0.default } ?? .infinity
     }
 
     public var rawValue: String {

@@ -36,13 +36,17 @@ final class CaffeinateWrapper: BinWrapper {
     }
 
     @discardableResult
-    func start(interval: TimeInterval = .infinity, override: Bool = false) -> Bool {
-        guard caffeinate == nil || !running || override else {
+    func start(
+        interval: TimeInterval = .infinity,
+        allowDisplaySleep: Bool = false,
+        force: Bool = false
+    ) -> Bool {
+        guard caffeinate == nil || !running || force else {
             // There was already a process running.
             return false
         }
         stopCurrent()
-        return start(time: interval)
+        return start(interval: interval)
     }
 
     private func stopCurrent() {
@@ -55,16 +59,17 @@ final class CaffeinateWrapper: BinWrapper {
         self.caffeinate = nil
     }
     
-    private func start(time: TimeInterval) -> Bool {
+    private func start(interval: TimeInterval, allowDisplaySleep: Bool = false) -> Bool {
         caffeinate = newProcess()
-        guard time > 0, let caffeinate else {
+        guard interval > 0, let caffeinate else {
             return false
         }
 
         let pid = ProcessInfo.processInfo.processIdentifier
-        var args = ["-diu", "-w", "\(pid)"]
-        if time.isFinite {
-            args += ["-t", "\(time)"]
+        var args = allowDisplaySleep ? ["-i"] : ["-di"]
+        args += ["-w", "\(pid)"]
+        if interval.isFinite {
+            args += ["-t", "\(interval)"]
         }
         caffeinate.arguments = args
 
@@ -72,7 +77,7 @@ final class CaffeinateWrapper: BinWrapper {
             try caffeinate.run()
             
             AppState.shared.preventSleep = true
-            if time.isFinite {
+            if interval.isFinite {
                 observeCaffeinateProcessExit()
             }
 

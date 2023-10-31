@@ -115,7 +115,11 @@ final class MenuBarItemController {
                 .title("Keep Awake")
                 .onEnable(awakePublisher.map(!).eraseToAnyPublisher())
                 .onSelect {
-                    AppDelegate.caffWrapper.start()
+                    let shared = AppState.shared
+                    AppDelegate.caffWrapper.start(
+                        interval: shared.awakeDurations.default.time,
+                        allowDisplaySleep: shared.allowDisplaySleep
+                    )
                 }
             NSMenuItem.separator()
             MenuItemBuilder()
