@@ -10,8 +10,14 @@ import os.log
 
 let ONE_MINUTE_IN_SECONDS = 60
 
+protocol CaffeinateDelegate: AnyObject {
+    func caffeinateAutoTerminate(_ caffeinate: CaffeinateWrapper)
+}
+
 // caffeinate Man Page: https://ss64.com/osx/caffeinate.html
 final class CaffeinateWrapper: BinWrapper {
+    weak var delegate: CaffeinateDelegate?
+
     private let logger = Logger(subsystem: AppDelegate.bundleIdentifier,
                                 category: "CaffeinateController")
 
@@ -30,13 +36,13 @@ final class CaffeinateWrapper: BinWrapper {
     }
 
     @discardableResult
-    func start(time: TimeInterval = .infinity, override: Bool = false) -> Bool {
+    func start(interval: TimeInterval = .infinity, override: Bool = false) -> Bool {
         guard caffeinate == nil || !running || override else {
             // There was already a process running.
             return false
         }
         stopCurrent()
-        return start(time: time)
+        return start(time: interval)
     }
 
     private func stopCurrent() {
@@ -86,6 +92,7 @@ final class CaffeinateWrapper: BinWrapper {
                 return
             }
             self.stop()
+            self.delegate?.caffeinateAutoTerminate(self)
         }
 
 //        let runner = { [weak self] in

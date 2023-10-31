@@ -12,8 +12,8 @@ final class AppState: ObservableObject {
     @Published var launchAtLogin = LaunchAtLogin.isEnabled
 
     // TODO: - Try use marco.
-    @AppStorage(.AutoStartPrefKey, store: .shared) var autoStart = false
-    @AppStorage(.EnterScreenSaverPrefKey, store: .shared) var enterScreenSaver = false
+    @AppStorage(.ActivateOnLaunchPrefKey, store: .shared) var activateOnLaunch = false
+    @AppStorage(.ActivateScreenSaverPrefKey, store: .shared) var activateScreenSaver = false
     @AppStorage(.AwakeDurationsPrefKey, store: .shared) var awakeDurations = AwakeDurations()
 
     static let shared = AppState()
@@ -26,15 +26,15 @@ extension AppState {
     static var sample = {
         let state = AppState()
         state.launchAtLogin = false
-        state.autoStart = true
-        state.enterScreenSaver = true
+        state.activateOnLaunch = true
+        state.activateScreenSaver = true
         return state
     }()
 }
 #endif
 
 extension String {
-    static let AutoStartPrefKey = "\(AppDelegate.bundleIdentifier).autostart"
-    static let EnterScreenSaverPrefKey = "\(AppDelegate.bundleIdentifier).enterscreensaver"
-    static let AwakeDurationsPrefKey = "\(AppDelegate.bundleIdentifier).awaydurations"
+    static let ActivateOnLaunchPrefKey = "\(AppDelegate.bundleIdentifier).activateonlaunch"
+    static let ActivateScreenSaverPrefKey = "\(AppDelegate.bundleIdentifier).activatescreensaver"
+    static let AwakeDurationsPrefKey = "\(AppDelegate.bundleIdentifier).awakedurations"
 }

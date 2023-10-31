@@ -19,9 +19,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         AppDelegate.barItemController.setUp()
+        AppDelegate.caffWrapper.delegate = self
 
         /// Activate on Launch
-        if AppState.shared.autoStart {
+        if AppState.shared.activateOnLaunch {
             AppDelegate.caffWrapper.start()
         }
     }
@@ -33,5 +34,13 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationSupportsSecureRestorableState(_ app: NSApplication) -> Bool {
         return true
+    }
+}
+
+extension AppDelegate: CaffeinateDelegate {
+    func caffeinateAutoTerminate(_ caffeinate: CaffeinateWrapper) {
+        if AppState.shared.activateScreenSaver {
+            AppDelegate.screenWrapper.run()
+        }
     }
 }
