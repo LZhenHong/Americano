@@ -22,6 +22,15 @@ final class MenuBarItemController {
     private var statusItem: NSStatusItem!
     private var menu: NSMenu!
 
+    private lazy var settingWindowController: SettingWindowController = {
+        let settings: [SettingContentRepresentable] = [
+            GeneralSetting(),
+            IntervalSetting(),
+            AboutSetting()
+        ]
+        return SettingWindowController(settings: settings)
+    }()
+
     private var awakePublisher: AnyPublisher<Bool, Never> {
         get {
             AppState.shared.$preventSleep.eraseToAnyPublisher()
@@ -148,12 +157,7 @@ final class MenuBarItemController {
                 .title("Setting")
                 .shortcuts(",")
                 .onSelect {
-                    let settings: [SettingContentRepresentable] = [
-                        GeneralSetting(),
-                        IntervalSetting(),
-                        AboutSetting()
-                    ]
-                    SettingWindowController(settings: settings).show()
+                    self.settingWindowController.show()
                 }
             NSMenuItem.separator()
             MenuItemBuilder()

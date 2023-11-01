@@ -8,13 +8,13 @@
 import Cocoa
 
 final class SettingWindowController: NSWindowController {
-    private var tabViewController: NSTabViewController
+    private var tabViewController: SettingTabViewController
     private(set) var settings: [SettingContentRepresentable]
 
     init(settings: [SettingContentRepresentable]) {
         self.settings = settings
 
-        tabViewController = NSTabViewController()
+        tabViewController = SettingTabViewController()
         tabViewController.tabStyle = .toolbar
 
         if settings.count > 0 {
@@ -40,8 +40,11 @@ final class SettingWindowController: NSWindowController {
         }
 
         NSApp.activate(ignoringOtherApps: true)
+
+        if !window.isKeyWindow {
+            window.center()
+        }
         window.makeKeyAndOrderFront(NSApp)
-        window.center()
         showWindow(self)
     }
 }
