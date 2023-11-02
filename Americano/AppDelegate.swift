@@ -18,18 +18,18 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     static let barItemController = MenuBarItemController()
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        AppDelegate.barItemController.setUp()
-        AppDelegate.caffWrapper.delegate = self
+        Self.barItemController.setUp()
+        Self.caffWrapper.delegate = self
 
         /// Activate on Launch
         if AppState.shared.activateOnLaunch {
-            AppDelegate.caffWrapper.start()
+            Self.caffWrapper.start()
         }
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
         // Insert code here to tear down your application
-        AppDelegate.caffWrapper.stop()
+        Self.caffWrapper.stop()
     }
 
     func applicationSupportsSecureRestorableState(_ app: NSApplication) -> Bool {
@@ -40,7 +40,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 extension AppDelegate: CaffeinateDelegate {
     func caffeinateAutoTerminate(_ caffeinate: CaffeinateWrapper) {
         if AppState.shared.activateScreenSaver {
-            AppDelegate.screenWrapper.run()
+            Self.screenWrapper.run()
         }
     }
 }

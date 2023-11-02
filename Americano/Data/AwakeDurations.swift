@@ -18,6 +18,16 @@ public struct AwakeDurations: RawRepresentable {
         let time: TimeInterval
         private (set) var `default` = false
 
+        private static var dateFormatter: DateComponentsFormatter = {
+            let formatter = DateComponentsFormatter()
+            formatter.unitsStyle = DateComponentsFormatter.UnitsStyle.full
+            return formatter
+        }()
+
+        var localizedTime: String {
+            time.isInfinite ? "∞" : Self.dateFormatter.string(from: time) ?? ""
+        }
+
         mutating func markAsDefault() {
             `default` = true
         }
@@ -62,19 +72,16 @@ public struct AwakeDurations: RawRepresentable {
     }
 
     @discardableResult
-    mutating func appendInterval(_ time: TimeInterval, as default: Bool = false) -> Bool {
-        var interval = Interval(time: time, default: `default`)
+    mutating func append(_ time: TimeInterval, as default: Bool = false) -> Bool {
+        let interval = Interval(time: time, default: `default`)
         guard !intervals.contains(interval) else {
             return false
         }
 
-        if `default` {
-            interval.markAsDefault()
-            for idx in intervals.indices {
-                intervals[idx].resetDefault()
-            }
-        }
         intervals.append(interval)
+        if `default` {
+            markAsDefault(interval: interval)
+        }
         return true
     }
 
@@ -87,10 +94,22 @@ public struct AwakeDurations: RawRepresentable {
     }
 
     @discardableResult
-    mutating func removeInterval(_ interval: Interval) -> Interval? {
+    mutating func remove(interval: Interval) -> Interval? {
         guard let index = intervals.firstIndex(of: interval) else {
             return nil
         }
         return removeInterval(at: index)
+    }
+
+    @discardableResult
+    mutating func markAsDefault(interval: Interval) -> Bool {
+        guard let index = intervals.firstIndex(of: interval) else {
+            return false
+        }
+        for idx in intervals.indices {
+            intervals[idx].resetDefault()
+        }
+        intervals[index].markAsDefault()
+        return true
     }
 }

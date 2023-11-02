@@ -18,6 +18,7 @@ struct GeneralSetting: SettingContentRepresentable {
 
     var view: AnyView {
         GeneralSettingView(state: .shared)
+            .frame(width: 400)
             .eraseToAnyView()
     }
 }

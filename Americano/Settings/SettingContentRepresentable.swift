@@ -32,7 +32,7 @@ extension SettingContentRepresentable {
             Text(preferredTitle)
                 .background(Color.red)
         }
-        .frame(width: 500, height: 400)
+        .frame(width: 400, height: 400)
         .eraseToAnyView()
     }
 }
