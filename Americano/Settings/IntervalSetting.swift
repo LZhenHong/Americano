@@ -31,9 +31,7 @@ private struct IntervalSettingView: View {
             ForEach(state.awakeDurations.intervals) { interval in
                 IntervalSettingCell(interval: interval)
                     .tag(interval)
-                    .contextMenu(!interval.default ? ContextMenu {
-                        contextMenuContent(for: interval)
-                    } : nil)
+                    .contextMenu(contextMenu(for: interval))
             }
             .onDelete(perform: delete)
         }
@@ -42,17 +40,25 @@ private struct IntervalSettingView: View {
         .frame(width: 400, height: 350)
     }
 
-    @ViewBuilder
-    private func contextMenuContent(for interval: AwakeDurations.Interval) -> some View {
-        Button("Set Default") {
-            markIntervalAsDefault(interval)
+    private func contextMenu(for interval: AwakeDurations.Interval) -> ContextMenu<AnyView>? {
+        guard !interval.default else {
+            return nil
         }
-        .disabled(interval.default)
-        Divider()
-        Button("Delete") {
-            delete(interval: interval)
+
+        return ContextMenu {
+            Group {
+                Button("Set Default") {
+                    markIntervalAsDefault(interval)
+                }
+                .disabled(interval.default)
+                Divider()
+                Button("Delete") {
+                    delete(interval: interval)
+                }
+                .disabled(interval.default)
+            }
+            .eraseToAnyView()
         }
-        .disabled(interval.default)
     }
 
     private func markIntervalAsDefault(_ interval: AwakeDurations.Interval) {
