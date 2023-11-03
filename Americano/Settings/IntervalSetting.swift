@@ -154,19 +154,36 @@ private struct CustomIntervalView: View {
     @State private var minutes: Int = 0
     @State private var seconds: Int = 0
 
+    private var isIntervalValid: Bool {
+        hours == 0 && minutes == 0 && seconds == 0
+    }
+
     var body: some View {
         VStack {
             Text("Add Custom Interval")
+                .font(.title3)
             HStack {
-                TextField("Hours", value: $hours, formatter: NumberFormatter())
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                TextField("Minutes", value: $minutes, formatter: NumberFormatter())
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                TextField("Seconds", value: $seconds, formatter: NumberFormatter())
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                IntervalComponent(prompt: "Hours", maxValue: 999, value: $hours)
+                IntervalComponent(prompt: "Minutes", value: $minutes)
+                IntervalComponent(prompt: "Seconds", value: $seconds)
             }
         }
         .padding()
+    }
+}
+
+private struct IntervalComponent: View {
+    var prompt: String
+    var maxValue: Int = 59
+    @Binding var value: Int
+    @State private var stepperValue: Double = 0
+
+    var body: some View {
+        Stepper(prompt, value:$stepperValue, in: 0...Double(maxValue), format: .number) { start in
+            if !start {
+                value = Int(stepperValue)
+            }
+        }
     }
 }
 
