@@ -101,6 +101,10 @@ public struct AwakeDurations: RawRepresentable {
         return removeInterval(at: index)
     }
 
+    mutating func restoreDefaultIntervals() {
+        intervals = defaultIntervals
+    }
+
     @discardableResult
     mutating func markAsDefault(interval: Interval) -> Bool {
         guard let index = intervals.firstIndex(of: interval) else {

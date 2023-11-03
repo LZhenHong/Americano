@@ -25,18 +25,65 @@ struct IntervalSetting: SettingContentRepresentable {
 private struct IntervalSettingView: View {
     @ObservedObject var state: AppState
     @State private var selectedInterval: AwakeDurations.Interval?
+    @State private var showPickerSheet = false
+    @State private var selectedDate = Date()
+
+    private var isSelectingDefault: Bool {
+        guard let selectedInterval else {
+            return true
+        }
+        return selectedInterval.default
+    }
+
+    var operationView: some View {
+        HStack {
+            Button("Reset") {
+                selectedInterval = nil
+                state.awakeDurations.restoreDefaultIntervals()
+            }
+            Spacer()
+            Button("Set Default") {
+                markIntervalAsDefault(selectedInterval)
+            }
+            .disabled(isSelectingDefault)
+            Button {
+                showPickerSheet.toggle()
+            } label: {
+                Image(systemName: "plus")
+            }
+            Button {
+                delete(interval: selectedInterval)
+            } label: {
+                Image(systemName: "minus")
+            }
+            .disabled(isSelectingDefault)
+        }
+    }
+
+    var intervalPickerView: some View {
+        CustomIntervalView()
+    }
 
     var body: some View {
-        List {
-            ForEach(state.awakeDurations.intervals) { interval in
-                IntervalSettingCell(interval: interval)
-                    .tag(interval)
-                    .contextMenu(contextMenu(for: interval))
+        VStack {
+            List(selection: $selectedInterval) {
+                ForEach(state.awakeDurations.intervals) { interval in
+                    IntervalSettingCell(interval: interval)
+                        .tag(interval)
+                        .contextMenu(contextMenu(for: interval))
+                }
+                .onDelete(perform: delete)
             }
-            .onDelete(perform: delete)
+            .cornerRadius(10)
+            .padding(8)
+
+            operationView
+                .padding(.bottom, 15)
+                .padding(.horizontal, 10)
         }
-        .cornerRadius(10)
-        .padding(8)
+        .sheet(isPresented: $showPickerSheet) {
+            intervalPickerView
+        }
         .frame(width: 400, height: 350)
     }
 
@@ -61,7 +108,10 @@ private struct IntervalSettingView: View {
         }
     }
 
-    private func markIntervalAsDefault(_ interval: AwakeDurations.Interval) {
+    private func markIntervalAsDefault(_ interval: AwakeDurations.Interval?) {
+        guard let interval else {
+            return
+        }
         state.awakeDurations.markAsDefault(interval: interval)
     }
 
@@ -73,7 +123,10 @@ private struct IntervalSettingView: View {
         state.awakeDurations.removeInterval(at: index)
     }
 
-    private func delete(interval: AwakeDurations.Interval) {
+    private func delete(interval: AwakeDurations.Interval?) {
+        guard let interval else {
+            return
+        }
         state.awakeDurations.remove(interval: interval)
     }
 }
@@ -84,7 +137,7 @@ private struct IntervalSettingCell: View {
     var body: some View {
         HStack {
             Text("\(interval.localizedTime)")
-                .frame(height: 35)
+                .frame(height: 30)
                 .font(interval.default ? .system(size: 15, weight: .semibold) : .system(size: 14))
             Spacer()
             if interval.default {
@@ -93,6 +146,27 @@ private struct IntervalSettingCell: View {
             }
         }
         .deleteDisabled(interval.default)
+    }
+}
+
+private struct CustomIntervalView: View {
+    @State private var hours: Int = 0
+    @State private var minutes: Int = 0
+    @State private var seconds: Int = 0
+
+    var body: some View {
+        VStack {
+            Text("Add Custom Interval")
+            HStack {
+                TextField("Hours", value: $hours, formatter: NumberFormatter())
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                TextField("Minutes", value: $minutes, formatter: NumberFormatter())
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                TextField("Seconds", value: $seconds, formatter: NumberFormatter())
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+            }
+        }
+        .padding()
     }
 }
 
