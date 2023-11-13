@@ -24,8 +24,12 @@ public struct AwakeDurations: RawRepresentable {
             return formatter
         }()
 
+        var isInfinite: Bool {
+            time.isInfinite
+        }
+
         var localizedTime: String {
-            time.isInfinite ? "∞" : Self.dateFormatter.string(from: time) ?? ""
+            isInfinite ? "∞" : Self.dateFormatter.string(from: time) ?? ""
         }
 
         mutating func markAsDefault() {
