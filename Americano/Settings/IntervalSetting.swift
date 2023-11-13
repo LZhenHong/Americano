@@ -121,6 +121,12 @@ private struct IntervalSettingView: View {
             return
         }
         state.awakeDurations.markAsDefault(interval: interval)
+
+        /// workaround: Magic to trigger UI refresh.
+        selectedInterval = nil
+        var temp = interval
+        temp.markAsDefault()
+        selectedInterval = temp
     }
 
     private func didDismiss() {
