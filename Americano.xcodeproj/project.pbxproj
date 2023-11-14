@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		341E6BC02AC080850043E97A /* MenuBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341E6BBF2AC080850043E97A /* MenuBuilder.swift */; };
 		34694D392ABB58B1003D4362 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34694D382ABB58B1003D4362 /* Storage.swift */; };
+		34C0958F2B03DDBA009B9324 /* CustomIntervalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C0958E2B03DDBA009B9324 /* CustomIntervalView.swift */; };
 		F2294E782AC30EF70085448F /* LaunchAtLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2294E772AC30EF70085448F /* LaunchAtLogin.swift */; };
 		F2489C442AE976A900B5E17B /* AwakeDurations.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2489C432AE976A900B5E17B /* AwakeDurations.swift */; };
 		F256B3492ADDA0D400470219 /* SettingWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F256B3482ADDA0D400470219 /* SettingWindowController.swift */; };
@@ -35,6 +36,7 @@
 /* Begin PBXFileReference section */
 		341E6BBF2AC080850043E97A /* MenuBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBuilder.swift; sourceTree = "<group>"; };
 		34694D382ABB58B1003D4362 /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
+		34C0958E2B03DDBA009B9324 /* CustomIntervalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomIntervalView.swift; sourceTree = "<group>"; };
 		F2294E772AC30EF70085448F /* LaunchAtLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchAtLogin.swift; sourceTree = "<group>"; };
 		F2489C432AE976A900B5E17B /* AwakeDurations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AwakeDurations.swift; sourceTree = "<group>"; };
 		F256B3482ADDA0D400470219 /* SettingWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingWindowController.swift; sourceTree = "<group>"; };
@@ -71,15 +73,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		34C0958D2B03DD21009B9324 /* Interval */ = {
+			isa = PBXGroup;
+			children = (
+				F2EF3AD92AE130AB00F2C26F /* IntervalSetting.swift */,
+				34C0958E2B03DDBA009B9324 /* CustomIntervalView.swift */,
+			);
+			path = Interval;
+			sourceTree = "<group>";
+		};
 		F256B3472ADDA0BC00470219 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				34C0958D2B03DD21009B9324 /* Interval */,
 				F256B3482ADDA0D400470219 /* SettingWindowController.swift */,
 				F280E21F2AF22D6B00C67E64 /* SettingTabViewController.swift */,
 				F256B34A2AE19AD000470219 /* SettingViewController.swift */,
 				F2EF3AD52AE1111A00F2C26F /* SettingContentRepresentable.swift */,
 				F2EF3AD72AE1297F00F2C26F /* GeneralSetting.swift */,
-				F2EF3AD92AE130AB00F2C26F /* IntervalSetting.swift */,
 				F2EF3ADB2AE14F1700F2C26F /* AboutSetting.swift */,
 			);
 			path = Settings;
@@ -248,6 +259,7 @@
 				F2CACC4C2ABACDA600CB2BE4 /* AppDelegate.swift in Sources */,
 				F2B9D84E2AC4A548006737D0 /* MenuItemBuilder.swift in Sources */,
 				F2CACC5B2ABAD17100CB2BE4 /* MenuBarItemController.swift in Sources */,
+				34C0958F2B03DDBA009B9324 /* CustomIntervalView.swift in Sources */,
 				34694D392ABB58B1003D4362 /* Storage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

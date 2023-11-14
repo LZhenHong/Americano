@@ -39,7 +39,7 @@ private struct IntervalSettingView: View {
             Button("Set Default") {
                 markIntervalAsDefault(selectedInterval)
             }
-            .disabled(!intervalCanSetToDefault(selectedInterval))
+            .disabled(!canIntervalSetToDefault(selectedInterval))
             Button {
                 showPickerSheet.toggle()
             } label: {
@@ -50,7 +50,7 @@ private struct IntervalSettingView: View {
             } label: {
                 Image(systemName: "minus")
             }
-            .disabled(!intervalCanBeDeleted(selectedInterval))
+            .disabled(!canIntervalBeDeleted(selectedInterval))
         }
     }
 
@@ -81,18 +81,18 @@ private struct IntervalSettingView: View {
         .frame(width: 400, height: 350)
     }
 
-    private func intervalCanSetToDefault(_ interval: AwakeDurations.Interval?) -> Bool {
+    private func canIntervalSetToDefault(_ interval: AwakeDurations.Interval?) -> Bool {
         guard let interval else {
             return false
         }
         return !interval.default
     }
 
-    private func intervalCanBeDeleted(_ interval: AwakeDurations.Interval?) -> Bool {
+    private func canIntervalBeDeleted(_ interval: AwakeDurations.Interval?) -> Bool {
         guard let interval else {
             return false
         }
-        return !interval.default && !interval.isInfinite
+        return interval.deletable
     }
 
     private func contextMenu(for interval: AwakeDurations.Interval) -> ContextMenu<AnyView>? {
@@ -105,12 +105,12 @@ private struct IntervalSettingView: View {
                 Button("Set Default") {
                     markIntervalAsDefault(interval)
                 }
-                .disabled(!intervalCanSetToDefault(interval))
+                .disabled(!canIntervalSetToDefault(interval))
                 Divider()
                 Button("Delete") {
                     delete(interval: interval)
                 }
-                .disabled(!intervalCanBeDeleted(interval))
+                .disabled(!interval.deletable)
             }
             .eraseToAnyView()
         }
@@ -177,63 +177,7 @@ private struct IntervalSettingCell: View {
                     .foregroundColor(.secondary)
             }
         }
-        .deleteDisabled(interval.default)
-    }
-}
-
-private struct CustomIntervalView: View {
-    @Environment(\.dismiss) var dismiss
-
-    @Binding var interval: TimeInterval
-
-    @State private var hours: Int = 0
-    @State private var minutes: Int = 0
-    @State private var seconds: Int = 0
-
-    private var isIntervalInvalid: Bool {
-        hours == 0 && minutes == 0 && seconds == 0
-    }
-
-    var body: some View {
-        VStack {
-            Text("Add Custom Interval")
-                .font(.title3)
-            VStack(alignment: .trailing) {
-                IntervalComponent(prompt: "Hours", maxValue: 999, value: $hours)
-                IntervalComponent(prompt: "Minutes", value: $minutes)
-                IntervalComponent(prompt: "Seconds", value: $seconds)
-            }
-            .padding()
-            HStack {
-                Button("Cancel") {
-                    interval = 0
-                    dismiss()
-                }
-                Spacer()
-                Button("Add") {
-                    interval = TimeInterval(hours * 3600 + minutes * 60 + seconds)
-                    dismiss()
-                }
-                .disabled(isIntervalInvalid)
-            }
-        }
-        .padding()
-        .frame(width: 280)
-    }
-}
-
-private struct IntervalComponent: View {
-    var prompt: String
-    var maxValue: Int = 59
-    @Binding var value: Int
-    @State private var stepperValue: Double = 0
-
-    var body: some View {
-        Stepper(prompt, value: $stepperValue, in: 0...Double(maxValue), format: .number) { start in
-            if !start {
-                value = Int(stepperValue)
-            }
-        }
+        .deleteDisabled(!interval.deletable)
     }
 }
 

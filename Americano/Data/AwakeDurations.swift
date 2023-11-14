@@ -24,6 +24,10 @@ public struct AwakeDurations: RawRepresentable {
             return formatter
         }()
 
+        var deletable: Bool {
+            !`default` && !isInfinite
+        }
+
         var isInfinite: Bool {
             time.isInfinite
         }
