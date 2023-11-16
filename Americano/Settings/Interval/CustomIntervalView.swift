@@ -11,6 +11,7 @@ struct CustomIntervalView: View {
     @Environment(\.dismiss) var dismiss
 
     @Binding var interval: TimeInterval
+    let intervalValidator: (TimeInterval) -> String?
 
     @State private var hours: Int = 0
     @State private var minutes: Int = 0
@@ -18,6 +19,10 @@ struct CustomIntervalView: View {
 
     private var isIntervalInvalid: Bool {
         hours == 0 && minutes == 0 && seconds == 0
+    }
+
+    private var currentInterval: TimeInterval {
+        TimeInterval(hours * 3600 + minutes * 60 + seconds)
     }
 
     var body: some View {
@@ -30,6 +35,14 @@ struct CustomIntervalView: View {
                 IntervalComponent(prompt: "Seconds", value: $seconds)
             }
             .padding()
+
+            if let description = intervalValidator(currentInterval) {
+                Text(description)
+                    .font(.system(size: 12, weight: .bold))
+                    .foregroundColor(.red)
+                    .padding(.bottom, 10)
+            }
+
             HStack {
                 Button("Cancel") {
                     interval = 0
@@ -37,7 +50,7 @@ struct CustomIntervalView: View {
                 }
                 Spacer()
                 Button("Add") {
-                    interval = TimeInterval(hours * 3600 + minutes * 60 + seconds)
+                    interval = currentInterval
                     dismiss()
                 }
                 .disabled(isIntervalInvalid)

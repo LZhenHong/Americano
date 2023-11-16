@@ -24,16 +24,19 @@ struct IntervalSetting: SettingContentRepresentable {
 
 private struct IntervalSettingView: View {
     @ObservedObject var state: AppState
+    
     @State private var selectedInterval: AwakeDurations.Interval?
+    
     @State private var showPickerSheet = false
     @State private var selectedDate = Date()
     @State private var interval: TimeInterval = 0
 
+    @State private var showResetAlert = false
+
     var operationView: some View {
         HStack {
             Button("Reset") {
-                selectedInterval = nil
-                state.awakeDurations.restoreDefaultIntervals()
+                showResetAlert.toggle()
             }
             Spacer()
             Button("Set Default") {
@@ -55,7 +58,12 @@ private struct IntervalSettingView: View {
     }
 
     var intervalPickerView: some View {
-        CustomIntervalView(interval: $interval)
+        CustomIntervalView(interval: $interval) { time in
+            if time > 0 && state.awakeDurations.has(time) {
+                return "\(time.localizedTime) already exists."
+            }
+            return nil
+        }
     }
 
     var body: some View {
@@ -77,6 +85,15 @@ private struct IntervalSettingView: View {
         }
         .sheet(isPresented: $showPickerSheet, onDismiss: didDismiss) {
             intervalPickerView
+        }
+        .alert("Reset to default", isPresented: $showResetAlert) {
+            Button("Reset", role: .destructive) {
+                selectedInterval = nil
+                state.awakeDurations.restoreDefaultIntervals()
+            }
+            Button("Cancel", role: .cancel) { }
+        } message: {
+            Text("This will remove all custom intervals.")
         }
         .frame(width: 400, height: 350)
     }
@@ -133,9 +150,7 @@ private struct IntervalSettingView: View {
         guard interval > 0 else {
             return
         }
-        if !state.awakeDurations.append(interval) {
-            // TODO: 提示用户添加失败
-        }
+        state.awakeDurations.append(interval)
     }
 
     private func delete(at indexSet: IndexSet) {

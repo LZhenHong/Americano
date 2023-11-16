@@ -17,6 +17,7 @@
 		F25A297C2ABC6C200022E08E /* ScreenSaverWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F25A297B2ABC6C200022E08E /* ScreenSaverWrapper.swift */; };
 		F25A297E2ABC6C720022E08E /* BinWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F25A297D2ABC6C720022E08E /* BinWrapper.swift */; };
 		F27602752B05C1B100204EE2 /* Bundle+.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27602742B05C1B100204EE2 /* Bundle+.swift */; };
+		F27602772B06081000204EE2 /* TimeInterval+.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27602762B06081000204EE2 /* TimeInterval+.swift */; };
 		F280E2202AF22D6B00C67E64 /* SettingTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F280E21F2AF22D6B00C67E64 /* SettingTabViewController.swift */; };
 		F282BEAB2ABB09CE0073D130 /* SubscriptionToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = F282BEAA2ABB09CE0073D130 /* SubscriptionToken.swift */; };
 		F291C25D2AE2137F007F152C /* ViewUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F291C25C2AE2137F007F152C /* ViewUtils.swift */; };
@@ -45,6 +46,7 @@
 		F25A297B2ABC6C200022E08E /* ScreenSaverWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenSaverWrapper.swift; sourceTree = "<group>"; };
 		F25A297D2ABC6C720022E08E /* BinWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinWrapper.swift; sourceTree = "<group>"; };
 		F27602742B05C1B100204EE2 /* Bundle+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+.swift"; sourceTree = "<group>"; };
+		F27602762B06081000204EE2 /* TimeInterval+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeInterval+.swift"; sourceTree = "<group>"; };
 		F280E21F2AF22D6B00C67E64 /* SettingTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTabViewController.swift; sourceTree = "<group>"; };
 		F282BEAA2ABB09CE0073D130 /* SubscriptionToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionToken.swift; sourceTree = "<group>"; };
 		F291C25C2AE2137F007F152C /* ViewUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewUtils.swift; sourceTree = "<group>"; };
@@ -98,6 +100,16 @@
 			path = Settings;
 			sourceTree = "<group>";
 		};
+		F27602782B0609B300204EE2 /* Ext */ = {
+			isa = PBXGroup;
+			children = (
+				F2C0DFFD2AEBBCE900970BFA /* Array+.swift */,
+				F27602742B05C1B100204EE2 /* Bundle+.swift */,
+				F27602762B06081000204EE2 /* TimeInterval+.swift */,
+			);
+			path = Ext;
+			sourceTree = "<group>";
+		};
 		F2A013B32ABD3F9B006883D3 /* Wrapper */ = {
 			isa = PBXGroup;
 			children = (
@@ -121,13 +133,12 @@
 		F2A013B52ABD3FCD006883D3 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				F27602782B0609B300204EE2 /* Ext */,
 				F2294E772AC30EF70085448F /* LaunchAtLogin.swift */,
 				341E6BBF2AC080850043E97A /* MenuBuilder.swift */,
 				F2B9D84D2AC4A548006737D0 /* MenuItemBuilder.swift */,
 				F282BEAA2ABB09CE0073D130 /* SubscriptionToken.swift */,
 				F291C25C2AE2137F007F152C /* ViewUtils.swift */,
-				F2C0DFFD2AEBBCE900970BFA /* Array+.swift */,
-				F27602742B05C1B100204EE2 /* Bundle+.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -263,6 +274,7 @@
 				F2CACC4C2ABACDA600CB2BE4 /* AppDelegate.swift in Sources */,
 				F2B9D84E2AC4A548006737D0 /* MenuItemBuilder.swift in Sources */,
 				F2CACC5B2ABAD17100CB2BE4 /* MenuBarItemController.swift in Sources */,
+				F27602772B06081000204EE2 /* TimeInterval+.swift in Sources */,
 				34C0958F2B03DDBA009B9324 /* CustomIntervalView.swift in Sources */,
 				34694D392ABB58B1003D4362 /* Storage.swift in Sources */,
 			);

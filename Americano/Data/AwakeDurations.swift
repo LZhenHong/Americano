@@ -18,12 +18,6 @@ public struct AwakeDurations: RawRepresentable {
         let time: TimeInterval
         private (set) var `default` = false
 
-        private static var dateFormatter: DateComponentsFormatter = {
-            let formatter = DateComponentsFormatter()
-            formatter.unitsStyle = DateComponentsFormatter.UnitsStyle.full
-            return formatter
-        }()
-
         var deletable: Bool {
             !`default` && !isInfinite
         }
@@ -33,7 +27,7 @@ public struct AwakeDurations: RawRepresentable {
         }
 
         var localizedTime: String {
-            isInfinite ? "∞" : Self.dateFormatter.string(from: time) ?? ""
+            time.localizedTime
         }
 
         mutating func markAsDefault() {
@@ -77,6 +71,14 @@ public struct AwakeDurations: RawRepresentable {
 
     public init(_ intervals: [Interval] = []) {
         self.intervals = intervals.isEmpty ? defaultIntervals : intervals
+    }
+
+    func has(_ time: TimeInterval) -> Bool {
+        return intervals.contains { $0.time == time }
+    }
+
+    func has(_ interval: Interval) -> Bool {
+        return intervals.contains(interval)
     }
 
     @discardableResult
