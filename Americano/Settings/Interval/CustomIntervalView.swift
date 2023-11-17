@@ -10,12 +10,13 @@ import SwiftUI
 struct CustomIntervalView: View {
     @Environment(\.dismiss) var dismiss
 
-    @Binding var interval: TimeInterval
+    @Binding var interval: AwakeDurations.Interval
     let intervalValidator: (TimeInterval) -> String?
 
     @State private var hours: Int = 0
     @State private var minutes: Int = 0
     @State private var seconds: Int = 0
+    @State private var asDefault = false
 
     private var isIntervalInvalid: Bool {
         hours == 0 && minutes == 0 && seconds == 0
@@ -34,7 +35,9 @@ struct CustomIntervalView: View {
                 IntervalComponent(prompt: "Minutes", value: $minutes)
                 IntervalComponent(prompt: "Seconds", value: $seconds)
             }
-            .padding()
+            .padding(.top, 10)
+            Toggle("Set as default", isOn: $asDefault)
+                .padding(.bottom, 10)
 
             if let description = intervalValidator(currentInterval) {
                 Text(description)
@@ -45,12 +48,12 @@ struct CustomIntervalView: View {
 
             HStack {
                 Button("Cancel") {
-                    interval = 0
+                    interval = interval(from: 0)
                     dismiss()
                 }
                 Spacer()
                 Button("Add") {
-                    interval = currentInterval
+                    interval = interval(from: currentInterval)
                     dismiss()
                 }
                 .disabled(isIntervalInvalid)
@@ -58,6 +61,10 @@ struct CustomIntervalView: View {
         }
         .padding()
         .frame(width: 280)
+    }
+
+    private func interval(from duration: TimeInterval) -> AwakeDurations.Interval {
+        AwakeDurations.Interval(time: duration, default: asDefault)
     }
 }
 

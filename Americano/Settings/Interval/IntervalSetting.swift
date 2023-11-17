@@ -29,7 +29,7 @@ private struct IntervalSettingView: View {
     
     @State private var showPickerSheet = false
     @State private var selectedDate = Date()
-    @State private var interval: TimeInterval = 0
+    @State private var interval = AwakeDurations.Interval(time: 0)
 
     @State private var showResetAlert = false
 
@@ -147,10 +147,10 @@ private struct IntervalSettingView: View {
     }
 
     private func didDismiss() {
-        guard interval > 0 else {
+        guard interval.time > 0 else {
             return
         }
-        state.awakeDurations.append(interval)
+        state.awakeDurations.append(interval.time, as: interval.default)
     }
 
     private func delete(at indexSet: IndexSet) {
