@@ -120,11 +120,12 @@ final class MenuBarItemController {
 
     private func createMenu() -> NSMenu {
         NSMenu  {
+            let shared = AppState.shared
             MenuItemBuilder()
                 .title("Keep Awake")
                 .onEnable(awakePublisher.map(!).eraseToAnyPublisher())
+                .submenu(SubMenuBuilder.build(with: shared.awakeDurations.intervals))
                 .onSelect {
-                    let shared = AppState.shared
                     AppDelegate.caffWrapper.start(
                         interval: shared.awakeDurations.default.time,
                         allowDisplaySleep: shared.allowDisplaySleep
@@ -164,7 +165,7 @@ final class MenuBarItemController {
                 .title("Quit")
                 .onSelect {
                     AppDelegate.caffWrapper.stop()
-                    NSApplication.shared.terminate(self)
+                    NSApp.terminate(self)
                 }
         }
     }

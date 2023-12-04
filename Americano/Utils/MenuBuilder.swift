@@ -23,6 +23,22 @@ enum MenuBuilder {
     static func buildExpression(_ expression: NSMenuItem) -> [NSMenuItem] {
         [expression]
     }
+
+    static func buildArray(_ components: [[NSMenuItem]]) -> [NSMenuItem] {
+        components.flatMap { $0 }
+    }
+
+    static func buildOptional(_ component: [NSMenuItem]?) -> [NSMenuItem] {
+        component ?? []
+    }
+
+    static func buildEither(first component: [NSMenuItem]) -> [NSMenuItem] {
+        component
+    }
+
+    static func buildEither(second component: [NSMenuItem]) -> [NSMenuItem] {
+        component
+    }
 }
 
 extension NSMenu {

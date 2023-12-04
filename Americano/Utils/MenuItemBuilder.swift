@@ -76,6 +76,12 @@ final class MenuItemBuilder {
         return self
     }
 
+    @discardableResult
+    func submenu(_ sm: NSMenu) -> Self {
+        menuItem.submenu = sm
+        return self
+    }
+
     func build() -> NSMenuItem {
         return menuItem
     }
