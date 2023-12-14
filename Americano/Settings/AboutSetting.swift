@@ -16,23 +16,33 @@ struct AboutSetting: SettingContentRepresentable {
         "About"
     }
 
+    var view: AnyView {
+        AboutSettingView()
+            .eraseToAnyView()
+    }
+}
+
+struct AboutSettingView: View {
     var displayVersion: String {
         "\(Bundle.main.appVersion ?? "1.0.0") (\(Bundle.main.buildVersion ?? "1"))"
     }
 
-    var view: AnyView {
-        VStack {
-            Image(nsImage: NSApp.applicationIconImage)
-            Text(Bundle.main.appName ?? "Americano")
-                .font(.title)
-                .fontWeight(.bold)
-            Text("Version: \(displayVersion)")
-                .font(.subheadline)
-                .foregroundStyle(.secondary)
-        }
-        .padding(.top, 10)
-        .padding(.bottom, 20)
-        .frame(width: 400)
-        .eraseToAnyView()
+    var body: some View {
+            VStack {
+                Image(nsImage: NSApp.applicationIconImage)
+                Text(Bundle.main.appName ?? "Americano")
+                    .font(.title)
+                    .fontWeight(.bold)
+                Text("Version: \(displayVersion)")
+                    .font(.subheadline)
+                    .foregroundStyle(.secondary)
+            }
+            .padding(.top, 10)
+            .padding(.bottom, 20)
+            .frame(width: 400)
     }
+}
+
+#Preview {
+    AboutSettingView()
 }

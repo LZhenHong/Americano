@@ -16,7 +16,7 @@ public struct AwakeDurations: RawRepresentable {
         static let infinity = Interval(time: .infinity)
 
         let time: TimeInterval
-        private (set) var `default` = false
+        private(set) var `default` = false
 
         var deletable: Bool {
             !`default` && !isInfinite
@@ -65,7 +65,7 @@ public struct AwakeDurations: RawRepresentable {
     }
 
     public init?(rawValue: String) {
-        let intervals = Array<Interval>(rawValue: rawValue) ?? []
+        let intervals = [Interval](rawValue: rawValue) ?? []
         self.init(intervals)
     }
 

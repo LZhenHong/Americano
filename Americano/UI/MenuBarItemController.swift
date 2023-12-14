@@ -9,7 +9,7 @@ import Cocoa
 import Combine
 import os.log
 
-fileprivate extension String {
+private extension String {
     static let CupOn = "cup.and.saucer.fill"
     static let CupOff = "cup.and.saucer"
 }
@@ -32,9 +32,7 @@ final class MenuBarItemController {
     }()
 
     private var awakePublisher: AnyPublisher<Bool, Never> {
-        get {
-            AppState.shared.$preventSleep.eraseToAnyPublisher()
-        }
+        AppState.shared.$preventSleep.eraseToAnyPublisher()
     }
 
     func setUp() {
@@ -69,7 +67,7 @@ final class MenuBarItemController {
             return
         }
 
-        switch (event.type) {
+        switch event.type {
         case .leftMouseUp:
             showMenu(sender)
         case .rightMouseUp:
@@ -119,7 +117,7 @@ final class MenuBarItemController {
     }
 
     private func createMenu() -> NSMenu {
-        NSMenu  {
+        NSMenu {
             let shared = AppState.shared
             MenuItemBuilder()
                 .title("Keep Awake")
@@ -174,7 +172,7 @@ final class MenuBarItemController {
         awakePublisher
             .receive(on: DispatchQueue.main)
             .debounce(for: .milliseconds(100), scheduler: DispatchQueue.main)
-            .map({ $0 ? String.CupOn : String.CupOff })
+            .map { $0 ? String.CupOn : String.CupOff }
 #if DEBUG
             .print("Status Bar Item")
 #endif

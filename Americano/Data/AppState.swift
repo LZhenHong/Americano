@@ -20,7 +20,7 @@ final class AppState: ObservableObject {
 
     static let shared = AppState()
 
-    fileprivate init() { }
+    fileprivate init() {}
 }
 
 #if DEBUG

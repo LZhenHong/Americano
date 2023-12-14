@@ -24,14 +24,27 @@ struct IntervalSetting: SettingContentRepresentable {
 
 private struct IntervalSettingView: View {
     @ObservedObject var state: AppState
-    
+
     @State private var selectedInterval: AwakeDurations.Interval?
-    
+
     @State private var showPickerSheet = false
     @State private var selectedDate = Date()
     @State private var interval = AwakeDurations.Interval(time: 0)
 
     @State private var showResetAlert = false
+
+    var listView: some View {
+        List(selection: $selectedInterval) {
+            ForEach(state.awakeDurations.intervals) { interval in
+                IntervalSettingCell(interval: interval)
+                    .tag(interval)
+                    .contextMenu(contextMenu(for: interval))
+            }
+            .onDelete(perform: delete(at:))
+        }
+        .cornerRadius(10)
+        .padding(8)
+    }
 
     var operationView: some View {
         HStack {
@@ -55,6 +68,8 @@ private struct IntervalSettingView: View {
             }
             .disabled(!canIntervalBeDeleted(selectedInterval))
         }
+        .padding(.bottom, 15)
+        .padding(.horizontal, 10)
     }
 
     var intervalPickerView: some View {
@@ -68,20 +83,8 @@ private struct IntervalSettingView: View {
 
     var body: some View {
         VStack {
-            List(selection: $selectedInterval) {
-                ForEach(state.awakeDurations.intervals) { interval in
-                    IntervalSettingCell(interval: interval)
-                        .tag(interval)
-                        .contextMenu(contextMenu(for: interval))
-                }
-                .onDelete(perform: delete(at:))
-            }
-            .cornerRadius(10)
-            .padding(8)
-
+            listView
             operationView
-                .padding(.bottom, 15)
-                .padding(.horizontal, 10)
         }
         .sheet(isPresented: $showPickerSheet, onDismiss: didDismiss) {
             intervalPickerView
@@ -91,7 +94,7 @@ private struct IntervalSettingView: View {
                 selectedInterval = nil
                 state.awakeDurations.restoreDefaultIntervals()
             }
-            Button("Cancel", role: .cancel) { }
+            Button("Cancel", role: .cancel) {}
         } message: {
             Text("This will remove all custom intervals.")
         }
