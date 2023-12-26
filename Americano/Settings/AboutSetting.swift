@@ -13,7 +13,7 @@ struct AboutSetting: SettingContentRepresentable {
     }
 
     var preferredTitle: String {
-        "About"
+        String(localized: "About")
     }
 
     var view: AnyView {

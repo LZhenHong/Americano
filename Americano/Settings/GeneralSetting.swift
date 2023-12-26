@@ -13,7 +13,7 @@ struct GeneralSetting: SettingContentRepresentable {
     }
 
     var preferredTitle: String {
-        "General"
+        String(localized: "General")
     }
 
     var view: AnyView {

@@ -10,6 +10,7 @@
 		341E6BC02AC080850043E97A /* MenuBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341E6BBF2AC080850043E97A /* MenuBuilder.swift */; };
 		34694D392ABB58B1003D4362 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34694D382ABB58B1003D4362 /* Storage.swift */; };
 		34C0958F2B03DDBA009B9324 /* CustomIntervalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C0958E2B03DDBA009B9324 /* CustomIntervalView.swift */; };
+		F20C39C02B3B1C7000B052CC /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = F20C39BF2B3B1C7000B052CC /* Localizable.xcstrings */; };
 		F2294E782AC30EF70085448F /* LaunchAtLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2294E772AC30EF70085448F /* LaunchAtLogin.swift */; };
 		F230D3322B1E00EB00A5A50A /* SubMenuBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F230D3312B1E00EB00A5A50A /* SubMenuBuilder.swift */; };
 		F2489C442AE976A900B5E17B /* AwakeDurations.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2489C432AE976A900B5E17B /* AwakeDurations.swift */; };
@@ -40,6 +41,7 @@
 		341E6BBF2AC080850043E97A /* MenuBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBuilder.swift; sourceTree = "<group>"; };
 		34694D382ABB58B1003D4362 /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		34C0958E2B03DDBA009B9324 /* CustomIntervalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomIntervalView.swift; sourceTree = "<group>"; };
+		F20C39BF2B3B1C7000B052CC /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		F2294E772AC30EF70085448F /* LaunchAtLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchAtLogin.swift; sourceTree = "<group>"; };
 		F230D3312B1E00EB00A5A50A /* SubMenuBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubMenuBuilder.swift; sourceTree = "<group>"; };
 		F2489C432AE976A900B5E17B /* AwakeDurations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AwakeDurations.swift; sourceTree = "<group>"; };
@@ -157,6 +159,7 @@
 		F2A013B62ABD3FDD006883D3 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				F20C39BF2B3B1C7000B052CC /* Localizable.xcstrings */,
 				F2CACC542ABACDA700CB2BE4 /* Americano.entitlements */,
 				F2CACC4F2ABACDA700CB2BE4 /* Assets.xcassets */,
 			);
@@ -236,6 +239,8 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hans",
+				"zh-Hant",
 			);
 			mainGroup = F2CACC3F2ABACDA600CB2BE4;
 			productRefGroup = F2CACC492ABACDA600CB2BE4 /* Products */;
@@ -252,6 +257,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F20C39C02B3B1C7000B052CC /* Localizable.xcstrings in Resources */,
 				F2CACC502ABACDA700CB2BE4 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

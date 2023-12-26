@@ -23,7 +23,7 @@ final class SettingWindowController: NSWindowController {
 
         let window = NSWindow(contentRect: .zero, styleMask: [.titled, .closable], backing: .buffered, defer: false)
         window.collectionBehavior = [.managed, .participatesInCycle, .fullScreenNone]
-        window.title = "Settings"
+        window.title = String(localized: "Settings")
         window.contentViewController = tabViewController
 
         super.init(window: window)

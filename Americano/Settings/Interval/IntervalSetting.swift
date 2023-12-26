@@ -13,7 +13,7 @@ struct IntervalSetting: SettingContentRepresentable {
     }
 
     var preferredTitle: String {
-        "Awake Interval"
+        String(localized: "Awake Interval")
     }
 
     var view: AnyView {

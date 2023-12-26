@@ -69,13 +69,13 @@ struct CustomIntervalView: View {
 }
 
 private struct IntervalComponent: View {
-    var prompt: String
+    var prompt: LocalizedStringResource
     var maxValue: Int = 59
     @Binding var value: Int
     @State private var stepperValue: Double = 0
 
     var body: some View {
-        Stepper(prompt, value: $stepperValue, in: 0...Double(maxValue), format: .number) { start in
+        Stepper(String(localized: prompt), value: $stepperValue, in: 0...Double(maxValue), format: .number) { start in
             if !start {
                 value = Int(stepperValue)
             }

@@ -26,6 +26,11 @@ final class MenuItemBuilder {
     private var subscriptions = Set<AnyCancellable>()
 
     @discardableResult
+    func title(_ title: LocalizedStringResource) -> Self {
+        return self.title(String(localized: title))
+    }
+
+    @discardableResult
     func title(_ title: String) -> Self {
         menuItem.title = title
         return self
