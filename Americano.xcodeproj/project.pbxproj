@@ -13,6 +13,7 @@
 		F2294E782AC30EF70085448F /* LaunchAtLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2294E772AC30EF70085448F /* LaunchAtLogin.swift */; };
 		F230D3322B1E00EB00A5A50A /* SubMenuBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F230D3312B1E00EB00A5A50A /* SubMenuBuilder.swift */; };
 		F2489C442AE976A900B5E17B /* AwakeDurations.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2489C432AE976A900B5E17B /* AwakeDurations.swift */; };
+		F24FA4372B3AFEE0009A99D9 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24FA4362B3AFEE0009A99D9 /* main.swift */; };
 		F256B3492ADDA0D400470219 /* SettingWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F256B3482ADDA0D400470219 /* SettingWindowController.swift */; };
 		F256B34B2AE19AD000470219 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F256B34A2AE19AD000470219 /* SettingViewController.swift */; };
 		F25A297C2ABC6C200022E08E /* ScreenSaverWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F25A297B2ABC6C200022E08E /* ScreenSaverWrapper.swift */; };
@@ -26,7 +27,6 @@
 		F2C0DFFE2AEBBCE900970BFA /* Array+.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2C0DFFD2AEBBCE900970BFA /* Array+.swift */; };
 		F2CACC4C2ABACDA600CB2BE4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2CACC4B2ABACDA600CB2BE4 /* AppDelegate.swift */; };
 		F2CACC502ABACDA700CB2BE4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F2CACC4F2ABACDA700CB2BE4 /* Assets.xcassets */; };
-		F2CACC532ABACDA700CB2BE4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F2CACC512ABACDA700CB2BE4 /* Main.storyboard */; };
 		F2CACC5B2ABAD17100CB2BE4 /* MenuBarItemController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2CACC5A2ABAD17100CB2BE4 /* MenuBarItemController.swift */; };
 		F2CACC5D2ABAD6C200CB2BE4 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2CACC5C2ABAD6C200CB2BE4 /* AppState.swift */; };
 		F2CACC5F2ABADBCA00CB2BE4 /* CaffeinateWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2CACC5E2ABADBCA00CB2BE4 /* CaffeinateWrapper.swift */; };
@@ -43,6 +43,7 @@
 		F2294E772AC30EF70085448F /* LaunchAtLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchAtLogin.swift; sourceTree = "<group>"; };
 		F230D3312B1E00EB00A5A50A /* SubMenuBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubMenuBuilder.swift; sourceTree = "<group>"; };
 		F2489C432AE976A900B5E17B /* AwakeDurations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AwakeDurations.swift; sourceTree = "<group>"; };
+		F24FA4362B3AFEE0009A99D9 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		F256B3482ADDA0D400470219 /* SettingWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingWindowController.swift; sourceTree = "<group>"; };
 		F256B34A2AE19AD000470219 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		F25A297B2ABC6C200022E08E /* ScreenSaverWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenSaverWrapper.swift; sourceTree = "<group>"; };
@@ -57,7 +58,6 @@
 		F2CACC482ABACDA600CB2BE4 /* Americano.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Americano.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2CACC4B2ABACDA600CB2BE4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F2CACC4F2ABACDA700CB2BE4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		F2CACC522ABACDA700CB2BE4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F2CACC542ABACDA700CB2BE4 /* Americano.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Americano.entitlements; sourceTree = "<group>"; };
 		F2CACC5A2ABAD17100CB2BE4 /* MenuBarItemController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarItemController.swift; sourceTree = "<group>"; };
 		F2CACC5C2ABAD6C200CB2BE4 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
@@ -159,7 +159,6 @@
 			children = (
 				F2CACC542ABACDA700CB2BE4 /* Americano.entitlements */,
 				F2CACC4F2ABACDA700CB2BE4 /* Assets.xcassets */,
-				F2CACC512ABACDA700CB2BE4 /* Main.storyboard */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -183,6 +182,7 @@
 		F2CACC4A2ABACDA600CB2BE4 /* Americano */ = {
 			isa = PBXGroup;
 			children = (
+				F24FA4362B3AFEE0009A99D9 /* main.swift */,
 				F2CACC4B2ABACDA600CB2BE4 /* AppDelegate.swift */,
 				F230D3302B1E00C400A5A50A /* UI */,
 				F2A013B42ABD3FB4006883D3 /* Data */,
@@ -253,7 +253,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				F2CACC502ABACDA700CB2BE4 /* Assets.xcassets in Resources */,
-				F2CACC532ABACDA700CB2BE4 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -278,6 +277,7 @@
 				F2EF3ADC2AE14F1700F2C26F /* AboutSetting.swift in Sources */,
 				F2CACC5D2ABAD6C200CB2BE4 /* AppState.swift in Sources */,
 				F2C0DFFE2AEBBCE900970BFA /* Array+.swift in Sources */,
+				F24FA4372B3AFEE0009A99D9 /* main.swift in Sources */,
 				F282BEAB2ABB09CE0073D130 /* SubscriptionToken.swift in Sources */,
 				F2294E782AC30EF70085448F /* LaunchAtLogin.swift in Sources */,
 				F2EF3AD82AE1297F00F2C26F /* GeneralSetting.swift in Sources */,
@@ -294,23 +294,13 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXVariantGroup section */
-		F2CACC512ABACDA700CB2BE4 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				F2CACC522ABACDA700CB2BE4 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
-
 /* Begin XCBuildConfiguration section */
 		F2CACC552ABACDA700CB2BE4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -375,6 +365,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -444,7 +435,6 @@
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_LSUIElement = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				INFOPLIST_KEY_NSMainStoryboardFile = Main;
 				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -477,7 +467,6 @@
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_LSUIElement = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				INFOPLIST_KEY_NSMainStoryboardFile = Main;
 				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

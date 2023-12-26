@@ -7,7 +7,6 @@
 
 import Cocoa
 
-@main
 final class AppDelegate: NSObject, NSApplicationDelegate {
     static var bundleIdentifier: String {
         Bundle.main.bundleIdentifier ?? "io.lzhlovesjyq.Americano"
