@@ -7,7 +7,7 @@
   - [x] Activate ScreenSaver
   - [x] Allow Display Sleep
 - [ ] Custom awake interval
-- [ ] App Icon
+- [x] App Icon
 - [ ] I18n
 - [ ] Power monitor
   - [ ] Disable when low power
