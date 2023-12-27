@@ -5,13 +5,13 @@
       "localizations" : {
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "%@"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "%@"
           }
         }
@@ -24,11 +24,30 @@
             "state" : "translated",
             "value" : "关于"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "關於"
+          }
         }
       }
     },
     "Activate on Launch" : {
-
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "启动时激活"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "啟動時啟用"
+          }
+        }
+      }
     },
     "Activate ScreenSaver when nap" : {
 
@@ -39,6 +58,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "添加"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "新增"
           }
         }
       }
@@ -51,29 +76,80 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "允许显示器睡眠"
+            "value" : "允许显示器休眠"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "允許顯示器休眠"
           }
         }
       }
     },
     "Allow the display go to sleep." : {
-
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "允许显示器进入休眠状态。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "允許顯示器進入休眠狀態。"
+          }
+        }
+      }
     },
     "Automatically activate ScreenSaver when prevention is over." : {
 
     },
     "Automatically opens the app when start your Mac." : {
-
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在启动 Mac 时自动打开应用程序。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "啟動您的 Mac 時自動打開應用程式。"
+          }
+        }
+      }
     },
     "Automatically prevents your Mac from going to sleep when launched." : {
-
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在启动时自动防止您的 Mac 进入休眠状态。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在啟動時自動防止您的 Mac 進入休眠狀態。"
+          }
+        }
+      }
     },
-    "Awake Interval" : {
+    "Awake Intervals" : {
 
     },
     "Cancel" : {
       "localizations" : {
         "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "取消"
+          }
+        },
+        "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "取消"
@@ -88,6 +164,12 @@
             "state" : "translated",
             "value" : "默认"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "默認"
+          }
         }
       }
     },
@@ -97,6 +179,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "删除"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "刪除"
           }
         }
       }
@@ -108,6 +196,12 @@
             "state" : "translated",
             "value" : "通用"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "一般"
+          }
         }
       }
     },
@@ -117,6 +211,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "小时"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "小時"
           }
         }
       }
@@ -128,6 +228,12 @@
             "state" : "translated",
             "value" : "登录时启动"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "登錄時啟動"
+          }
         }
       }
     },
@@ -138,12 +244,24 @@
             "state" : "translated",
             "value" : "分钟"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "分鐘"
+          }
         }
       }
     },
     "Reset" : {
       "localizations" : {
         "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "重置"
+          }
+        },
+        "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "重置"
@@ -156,7 +274,13 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "重置为默认"
+            "value" : "重置为默认值"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "重置為默認值"
           }
         }
       }
@@ -164,6 +288,12 @@
     "Seconds" : {
       "localizations" : {
         "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "秒"
+          }
+        },
+        "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "秒"
@@ -178,11 +308,14 @@
             "state" : "translated",
             "value" : "设置为默认"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "設為默認"
+          }
         }
       }
-    },
-    "Set Default" : {
-
     },
     "Settings" : {
       "localizations" : {
@@ -190,6 +323,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "设置"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "設置"
           }
         }
       }
@@ -200,6 +339,12 @@
     "Version: %@" : {
       "localizations" : {
         "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "版本: %@"
+          }
+        },
+        "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "版本: %@"

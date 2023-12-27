@@ -13,7 +13,7 @@ struct IntervalSetting: SettingContentRepresentable {
     }
 
     var preferredTitle: String {
-        String(localized: "Awake Interval")
+        String(localized: "Awake Intervals")
     }
 
     var view: AnyView {
@@ -52,7 +52,7 @@ private struct IntervalSettingView: View {
                 showResetAlert.toggle()
             }
             Spacer()
-            Button("Set Default") {
+            Button("Set as default") {
                 markIntervalAsDefault(selectedInterval)
             }
             .disabled(!canIntervalSetToDefault(selectedInterval))
@@ -122,7 +122,7 @@ private struct IntervalSettingView: View {
 
         return ContextMenu {
             Group {
-                Button("Set Default") {
+                Button("Set as default") {
                     markIntervalAsDefault(interval)
                 }
                 .disabled(!canIntervalSetToDefault(interval))
