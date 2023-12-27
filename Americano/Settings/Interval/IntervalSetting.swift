@@ -199,6 +199,8 @@ private struct IntervalSettingCell: View {
     }
 }
 
+#if DEBUG
 #Preview {
     IntervalSettingView(state: .sample)
 }
+#endif

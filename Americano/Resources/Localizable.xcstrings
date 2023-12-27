@@ -49,8 +49,31 @@
         }
       }
     },
-    "Activate ScreenSaver when nap" : {
-
+    "Activate Screen Saver" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "启用屏幕保护"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "啟用螢幕保護"
+          }
+        }
+      }
+    },
+    "Activate ScreenSaver when prevention over" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "阻止休眠结束激活屏幕保护"
+          }
+        }
+      }
     },
     "Add" : {
       "localizations" : {
@@ -69,7 +92,20 @@
       }
     },
     "Add Custom Interval" : {
-
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "添加自定义时间"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "新增自訂間隔"
+          }
+        }
+      }
     },
     "Allow Display Sleep" : {
       "localizations" : {
@@ -104,7 +140,14 @@
       }
     },
     "Automatically activate ScreenSaver when prevention is over." : {
-
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "当阻止休眠结束时激活屏幕保护程序。"
+          }
+        }
+      }
     },
     "Automatically opens the app when start your Mac." : {
       "localizations" : {
@@ -253,6 +296,22 @@
         }
       }
     },
+    "Quit" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "退出"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "退出"
+          }
+        }
+      }
+    },
     "Reset" : {
       "localizations" : {
         "zh-Hans" : {
@@ -333,8 +392,31 @@
         }
       }
     },
+    "Stop" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "停止"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "停止"
+          }
+        }
+      }
+    },
     "This will remove all custom intervals." : {
-
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "此操作会删除所有自定义时间。"
+          }
+        }
+      }
     },
     "Version: %@" : {
       "localizations" : {

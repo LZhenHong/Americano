@@ -120,7 +120,7 @@ final class MenuBarItemController {
         NSMenu {
             let shared = AppState.shared
             MenuItemBuilder()
-                .title("Keep Awake")
+                .title(String(localized: "Awake Intervals"))
                 .onEnable(awakePublisher.map(!).eraseToAnyPublisher())
                 .submenu(SubMenuBuilder.build(with: shared.awakeDurations.intervals))
                 .onSelect {
@@ -129,38 +129,37 @@ final class MenuBarItemController {
                         allowDisplaySleep: shared.allowDisplaySleep
                     )
                 }
-            NSMenuItem.separator()
             MenuItemBuilder()
-                .title("Stop")
+                .title(String(localized: "Stop"))
                 .onEnable(awakePublisher)
                 .onSelect {
                     AppDelegate.caffWrapper.stop()
                 }
             NSMenuItem.separator()
             MenuItemBuilder()
-                .title("Enter Screen Saver")
+                .title(String(localized: "Activate Screen Saver"))
                 .onSelect {
                     /// Stop caffeinate if needed.
                     AppDelegate.caffWrapper.stop()
                     AppDelegate.screenWrapper.run()
                 }
             NSMenuItem.separator()
+//            MenuItemBuilder()
+//                .title(String(localized: "Launch at Login"))
+//                .onHighlight(AppState.shared.$launchAtLogin.eraseToAnyPublisher())
+//                .onSelect {
+//                    LaunchAtLogin.toggle()
+//                }
+//            NSMenuItem.separator()
             MenuItemBuilder()
-                .title("Launch At Login")
-                .onHighlight(AppState.shared.$launchAtLogin.eraseToAnyPublisher())
-                .onSelect {
-                    LaunchAtLogin.toggle()
-                }
-            NSMenuItem.separator()
-            MenuItemBuilder()
-                .title("Setting")
+                .title(String(localized: "Settings"))
                 .shortcuts(",")
                 .onSelect {
                     self.settingWindowController.show()
                 }
             NSMenuItem.separator()
             MenuItemBuilder()
-                .title("Quit")
+                .title(String(localized: "Quit"))
                 .onSelect {
                     AppDelegate.caffWrapper.stop()
                     NSApp.terminate(self)
