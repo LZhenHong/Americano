@@ -21,7 +21,7 @@ The app primarily functions as a wrapper for the macOS [caffeinate][2] command-l
 
 ## Contributions
 
-Pull requests and issues are welcome! If you encounter any issues or have suggestions for improvement, feel free to submit an issue
+Pull requests and issues are welcome! If you encounter any issues or have suggestions for improvement, feel free to submit an issue.
 
 ## License
 
