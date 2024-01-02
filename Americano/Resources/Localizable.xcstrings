@@ -17,6 +17,22 @@
         }
       }
     },
+    "%@ already exists." : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@已经存在。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@已經存在。"
+          }
+        }
+      }
+    },
     "About" : {
       "localizations" : {
         "zh-Hans" : {
@@ -71,6 +87,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "阻止休眠结束激活屏幕保护"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "阻止休眠結束激活螢幕保護"
           }
         }
       }
@@ -146,6 +168,12 @@
             "state" : "translated",
             "value" : "当阻止休眠结束时激活屏幕保护程序。"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "當阻止休眠結束時激活螢幕保護程式。"
+          }
         }
       }
     },
@@ -182,7 +210,20 @@
       }
     },
     "Awake Intervals" : {
-
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "唤醒时间"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "喚醒時間"
+          }
+        }
+      }
     },
     "Cancel" : {
       "localizations" : {
@@ -414,6 +455,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "此操作会删除所有自定义时间。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "此操作將刪除所有自定義時間。"
           }
         }
       }

@@ -24,6 +24,7 @@
 		F280E2202AF22D6B00C67E64 /* SettingTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F280E21F2AF22D6B00C67E64 /* SettingTabViewController.swift */; };
 		F282BEAB2ABB09CE0073D130 /* SubscriptionToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = F282BEAA2ABB09CE0073D130 /* SubscriptionToken.swift */; };
 		F291C25D2AE2137F007F152C /* ViewUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F291C25C2AE2137F007F152C /* ViewUtils.swift */; };
+		F2A62B502B3E57B200FDECF6 /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = F2A62B4F2B3E57B200FDECF6 /* InfoPlist.xcstrings */; };
 		F2B9D84E2AC4A548006737D0 /* MenuItemBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B9D84D2AC4A548006737D0 /* MenuItemBuilder.swift */; };
 		F2C0DFFE2AEBBCE900970BFA /* Array+.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2C0DFFD2AEBBCE900970BFA /* Array+.swift */; };
 		F2CACC4C2ABACDA600CB2BE4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2CACC4B2ABACDA600CB2BE4 /* AppDelegate.swift */; };
@@ -55,6 +56,7 @@
 		F280E21F2AF22D6B00C67E64 /* SettingTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTabViewController.swift; sourceTree = "<group>"; };
 		F282BEAA2ABB09CE0073D130 /* SubscriptionToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionToken.swift; sourceTree = "<group>"; };
 		F291C25C2AE2137F007F152C /* ViewUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewUtils.swift; sourceTree = "<group>"; };
+		F2A62B4F2B3E57B200FDECF6 /* InfoPlist.xcstrings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json.xcstrings; path = InfoPlist.xcstrings; sourceTree = "<group>"; };
 		F2B9D84D2AC4A548006737D0 /* MenuItemBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemBuilder.swift; sourceTree = "<group>"; };
 		F2C0DFFD2AEBBCE900970BFA /* Array+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+.swift"; sourceTree = "<group>"; };
 		F2CACC482ABACDA600CB2BE4 /* Americano.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Americano.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -159,6 +161,7 @@
 		F2A013B62ABD3FDD006883D3 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				F2A62B4F2B3E57B200FDECF6 /* InfoPlist.xcstrings */,
 				F20C39BF2B3B1C7000B052CC /* Localizable.xcstrings */,
 				F2CACC542ABACDA700CB2BE4 /* Americano.entitlements */,
 				F2CACC4F2ABACDA700CB2BE4 /* Assets.xcassets */,
@@ -257,6 +260,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F2A62B502B3E57B200FDECF6 /* InfoPlist.xcstrings in Resources */,
 				F20C39C02B3B1C7000B052CC /* Localizable.xcstrings in Resources */,
 				F2CACC502ABACDA700CB2BE4 /* Assets.xcassets in Resources */,
 			);
@@ -440,7 +444,7 @@
 				INFOPLIST_KEY_CFBundleDisplayName = Americano;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_LSUIElement = YES;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2024 Eden. All rights reserved.";
 				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -472,7 +476,7 @@
 				INFOPLIST_KEY_CFBundleDisplayName = Americano;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_LSUIElement = YES;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2024 Eden. All rights reserved.";
 				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

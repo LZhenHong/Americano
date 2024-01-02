@@ -75,7 +75,7 @@ private struct IntervalSettingView: View {
     var intervalPickerView: some View {
         CustomIntervalView(interval: $interval) { time in
             if time > 0 && state.awakeDurations.has(time) {
-                return "\(time.localizedTime) already exists."
+                return String(localized: "\(time.localizedTime) already exists.")
             }
             return nil
         }

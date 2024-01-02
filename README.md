@@ -2,13 +2,13 @@
 
 ## TODOs
 
-- [ ] Write Setting window with SwiftUI
+- [x] Write Setting window with SwiftUI
   - [x] Activate on Launch
   - [x] Activate ScreenSaver
   - [x] Allow Display Sleep
-- [ ] Custom awake interval
+- [x] Custom awake interval
 - [x] App Icon
-- [ ] I18n
+- [x] i18n
 - [ ] Power monitor
   - [ ] Disable when low power
 - [ ] Notification
