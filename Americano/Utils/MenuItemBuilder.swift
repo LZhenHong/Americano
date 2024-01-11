@@ -11,7 +11,7 @@ import Combine
 final class MenuInvoker {
     static let shared = MenuInvoker()
 
-    private init() { }
+    private init() {}
 
     @objc func execute(_ item: NSMenuItem) {
         guard let (handler, _) = item.representedObject as? (() -> Void, Set<AnyCancellable>) else {
@@ -60,7 +60,7 @@ final class MenuItemBuilder {
     func onHighlight(_ publisher: AnyPublisher<Bool, Never>) -> Self {
         publisher
             .receive(on: DispatchQueue.main)
-            .map({ $0 ? NSControl.StateValue.on : NSControl.StateValue.off })
+            .map { $0 ? NSControl.StateValue.on : NSControl.StateValue.off }
 #if DEBUG
             .print("Menu Item onHighlight")
 #endif

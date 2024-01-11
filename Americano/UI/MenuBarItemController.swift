@@ -26,6 +26,7 @@ final class MenuBarItemController {
         let settings: [SettingContentRepresentable] = [
             GeneralSetting(),
             IntervalSetting(),
+            BatterySetting(),
             AboutSetting()
         ]
         return SettingWindowController(settings: settings)

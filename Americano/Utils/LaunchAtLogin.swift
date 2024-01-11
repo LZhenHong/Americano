@@ -5,19 +5,17 @@
 //  Created by Eden on 2023/9/26.
 //
 
-import Foundation
 import Combine
-import ServiceManagement
+import Foundation
 import os.log
+import ServiceManagement
 
 enum LaunchAtLogin {
     private static let logger = Logger(subsystem: AppDelegate.bundleIdentifier,
                                        category: "LaunchAtLogin")
 
     static var isEnabled: Bool {
-        get {
-            SMAppService.mainApp.status == .enabled
-        }
+        SMAppService.mainApp.status == .enabled
     }
 
     static func toggle() {

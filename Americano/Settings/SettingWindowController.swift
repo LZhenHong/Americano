@@ -17,8 +17,9 @@ final class SettingWindowController: NSWindowController {
         tabViewController = SettingTabViewController()
         tabViewController.tabStyle = .toolbar
 
-        if settings.count > 0 {
-            tabViewController.tabViewItems = settings.map(\.tabViewItem)
+        let validSettings = settings.filter(\.isEnabled)
+        if validSettings.count > 0 {
+            tabViewController.tabViewItems = validSettings.map(\.tabViewItem)
         }
 
         let window = NSWindow(contentRect: .zero, styleMask: [.titled, .closable], backing: .buffered, defer: false)

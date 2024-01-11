@@ -25,6 +25,8 @@
 		F282BEAB2ABB09CE0073D130 /* SubscriptionToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = F282BEAA2ABB09CE0073D130 /* SubscriptionToken.swift */; };
 		F291C25D2AE2137F007F152C /* ViewUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F291C25C2AE2137F007F152C /* ViewUtils.swift */; };
 		F2A62B502B3E57B200FDECF6 /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = F2A62B4F2B3E57B200FDECF6 /* InfoPlist.xcstrings */; };
+		F2ADBB3A2B4C54CC00105DC0 /* BatterySetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2ADBB392B4C54CC00105DC0 /* BatterySetting.swift */; };
+		F2ADBB3D2B4C5CFB00105DC0 /* BatteryMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2ADBB3C2B4C5CFB00105DC0 /* BatteryMonitor.swift */; };
 		F2B9D84E2AC4A548006737D0 /* MenuItemBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B9D84D2AC4A548006737D0 /* MenuItemBuilder.swift */; };
 		F2C0DFFE2AEBBCE900970BFA /* Array+.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2C0DFFD2AEBBCE900970BFA /* Array+.swift */; };
 		F2CACC4C2ABACDA600CB2BE4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2CACC4B2ABACDA600CB2BE4 /* AppDelegate.swift */; };
@@ -57,6 +59,8 @@
 		F282BEAA2ABB09CE0073D130 /* SubscriptionToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionToken.swift; sourceTree = "<group>"; };
 		F291C25C2AE2137F007F152C /* ViewUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewUtils.swift; sourceTree = "<group>"; };
 		F2A62B4F2B3E57B200FDECF6 /* InfoPlist.xcstrings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json.xcstrings; path = InfoPlist.xcstrings; sourceTree = "<group>"; };
+		F2ADBB392B4C54CC00105DC0 /* BatterySetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatterySetting.swift; sourceTree = "<group>"; };
+		F2ADBB3C2B4C5CFB00105DC0 /* BatteryMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatteryMonitor.swift; sourceTree = "<group>"; };
 		F2B9D84D2AC4A548006737D0 /* MenuItemBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemBuilder.swift; sourceTree = "<group>"; };
 		F2C0DFFD2AEBBCE900970BFA /* Array+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+.swift"; sourceTree = "<group>"; };
 		F2CACC482ABACDA600CB2BE4 /* Americano.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Americano.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -110,6 +114,7 @@
 				F256B34A2AE19AD000470219 /* SettingViewController.swift */,
 				F2EF3AD52AE1111A00F2C26F /* SettingContentRepresentable.swift */,
 				F2EF3AD72AE1297F00F2C26F /* GeneralSetting.swift */,
+				F2ADBB392B4C54CC00105DC0 /* BatterySetting.swift */,
 				F2EF3ADB2AE14F1700F2C26F /* AboutSetting.swift */,
 			);
 			path = Settings;
@@ -152,6 +157,7 @@
 				F2294E772AC30EF70085448F /* LaunchAtLogin.swift */,
 				341E6BBF2AC080850043E97A /* MenuBuilder.swift */,
 				F2B9D84D2AC4A548006737D0 /* MenuItemBuilder.swift */,
+				F2ADBB3C2B4C5CFB00105DC0 /* BatteryMonitor.swift */,
 				F282BEAA2ABB09CE0073D130 /* SubscriptionToken.swift */,
 				F291C25C2AE2137F007F152C /* ViewUtils.swift */,
 			);
@@ -283,6 +289,7 @@
 				F256B34B2AE19AD000470219 /* SettingViewController.swift in Sources */,
 				F280E2202AF22D6B00C67E64 /* SettingTabViewController.swift in Sources */,
 				F230D3322B1E00EB00A5A50A /* SubMenuBuilder.swift in Sources */,
+				F2ADBB3A2B4C54CC00105DC0 /* BatterySetting.swift in Sources */,
 				F2EF3AD62AE1111A00F2C26F /* SettingContentRepresentable.swift in Sources */,
 				F2EF3ADC2AE14F1700F2C26F /* AboutSetting.swift in Sources */,
 				F2CACC5D2ABAD6C200CB2BE4 /* AppState.swift in Sources */,
@@ -298,6 +305,7 @@
 				F2CACC5B2ABAD17100CB2BE4 /* MenuBarItemController.swift in Sources */,
 				F27602772B06081000204EE2 /* TimeInterval+.swift in Sources */,
 				34C0958F2B03DDBA009B9324 /* CustomIntervalView.swift in Sources */,
+				F2ADBB3D2B4C5CFB00105DC0 /* BatteryMonitor.swift in Sources */,
 				34694D392ABB58B1003D4362 /* Storage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

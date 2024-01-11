@@ -28,18 +28,18 @@ struct AboutSettingView: View {
     }
 
     var body: some View {
-            VStack {
-                Image(nsImage: NSApp.applicationIconImage)
-                Text(Bundle.main.appName ?? "Americano")
-                    .font(.title)
-                    .fontWeight(.bold)
-                Text("Version: \(displayVersion)")
-                    .font(.subheadline)
-                    .foregroundStyle(.secondary)
-            }
-            .padding(.top, 10)
-            .padding(.bottom, 20)
-            .frame(width: 400)
+        VStack {
+            Image(nsImage: NSApp.applicationIconImage)
+            Text(Bundle.main.appName ?? "Americano")
+                .font(.title)
+                .fontWeight(.bold)
+            Text("Version: \(displayVersion)")
+                .font(.subheadline)
+                .foregroundStyle(.secondary)
+        }
+        .padding(.top, 10)
+        .padding(.bottom, 20)
+        .frame(width: 400)
     }
 }
 

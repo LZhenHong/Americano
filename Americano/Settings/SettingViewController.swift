@@ -16,12 +16,12 @@ final class SettingViewController: NSViewController {
         self.representable = representable
         super.init(nibName: nil, bundle: nil)
     }
-    
+
     @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) can not been called.")
     }
-    
+
     // https://sarunw.com/posts/how-to-initialize-nsviewcontroller-programmatically-without-nib/
     override func loadView() {
         view = NSView()

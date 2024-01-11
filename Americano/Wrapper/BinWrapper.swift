@@ -26,9 +26,7 @@ extension BinWrapper {
     }
 
     var isValid: Bool {
-        get {
-            FileManager.default.fileExists(atPath: binPath)
-        }
+        FileManager.default.fileExists(atPath: binPath)
     }
 
     func newProcess() -> Process {

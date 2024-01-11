@@ -14,11 +14,13 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
     static let caffWrapper = CaffeinateWrapper()
     static let screenWrapper = ScreenSaverWrapper()
+    static let batteryMonitor = BatteryMonitor()
     static let barItemController = MenuBarItemController()
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         Self.barItemController.setUp()
         Self.caffWrapper.delegate = self
+        Self.batteryMonitor.setUp()
 
         /// Activate on Launch
         if AppState.shared.activateOnLaunch {

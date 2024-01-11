@@ -18,6 +18,7 @@ The app primarily functions as a wrapper for the macOS [caffeinate][2] command-l
 - [ ] URL Schemes
 - [ ] Check Updates
 - [ ] Send notification when stop
+- [ ] Refactor with SPM
 
 ## Contributions
 

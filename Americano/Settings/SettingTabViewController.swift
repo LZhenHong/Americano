@@ -14,7 +14,8 @@ class SettingTabViewController: NSTabViewController {
         super.tabView(tabView, willSelect: tabViewItem)
 
         guard let tabViewItem,
-              let size = tabViewItem.view?.frame.size else {
+              let size = tabViewItem.view?.frame.size
+        else {
             return
         }
         tabViewSizes[tabViewItem] = size
@@ -25,7 +26,8 @@ class SettingTabViewController: NSTabViewController {
 
         guard let tabViewItem,
               let size = tabViewSizes[tabViewItem],
-              let window = tabViewItem.view?.window else {
+              let window = tabViewItem.view?.window
+        else {
             return
         }
 

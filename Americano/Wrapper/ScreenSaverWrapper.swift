@@ -13,9 +13,7 @@ final class ScreenSaverWrapper: BinWrapper {
                         category: "ScreenSaverController")
 
     var binPath: String {
-        get {
-            "/usr/bin/open"
-        }
+        "/usr/bin/open"
     }
 
     @discardableResult

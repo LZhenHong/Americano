@@ -24,15 +24,11 @@ final class CaffeinateWrapper: BinWrapper {
     private var caffeinate: Process?
 
     var process: Process? {
-        get {
-            caffeinate
-        }
+        caffeinate
     }
 
     var binPath: String {
-        get {
-            "/usr/bin/caffeinate"
-        }
+        "/usr/bin/caffeinate"
     }
 
     @discardableResult
@@ -58,7 +54,7 @@ final class CaffeinateWrapper: BinWrapper {
         caffeinate.terminationHandler = nil
         self.caffeinate = nil
     }
-    
+
     private func start(interval: TimeInterval, allowDisplaySleep: Bool = false) -> Bool {
         caffeinate = newProcess()
         guard interval > 0, let caffeinate else {
@@ -75,7 +71,7 @@ final class CaffeinateWrapper: BinWrapper {
 
         do {
             try caffeinate.run()
-            
+
             AppState.shared.preventSleep = true
             if interval.isFinite {
                 observeCaffeinateProcessExit()
@@ -118,7 +114,7 @@ final class CaffeinateWrapper: BinWrapper {
     }
 
     func stop() {
-        guard let _ = self.caffeinate else {
+        guard let _ = caffeinate else {
             return
         }
         stopCurrent()
