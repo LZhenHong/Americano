@@ -232,6 +232,12 @@
             "state" : "translated",
             "value" : "电池"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "電池"
+          }
         }
       }
     },

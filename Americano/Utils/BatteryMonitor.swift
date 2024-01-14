@@ -6,10 +6,21 @@
 //
 
 import Cocoa
+import Combine
 import IOKit.ps
 
+final class BatteryState: ObservableObject {
+    @Published var isLowPowerModeEnabled = false
+    @Published var isCharging = false
+    @Published var currentCapacity = 0
+}
+
 final class BatteryMonitor {
+    private(set) var state = BatteryState()
     private let token = SubscriptionToken()
+
+    private var loopSource: CFRunLoopSource?
+    private var runloop: CFRunLoop?
 
     private var powerSourceInfo: [String: Any] {
         guard let snapshot = IOPSCopyPowerSourcesInfo()?.takeRetainedValue(),
@@ -46,21 +57,49 @@ final class BatteryMonitor {
         return capacity
     }
 
-    func setUp() {
-        registerPublisher()
+    init() {
+        setUpStates()
     }
 
-    private func registerPublisher() {
+    private func setUpStates() {
+        state.isLowPowerModeEnabled = isLowPowerModeEnabled
+        state.isCharging = isCharging
+        state.currentCapacity = currentCapacity
+    }
+
+    func start() {
+        observeBatteryState()
+        observeLowPowerMode()
+    }
+
+    private func observeBatteryState() {
+        let ctx = UnsafeMutableRawPointer(Unmanaged.passUnretained(self).toOpaque())
+        let source = IOPSNotificationCreateRunLoopSource({ context in
+            guard let ctx = context else {
+                return
+            }
+            let monitor = Unmanaged<BatteryMonitor>.fromOpaque(ctx).takeUnretainedValue()
+            monitor.state.isCharging = monitor.isCharging
+            monitor.state.currentCapacity = monitor.currentCapacity
+        }, ctx).takeRetainedValue()
+        CFRunLoopAddSource(CFRunLoopGetCurrent(), source, .defaultMode)
+    }
+
+    private func observeLowPowerMode() {
         NotificationCenter.default.publisher(for: .NSProcessInfoPowerStateDidChange)
             .receive(on: DispatchQueue.main)
             .sink { _ in
-                self.batteryStateDidChange()
+                self.state.isLowPowerModeEnabled = self.isLowPowerModeEnabled
             }
             .seal(in: token)
     }
 
-    @objc private func batteryStateDidChange() {
-//        let isLowPower = isLowPowerModeEnabled
+    func stop() {
+        token.unseal()
+        guard let runloop, let source = loopSource else {
+            return
+        }
+        CFRunLoopRemoveSource(runloop, source, .defaultMode)
     }
 }
 
