@@ -65,22 +65,6 @@
         }
       }
     },
-    "Activate Screen Saver" : {
-      "localizations" : {
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "启用屏幕保护"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "啟用螢幕保護"
-          }
-        }
-      }
-    },
     "Activate ScreenSaver when prevention over" : {
       "localizations" : {
         "zh-Hans" : {

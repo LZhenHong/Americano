@@ -138,21 +138,6 @@ final class MenuBarItemController {
                 }
             NSMenuItem.separator()
             MenuItemBuilder()
-                .title(String(localized: "Activate Screen Saver"))
-                .onSelect {
-                    /// Stop caffeinate if needed.
-                    AppDelegate.caffWrapper.stop()
-                    AppDelegate.screenWrapper.run()
-                }
-            NSMenuItem.separator()
-//            MenuItemBuilder()
-//                .title(String(localized: "Launch at Login"))
-//                .onHighlight(AppState.shared.$launchAtLogin.eraseToAnyPublisher())
-//                .onSelect {
-//                    LaunchAtLogin.toggle()
-//                }
-//            NSMenuItem.separator()
-            MenuItemBuilder()
                 .title(String(localized: "Settings"))
                 .shortcuts(",")
                 .onSelect {

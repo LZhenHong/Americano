@@ -67,12 +67,7 @@ final class BatteryMonitor {
         state.currentCapacity = currentCapacity
     }
 
-    func start() {
-        observeBatteryState()
-        observeLowPowerMode()
-    }
-
-    private func observeBatteryState() {
+    func observeOnBatteryState() {
         let ctx = UnsafeMutableRawPointer(Unmanaged.passUnretained(self).toOpaque())
         let source = IOPSNotificationCreateRunLoopSource({ context in
             guard let ctx = context else {
@@ -85,7 +80,14 @@ final class BatteryMonitor {
         CFRunLoopAddSource(CFRunLoopGetCurrent(), source, .defaultMode)
     }
 
-    private func observeLowPowerMode() {
+    func observeOffBatteryState() {
+        guard let runloop, let source = loopSource else {
+            return
+        }
+        CFRunLoopRemoveSource(runloop, source, .defaultMode)
+    }
+
+    func observeOnLowPowerMode() {
         NotificationCenter.default.publisher(for: .NSProcessInfoPowerStateDidChange)
             .receive(on: DispatchQueue.main)
             .sink { _ in
@@ -94,12 +96,8 @@ final class BatteryMonitor {
             .seal(in: token)
     }
 
-    func stop() {
+    func observeOffLowPowerMode() {
         token.unseal()
-        guard let runloop, let source = loopSource else {
-            return
-        }
-        CFRunLoopRemoveSource(runloop, source, .defaultMode)
     }
 }
 

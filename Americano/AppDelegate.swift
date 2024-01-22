@@ -19,9 +19,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         Self.barItemController.setUp()
+        
         Self.caffWrapper.delegate = self
-        Self.batteryMonitor.start()
-
         /// Activate on Launch
         if AppState.shared.activateOnLaunch {
             Self.caffWrapper.start()
