@@ -95,22 +95,6 @@ final class CaffeinateWrapper: BinWrapper {
             self.stop()
             self.delegate?.caffeinateAutoTerminate(self)
         }
-
-//        let runner = { [weak self] in
-//            guard let self,
-//                  let caffeinate = self.caffeinate else {
-//                AppState.shared.preventSleep = false
-//                return
-//            }
-//            caffeinate.waitUntilExit()
-//            self.stop()
-//        }
-//        Task {
-//            runner()
-//        }
-//        DispatchQueue.global(qos: .background).async {
-//            runner()
-//        }
     }
 
     func stop() {

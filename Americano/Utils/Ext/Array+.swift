@@ -8,7 +8,9 @@
 import Foundation
 
 extension Array: RawRepresentable where Element: Codable {
-    public var rawValue: String {
+    public typealias RawValue = String
+
+    public var rawValue: RawValue {
         do {
             let encoder = JSONEncoder()
             encoder.nonConformingFloatEncodingStrategy = .convertToString(positiveInfinity: "inf",
@@ -23,7 +25,7 @@ extension Array: RawRepresentable where Element: Codable {
         }
     }
 
-    public init?(rawValue: String) {
+    public init?(rawValue: RawValue) {
         do {
             let data = rawValue.data(using: .utf8)
             guard let data else {
