@@ -3,12 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 60;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		341E6BC02AC080850043E97A /* MenuBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341E6BBF2AC080850043E97A /* MenuBuilder.swift */; };
-		34694D392ABB58B1003D4362 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34694D382ABB58B1003D4362 /* Storage.swift */; };
 		34C0958F2B03DDBA009B9324 /* CustomIntervalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C0958E2B03DDBA009B9324 /* CustomIntervalView.swift */; };
 		F20C39C02B3B1C7000B052CC /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = F20C39BF2B3B1C7000B052CC /* Localizable.xcstrings */; };
 		F2294E782AC30EF70085448F /* LaunchAtLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2294E772AC30EF70085448F /* LaunchAtLogin.swift */; };
@@ -22,6 +21,7 @@
 		F27602752B05C1B100204EE2 /* Bundle+.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27602742B05C1B100204EE2 /* Bundle+.swift */; };
 		F27602772B06081000204EE2 /* TimeInterval+.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27602762B06081000204EE2 /* TimeInterval+.swift */; };
 		F280E2202AF22D6B00C67E64 /* SettingTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F280E21F2AF22D6B00C67E64 /* SettingTabViewController.swift */; };
+		F2811B322B678C0300C85719 /* Storage in Frameworks */ = {isa = PBXBuildFile; productRef = F2811B312B678C0300C85719 /* Storage */; };
 		F282BEAB2ABB09CE0073D130 /* SubscriptionToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = F282BEAA2ABB09CE0073D130 /* SubscriptionToken.swift */; };
 		F291C25D2AE2137F007F152C /* ViewUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F291C25C2AE2137F007F152C /* ViewUtils.swift */; };
 		F2A62B502B3E57B200FDECF6 /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = F2A62B4F2B3E57B200FDECF6 /* InfoPlist.xcstrings */; };
@@ -42,7 +42,6 @@
 
 /* Begin PBXFileReference section */
 		341E6BBF2AC080850043E97A /* MenuBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBuilder.swift; sourceTree = "<group>"; };
-		34694D382ABB58B1003D4362 /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		34C0958E2B03DDBA009B9324 /* CustomIntervalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomIntervalView.swift; sourceTree = "<group>"; };
 		F20C39BF2B3B1C7000B052CC /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		F2294E772AC30EF70085448F /* LaunchAtLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchAtLogin.swift; sourceTree = "<group>"; };
@@ -81,6 +80,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F2811B322B678C0300C85719 /* Storage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -144,7 +144,6 @@
 			isa = PBXGroup;
 			children = (
 				F2CACC5C2ABAD6C200CB2BE4 /* AppState.swift */,
-				34694D382ABB58B1003D4362 /* Storage.swift */,
 				F2489C432AE976A900B5E17B /* AwakeDurations.swift */,
 			);
 			path = Data;
@@ -222,6 +221,9 @@
 			dependencies = (
 			);
 			name = Americano;
+			packageProductDependencies = (
+				F2811B312B678C0300C85719 /* Storage */,
+			);
 			productName = Americano;
 			productReference = F2CACC482ABACDA600CB2BE4 /* Americano.app */;
 			productType = "com.apple.product-type.application";
@@ -252,6 +254,9 @@
 				"zh-Hant",
 			);
 			mainGroup = F2CACC3F2ABACDA600CB2BE4;
+			packageReferences = (
+				F2811B302B678C0300C85719 /* XCLocalSwiftPackageReference "Storage" */,
+			);
 			productRefGroup = F2CACC492ABACDA600CB2BE4 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -306,7 +311,6 @@
 				F27602772B06081000204EE2 /* TimeInterval+.swift in Sources */,
 				34C0958F2B03DDBA009B9324 /* CustomIntervalView.swift in Sources */,
 				F2ADBB3D2B4C5CFB00105DC0 /* BatteryMonitor.swift in Sources */,
-				34694D392ABB58B1003D4362 /* Storage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -521,6 +525,20 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		F2811B302B678C0300C85719 /* XCLocalSwiftPackageReference "Storage" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = Storage;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		F2811B312B678C0300C85719 /* Storage */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Storage;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = F2CACC402ABACDA600CB2BE4 /* Project object */;
 }

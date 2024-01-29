@@ -6,17 +6,20 @@
 //
 
 import SwiftUI
+import Storage
 
+@storage
 final class AppState: ObservableObject {
+    @nonstorage 
     @Published var preventSleep = false
+    @nonstorage
     @Published var launchAtLogin = LaunchAtLogin.isEnabled
 
-    // TODO: - Try use marco.
-    @AppStorage(.ActivateOnLaunchPrefKey, store: .shared) var activateOnLaunch = false
-    @AppStorage(.ActivateScreenSaverPrefKey, store: .shared) var activateScreenSaver = false
-    @AppStorage(.AllowDisplaySleepPrefKey, store: .shared) var allowDisplaySleep = false
+    var activateOnLaunch = false
+    var activateScreenSaver = false
+    var allowDisplaySleep = false
 
-    @AppStorage(.AwakeDurationsPrefKey, store: .shared) var awakeDurations = AwakeDurations()
+    var awakeDurations = AwakeDurations()
 
     static let shared = AppState()
 
@@ -25,20 +28,8 @@ final class AppState: ObservableObject {
 
 #if DEBUG
 extension AppState {
-    static var sample = {
-        let state = AppState()
-        state.launchAtLogin = false
-        state.activateOnLaunch = true
-        state.activateScreenSaver = true
-        return state
-    }()
+    static var sample: AppState {
+        .shared
+    }
 }
 #endif
-
-extension String {
-    static let ActivateOnLaunchPrefKey = "\(AppDelegate.bundleIdentifier).activateonlaunch"
-    static let ActivateScreenSaverPrefKey = "\(AppDelegate.bundleIdentifier).activatescreensaver"
-    static let AllowDisplaySleepPrefKey = "\(AppDelegate.bundleIdentifier).allowdisplaysleep"
-
-    static let AwakeDurationsPrefKey = "\(AppDelegate.bundleIdentifier).awakedurations"
-}
