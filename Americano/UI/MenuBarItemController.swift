@@ -20,7 +20,6 @@ final class MenuBarItemController {
 
     private var subscriptions = Set<AnyCancellable>()
     private var statusItem: NSStatusItem!
-    private var menu: NSMenu!
 
     private lazy var settingWindowController: SettingWindowController = {
         let settings: [SettingContentRepresentable] = [
@@ -38,7 +37,6 @@ final class MenuBarItemController {
 
     func setUp() {
         statusItem = setUpStatusItem()
-        menu = setUpMenu()
 
         subscribePublishers()
     }
@@ -84,6 +82,7 @@ final class MenuBarItemController {
     }
 
     private func showMenu(_ sender: NSStatusBarButton) {
+        let menu = setUpMenu()
         // guard let event = NSApp.currentEvent else {
         //    return
         // }
@@ -110,7 +109,7 @@ final class MenuBarItemController {
         item.menu = nil
     }
 
-    private func setUpMenu() -> NSMenu? {
+    private func setUpMenu() -> NSMenu {
         let menu = createMenu()
         // https://github.com/onmyway133/blog/issues/428
         menu.autoenablesItems = false
