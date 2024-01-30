@@ -42,4 +42,20 @@ struct BatterySetting: SettingContentRepresentable {
     var isEnabled: Bool {
         AppDelegate.batteryMonitor.hasBattery
     }
+
+    var view: AnyView {
+        BatterySettingView()
+            .frame(width: 400)
+            .eraseToAnyView()
+    }
+}
+
+struct BatterySettingView: View {
+    var body: some View {
+        HStack {}
+    }
+}
+
+#Preview {
+    BatterySettingView()
 }

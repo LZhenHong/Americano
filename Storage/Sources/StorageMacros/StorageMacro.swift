@@ -26,6 +26,21 @@ public enum StorageMacro: MemberAttributeMacro {
             }
         }
 
+        if !variableDecl.modifiers.isEmpty {
+            let modifiers = variableDecl.modifiers
+                .compactMap { $0.as(DeclModifierSyntax.self) }
+                .compactMap { $0.name }
+            if modifiers.contains(where: {
+                if case let .keyword(keyword) = $0.tokenKind, keyword == .private {
+                    return true
+                } else {
+                    return false
+                }
+            }) {
+                return []
+            }
+        }
+
         let bindings = variableDecl.bindings.compactMap { $0.as(PatternBindingSyntax.self) }
         guard !bindings.isEmpty,
               let property = bindings.first,

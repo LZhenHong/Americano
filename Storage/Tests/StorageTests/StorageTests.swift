@@ -18,6 +18,7 @@ final class StorageTests: XCTestCase {
                 var a = false
                 let b = 1
                 var c: Int
+                private var d = 0
             }
             """,
             expandedSource: """
@@ -25,6 +26,7 @@ final class StorageTests: XCTestCase {
                 var a = false
                 let b = 1
                 var c: Int
+                private var d = 0
             }
             """,
             macros: testMacros)
