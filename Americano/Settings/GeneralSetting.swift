@@ -37,6 +37,7 @@ struct GeneralSettingView: View {
             Toggle("Activate on Launch", isOn: $state.activateOnLaunch)
             Text("Automatically prevents your Mac from going to sleep when launched.")
                 .settingPropmt()
+            Divider()
             Toggle("Activate ScreenSaver when prevention over", isOn: $state.activateScreenSaver)
             Text("Automatically activate ScreenSaver when prevention is over.")
                 .settingPropmt()

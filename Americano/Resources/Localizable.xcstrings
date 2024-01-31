@@ -33,6 +33,22 @@
         }
       }
     },
+    "%lld%%" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld%%"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld%%"
+          }
+        }
+      }
+    },
     "About" : {
       "localizations" : {
         "zh-Hans" : {
@@ -80,6 +96,9 @@
           }
         }
       }
+    },
+    "Activate when Mac is charging" : {
+
     },
     "Add" : {
       "localizations" : {
@@ -161,6 +180,15 @@
         }
       }
     },
+    "Automatically activate when your Mac is connected to the charger." : {
+
+    },
+    "Automatically deactivate when Mac's Low Power Mode is activated." : {
+
+    },
+    "Automatically deactivate when your Mac is not connected to the charger." : {
+
+    },
     "Automatically opens the app when start your Mac." : {
       "localizations" : {
         "zh-Hans" : {
@@ -241,6 +269,15 @@
         }
       }
     },
+    "Deactivate when Mac in Low Power Mode" : {
+
+    },
+    "Deactivate when Mac is not charging" : {
+
+    },
+    "Deactivate when the battery level falls below" : {
+
+    },
     "Default" : {
       "localizations" : {
         "zh-Hans" : {
@@ -304,6 +341,9 @@
           }
         }
       }
+    },
+    "If manually initiate sleep prevention on your Mac, the setting has no impact." : {
+
     },
     "Launch at Login" : {
       "localizations" : {

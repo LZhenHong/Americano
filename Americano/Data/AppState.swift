@@ -21,6 +21,13 @@ final class AppState: ObservableObject {
 
     var awakeDurations = AwakeDurations()
 
+    // MARK: - Battery
+    var batteryMonitorEnable = false
+    var batteryLowThreshold = 50
+    var lowPowerMonitorEnable = false
+    var activatePlug = false
+    var deactivateUnplug = false
+
     static let shared = AppState()
 
     fileprivate init() {}

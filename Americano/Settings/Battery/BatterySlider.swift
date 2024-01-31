@@ -15,6 +15,7 @@ struct WrapSlider: NSViewRepresentable {
     let maxValue: Int
     let numberOfTickMarks: Int
     @Binding var currentValue: Int
+    @Binding var enabled: Bool
 
     func makeCoordinator() -> Coordinator {
         Coordinator(self)
@@ -33,6 +34,7 @@ struct WrapSlider: NSViewRepresentable {
 
     func updateNSView(_ nsView: NSSlider, context: Context) {
         nsView.integerValue = currentValue
+        nsView.isEnabled = enabled
     }
 
     class Coordinator: NSObject {
@@ -52,6 +54,7 @@ struct BatterySlider: View {
     let minValue: Int
     let maxValue: Int
     @Binding var currentValue: Int
+    @Binding var enabled: Bool
 
     var averageValue: Int {
         (minValue + maxValue) / 2
@@ -66,7 +69,8 @@ struct BatterySlider: View {
             WrapSlider(minValue: minValue,
                        maxValue: maxValue,
                        numberOfTickMarks: numberOfTickMarks,
-                       currentValue: $currentValue)
+                       currentValue: $currentValue,
+                       enabled: $enabled)
             HStack {
                 Text("\(minValue)%")
                 Spacer()
@@ -74,13 +78,15 @@ struct BatterySlider: View {
                 Spacer()
                 Text("\(maxValue)%")
             }
-            .font(.body)
+            .font(.caption)
         }
-        .padding()
     }
 }
 
 #Preview {
-    BatterySlider(minValue: 10, maxValue: 90, currentValue: .constant(40))
+    BatterySlider(minValue: 10,
+                  maxValue: 90,
+                  currentValue: .constant(40),
+                  enabled: .constant(true))
         .padding()
 }
