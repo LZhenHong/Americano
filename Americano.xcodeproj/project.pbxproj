@@ -23,6 +23,7 @@
 		F280E2202AF22D6B00C67E64 /* SettingTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F280E21F2AF22D6B00C67E64 /* SettingTabViewController.swift */; };
 		F2811B322B678C0300C85719 /* Storage in Frameworks */ = {isa = PBXBuildFile; productRef = F2811B312B678C0300C85719 /* Storage */; };
 		F2811B352B6804EB00C85719 /* BatterySlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2811B342B6804EB00C85719 /* BatterySlider.swift */; };
+		F2811B372B6ABCCB00C85719 /* CaffeinateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2811B362B6ABCCB00C85719 /* CaffeinateController.swift */; };
 		F282BEAB2ABB09CE0073D130 /* SubscriptionToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = F282BEAA2ABB09CE0073D130 /* SubscriptionToken.swift */; };
 		F291C25D2AE2137F007F152C /* ViewUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F291C25C2AE2137F007F152C /* ViewUtils.swift */; };
 		F2A62B502B3E57B200FDECF6 /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = F2A62B4F2B3E57B200FDECF6 /* InfoPlist.xcstrings */; };
@@ -57,6 +58,7 @@
 		F27602762B06081000204EE2 /* TimeInterval+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeInterval+.swift"; sourceTree = "<group>"; };
 		F280E21F2AF22D6B00C67E64 /* SettingTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTabViewController.swift; sourceTree = "<group>"; };
 		F2811B342B6804EB00C85719 /* BatterySlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatterySlider.swift; sourceTree = "<group>"; };
+		F2811B362B6ABCCB00C85719 /* CaffeinateController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaffeinateController.swift; sourceTree = "<group>"; };
 		F282BEAA2ABB09CE0073D130 /* SubscriptionToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionToken.swift; sourceTree = "<group>"; };
 		F291C25C2AE2137F007F152C /* ViewUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewUtils.swift; sourceTree = "<group>"; };
 		F2A62B4F2B3E57B200FDECF6 /* InfoPlist.xcstrings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json.xcstrings; path = InfoPlist.xcstrings; sourceTree = "<group>"; };
@@ -98,13 +100,14 @@
 			path = Interval;
 			sourceTree = "<group>";
 		};
-		F230D3302B1E00C400A5A50A /* UI */ = {
+		F230D3302B1E00C400A5A50A /* Main */ = {
 			isa = PBXGroup;
 			children = (
 				F2CACC5A2ABAD17100CB2BE4 /* MenuBarItemController.swift */,
 				F230D3312B1E00EB00A5A50A /* SubMenuBuilder.swift */,
+				F2811B362B6ABCCB00C85719 /* CaffeinateController.swift */,
 			);
-			path = UI;
+			path = Main;
 			sourceTree = "<group>";
 		};
 		F256B3472ADDA0BC00470219 /* Settings */ = {
@@ -206,7 +209,7 @@
 			children = (
 				F24FA4362B3AFEE0009A99D9 /* main.swift */,
 				F2CACC4B2ABACDA600CB2BE4 /* AppDelegate.swift */,
-				F230D3302B1E00C400A5A50A /* UI */,
+				F230D3302B1E00C400A5A50A /* Main */,
 				F2A013B42ABD3FB4006883D3 /* Data */,
 				F2A013B32ABD3F9B006883D3 /* Wrapper */,
 				F256B3472ADDA0BC00470219 /* Settings */,
@@ -308,6 +311,7 @@
 				F230D3322B1E00EB00A5A50A /* SubMenuBuilder.swift in Sources */,
 				F2ADBB3A2B4C54CC00105DC0 /* BatterySetting.swift in Sources */,
 				F2EF3AD62AE1111A00F2C26F /* SettingContentRepresentable.swift in Sources */,
+				F2811B372B6ABCCB00C85719 /* CaffeinateController.swift in Sources */,
 				F2EF3ADC2AE14F1700F2C26F /* AboutSetting.swift in Sources */,
 				F2CACC5D2ABAD6C200CB2BE4 /* AppState.swift in Sources */,
 				F2C0DFFE2AEBBCE900970BFA /* Array+.swift in Sources */,

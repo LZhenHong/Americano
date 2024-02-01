@@ -70,12 +70,7 @@ final class MenuBarItemController {
         case .leftMouseUp:
             showMenu(sender)
         case .rightMouseUp:
-            if AppDelegate.caffWrapper.running {
-                AppDelegate.caffWrapper.stop()
-            } else {
-                // Start a infinite caffeinate process.
-                AppDelegate.caffWrapper.start()
-            }
+            CaffeinateController.shared.toggle()
         default:
             logger.debug("Do nothing.")
         }
@@ -123,17 +118,12 @@ final class MenuBarItemController {
                 .title(String(localized: "Awake Intervals"))
                 .onEnable(awakePublisher.map(!).eraseToAnyPublisher())
                 .submenu(SubMenuBuilder.build(with: shared.awakeDurations.intervals))
-                .onSelect {
-                    AppDelegate.caffWrapper.start(
-                        interval: shared.awakeDurations.default.time,
-                        allowDisplaySleep: shared.allowDisplaySleep
-                    )
-                }
+                .onSelect {}
             MenuItemBuilder()
                 .title(String(localized: "Stop"))
                 .onEnable(awakePublisher)
                 .onSelect {
-                    AppDelegate.caffWrapper.stop()
+                    CaffeinateController.shared.stop()
                 }
             NSMenuItem.separator()
             MenuItemBuilder()
@@ -146,7 +136,7 @@ final class MenuBarItemController {
             MenuItemBuilder()
                 .title(String(localized: "Quit"))
                 .onSelect {
-                    AppDelegate.caffWrapper.stop()
+                    CaffeinateController.shared.stop()
                     NSApp.terminate(self)
                 }
         }

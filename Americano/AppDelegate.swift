@@ -12,35 +12,21 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         Bundle.main.bundleIdentifier ?? "io.lzhlovesjyq.Americano"
     }
 
-    static let caffWrapper = CaffeinateWrapper()
     static let screenWrapper = ScreenSaverWrapper()
     static let batteryMonitor = BatteryMonitor()
     static let barItemController = MenuBarItemController()
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         Self.barItemController.setUp()
-        
-        Self.caffWrapper.delegate = self
-        /// Activate on Launch
-        if AppState.shared.activateOnLaunch {
-            Self.caffWrapper.start()
-        }
+        CaffeinateController.shared.setUp()
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
         // Insert code here to tear down your application
-        Self.caffWrapper.stop()
+        CaffeinateController.shared.stop()
     }
 
     func applicationSupportsSecureRestorableState(_ app: NSApplication) -> Bool {
         return true
-    }
-}
-
-extension AppDelegate: CaffeinateDelegate {
-    func caffeinateAutoTerminate(_ caffeinate: CaffeinateWrapper) {
-        if AppState.shared.activateScreenSaver {
-            Self.screenWrapper.run()
-        }
     }
 }

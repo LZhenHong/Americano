@@ -14,10 +14,7 @@ enum SubMenuBuilder {
                 MenuItemBuilder()
                     .title(interval.localizedTime)
                     .onSelect {
-                        AppDelegate.caffWrapper.start(
-                            interval: interval.time,
-                            allowDisplaySleep: AppState.shared.allowDisplaySleep
-                        )
+                        CaffeinateController.shared.start(interval: interval.time)
                     }
             }
         }
