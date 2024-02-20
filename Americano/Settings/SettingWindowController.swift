@@ -36,9 +36,7 @@ final class SettingWindowController: NSWindowController {
     }
 
     func show() {
-        guard let window else {
-            return
-        }
+        guard let window else { return }
 
         NSApp.activate(ignoringOtherApps: true)
 

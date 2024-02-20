@@ -12,7 +12,7 @@ import ServiceManagement
 
 enum LaunchAtLogin {
     private static let logger = Logger(subsystem: AppDelegate.bundleIdentifier,
-                                       category: "LaunchAtLogin")
+                                       category: String(describing: LaunchAtLogin.self))
 
     static var isEnabled: Bool {
         SMAppService.mainApp.status == .enabled

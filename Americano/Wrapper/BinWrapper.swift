@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import os.log
 
 protocol BinWrapper {
     var binPath: String { get }

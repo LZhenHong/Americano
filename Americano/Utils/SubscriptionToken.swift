@@ -10,6 +10,10 @@ import Combine
 class SubscriptionToken {
     var cancellable: AnyCancellable?
 
+    var isValid: Bool {
+        cancellable != nil
+    }
+
     func unseal() {
         cancellable = nil
     }

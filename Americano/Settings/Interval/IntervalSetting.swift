@@ -137,9 +137,8 @@ private struct IntervalSettingView: View {
     }
 
     private func markIntervalAsDefault(_ interval: AwakeDurations.Interval?) {
-        guard let interval else {
-            return
-        }
+        guard let interval else { return }
+
         state.awakeDurations.markAsDefault(interval: interval)
 
         /// workaround: Magic to trigger UI refresh.
@@ -150,33 +149,29 @@ private struct IntervalSettingView: View {
     }
 
     private func didDismiss() {
-        guard interval.time > 0 else {
-            return
-        }
+        guard interval.time > 0 else { return }
+
         state.awakeDurations.append(interval.time, as: interval.default)
     }
 
     private func delete(at indexSet: IndexSet) {
-        guard indexSet.count == 1 else {
-            return
-        }
+        guard indexSet.count == 1 else { return }
+
         let index = indexSet.first!
         let interval = state.awakeDurations.removeInterval(at: index)
         clearSelectionIfNeeded(interval)
     }
 
     private func delete(interval: AwakeDurations.Interval?) {
-        guard let interval else {
-            return
-        }
+        guard let interval else { return }
+
         state.awakeDurations.remove(interval: interval)
         clearSelectionIfNeeded(interval)
     }
 
     private func clearSelectionIfNeeded(_ interval: AwakeDurations.Interval?) {
-        guard let selectedInterval, let interval, selectedInterval == interval else {
-            return
-        }
+        guard let selectedInterval, let interval, selectedInterval == interval else { return }
+
         self.selectedInterval = nil
     }
 }

@@ -16,7 +16,7 @@ private extension String {
 
 final class MenuBarItemController {
     private let logger = Logger(subsystem: AppDelegate.bundleIdentifier,
-                                category: "MenuBarItemController")
+                                category: String(describing: MenuBarItemController.self))
 
     private var subscriptions = Set<AnyCancellable>()
     private var statusItem: NSStatusItem!
@@ -62,9 +62,7 @@ final class MenuBarItemController {
     }
 
     @objc private func onStatusBarItemHandle(_ sender: NSStatusBarButton) {
-        guard let event = NSApp.currentEvent else {
-            return
-        }
+        guard let event = NSApp.currentEvent else { return }
 
         switch event.type {
         case .leftMouseUp:
@@ -160,16 +158,14 @@ final class MenuBarItemController {
     }
 
     private func changeMenuBarItemImage(with name: String) {
-        guard let btn = statusItem?.button else {
-            return
-        }
+        guard let btn = statusItem?.button else { return }
+
         btn.image = NSImage(systemSymbolName: name, accessibilityDescription: "Americano")
     }
 
     private func changeMenuBarItemToolTip(with tip: String) {
-        guard let btn = statusItem?.button else {
-            return
-        }
+        guard let btn = statusItem?.button else { return }
+
         btn.toolTip = tip
     }
 }

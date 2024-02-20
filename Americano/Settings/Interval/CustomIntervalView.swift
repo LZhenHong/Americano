@@ -75,7 +75,11 @@ private struct IntervalComponent: View {
     @State private var stepperValue: Double = 0
 
     var body: some View {
-        Stepper(String(localized: prompt), value: $stepperValue, in: 0 ... Double(maxValue), format: .number) { start in
+        Stepper(String(localized: prompt),
+                value: $stepperValue,
+                in: 0 ... Double(maxValue),
+                format: .number)
+        { start in
             if !start {
                 value = Int(stepperValue)
             }

@@ -19,7 +19,7 @@ final class CaffeinateWrapper: BinWrapper {
     weak var delegate: CaffeinateDelegate?
 
     private let logger = Logger(subsystem: AppDelegate.bundleIdentifier,
-                                category: "CaffeinateController")
+                                category: String(describing: CaffeinateWrapper.self))
 
     private var caffeinate: Process?
 
@@ -46,9 +46,8 @@ final class CaffeinateWrapper: BinWrapper {
     }
 
     private func stopCurrent() {
-        guard let caffeinate else {
-            return
-        }
+        guard let caffeinate else { return }
+
         caffeinate.terminate()
         caffeinate.waitUntilExit()
         caffeinate.terminationHandler = nil
@@ -85,9 +84,8 @@ final class CaffeinateWrapper: BinWrapper {
     }
 
     private func observeCaffeinateProcessExit() {
-        guard let caffeinate else {
-            return
-        }
+        guard let caffeinate else { return }
+
         caffeinate.terminationHandler = { [weak self] _ in
             guard let self else {
                 return
@@ -98,9 +96,8 @@ final class CaffeinateWrapper: BinWrapper {
     }
 
     func stop() {
-        guard let _ = caffeinate else {
-            return
-        }
+        guard caffeinate != nil else { return }
+
         stopCurrent()
         AppState.shared.preventSleep = false
     }

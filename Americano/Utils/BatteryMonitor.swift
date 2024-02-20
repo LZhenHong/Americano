@@ -20,7 +20,6 @@ final class BatteryMonitor {
     private let token = SubscriptionToken()
 
     private var loopSource: CFRunLoopSource?
-    private var runloop: CFRunLoop?
 
     private var powerSourceInfo: [String: Any] {
         guard let snapshot = IOPSCopyPowerSourcesInfo()?.takeRetainedValue(),
@@ -30,6 +29,10 @@ final class BatteryMonitor {
             return [:]
         }
         return source
+    }
+
+    private var isListeningPowerSourceInfo: Bool {
+        loopSource != nil
     }
 
     var isLowPowerModeEnabled: Bool {
@@ -68,26 +71,28 @@ final class BatteryMonitor {
     }
 
     func observeOnBatteryState() {
+        guard !isListeningPowerSourceInfo else { return }
+
         let ctx = UnsafeMutableRawPointer(Unmanaged.passUnretained(self).toOpaque())
-        let source = IOPSNotificationCreateRunLoopSource({ context in
-            guard let ctx = context else {
-                return
-            }
+        loopSource = IOPSNotificationCreateRunLoopSource({ context in
+            guard let ctx = context else { return }
+
             let monitor = Unmanaged<BatteryMonitor>.fromOpaque(ctx).takeUnretainedValue()
             monitor.state.isCharging = monitor.isCharging
             monitor.state.currentCapacity = monitor.currentCapacity
         }, ctx).takeRetainedValue()
-        CFRunLoopAddSource(CFRunLoopGetCurrent(), source, .defaultMode)
+        CFRunLoopAddSource(CFRunLoopGetCurrent(), loopSource, .defaultMode)
     }
 
     func observeOffBatteryState() {
-        guard let runloop, let source = loopSource else {
-            return
-        }
-        CFRunLoopRemoveSource(runloop, source, .defaultMode)
+        guard isListeningPowerSourceInfo, let source = loopSource else { return }
+
+        CFRunLoopRemoveSource(CFRunLoopGetCurrent(), source, .defaultMode)
     }
 
     func observeOnLowPowerMode() {
+        guard !token.isValid else { return }
+
         NotificationCenter.default.publisher(for: .NSProcessInfoPowerStateDidChange)
             .receive(on: DispatchQueue.main)
             .sink { _ in
