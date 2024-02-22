@@ -149,9 +149,7 @@ final class MenuBarItemController {
             .print("Status Bar Item")
 #endif
             .sink { [weak self] in
-                guard let self = self else {
-                    return
-                }
+                guard let self = self else { return }
                 self.changeMenuBarItemImage(with: $0)
             }
             .store(in: &subscriptions)

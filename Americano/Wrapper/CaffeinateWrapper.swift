@@ -87,9 +87,7 @@ final class CaffeinateWrapper: BinWrapper {
         guard let caffeinate else { return }
 
         caffeinate.terminationHandler = { [weak self] _ in
-            guard let self else {
-                return
-            }
+            guard let self else { return }
             self.stop()
             self.delegate?.caffeinateAutoTerminate(self)
         }

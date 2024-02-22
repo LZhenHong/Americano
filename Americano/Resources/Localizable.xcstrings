@@ -98,7 +98,20 @@
       }
     },
     "Activate when Mac is charging" : {
-
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在Mac充电时激活"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "當Mac充電時啟動"
+          }
+        }
+      }
     },
     "Add" : {
       "localizations" : {
@@ -181,13 +194,52 @@
       }
     },
     "Automatically activate when your Mac is connected to the charger." : {
-
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "当您的Mac连接充电器时自动激活。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "當您的Mac連接充電器時自動啟動。"
+          }
+        }
+      }
     },
     "Automatically deactivate when Mac's Low Power Mode is activated." : {
-
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "当Mac的低电量模式激活时自动停用。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "當Mac的低電量模式啟動時自動停用。"
+          }
+        }
+      }
     },
     "Automatically deactivate when your Mac is not connected to the charger." : {
-
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "当您的 Mac 未连接到充电器时自动停用。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "當您的 Mac 未連接到充電器時自動停用。"
+          }
+        }
+      }
     },
     "Automatically opens the app when start your Mac." : {
       "localizations" : {
@@ -269,14 +321,69 @@
         }
       }
     },
+    "Current battery capacity: %lld%%" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "当前电池容量：%lld%%"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "當前電池容量：%lld%%"
+          }
+        }
+      }
+    },
     "Deactivate when Mac in Low Power Mode" : {
-
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在 Mac 低电量模式下停用"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在 Mac 低電量模式下停用"
+          }
+        }
+      }
     },
     "Deactivate when Mac is not charging" : {
-
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在Mac未充电时停用"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在Mac未充電時停用"
+          }
+        }
+      }
     },
     "Deactivate when the battery level falls below" : {
-
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "当电池电量低于时停用"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "當電池電量低於時停用"
+          }
+        }
+      }
     },
     "Default" : {
       "localizations" : {
@@ -343,7 +450,20 @@
       }
     },
     "If manually initiate sleep prevention on your Mac, the setting has no impact." : {
-
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "如果在您的Mac上手动启动了防止休眠，此设置不会产生影响。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "如果在您的Mac上手動啟動了防止休眠，此設置不會產生影響。"
+          }
+        }
+      }
     },
     "Launch at Login" : {
       "localizations" : {

@@ -13,7 +13,7 @@ The app primarily functions as a wrapper for the macOS [caffeinate][2] command-l
 - macOS 13.5 and later
 ## TODOs
 
-- [ ] Auto stop when low power
+- [x] Auto stop when low power
 - [ ] Improve Accessibility
 - [ ] URL Schemes
 - [ ] Check Updates

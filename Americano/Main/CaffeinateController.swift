@@ -128,6 +128,11 @@ final class CaffeinateController {
             .store(in: &batteryInfoSubscriptions)
     }
 
+    func stopObserveBatteryPowerInfoIfShould() {
+        guard !shouldObservePowerInfo else { return }
+        stopObserveBatteryPowerInfo()
+    }
+
     func stopObserveBatteryPowerInfo() {
         AppDelegate.batteryMonitor.observeOffBatteryState()
         batteryInfoSubscriptions.removeAll()
