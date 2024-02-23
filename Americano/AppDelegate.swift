@@ -13,7 +13,6 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     static let screenWrapper = ScreenSaverWrapper()
-    static let batteryMonitor = BatteryMonitor()
     static let barItemController = MenuBarItemController()
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {

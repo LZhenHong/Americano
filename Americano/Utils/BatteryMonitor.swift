@@ -16,6 +16,8 @@ final class BatteryState: ObservableObject {
 }
 
 final class BatteryMonitor {
+    static let shared = BatteryMonitor()
+
     private(set) var state = BatteryState()
     private let token = SubscriptionToken()
 
@@ -81,7 +83,7 @@ final class BatteryMonitor {
         }
     }
 
-    init() {
+    private init() {
         setUpStates()
     }
 

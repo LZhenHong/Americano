@@ -25,19 +25,19 @@ final class CaffeinateController {
 
     private var canActivate: Bool {
         if AppState.shared.batteryMonitorEnable,
-           AppDelegate.batteryMonitor.currentCapacity <= AppState.shared.batteryLowThreshold
+           BatteryMonitor.shared.currentCapacity <= AppState.shared.batteryLowThreshold
         {
             return false
         }
 
         if AppState.shared.lowPowerMonitorEnable,
-           AppDelegate.batteryMonitor.isLowPowerModeEnabled
+           BatteryMonitor.shared.isLowPowerModeEnabled
         {
             return false
         }
 
         if AppState.shared.deactivateUnplug,
-           !AppDelegate.batteryMonitor.isCharging
+           !BatteryMonitor.shared.isCharging
         {
             return false
         }
@@ -47,7 +47,7 @@ final class CaffeinateController {
 
     private var shouldObservePowerInfo: Bool {
         if AppState.shared.batteryMonitorEnable,
-           AppDelegate.batteryMonitor.currentCapacity > AppState.shared.batteryLowThreshold
+           BatteryMonitor.shared.currentCapacity > AppState.shared.batteryLowThreshold
         {
             return true
         }
@@ -80,8 +80,8 @@ final class CaffeinateController {
     func observeBatteryLowPowerModeIfNeed() {
         guard AppState.shared.lowPowerMonitorEnable else { return }
 
-        AppDelegate.batteryMonitor.observeOnLowPowerMode()
-        AppDelegate.batteryMonitor.state.$isLowPowerModeEnabled
+        BatteryMonitor.shared.observeOnLowPowerMode()
+        BatteryMonitor.shared.state.$isLowPowerModeEnabled
             .filter(!)
             .sink { _ in
                 self.stop()
@@ -90,21 +90,21 @@ final class CaffeinateController {
     }
 
     func stopObserveBatteryLowPowerMode() {
-        AppDelegate.batteryMonitor.observeOffLowPowerMode()
+        BatteryMonitor.shared.observeOffLowPowerMode()
         lowPowerToken.unseal()
     }
 
     func observeBatteryPowerInfoIfNeed() {
         guard shouldObservePowerInfo else { return }
 
-        AppDelegate.batteryMonitor.observeOnBatteryState()
+        BatteryMonitor.shared.observeOnBatteryState()
 
         observeBatteryToStartCaffeinate()
         observeBatteryToStopCaffeinate()
     }
 
     private func observeBatteryToStartCaffeinate() {
-        AppDelegate.batteryMonitor.state.$isCharging
+        BatteryMonitor.shared.state.$isCharging
             .filter { $0 && AppState.shared.activatePlug && !self.caffWrapper.running }
             .sink { _ in
                 self.startIfAllowed()
@@ -113,9 +113,9 @@ final class CaffeinateController {
     }
 
     private func observeBatteryToStopCaffeinate() {
-        let chargeStopPulisher = AppDelegate.batteryMonitor.state.$isCharging
+        let chargeStopPulisher = BatteryMonitor.shared.state.$isCharging
             .filter { !$0 && AppState.shared.deactivateUnplug }
-        let batteryCapacityPulisher = AppDelegate.batteryMonitor.state.$currentCapacity
+        let batteryCapacityPulisher = BatteryMonitor.shared.state.$currentCapacity
             .map { capacity in
                 AppState.shared.batteryMonitorEnable && capacity <= AppState.shared.batteryLowThreshold
             }
@@ -134,7 +134,7 @@ final class CaffeinateController {
     }
 
     func stopObserveBatteryPowerInfo() {
-        AppDelegate.batteryMonitor.observeOffBatteryState()
+        BatteryMonitor.shared.observeOffBatteryState()
         batteryInfoSubscriptions.removeAll()
     }
 

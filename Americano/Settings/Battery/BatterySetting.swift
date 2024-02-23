@@ -9,7 +9,7 @@ import SwiftUI
 
 struct BatterySetting: SettingContentRepresentable {
     var tabViewImage: NSImage? {
-        NSImage(systemSymbolName: AppDelegate.batteryMonitor.capacitySymbol, accessibilityDescription: nil)
+        NSImage(systemSymbolName: BatteryMonitor.shared.capacitySymbol, accessibilityDescription: nil)
     }
 
     var preferredTitle: String {
@@ -17,7 +17,7 @@ struct BatterySetting: SettingContentRepresentable {
     }
 
     var isEnabled: Bool {
-        AppDelegate.batteryMonitor.hasBattery
+        BatteryMonitor.shared.hasBattery
     }
 
     var view: AnyView {
@@ -31,7 +31,7 @@ struct BatterySettingView: View {
     @StateObject var state: AppState
 
     private var batteryColor: Color {
-        AppDelegate.batteryMonitor.currentCapacity >= AppState.shared.batteryLowThreshold ? .blue : .red
+        BatteryMonitor.shared.currentCapacity >= AppState.shared.batteryLowThreshold ? .blue : .red
     }
 
     var body: some View {
@@ -39,7 +39,7 @@ struct BatterySettingView: View {
             Toggle("Deactivate when the battery level falls below", isOn: $state.batteryMonitorEnable)
                 .onChange(of: state.batteryMonitorEnable) { enable in
                     guard enable,
-                          AppDelegate.batteryMonitor.currentCapacity < AppState.shared.batteryLowThreshold
+                          BatteryMonitor.shared.currentCapacity < AppState.shared.batteryLowThreshold
                     else {
                         return
                     }
@@ -49,9 +49,9 @@ struct BatterySettingView: View {
             if state.batteryMonitorEnable {
                 VStack(alignment: .leading) {
                     HStack {
-                        Text("Current battery capacity: \(AppDelegate.batteryMonitor.currentCapacity)%")
+                        Text("Current battery capacity: \(BatteryMonitor.shared.currentCapacity)%")
                             .font(.caption)
-                        Image(systemName: AppDelegate.batteryMonitor.capacitySymbol)
+                        Image(systemName: BatteryMonitor.shared.capacitySymbol)
                             .foregroundColor(batteryColor)
                     }
                     .padding(.top, 3)
@@ -70,7 +70,7 @@ struct BatterySettingView: View {
             Divider()
             Toggle("Deactivate when Mac in Low Power Mode", isOn: $state.lowPowerMonitorEnable)
                 .onChange(of: state.lowPowerMonitorEnable) { enable in
-                    guard enable, AppDelegate.batteryMonitor.isLowPowerModeEnabled else { return }
+                    guard enable, BatteryMonitor.shared.isLowPowerModeEnabled else { return }
                     stopCaffeinate()
                 }
             Text("Automatically deactivate when Mac's Low Power Mode is activated.")
@@ -78,14 +78,14 @@ struct BatterySettingView: View {
             Divider()
             Toggle("Activate when Mac is charging", isOn: $state.activatePlug)
                 .onChange(of: state.activatePlug) { activate in
-                    guard activate, AppDelegate.batteryMonitor.isCharging else { return }
+                    guard activate, BatteryMonitor.shared.isCharging else { return }
                     CaffeinateController.shared.startIfAllowed()
                 }
             Text("Automatically activate when your Mac is connected to the charger.")
                 .settingPropmt()
             Toggle("Deactivate when Mac is not charging", isOn: $state.deactivateUnplug)
                 .onChange(of: state.deactivateUnplug) { deactivate in
-                    guard deactivate, !AppDelegate.batteryMonitor.isCharging else { return }
+                    guard deactivate, !BatteryMonitor.shared.isCharging else { return }
                     stopCaffeinate()
                 }
             Text("Automatically deactivate when your Mac is not connected to the charger.")
