@@ -65,6 +65,7 @@ final class CaffeinateController {
     }
 
     func setUp() {
+        registerURLSchemes()
         activateIfNeed()
         observeBatteryLowPowerModeIfNeed()
         observeBatteryPowerInfoIfNeed()
@@ -126,6 +127,28 @@ final class CaffeinateController {
                 self.stop()
             }
             .store(in: &batteryInfoSubscriptions)
+    }
+
+    private func registerURLSchemes() {
+        URLSchemeInvoker.shared.register("/activate") { params in
+            guard self.canActivate else { return }
+            _ = params.isEmpty ? self.start() : self.start(params)
+        }
+
+        URLSchemeInvoker.shared.register("/deactivate") { _ in self.stop() }
+
+        URLSchemeInvoker.shared.register("/toggle") { _ in
+            self.caffWrapper.running ? self.stop() : self.startIfAllowed()
+        }
+    }
+
+    @discardableResult
+    private func start(_ params: [String: String]) -> Bool {
+        let hours = params.intValue(for: "hours")
+        let minutes = params.intValue(for: "minutes")
+        let seconds = params.intValue(for: "seconds")
+        let interval = hours * 3600 + minutes * 60 + seconds
+        return start(interval: TimeInterval(interval))
     }
 
     func stopObserveBatteryPowerInfoIfShould() {

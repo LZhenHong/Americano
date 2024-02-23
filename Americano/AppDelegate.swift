@@ -16,6 +16,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     static let barItemController = MenuBarItemController()
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
+        URLSchemeUtils.register()
+
         Self.barItemController.setUp()
         CaffeinateController.shared.setUp()
     }

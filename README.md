@@ -14,8 +14,8 @@ The app primarily functions as a wrapper for the macOS [caffeinate][2] command-l
 ## TODOs
 
 - [x] Auto stop when low power
+- [x] URL Schemes
 - [ ] Improve Accessibility
-- [ ] URL Schemes
 - [ ] Check Updates
 - [ ] Send notification when stop
 - [ ] Refactor with SPM
