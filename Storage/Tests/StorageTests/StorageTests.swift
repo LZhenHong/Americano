@@ -42,7 +42,7 @@ final class StorageTests: XCTestCase {
             """,
             expandedSource: """
             struct A {
-                @AppStorage("io.lzhlovesjyq.a", store: (UserDefaults(suiteName: "io.lzhlovesjyq.userdefaults") ?? .standard))
+                @AppStorage("io.lzhlovesjyq.a.a", store: (UserDefaults(suiteName: "io.lzhlovesjyq.userdefaults") ?? .standard))
                 var a = false
             }
             """,

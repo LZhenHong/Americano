@@ -10,6 +10,17 @@ public enum StorageMacro: MemberAttributeMacro {
         providingAttributesFor member: some DeclSyntaxProtocol,
         in context: some MacroExpansionContext
     ) throws -> [AttributeSyntax] {
+        var declName: String?
+        if let structDecl = declaration.as(StructDeclSyntax.self) {
+            declName = structDecl.name.text
+        } else if let classDecl = declaration.as(ClassDeclSyntax.self) {
+            declName = classDecl.name.text
+        }
+
+        guard let declName, !declName.isEmpty else {
+            return []
+        }
+
         guard let variableDecl = member.as(VariableDeclSyntax.self),
               case let .keyword(keyword) = variableDecl.bindingSpecifier.tokenKind,
               keyword == Keyword.var
@@ -52,7 +63,7 @@ public enum StorageMacro: MemberAttributeMacro {
 
         return [
             """
-            @AppStorage("io.lzhlovesjyq.\(raw: propertyName.lowercased())", store: (UserDefaults(suiteName: "io.lzhlovesjyq.userdefaults") ?? .standard))
+            @AppStorage("io.lzhlovesjyq.\(raw: declName.lowercased()).\(raw: propertyName.lowercased())", store: (UserDefaults(suiteName: "io.lzhlovesjyq.userdefaults") ?? .standard))
             """
         ]
     }
