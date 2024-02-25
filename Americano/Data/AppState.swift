@@ -28,6 +28,10 @@ final class AppState: ObservableObject {
     var activatePlug = false
     var deactivateUnplug = false
 
+    // MARK: - Nofitication
+    var notifyWhenActivate = false
+    var notifyWhenDeactivate = false
+
     static let shared = AppState()
 
     fileprivate init() {}

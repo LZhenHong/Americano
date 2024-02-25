@@ -26,6 +26,7 @@ final class MenuBarItemController {
             GeneralSetting(),
             IntervalSetting(),
             BatterySetting(),
+            NotificationSetting(),
             AboutSetting()
         ]
         return SettingWindowController(settings: settings)

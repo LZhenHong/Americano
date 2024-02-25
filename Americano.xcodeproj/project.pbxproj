@@ -20,6 +20,8 @@
 		F25A297C2ABC6C200022E08E /* ScreenSaverWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F25A297B2ABC6C200022E08E /* ScreenSaverWrapper.swift */; };
 		F25A297E2ABC6C720022E08E /* BinWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F25A297D2ABC6C720022E08E /* BinWrapper.swift */; };
 		F25C9EC22B87B86B0018DE8A /* URLSchemeUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F25C9EC12B87B86A0018DE8A /* URLSchemeUtils.swift */; };
+		F264587E2B8B246B00940033 /* UserNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = F264587D2B8B246B00940033 /* UserNotifications.swift */; };
+		F26458802B8B290000940033 /* NotificationSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = F264587F2B8B290000940033 /* NotificationSetting.swift */; };
 		F27602752B05C1B100204EE2 /* Bundle+.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27602742B05C1B100204EE2 /* Bundle+.swift */; };
 		F27602772B06081000204EE2 /* TimeInterval+.swift in Sources */ = {isa = PBXBuildFile; fileRef = F27602762B06081000204EE2 /* TimeInterval+.swift */; };
 		F280E2202AF22D6B00C67E64 /* SettingTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F280E21F2AF22D6B00C67E64 /* SettingTabViewController.swift */; };
@@ -59,6 +61,8 @@
 		F25A297B2ABC6C200022E08E /* ScreenSaverWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenSaverWrapper.swift; sourceTree = "<group>"; };
 		F25A297D2ABC6C720022E08E /* BinWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinWrapper.swift; sourceTree = "<group>"; };
 		F25C9EC12B87B86A0018DE8A /* URLSchemeUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSchemeUtils.swift; sourceTree = "<group>"; };
+		F264587D2B8B246B00940033 /* UserNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNotifications.swift; sourceTree = "<group>"; };
+		F264587F2B8B290000940033 /* NotificationSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSetting.swift; sourceTree = "<group>"; };
 		F27602742B05C1B100204EE2 /* Bundle+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+.swift"; sourceTree = "<group>"; };
 		F27602762B06081000204EE2 /* TimeInterval+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeInterval+.swift"; sourceTree = "<group>"; };
 		F280E21F2AF22D6B00C67E64 /* SettingTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTabViewController.swift; sourceTree = "<group>"; };
@@ -125,6 +129,7 @@
 				F256B34A2AE19AD000470219 /* SettingViewController.swift */,
 				F2EF3AD52AE1111A00F2C26F /* SettingContentRepresentable.swift */,
 				F2EF3AD72AE1297F00F2C26F /* GeneralSetting.swift */,
+				F264587F2B8B290000940033 /* NotificationSetting.swift */,
 				F2EF3ADB2AE14F1700F2C26F /* AboutSetting.swift */,
 			);
 			path = Settings;
@@ -180,6 +185,7 @@
 				F282BEAA2ABB09CE0073D130 /* SubscriptionToken.swift */,
 				F291C25C2AE2137F007F152C /* ViewUtils.swift */,
 				F25C9EC12B87B86A0018DE8A /* URLSchemeUtils.swift */,
+				F264587D2B8B246B00940033 /* UserNotifications.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -317,6 +323,7 @@
 				F2EF3ADA2AE130AB00F2C26F /* IntervalSetting.swift in Sources */,
 				F256B34B2AE19AD000470219 /* SettingViewController.swift in Sources */,
 				F280E2202AF22D6B00C67E64 /* SettingTabViewController.swift in Sources */,
+				F264587E2B8B246B00940033 /* UserNotifications.swift in Sources */,
 				F230D3322B1E00EB00A5A50A /* SubMenuBuilder.swift in Sources */,
 				F2ADBB3A2B4C54CC00105DC0 /* BatterySetting.swift in Sources */,
 				F2EF3AD62AE1111A00F2C26F /* SettingContentRepresentable.swift in Sources */,
@@ -328,6 +335,7 @@
 				F24FA4372B3AFEE0009A99D9 /* main.swift in Sources */,
 				F282BEAB2ABB09CE0073D130 /* SubscriptionToken.swift in Sources */,
 				F2294E782AC30EF70085448F /* LaunchAtLogin.swift in Sources */,
+				F26458802B8B290000940033 /* NotificationSetting.swift in Sources */,
 				F2EF3AD82AE1297F00F2C26F /* GeneralSetting.swift in Sources */,
 				341E6BC02AC080850043E97A /* MenuBuilder.swift in Sources */,
 				F2489C442AE976A900B5E17B /* AwakeDurations.swift in Sources */,
