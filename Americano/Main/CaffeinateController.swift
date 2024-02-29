@@ -192,6 +192,20 @@ final class CaffeinateController {
 }
 
 extension CaffeinateController: CaffeinateDelegate {
+    func caffeinateDidStart(_ caffeinate: CaffeinateWrapper) {
+        guard AppState.shared.notifyWhenActivate else { return }
+        Task.init {
+            try await UserNotifications.post("Caffeinate Activate.")
+        }
+    }
+
+    func caffeinateDidTerminate(_ caffeinate: CaffeinateWrapper) {
+        guard AppState.shared.notifyWhenDeactivate else { return }
+        Task.init {
+            try await UserNotifications.post("Caffeinate Deactivate.")
+        }
+    }
+
     func caffeinateAutoTerminate(_ caffeinate: CaffeinateWrapper) {
         if AppState.shared.activateScreenSaver {
             AppDelegate.screenWrapper.run()

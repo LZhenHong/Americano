@@ -15,10 +15,12 @@ final class AppState: ObservableObject {
     @nonstorage
     @Published var launchAtLogin = LaunchAtLogin.isEnabled
 
+    // MARK: - General
     var activateOnLaunch = false
     var activateScreenSaver = false
     var allowDisplaySleep = false
 
+    // MARK: - Durations
     var awakeDurations = AwakeDurations()
 
     // MARK: - Battery

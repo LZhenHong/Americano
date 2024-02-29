@@ -513,6 +513,27 @@
         }
       }
     },
+    "Notification Permission:" : {
+
+    },
+    "Notify when activate" : {
+
+    },
+    "Notify when deactivate" : {
+
+    },
+    "Open Settings" : {
+
+    },
+    "Permission Denied." : {
+
+    },
+    "Permission Granted." : {
+
+    },
+    "Permission Not Granted." : {
+
+    },
     "Quit" : {
       "localizations" : {
         "zh-Hans" : {
@@ -528,6 +549,9 @@
           }
         }
       }
+    },
+    "Request Permission" : {
+
     },
     "Reset" : {
       "localizations" : {
@@ -576,6 +600,12 @@
           }
         }
       }
+    },
+    "Send notification when activate caffeinate process." : {
+
+    },
+    "Send notification when deactivate caffeinate process." : {
+
     },
     "Set as default" : {
       "localizations" : {
