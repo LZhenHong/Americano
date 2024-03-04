@@ -126,4 +126,16 @@ public struct AwakeDurations: RawRepresentable {
         intervals[index].markAsDefault()
         return true
     }
+
+    mutating func sort() {
+        intervals.sort {
+            if $0.default != $1.default {
+                return $0.default
+            }
+            if $0.isInfinite != $1.isInfinite {
+                return $0.isInfinite
+            }
+            return $0.time < $1.time
+        }
+    }
 }

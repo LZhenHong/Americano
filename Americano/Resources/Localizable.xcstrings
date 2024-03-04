@@ -639,6 +639,9 @@
         }
       }
     },
+    "Sort" : {
+
+    },
     "Stop" : {
       "localizations" : {
         "zh-Hans" : {

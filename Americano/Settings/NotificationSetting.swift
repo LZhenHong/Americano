@@ -86,12 +86,10 @@ struct NotificationSettingView: View {
             Text("Send notification when deactivate caffeinate process.")
                 .settingPropmt()
         }
-        .onAppear {
-            Task.init {
+        .task {
                 loading = true
                 status = await UserNotifications.requestAuthorizationStatus()
                 loading = false
-            }
         }
         .padding()
     }

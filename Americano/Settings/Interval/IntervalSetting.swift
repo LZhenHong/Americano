@@ -48,6 +48,9 @@ private struct IntervalSettingView: View {
 
     var operationView: some View {
         HStack {
+            Button("Sort") {
+                state.awakeDurations.sort()
+            }
             Button("Reset") {
                 showResetAlert.toggle()
             }
