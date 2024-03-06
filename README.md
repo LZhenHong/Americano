@@ -18,7 +18,6 @@ The app primarily functions as a wrapper for the macOS [caffeinate][2] command-l
 - [x] Send notifications
 - [ ] Improve Accessibility and Words
 - [ ] Check Updates
-- [ ] Refactor with SPM
 
 ## Contributions
 
@@ -28,7 +27,7 @@ Pull requests and issues are welcome! If you encounter any issues or have sugges
 
 This project is licensed under the [MIT License][1].
 
-**Note**: If you are using Bartender 5 and have hidden the menu bar icon, please be aware that the status display of the Americano menu bar icon may be inaccurate.
+**Note**: If you are using **Bartender 5** and have hidden the menu bar icon, please be aware that the status display of the Americano menu bar icon may be inaccurate.
 
 [1]: https://github.com/LZhenHong/Americano/blob/main/LICENSE
 [2]: https://ss64.com/osx/caffeinate.html

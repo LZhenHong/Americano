@@ -208,7 +208,7 @@ extension CaffeinateController: CaffeinateDelegate {
 
     func caffeinateAutoTerminate(_ caffeinate: CaffeinateWrapper) {
         if AppState.shared.activateScreenSaver {
-            AppDelegate.screenWrapper.run()
+            ScreenSaverWrapper.shared.run()
         }
     }
 }

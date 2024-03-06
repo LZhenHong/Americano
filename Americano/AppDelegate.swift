@@ -12,14 +12,11 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         Bundle.main.bundleIdentifier ?? "io.lzhlovesjyq.Americano"
     }
 
-    static let screenWrapper = ScreenSaverWrapper()
-    static let barItemController = MenuBarItemController()
-
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         URLSchemeUtils.register()
 
-        Self.barItemController.setUp()
         CaffeinateController.shared.setUp()
+        MenuBarItemController.shared.setUp()
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {

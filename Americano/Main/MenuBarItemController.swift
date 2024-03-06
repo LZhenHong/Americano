@@ -15,6 +15,8 @@ private extension String {
 }
 
 final class MenuBarItemController {
+    static let shared = MenuBarItemController()
+
     private let logger = Logger(subsystem: AppDelegate.bundleIdentifier,
                                 category: String(describing: MenuBarItemController.self))
 
@@ -35,6 +37,8 @@ final class MenuBarItemController {
     private var awakePublisher: AnyPublisher<Bool, Never> {
         AppState.shared.$preventSleep.eraseToAnyPublisher()
     }
+
+    private init() {}
 
     func setUp() {
         statusItem = setUpStatusItem()

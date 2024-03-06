@@ -9,12 +9,16 @@ import Foundation
 import os.log
 
 final class ScreenSaverWrapper: BinWrapper {
+    static let shared = ScreenSaverWrapper()
+
     let logger = Logger(subsystem: AppDelegate.bundleIdentifier,
                         category: String(describing: ScreenSaverWrapper.self))
 
     var binPath: String {
         "/usr/bin/open"
     }
+
+    private init() {}
 
     @discardableResult
     func run() -> Bool {
