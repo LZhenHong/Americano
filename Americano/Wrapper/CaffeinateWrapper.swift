@@ -91,8 +91,11 @@ final class CaffeinateWrapper: BinWrapper {
 
         caffeinate.terminationHandler = { [weak self] _ in
             guard let self else { return }
-            self.stop()
-            self.delegate?.caffeinateAutoTerminate(self)
+
+            DispatchQueue.main.async {
+                self.stop()
+                self.delegate?.caffeinateAutoTerminate(self)
+            }
         }
     }
 

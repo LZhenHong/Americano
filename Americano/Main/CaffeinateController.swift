@@ -123,6 +123,7 @@ final class CaffeinateController {
             .filter { $0 }
         chargeStopPulisher.merge(with: batteryCapacityPulisher)
             .filter { _ in self.caffWrapper.running }
+            .receive(on: DispatchQueue.main)
             .sink { _ in
                 self.stop()
             }

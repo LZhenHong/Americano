@@ -63,7 +63,7 @@ final class BatteryMonitor {
     }
 
     var capacitySymbol: String {
-        isCharging ?"battery.100percent.bolt" : currentCapacityImageName
+        isCharging ? "battery.100percent.bolt" : currentCapacityImageName
     }
 
     private var currentCapacityImageName: String {
