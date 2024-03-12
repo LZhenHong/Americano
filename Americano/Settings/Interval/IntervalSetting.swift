@@ -13,7 +13,7 @@ struct IntervalSetting: SettingContentRepresentable {
     }
 
     var preferredTitle: String {
-        String(localized: "Awake Intervals")
+        String(localized: "Durations")
     }
 
     var view: AnyView {
@@ -48,14 +48,14 @@ private struct IntervalSettingView: View {
 
     var operationView: some View {
         HStack {
-            Button("Sort") {
+            Button("Sort by time") {
                 state.awakeDurations.sort()
             }
             Button("Reset") {
                 showResetAlert.toggle()
             }
             Spacer()
-            Button("Set as default") {
+            Button("Set default") {
                 markIntervalAsDefault(selectedInterval)
             }
             .disabled(!canIntervalSetToDefault(selectedInterval))
@@ -99,7 +99,7 @@ private struct IntervalSettingView: View {
             }
             Button("Cancel", role: .cancel) {}
         } message: {
-            Text("This will remove all custom intervals.")
+            Text("This will remove all custom durations.")
         }
         .frame(width: 400, height: 350)
     }
@@ -125,7 +125,7 @@ private struct IntervalSettingView: View {
 
         return ContextMenu {
             Group {
-                Button("Set as default") {
+                Button("Set default") {
                     markIntervalAsDefault(interval)
                 }
                 .disabled(!canIntervalSetToDefault(interval))

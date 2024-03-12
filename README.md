@@ -11,13 +11,13 @@ The app primarily functions as a wrapper for the macOS [caffeinate][2] command-l
 ## System Requirements
 
 - macOS 13.5 and later
+
 ## TODOs
 
 - [x] Auto stop when low power
 - [x] URL Schemes
 - [x] Send notifications
 - [ ] Improve Accessibility and Words
-- [ ] Check Updates
 
 ## Contributions
 

@@ -31,31 +31,31 @@ struct NotificationSettingView: View {
 
     var requestPermissionView: some View {
         VStack(alignment: .leading) {
-            Button("Request Permission") {
+            Text("Undetermined.")
+            Button("Request permission") {
                 Task.init {
                     try await UserNotifications.requestNotificationAuthorization()
                     status = await UserNotifications.requestAuthorizationStatus()
                 }
             }
-            Text("Permission Not Granted.")
         }
     }
 
     var denyPermissionView: some View {
         VStack(alignment: .leading) {
-            Button("Open Settings") {
+            Text("Denied.")
+                .foregroundColor(.red)
+                .bold()
+            Button("Open notification settings") {
                 Task.init {
                     try await UserNotifications.openSystemNotificationSetting()
                 }
             }
-            Text("Permission Denied.")
-                .foregroundColor(.red)
-                .bold()
         }
     }
 
     var grantPermissionView: some View {
-        Text("Permission Granted.")
+        Text("Granted.")
             .foregroundColor(.green)
             .bold()
     }
@@ -63,7 +63,7 @@ struct NotificationSettingView: View {
     var body: some View {
         Form {
             HStack(alignment: .top) {
-                Text("Notification Permission:")
+                Text("Notification permission status:")
                 if loading {
                     ProgressView()
                         .scaleEffect(0.5)
@@ -79,17 +79,18 @@ struct NotificationSettingView: View {
                 }
             }
             Divider()
-            Toggle("Notify when activate", isOn: $state.notifyWhenActivate)
-            Text("Send notification when activate caffeinate process.")
-                .settingPropmt()
-            Toggle("Notify when deactivate", isOn: $state.notifyWhenDeactivate)
-            Text("Send notification when deactivate caffeinate process.")
-                .settingPropmt()
+            HStack(alignment: .top) {
+                Text("Notify when:")
+                VStack(alignment: .leading) {
+                    Toggle("activate prevention", isOn: $state.notifyWhenActivate)
+                    Toggle("deactivate prevention", isOn: $state.notifyWhenDeactivate)
+                }
+            }
         }
         .task {
-                loading = true
-                status = await UserNotifications.requestAuthorizationStatus()
-                loading = false
+            loading = true
+            status = await UserNotifications.requestAuthorizationStatus()
+            loading = false
         }
         .padding()
     }

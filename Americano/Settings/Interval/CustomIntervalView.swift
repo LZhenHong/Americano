@@ -28,7 +28,7 @@ struct CustomIntervalView: View {
 
     var body: some View {
         VStack {
-            Text("Add Custom Interval")
+            Text("Add Custom Duration")
                 .font(.title3)
             VStack(alignment: .trailing) {
                 IntervalComponent(prompt: "Hours", maxValue: 999, value: $hours)
@@ -36,7 +36,7 @@ struct CustomIntervalView: View {
                 IntervalComponent(prompt: "Seconds", value: $seconds)
             }
             .padding(.top, 10)
-            Toggle("Set as default", isOn: $asDefault)
+            Toggle("Set default", isOn: $asDefault)
                 .padding(.bottom, 10)
 
             if let description = intervalValidator(currentInterval) {

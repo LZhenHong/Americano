@@ -3,6 +3,12 @@
   "strings" : {
     "%@" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19,6 +25,12 @@
     },
     "%@ already exists." : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ already exists."
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -35,6 +47,12 @@
     },
     "%lld%%" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld%%"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -51,6 +69,12 @@
     },
     "About" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "About"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -65,56 +89,44 @@
         }
       }
     },
-    "Activate on Launch" : {
+    "activate prevention" : {
       "localizations" : {
-        "zh-Hans" : {
+        "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "启动时激活"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "啟動時啟用"
+            "value" : "activate prevention"
           }
         }
       }
     },
-    "Activate ScreenSaver when prevention over" : {
+    "Activate prevention on Launch" : {
       "localizations" : {
-        "zh-Hans" : {
+        "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "阻止休眠结束激活屏幕保护"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "阻止休眠結束激活螢幕保護"
+            "value" : "Activate prevention on Launch"
           }
         }
       }
     },
-    "Activate when Mac is charging" : {
+    "Activate prevention when charging" : {
       "localizations" : {
-        "zh-Hans" : {
+        "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "在Mac充电时激活"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "當Mac充電時啟動"
+            "value" : "Activate prevention when charging"
           }
         }
       }
     },
     "Add" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -129,168 +141,84 @@
         }
       }
     },
-    "Add Custom Interval" : {
+    "Add Custom Duration" : {
       "localizations" : {
-        "zh-Hans" : {
+        "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "添加自定义时间"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "新增自訂間隔"
+            "value" : "Add Custom Duration"
           }
         }
       }
     },
-    "Allow Display Sleep" : {
+    "Allow display sleep" : {
       "localizations" : {
-        "zh-Hans" : {
+        "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "允许显示器休眠"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "允許顯示器休眠"
+            "value" : "Allow display sleep"
           }
         }
       }
     },
-    "Allow the display go to sleep." : {
+    "Allow Mac's display go to sleep." : {
       "localizations" : {
-        "zh-Hans" : {
+        "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "允许显示器进入休眠状态。"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "允許顯示器進入休眠狀態。"
+            "value" : "Allow Mac's display go to sleep."
           }
         }
       }
     },
-    "Automatically activate ScreenSaver when prevention is over." : {
+    "Automatically activate prevention when Mac is connected to the charger." : {
       "localizations" : {
-        "zh-Hans" : {
+        "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "当阻止休眠结束时激活屏幕保护程序。"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "當阻止休眠結束時激活螢幕保護程式。"
+            "value" : "Automatically activate prevention when Mac is connected to the charger."
           }
         }
       }
     },
-    "Automatically activate when your Mac is connected to the charger." : {
+    "Automatically deactivate prevention when Mac isn't connected to the charger." : {
       "localizations" : {
-        "zh-Hans" : {
+        "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "当您的Mac连接充电器时自动激活。"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "當您的Mac連接充電器時自動啟動。"
+            "value" : "Automatically deactivate prevention when Mac isn't connected to the charger."
           }
         }
       }
     },
-    "Automatically deactivate when Mac's Low Power Mode is activated." : {
+    "Automatically deactivate prevention when Mac's Low Power Mode is activated." : {
       "localizations" : {
-        "zh-Hans" : {
+        "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "当Mac的低电量模式激活时自动停用。"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "當Mac的低電量模式啟動時自動停用。"
+            "value" : "Automatically deactivate prevention when Mac's Low Power Mode is activated."
           }
         }
       }
     },
-    "Automatically deactivate when your Mac is not connected to the charger." : {
+    "Automatically launch the app when Mac starts." : {
       "localizations" : {
-        "zh-Hans" : {
+        "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "当您的 Mac 未连接到充电器时自动停用。"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "當您的 Mac 未連接到充電器時自動停用。"
-          }
-        }
-      }
-    },
-    "Automatically opens the app when start your Mac." : {
-      "localizations" : {
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "在启动 Mac 时自动打开应用程序。"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "啟動您的 Mac 時自動打開應用程式。"
-          }
-        }
-      }
-    },
-    "Automatically prevents your Mac from going to sleep when launched." : {
-      "localizations" : {
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "在启动时自动防止您的 Mac 进入休眠状态。"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "在啟動時自動防止您的 Mac 進入休眠狀態。"
-          }
-        }
-      }
-    },
-    "Awake Intervals" : {
-      "localizations" : {
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "唤醒时间"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "喚醒時間"
+            "value" : "Automatically launch the app when Mac starts."
           }
         }
       }
     },
     "Battery" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Battery"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -307,6 +235,12 @@
     },
     "Cancel" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cancel"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -323,6 +257,12 @@
     },
     "Current battery capacity: %lld%%" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Current battery capacity: %lld%%"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -337,56 +277,64 @@
         }
       }
     },
-    "Deactivate when Mac in Low Power Mode" : {
+    "deactivate prevention" : {
       "localizations" : {
-        "zh-Hans" : {
+        "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "在 Mac 低电量模式下停用"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "在 Mac 低電量模式下停用"
+            "value" : "deactivate prevention"
           }
         }
       }
     },
-    "Deactivate when Mac is not charging" : {
+    "Deactivate prevention when battery level below:" : {
       "localizations" : {
-        "zh-Hans" : {
+        "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "在Mac未充电时停用"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "在Mac未充電時停用"
+            "value" : "Deactivate prevention when battery level below:"
           }
         }
       }
     },
-    "Deactivate when the battery level falls below" : {
+    "Deactivate prevention when battery level is low" : {
       "localizations" : {
-        "zh-Hans" : {
+        "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "当电池电量低于时停用"
+            "value" : "Deactivate prevention when battery level is low"
           }
-        },
-        "zh-Hant" : {
+        }
+      }
+    },
+    "Deactivate prevention when Low Power Mode" : {
+      "localizations" : {
+        "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "當電池電量低於時停用"
+            "value" : "Deactivate prevention when Low Power Mode"
+          }
+        }
+      }
+    },
+    "Deactivate prevention when not charging" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Deactivate prevention when not charging"
           }
         }
       }
     },
     "Default" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Default"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -403,6 +351,12 @@
     },
     "Delete" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Delete"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -417,8 +371,44 @@
         }
       }
     },
+    "Denied." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Denied."
+          }
+        }
+      }
+    },
+    "Durations" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Durations"
+          }
+        }
+      }
+    },
+    "Enter ScreenSaver when deactivate prevention" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enter ScreenSaver when deactivate prevention"
+          }
+        }
+      }
+    },
     "General" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "General"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -433,8 +423,24 @@
         }
       }
     },
+    "Granted." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Granted."
+          }
+        }
+      }
+    },
     "Hours" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hours"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -449,24 +455,44 @@
         }
       }
     },
-    "If manually initiate sleep prevention on your Mac, the setting has no impact." : {
+    "If manually activate prevention, this setting will be ignored." : {
       "localizations" : {
-        "zh-Hans" : {
+        "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "如果在您的Mac上手动启动了防止休眠，此设置不会产生影响。"
+            "value" : "If manually activate prevention, this setting will be ignored."
           }
-        },
-        "zh-Hant" : {
+        }
+      }
+    },
+    "Immediately enter ScreenSaver when sleep prevention is over." : {
+      "localizations" : {
+        "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "如果在您的Mac上手動啟動了防止休眠，此設置不會產生影響。"
+            "value" : "Immediately enter ScreenSaver when sleep prevention is over."
+          }
+        }
+      }
+    },
+    "Immediately prevents Mac going to sleep when app launched." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Immediately prevents Mac going to sleep when app launched."
           }
         }
       }
     },
     "Launch at Login" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Launch at Login"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -483,6 +509,12 @@
     },
     "Minutes" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Minutes"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -499,6 +531,12 @@
     },
     "Notification" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Notification"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -513,29 +551,54 @@
         }
       }
     },
-    "Notification Permission:" : {
-
+    "Notification permission status:" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Notification permission status:"
+          }
+        }
+      }
     },
-    "Notify when activate" : {
-
+    "Notify when:" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Notify when:"
+          }
+        }
+      }
     },
-    "Notify when deactivate" : {
-
+    "Open notification settings" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open notification settings"
+          }
+        }
+      }
     },
-    "Open Settings" : {
-
-    },
-    "Permission Denied." : {
-
-    },
-    "Permission Granted." : {
-
-    },
-    "Permission Not Granted." : {
-
+    "Prevention Durations" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Prevention Durations"
+          }
+        }
+      }
     },
     "Quit" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Quit"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -550,11 +613,24 @@
         }
       }
     },
-    "Request Permission" : {
-
+    "Request permission" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Request permission"
+          }
+        }
+      }
     },
     "Reset" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reset"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -571,6 +647,12 @@
     },
     "Reset to default" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reset to default"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -587,6 +669,12 @@
     },
     "Seconds" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seconds"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -601,30 +689,24 @@
         }
       }
     },
-    "Send notification when activate caffeinate process." : {
-
-    },
-    "Send notification when deactivate caffeinate process." : {
-
-    },
-    "Set as default" : {
+    "Set default" : {
       "localizations" : {
-        "zh-Hans" : {
+        "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "设置为默认"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "設為默認"
+            "value" : "Set default"
           }
         }
       }
     },
     "Settings" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Settings"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -639,11 +721,24 @@
         }
       }
     },
-    "Sort" : {
-
+    "Sort by time" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sort by time"
+          }
+        }
+      }
     },
     "Stop" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stop"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -658,24 +753,34 @@
         }
       }
     },
-    "This will remove all custom intervals." : {
+    "This will remove all custom durations." : {
       "localizations" : {
-        "zh-Hans" : {
+        "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "此操作会删除所有自定义时间。"
+            "value" : "This will remove all custom durations."
           }
-        },
-        "zh-Hant" : {
+        }
+      }
+    },
+    "Undetermined." : {
+      "localizations" : {
+        "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "此操作將刪除所有自定義時間。"
+            "value" : "Undetermined."
           }
         }
       }
     },
     "Version: %@" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Version: %@"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",

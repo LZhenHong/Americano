@@ -118,7 +118,7 @@ final class MenuBarItemController {
         NSMenu {
             let shared = AppState.shared
             MenuItemBuilder()
-                .title(String(localized: "Awake Intervals"))
+                .title(String(localized: "Prevention Durations"))
                 .onEnable(awakePublisher.map(!).eraseToAnyPublisher())
                 .submenu(SubMenuBuilder.build(with: shared.awakeDurations.intervals))
                 .onSelect {}

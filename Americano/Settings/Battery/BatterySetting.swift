@@ -34,9 +34,15 @@ struct BatterySettingView: View {
         BatteryMonitor.shared.currentCapacity >= AppState.shared.batteryLowThreshold ? .blue : .red
     }
 
+    private var batteryText: String {
+        state.batteryMonitorEnable ?
+            String(localized: "Deactivate prevention when battery level below:") :
+            String(localized: "Deactivate prevention when battery level is low")
+    }
+
     var body: some View {
         Form {
-            Toggle("Deactivate when the battery level falls below", isOn: $state.batteryMonitorEnable)
+            Toggle(batteryText, isOn: $state.batteryMonitorEnable)
                 .onChange(of: state.batteryMonitorEnable) { enable in
                     guard enable,
                           BatteryMonitor.shared.currentCapacity < AppState.shared.batteryLowThreshold
@@ -48,18 +54,18 @@ struct BatterySettingView: View {
 
             if state.batteryMonitorEnable {
                 VStack(alignment: .leading) {
+                    BatterySlider(minValue: 10,
+                                  maxValue: 90,
+                                  currentValue: $state.batteryLowThreshold,
+                                  enabled: $state.batteryMonitorEnable)
                     HStack {
                         Text("Current battery capacity: \(BatteryMonitor.shared.currentCapacity)%")
                             .font(.caption)
                         Image(systemName: BatteryMonitor.shared.capacitySymbol)
                             .foregroundColor(batteryColor)
                     }
-                    .padding(.top, 3)
-                    BatterySlider(minValue: 10,
-                                  maxValue: 90,
-                                  currentValue: $state.batteryLowThreshold,
-                                  enabled: $state.batteryMonitorEnable)
-                    Text("If manually initiate sleep prevention on your Mac, the setting has no impact.")
+                    .padding(.vertical, 3)
+                    Text("If manually activate prevention, this setting will be ignored.")
                         // https://stackoverflow.com/a/59277022/5350993
                         .fixedSize(horizontal: false, vertical: true)
                         .settingPropmt()
@@ -68,27 +74,27 @@ struct BatterySettingView: View {
             }
 
             Divider()
-            Toggle("Deactivate when Mac in Low Power Mode", isOn: $state.lowPowerMonitorEnable)
+            Toggle("Deactivate prevention when Low Power Mode", isOn: $state.lowPowerMonitorEnable)
                 .onChange(of: state.lowPowerMonitorEnable) { enable in
                     guard enable, BatteryMonitor.shared.isLowPowerModeEnabled else { return }
                     stopCaffeinate()
                 }
-            Text("Automatically deactivate when Mac's Low Power Mode is activated.")
+            Text("Automatically deactivate prevention when Mac's Low Power Mode is activated.")
                 .settingPropmt()
             Divider()
-            Toggle("Activate when Mac is charging", isOn: $state.activatePlug)
+            Toggle("Activate prevention when charging", isOn: $state.activatePlug)
                 .onChange(of: state.activatePlug) { activate in
                     guard activate, BatteryMonitor.shared.isCharging else { return }
                     CaffeinateController.shared.startIfAllowed()
                 }
-            Text("Automatically activate when your Mac is connected to the charger.")
+            Text("Automatically activate prevention when Mac is connected to the charger.")
                 .settingPropmt()
-            Toggle("Deactivate when Mac is not charging", isOn: $state.deactivateUnplug)
+            Toggle("Deactivate prevention when not charging", isOn: $state.deactivateUnplug)
                 .onChange(of: state.deactivateUnplug) { deactivate in
                     guard deactivate, !BatteryMonitor.shared.isCharging else { return }
                     stopCaffeinate()
                 }
-            Text("Automatically deactivate when your Mac is not connected to the charger.")
+            Text("Automatically deactivate prevention when Mac isn't connected to the charger.")
                 .settingPropmt()
         }
         .padding()
