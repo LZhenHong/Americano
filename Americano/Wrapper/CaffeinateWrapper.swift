@@ -11,7 +11,7 @@ import os.log
 let ONE_MINUTE_IN_SECONDS = 60
 
 protocol CaffeinateDelegate: AnyObject {
-    func caffeinateDidStart(_ caffeinate: CaffeinateWrapper)
+    func caffeinateDidStart(_ caffeinate: CaffeinateWrapper, interval: TimeInterval)
     func caffeinateDidTerminate(_ caffeinate: CaffeinateWrapper)
     func caffeinateAutoTerminate(_ caffeinate: CaffeinateWrapper)
 }
@@ -73,7 +73,7 @@ final class CaffeinateWrapper: BinWrapper {
         do {
             try caffeinate.run()
 
-            delegate?.caffeinateDidStart(self)
+            delegate?.caffeinateDidStart(self, interval: interval)
             AppState.shared.preventSleep = true
 
             if interval.isFinite {

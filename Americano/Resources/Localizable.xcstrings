@@ -581,6 +581,26 @@
         }
       }
     },
+    "Prevention activate." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Prevention activate."
+          }
+        }
+      }
+    },
+    "Prevention deactivate." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Prevention deactivate."
+          }
+        }
+      }
+    },
     "Prevention Durations" : {
       "localizations" : {
         "en" : {
@@ -696,6 +716,12 @@
             "state" : "translated",
             "value" : "Set default"
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "设置为默认"
+          }
         }
       }
     },
@@ -721,12 +747,38 @@
         }
       }
     },
+    "Sleep prevention will keep only when you manually stop it." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sleep prevention will keep only when you manually stop it."
+          }
+        }
+      }
+    },
+    "Sleep prevention will stop after %@." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sleep prevention will stop after %@."
+          }
+        }
+      }
+    },
     "Sort by time" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sort by time"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "按时间排序"
           }
         }
       }
