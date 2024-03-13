@@ -96,6 +96,18 @@
             "state" : "translated",
             "value" : "activate prevention"
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "开启防止休眠"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "开启防止休眠"
+          }
         }
       }
     },
@@ -106,6 +118,18 @@
             "state" : "translated",
             "value" : "Activate prevention on Launch"
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "启动后防止休眠"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "啟動後防止休眠"
+          }
         }
       }
     },
@@ -115,6 +139,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Activate prevention when charging"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "充电时防止休眠"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "充電時防止休眠"
           }
         }
       }
@@ -148,6 +184,18 @@
             "state" : "translated",
             "value" : "Add Custom Duration"
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "添加自定义持续时间"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "新增自訂持續時間"
+          }
         }
       }
     },
@@ -157,6 +205,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Allow display sleep"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "允许显示器休眠"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "允許顯示器休眠"
           }
         }
       }
@@ -168,6 +228,18 @@
             "state" : "translated",
             "value" : "Allow Mac's display go to sleep."
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "允许 Mac 显示器进入休眠状态。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "允許 Mac 顯示器進入休眠狀態。"
+          }
         }
       }
     },
@@ -177,6 +249,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Automatically activate prevention when Mac is connected to the charger."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "当 Mac 连接到充电器时开启防止休眠。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "当 Mac 连接到充电器时开启防止休眠。"
           }
         }
       }
@@ -188,6 +272,18 @@
             "state" : "translated",
             "value" : "Automatically deactivate prevention when Mac isn't connected to the charger."
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "当 Mac 未连接到充电器时自动结束防止休眠。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "當 Mac 未連接到充電器時自動結束防止休眠。"
+          }
         }
       }
     },
@@ -198,6 +294,18 @@
             "state" : "translated",
             "value" : "Automatically deactivate prevention when Mac's Low Power Mode is activated."
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "当 Mac 处于低电量模式时自动结束防止休眠。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "当 Mac 处于低电量模式时自动结束防止休眠。"
+          }
         }
       }
     },
@@ -207,6 +315,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Automatically launch the app when Mac starts."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "当 Mac 登录时自动启动应用程序。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "当 Mac 登录时自动启动应用程序。"
           }
         }
       }
@@ -266,13 +386,13 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "当前电池容量：%lld%%"
+            "value" : "当前电池电量：%lld%%"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "當前電池容量：%lld%%"
+            "value" : "當前電池電量：%lld%%"
           }
         }
       }
@@ -284,6 +404,40 @@
             "state" : "translated",
             "value" : "deactivate prevention"
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "结束防止休眠"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "結束防止休眠"
+          }
+        }
+      }
+    },
+    "Deactivate Prevention" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Deactivate Prevention"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "结束防止休眠"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "結束防止休眠"
+          }
         }
       }
     },
@@ -293,6 +447,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Deactivate prevention when battery level below:"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "当电池电量低于结束防止休眠："
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "當電池電量低於時結束防止休眠："
           }
         }
       }
@@ -304,6 +470,18 @@
             "state" : "translated",
             "value" : "Deactivate prevention when battery level is low"
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "当电池电量低时结束防止休眠"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "當電池電量低時結束防止休眠"
+          }
         }
       }
     },
@@ -314,6 +492,18 @@
             "state" : "translated",
             "value" : "Deactivate prevention when Low Power Mode"
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "低电量结束防止休眠"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "低電量結束防止休眠"
+          }
         }
       }
     },
@@ -323,6 +513,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Deactivate prevention when not charging"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "未充电结束防止休眠"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "未充電時防止休眠"
           }
         }
       }
@@ -378,6 +580,18 @@
             "state" : "translated",
             "value" : "Denied."
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "已拒绝。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "已拒絕。"
+          }
         }
       }
     },
@@ -388,6 +602,18 @@
             "state" : "translated",
             "value" : "Durations"
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "持续时间"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "持續時間"
+          }
         }
       }
     },
@@ -397,6 +623,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Enter ScreenSaver when deactivate prevention"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "防止休眠结束进入屏幕保护"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "防止休眠結束後進入屏幕保護"
           }
         }
       }
@@ -430,6 +668,18 @@
             "state" : "translated",
             "value" : "Granted."
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "已允许。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "已允許。"
+          }
         }
       }
     },
@@ -462,6 +712,18 @@
             "state" : "translated",
             "value" : "If manually activate prevention, this setting will be ignored."
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "如果手动开启防止休眠，此设置将被忽略。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "如果手動啟動防止休眠，此設置將被忽略。"
+          }
         }
       }
     },
@@ -472,6 +734,18 @@
             "state" : "translated",
             "value" : "Immediately enter ScreenSaver when sleep prevention is over."
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "当防止休眠结束时立即进入屏幕保护程序。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "當防止休眠結束時立即進入螢幕保護程式。"
+          }
         }
       }
     },
@@ -481,6 +755,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Immediately prevents Mac going to sleep when app launched."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "应用程序启动时立即防止 Mac 进入休眠。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "應用程式啟動時立即防止 Mac 進入睡眠。"
           }
         }
       }
@@ -558,6 +844,18 @@
             "state" : "translated",
             "value" : "Notification permission status:"
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "通知权限状态："
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "通知权限狀態："
+          }
         }
       }
     },
@@ -567,6 +865,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Notify when:"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "发送消息通知："
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "發送訊息通知："
           }
         }
       }
@@ -578,25 +888,17 @@
             "state" : "translated",
             "value" : "Open notification settings"
           }
-        }
-      }
-    },
-    "Prevention activate." : {
-      "localizations" : {
-        "en" : {
+        },
+        "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Prevention activate."
+            "value" : "打开通知设置"
           }
-        }
-      }
-    },
-    "Prevention deactivate." : {
-      "localizations" : {
-        "en" : {
+        },
+        "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Prevention deactivate."
+            "value" : "開啟通知設置"
           }
         }
       }
@@ -607,6 +909,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Prevention Durations"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "防止休眠时长"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "防止休眠時長"
           }
         }
       }
@@ -640,6 +954,18 @@
             "state" : "translated",
             "value" : "Request permission"
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "申请权限"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "申請權限"
+          }
         }
       }
     },
@@ -660,7 +986,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "重置"
+            "value" : "重設"
           }
         }
       }
@@ -682,7 +1008,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "重置為默認值"
+            "value" : "重設為預設值"
           }
         }
       }
@@ -722,6 +1048,12 @@
             "state" : "translated",
             "value" : "设置为默认"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "設定為預設"
+          }
         }
       }
     },
@@ -747,12 +1079,68 @@
         }
       }
     },
-    "Sleep prevention will keep only when you manually stop it." : {
+    "Sleep prevention activate." : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sleep prevention will keep only when you manually stop it."
+            "value" : "Sleep prevention activate."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "开启防止休眠"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "开启防止休眠"
+          }
+        }
+      }
+    },
+    "Sleep prevention deactivate." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sleep prevention deactivate."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "结束防止休眠"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "結束防止休眠"
+          }
+        }
+      }
+    },
+    "Sleep prevention will keep unless manually stopped." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sleep prevention will keep unless manually stopped."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "防止休眠将会一直保持，除非您手动结束。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "防止休眠將會一直保持，除非您手動結束。"
           }
         }
       }
@@ -763,6 +1151,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sleep prevention will stop after %@."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "防止休眠将在%@后结束。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : " 防止休眠將在%@後結束。"
           }
         }
       }
@@ -780,27 +1180,11 @@
             "state" : "translated",
             "value" : "按时间排序"
           }
-        }
-      }
-    },
-    "Stop" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Stop"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "停止"
-          }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "停止"
+            "value" : "按時間排序"
           }
         }
       }
@@ -812,6 +1196,18 @@
             "state" : "translated",
             "value" : "This will remove all custom durations."
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "此操作会删除所有自定义时长。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "此操作會刪除所有自訂持續時間。"
+          }
         }
       }
     },
@@ -821,6 +1217,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Undetermined."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "未确定。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "未確定。"
           }
         }
       }

@@ -123,7 +123,7 @@ final class MenuBarItemController {
                 .submenu(SubMenuBuilder.build(with: shared.awakeDurations.intervals))
                 .onSelect {}
             MenuItemBuilder()
-                .title(String(localized: "Stop"))
+                .title(String(localized: "Deactivate Prevention"))
                 .onEnable(awakePublisher)
                 .onSelect {
                     CaffeinateController.shared.stop()

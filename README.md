@@ -17,7 +17,8 @@ The app primarily functions as a wrapper for the macOS [caffeinate][2] command-l
 - [x] Auto stop when low power
 - [x] URL Schemes
 - [x] Send notifications
-- [ ] Improve Accessibility and Words
+- [x] Improve Copywriting
+- [ ] Improve Accessibility
 
 ## Contributions
 

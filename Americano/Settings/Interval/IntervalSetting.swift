@@ -51,8 +51,11 @@ private struct IntervalSettingView: View {
             Button("Sort by time") {
                 state.awakeDurations.sort()
             }
-            Button("Reset") {
+            Button {
                 showResetAlert.toggle()
+            } label: {
+                Text("Reset")
+                    .foregroundStyle(.red)
             }
             Spacer()
             Button("Set default") {
@@ -130,8 +133,11 @@ private struct IntervalSettingView: View {
                 }
                 .disabled(!canIntervalSetToDefault(interval))
                 Divider()
-                Button("Delete") {
+                Button {
                     delete(interval: interval)
+                } label: {
+                    Text("Delete")
+                        .foregroundStyle(.red)
                 }
                 .disabled(!interval.deletable)
             }
