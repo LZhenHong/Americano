@@ -106,7 +106,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "开启防止休眠"
+            "value" : "開啟防止休眠"
           }
         }
       }
@@ -260,7 +260,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "当 Mac 连接到充电器时开启防止休眠。"
+            "value" : "當 Mac 連接到充電器時開啟防止休眠。"
           }
         }
       }
@@ -1096,7 +1096,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "开启防止休眠"
+            "value" : "開啟防止休眠"
           }
         }
       }
