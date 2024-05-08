@@ -5,25 +5,28 @@
 //  Created by Eden on 2023/9/20.
 //
 
-import SwiftUI
 import Storage
+import SwiftUI
 
 @storage
 final class AppState: ObservableObject {
-    @nonstorage 
+    @nonstorage
     @Published var preventSleep = false
     @nonstorage
     @Published var launchAtLogin = LaunchAtLogin.isEnabled
 
     // MARK: - General
+
     var activateOnLaunch = false
     var activateScreenSaver = false
     var allowDisplaySleep = false
 
     // MARK: - Durations
+
     var awakeDurations = AwakeDurations()
 
     // MARK: - Battery
+
     var batteryMonitorEnable = false
     var batteryLowThreshold = 50
     var lowPowerMonitorEnable = false
@@ -31,6 +34,7 @@ final class AppState: ObservableObject {
     var deactivateUnplug = false
 
     // MARK: - Nofitication
+
     var notifyWhenActivate = false
     var notifyWhenDeactivate = false
 
