@@ -1,5 +1,15 @@
 {
+  "originHash" : "da26bf77aacc6d7790cf512638959361e6d8ed08e0e7b715e3846f67c547ddc1",
   "pins" : [
+    {
+      "identity" : "storagemacro",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/LZhenHong/StorageMacro",
+      "state" : {
+        "revision" : "fa0646a090a8ac418ccd9d13d3d10cd1dd5efdda",
+        "version" : "0.0.1"
+      }
+    },
     {
       "identity" : "swift-syntax",
       "kind" : "remoteSourceControl",
@@ -10,5 +20,5 @@
       }
     }
   ],
-  "version" : 2
+  "version" : 3
 }

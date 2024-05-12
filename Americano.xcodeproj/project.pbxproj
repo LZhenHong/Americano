@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 60;
+	objectVersion = 56;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -11,6 +11,7 @@
 		34C0958F2B03DDBA009B9324 /* CustomIntervalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C0958E2B03DDBA009B9324 /* CustomIntervalView.swift */; };
 		F20C39C02B3B1C7000B052CC /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = F20C39BF2B3B1C7000B052CC /* Localizable.xcstrings */; };
 		F2215A562B88B48C000E04F6 /* Map+.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2215A552B88B48C000E04F6 /* Map+.swift */; };
+		F225ADD42BF119970024283A /* Storage in Frameworks */ = {isa = PBXBuildFile; productRef = F225ADD32BF119970024283A /* Storage */; };
 		F2294E782AC30EF70085448F /* LaunchAtLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2294E772AC30EF70085448F /* LaunchAtLogin.swift */; };
 		F230D3322B1E00EB00A5A50A /* SubMenuBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F230D3312B1E00EB00A5A50A /* SubMenuBuilder.swift */; };
 		F2489C442AE976A900B5E17B /* AwakeDurations.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2489C432AE976A900B5E17B /* AwakeDurations.swift */; };
@@ -93,6 +94,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F225ADD42BF119970024283A /* Storage in Frameworks */,
 				F2811B322B678C0300C85719 /* Storage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -251,6 +253,7 @@
 			name = Americano;
 			packageProductDependencies = (
 				F2811B312B678C0300C85719 /* Storage */,
+				F225ADD32BF119970024283A /* Storage */,
 			);
 			productName = Americano;
 			productReference = F2CACC482ABACDA600CB2BE4 /* Americano.app */;
@@ -283,7 +286,7 @@
 			);
 			mainGroup = F2CACC3F2ABACDA600CB2BE4;
 			packageReferences = (
-				F2811B302B678C0300C85719 /* XCLocalSwiftPackageReference "Storage" */,
+				F225ADD22BF119970024283A /* XCRemoteSwiftPackageReference "StorageMacro" */,
 			);
 			productRefGroup = F2CACC492ABACDA600CB2BE4 /* Products */;
 			projectDirPath = "";
@@ -562,14 +565,23 @@
 		};
 /* End XCConfigurationList section */
 
-/* Begin XCLocalSwiftPackageReference section */
-		F2811B302B678C0300C85719 /* XCLocalSwiftPackageReference "Storage" */ = {
-			isa = XCLocalSwiftPackageReference;
-			relativePath = Storage;
+/* Begin XCRemoteSwiftPackageReference section */
+		F225ADD22BF119970024283A /* XCRemoteSwiftPackageReference "StorageMacro" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/LZhenHong/StorageMacro";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.0.1;
+			};
 		};
-/* End XCLocalSwiftPackageReference section */
+/* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		F225ADD32BF119970024283A /* Storage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F225ADD22BF119970024283A /* XCRemoteSwiftPackageReference "StorageMacro" */;
+			productName = Storage;
+		};
 		F2811B312B678C0300C85719 /* Storage */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Storage;
