@@ -12,6 +12,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         Bundle.main.bundleIdentifier ?? "io.lzhlovesjyq.Americano"
     }
 
+    func applicationWillFinishLaunching(_ notification: Notification) {
+        populateMainMenu()
+    }
+
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         URLSchemeUtils.register()
 
@@ -26,5 +30,22 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationSupportsSecureRestorableState(_ app: NSApplication) -> Bool {
         return true
+    }
+}
+
+extension AppDelegate {
+    func populateMainMenu() {
+        let mainMenu = NSMenu(title: "Main Menu")
+        let fileMenuItem = mainMenu.addItem(withTitle: "File", action: nil, keyEquivalent: "")
+        let submenu = NSMenu(title: NSLocalizedString("File", comment: "File Menu"))
+
+        let closeWindowItem = NSMenuItem(title: NSLocalizedString("Close Window", comment: "Close Window menu item"),
+                                         action: #selector(NSWindow.performClose(_:)),
+                                         keyEquivalent: "w")
+        submenu.addItem(closeWindowItem)
+
+        mainMenu.setSubmenu(submenu, for: fileMenuItem)
+
+        NSApp.mainMenu = mainMenu
     }
 }
