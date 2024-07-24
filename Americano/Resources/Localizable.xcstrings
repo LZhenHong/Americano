@@ -378,6 +378,12 @@
     "Close Window" : {
       "comment" : "Close Window menu item",
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Close Window"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -659,6 +665,12 @@
     "File" : {
       "comment" : "File Menu",
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "File"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",

@@ -37,9 +37,9 @@ extension AppDelegate {
     func populateMainMenu() {
         let mainMenu = NSMenu(title: "Main Menu")
         let fileMenuItem = mainMenu.addItem(withTitle: "File", action: nil, keyEquivalent: "")
-        let submenu = NSMenu(title: NSLocalizedString("File", comment: "File Menu"))
+        let submenu = NSMenu(title: String(localized: "File"))
 
-        let closeWindowItem = NSMenuItem(title: NSLocalizedString("Close Window", comment: "Close Window menu item"),
+        let closeWindowItem = NSMenuItem(title: String(localized: "Close Window"),
                                          action: #selector(NSWindow.performClose(_:)),
                                          keyEquivalent: "w")
         submenu.addItem(closeWindowItem)
