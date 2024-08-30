@@ -1,0 +1,39 @@
+import { exit, parse } from "std"
+
+echo unsafe $pwd$
+
+let SRCROOT = unsafe $printf "\$\{SRCROOT}"$
+let PRODUCT_NAME = unsafe $printf "\$\{PRODUCT_NAME}"$
+
+let file_name = "Config.xcconfig"
+unsafe $ cd "{SRCROOT}/{PRODUCT_NAME}/Resources" $
+
+fun increase_build_number() {
+    let previous_build = $ awk -F "=" '/BUILD_NUMBER/ \{print \$2}' {file_name} | \
+        tr -d ' ' $ failed {
+        echo "Failed to get previous build number"
+        fail status
+    }
+
+    let current_date = unsafe $date "+%Y%m%d"$
+    let previous_date = unsafe $printf "\$\{previous_build:0:8}"$
+    let counter = parse(unsafe $printf "\$\{previous_build:8}"$) failed {
+        echo "Failed to parse previous build number"
+        fail status
+    }
+
+    let new_counter = (current_date == previous_date) then counter + 1 else 1
+    let new_build = current_date + new_counter as Text
+
+    $ sed -i -e "/BUILD_NUMBER =/ s/= .*/= {new_build}/" {file_name} $ failed {
+        echo "Failed to update build number"
+        fail status
+    }
+
+    let tmp_file = "{file_name}-e"
+    $ rm -f {tmp_file} $?
+}
+
+main {
+    increase_build_number()?
+}

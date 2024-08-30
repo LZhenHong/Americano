@@ -1,0 +1,12 @@
+//
+//  Config.xcconfig
+//  Americano
+//
+//  Created by Eden on 2024/8/29.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+VERSION = 1.0.0
+BUILD_NUMBER = 202408307

@@ -41,6 +41,7 @@
 		F2CACC5B2ABAD17100CB2BE4 /* MenuBarItemController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2CACC5A2ABAD17100CB2BE4 /* MenuBarItemController.swift */; };
 		F2CACC5D2ABAD6C200CB2BE4 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2CACC5C2ABAD6C200CB2BE4 /* AppState.swift */; };
 		F2CACC5F2ABADBCA00CB2BE4 /* CaffeinateWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2CACC5E2ABADBCA00CB2BE4 /* CaffeinateWrapper.swift */; };
+		F2D579E82C80B11900F292B0 /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = F2D579E72C80B11900F292B0 /* Config.xcconfig */; };
 		F2EF3AD62AE1111A00F2C26F /* SettingContentRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EF3AD52AE1111A00F2C26F /* SettingContentRepresentable.swift */; };
 		F2EF3AD82AE1297F00F2C26F /* GeneralSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EF3AD72AE1297F00F2C26F /* GeneralSetting.swift */; };
 		F2EF3ADA2AE130AB00F2C26F /* IntervalSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EF3AD92AE130AB00F2C26F /* IntervalSetting.swift */; };
@@ -83,6 +84,7 @@
 		F2CACC5A2ABAD17100CB2BE4 /* MenuBarItemController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarItemController.swift; sourceTree = "<group>"; };
 		F2CACC5C2ABAD6C200CB2BE4 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		F2CACC5E2ABADBCA00CB2BE4 /* CaffeinateWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaffeinateWrapper.swift; sourceTree = "<group>"; };
+		F2D579E72C80B11900F292B0 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		F2EF3AD52AE1111A00F2C26F /* SettingContentRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingContentRepresentable.swift; sourceTree = "<group>"; };
 		F2EF3AD72AE1297F00F2C26F /* GeneralSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSetting.swift; sourceTree = "<group>"; };
 		F2EF3AD92AE130AB00F2C26F /* IntervalSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntervalSetting.swift; sourceTree = "<group>"; };
@@ -200,6 +202,7 @@
 				F2215A542B884FC6000E04F6 /* Info.plist */,
 				F2CACC542ABACDA700CB2BE4 /* Americano.entitlements */,
 				F2CACC4F2ABACDA700CB2BE4 /* Assets.xcassets */,
+				F2D579E72C80B11900F292B0 /* Config.xcconfig */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -302,6 +305,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F2D579E82C80B11900F292B0 /* Config.xcconfig in Resources */,
 				F2A62B502B3E57B200FDECF6 /* InfoPlist.xcstrings in Resources */,
 				F20C39C02B3B1C7000B052CC /* Localizable.xcstrings in Resources */,
 				F2CACC502ABACDA700CB2BE4 /* Assets.xcassets in Resources */,
@@ -478,6 +482,7 @@
 		};
 		F2CACC582ABACDA700CB2BE4 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F2D579E72C80B11900F292B0 /* Config.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -486,7 +491,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = "${BUILD_NUMBER}";
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = V65YCRQZ2M;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -500,7 +505,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = "${VERSION}";
 				PRODUCT_BUNDLE_IDENTIFIER = io.lzhlovesjqy.Americano;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -511,6 +516,7 @@
 		};
 		F2CACC592ABACDA700CB2BE4 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F2D579E72C80B11900F292B0 /* Config.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -519,7 +525,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = "${BUILD_NUMBER}";
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = V65YCRQZ2M;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -533,7 +539,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = "${VERSION}";
 				PRODUCT_BUNDLE_IDENTIFIER = io.lzhlovesjqy.Americano;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
