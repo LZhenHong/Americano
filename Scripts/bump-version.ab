@@ -1,16 +1,15 @@
 import { exit, parse } from "std"
 
-echo unsafe $pwd$
-
-let SRCROOT = unsafe $printf "\$\{SRCROOT}"$
-let PRODUCT_NAME = unsafe $printf "\$\{PRODUCT_NAME}"$
+unsafe {
+    let SRCROOT = $printf "\$SRCROOT"$
+    let PRODUCT_NAME = $printf "\$PRODUCT_NAME"$  
+    $cd "{SRCROOT}/{PRODUCT_NAME}/Resources"$  
+}
 
 let file_name = "Config.xcconfig"
-unsafe $ cd "{SRCROOT}/{PRODUCT_NAME}/Resources" $
-
 fun increase_build_number() {
-    let previous_build = $ awk -F "=" '/BUILD_NUMBER/ \{print \$2}' {file_name} | \
-        tr -d ' ' $ failed {
+    let previous_build = $awk -F "=" '/BUILD_NUMBER/ \{print \$2}' {file_name} | \
+        tr -d ' '$ failed {
         echo "Failed to get previous build number"
         fail status
     }
@@ -25,13 +24,13 @@ fun increase_build_number() {
     let new_counter = (current_date == previous_date) then counter + 1 else 1
     let new_build = current_date + new_counter as Text
 
-    $ sed -i -e "/BUILD_NUMBER =/ s/= .*/= {new_build}/" {file_name} $ failed {
+    $sed -i -e "/BUILD_NUMBER =/ s/= .*/= {new_build}/" {file_name}$ failed {
         echo "Failed to update build number"
         fail status
     }
 
     let tmp_file = "{file_name}-e"
-    $ rm -f {tmp_file} $?
+    $rm -f {tmp_file}$?
 }
 
 main {

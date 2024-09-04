@@ -8,5 +8,6 @@
 // Configuration settings file format documentation can be found at:
 // https://help.apple.com/xcode/#/dev745c5c974
 
+BUNDLE_IDENTIFIER = io.lzhlovesjqy.Americano
 VERSION = 1.0.0
-BUILD_NUMBER = 202408307
+BUILD_NUMBER = 202409042

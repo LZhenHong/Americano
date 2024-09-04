@@ -41,7 +41,6 @@
 		F2CACC5B2ABAD17100CB2BE4 /* MenuBarItemController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2CACC5A2ABAD17100CB2BE4 /* MenuBarItemController.swift */; };
 		F2CACC5D2ABAD6C200CB2BE4 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2CACC5C2ABAD6C200CB2BE4 /* AppState.swift */; };
 		F2CACC5F2ABADBCA00CB2BE4 /* CaffeinateWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2CACC5E2ABADBCA00CB2BE4 /* CaffeinateWrapper.swift */; };
-		F2D579E82C80B11900F292B0 /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = F2D579E72C80B11900F292B0 /* Config.xcconfig */; };
 		F2EF3AD62AE1111A00F2C26F /* SettingContentRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EF3AD52AE1111A00F2C26F /* SettingContentRepresentable.swift */; };
 		F2EF3AD82AE1297F00F2C26F /* GeneralSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EF3AD72AE1297F00F2C26F /* GeneralSetting.swift */; };
 		F2EF3ADA2AE130AB00F2C26F /* IntervalSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2EF3AD92AE130AB00F2C26F /* IntervalSetting.swift */; };
@@ -270,7 +269,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1500;
-				LastUpgradeCheck = 1510;
+				LastUpgradeCheck = 1540;
 				TargetAttributes = {
 					F2CACC472ABACDA600CB2BE4 = {
 						CreatedOnToolsVersion = 15.0;
@@ -305,7 +304,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F2D579E82C80B11900F292B0 /* Config.xcconfig in Resources */,
 				F2A62B502B3E57B200FDECF6 /* InfoPlist.xcstrings in Resources */,
 				F20C39C02B3B1C7000B052CC /* Localizable.xcstrings in Resources */,
 				F2CACC502ABACDA700CB2BE4 /* Assets.xcassets in Resources */,
@@ -506,7 +504,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MARKETING_VERSION = "${VERSION}";
-				PRODUCT_BUNDLE_IDENTIFIER = io.lzhlovesjqy.Americano;
+				PRODUCT_BUNDLE_IDENTIFIER = "${BUNDLE_IDENTIFIER}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -540,7 +538,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MARKETING_VERSION = "${VERSION}";
-				PRODUCT_BUNDLE_IDENTIFIER = io.lzhlovesjqy.Americano;
+				PRODUCT_BUNDLE_IDENTIFIER = "${BUNDLE_IDENTIFIER}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
