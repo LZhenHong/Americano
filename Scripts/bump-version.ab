@@ -1,9 +1,10 @@
-import { exit, parse } from "std"
+import { exit, shell_var_get } from "std/env"
+import { parse, slice } from "std/text"
 
 unsafe {
-    let SRCROOT = $printf "\$SRCROOT"$
-    let PRODUCT_NAME = $printf "\$PRODUCT_NAME"$  
-    $cd "{SRCROOT}/{PRODUCT_NAME}/Resources"$  
+    let src_root = shell_var_get("SRCROOT")
+    let product_name = shell_var_get("PRODUCT_NAME")
+    cd "{src_root}/{product_name}/Resources"
 }
 
 let file_name = "Config.xcconfig"
@@ -15,8 +16,8 @@ fun increase_build_number() {
     }
 
     let current_date = unsafe $date "+%Y%m%d"$
-    let previous_date = unsafe $printf "\$\{previous_build:0:8}"$
-    let counter = parse(unsafe $printf "\$\{previous_build:8}"$) failed {
+    let previous_date = slice(previous_build, 0, 8)
+    let counter = parse(slice(previous_build, 8)) failed {
         echo "Failed to parse previous build number"
         fail status
     }
@@ -31,8 +32,46 @@ fun increase_build_number() {
 
     let tmp_file = "{file_name}-e"
     $rm -f {tmp_file}$?
+
+    echo "Bumped Build Number: {new_build}"
+}
+
+fun increase_version() {
+    let version = $awk -F "=" '/VERSION/ \{print \$2}' {file_name} | \
+        tr -d ' '$ failed {
+        echo "Failed to get previous version"
+        fail status
+    }
+
+    echo "Previous Version: {version}"
+
+    let major = parse($echo {version} | cut -d. -f1$?)?
+    let minor = parse($echo {version} | cut -d. -f2$?)?
+    let patch = parse($echo {version} | cut -d. -f3$?)?
+
+    let configuration = shell_var_get("CONFIGURATION")?
+    if configuration == "Release" {
+        patch = patch + 1
+    }
+    let new_version = "{major}.{minor}.{patch}"
+    $sed -i -e "/VERSION =/ s/= .*/= {new_version}/" {file_name}$ failed {
+        echo "Failed to update version"
+        fail status
+    }
+
+    let tmp_file = "{file_name}-e"
+    $rm -f {tmp_file}$?
+
+    echo "Bumped Version: {new_version}"
 }
 
 main {
     increase_build_number()?
+
+    let bump = parse(shell_var_get("BUMP_VERSION")?)? == 1
+    if bump {
+        increase_version()?
+    } else {
+        echo "Skipping version bump"
+    }
 }
