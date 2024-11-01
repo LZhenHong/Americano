@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Written in [Amber](https://amber-lang.com/)
 # version: 0.3.5-alpha
-# date: 2024-09-13 14:32:50
+# date: 2024-11-01 10:14:29
 
 parse__30_v0() {
     local text=$1
@@ -200,21 +200,15 @@ exit $__AS
 fi;
     __AF_increase_build_number97_v0__69_5="$__AF_increase_build_number97_v0";
     echo "$__AF_increase_build_number97_v0__69_5" > /dev/null 2>&1
-    shell_var_get__74_v0 "BUMP_VERSION";
-    __AS=$?;
-if [ $__AS != 0 ]; then
-
-exit $__AS
-fi;
-    __AF_shell_var_get74_v0__71_22="${__AF_shell_var_get74_v0}";
-    parse__30_v0 "${__AF_shell_var_get74_v0__71_22}";
-    __AS=$?;
-if [ $__AS != 0 ]; then
-
-exit $__AS
-fi;
-    __AF_parse30_v0__71_16="$__AF_parse30_v0";
-    bump=$(echo "$__AF_parse30_v0__71_16" '==' 1 | bc -l | sed '/\./ s/\.\{0,1\}0\{1,\}$//')
+    bump=0
+            shell_var_get__74_v0 "BUMP_VERSION" > /dev/null 2>&1;
+        __AS=$?;
+        __AF_shell_var_get74_v0__73_28="${__AF_shell_var_get74_v0}";
+        bump_version="${__AF_shell_var_get74_v0__73_28}"
+        parse__30_v0 "${bump_version}" > /dev/null 2>&1;
+        __AS=$?;
+        __AF_parse30_v0__74_16="$__AF_parse30_v0";
+        bump=$(echo "$__AF_parse30_v0__74_16" '==' 1 | bc -l | sed '/\./ s/\.\{0,1\}0\{1,\}$//')
     if [ ${bump} != 0 ]; then
         increase_version__98_v0 ;
         __AS=$?;
@@ -222,8 +216,8 @@ if [ $__AS != 0 ]; then
 
 exit $__AS
 fi;
-        __AF_increase_version98_v0__73_9="$__AF_increase_version98_v0";
-        echo "$__AF_increase_version98_v0__73_9" > /dev/null 2>&1
+        __AF_increase_version98_v0__78_9="$__AF_increase_version98_v0";
+        echo "$__AF_increase_version98_v0__78_9" > /dev/null 2>&1
 else
         echo "Skipping version bump"
 fi

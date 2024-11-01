@@ -68,7 +68,12 @@ fun increase_version() {
 main {
     increase_build_number()?
 
-    let bump = parse(shell_var_get("BUMP_VERSION")?)? == 1
+    let bump = false
+    unsafe silent {
+        let bump_version = shell_var_get("BUMP_VERSION")
+        bump = parse(bump_version) == 1
+    }
+
     if bump {
         increase_version()?
     } else {
