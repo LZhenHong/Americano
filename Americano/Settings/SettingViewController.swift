@@ -18,7 +18,7 @@ final class SettingViewController: NSViewController {
     }
 
     @available(*, unavailable)
-    required init?(coder: NSCoder) {
+    required init?(coder _: NSCoder) {
         fatalError("init(coder:) can not been called.")
     }
 
@@ -28,6 +28,7 @@ final class SettingViewController: NSViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
 
         let hostingViewController = NSHostingController(rootView: representable.view)
+        hostingViewController.sizingOptions = .preferredContentSize
         addChild(hostingViewController)
         view.addSubview(hostingViewController.view)
         constrains = hostingViewController.view.constrainToSuperviewBounds()

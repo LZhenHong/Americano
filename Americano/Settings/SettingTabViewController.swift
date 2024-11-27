@@ -10,24 +10,17 @@ import Cocoa
 class SettingTabViewController: NSTabViewController {
     private lazy var tabViewSizes: [NSTabViewItem: NSSize] = [:]
 
-    override func tabView(_ tabView: NSTabView, willSelect tabViewItem: NSTabViewItem?) {
-        super.tabView(tabView, willSelect: tabViewItem)
+    override func tabView(_ tabView: NSTabView, didSelect tabViewItem: NSTabViewItem?) {
+        super.tabView(tabView, didSelect: tabViewItem)
 
         guard let tabViewItem,
               let size = tabViewItem.view?.frame.size
         else {
             return
         }
-        tabViewSizes[tabViewItem] = size
-    }
 
-    override func tabView(_ tabView: NSTabView, didSelect tabViewItem: NSTabViewItem?) {
-        super.tabView(tabView, didSelect: tabViewItem)
-
-        guard let tabViewItem,
-              let size = tabViewSizes[tabViewItem],
-              let window = tabViewItem.view?.window
-        else {
+        guard let window = view.window else {
+            view.frame.size = size
             return
         }
 
@@ -41,6 +34,14 @@ class SettingTabViewController: NSTabViewController {
         let toolbarHeight = window.frame.size.height - frame.size.height
         let origin = NSPoint(x: window.frame.origin.x, y: window.frame.origin.y + toolbarHeight)
         let windowFrame = NSRect(origin: origin, size: frame.size)
-        window.setFrame(windowFrame, display: false, animate: true)
+
+        let animates = !NSWorkspace.shared.accessibilityDisplayShouldReduceMotion
+        if animates {
+            NSAnimationContext.runAnimationGroup { _ in
+                window.animator().setFrame(windowFrame, display: false)
+            }
+        } else {
+            window.setFrame(windowFrame, display: false)
+        }
     }
 }
