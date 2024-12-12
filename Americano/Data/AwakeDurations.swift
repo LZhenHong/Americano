@@ -43,6 +43,7 @@ public struct AwakeDurations: RawRepresentable {
         }
     }
 
+    @RawRepresentableArray
     private(set) var intervals: [Interval] = []
 
     private var defaultIntervals: [Interval] {
@@ -61,12 +62,14 @@ public struct AwakeDurations: RawRepresentable {
     }
 
     public var rawValue: String {
-        intervals.rawValue
+        _intervals.rawValue
     }
 
     public init?(rawValue: String) {
-        let intervals = [Interval](rawValue: rawValue) ?? []
-        self.init(intervals)
+        guard let wrapper = RawRepresentableArray<Interval>(rawValue: rawValue) else {
+            return nil
+        }
+        self.init(wrapper.wrappedValue)
     }
 
     public init(_ intervals: [Interval] = []) {

@@ -1,14 +1,26 @@
 //
-//  Array+Raw.swift
+//  RawRepresentableArray.swift
 //  Americano
 //
-//  Created by Eden on 2023/10/27.
+//  Created by Eden on 2024/12/12.
 //
 
 import Foundation
 
-extension Array: RawRepresentable where Element: Codable {
-    public typealias RawValue = String
+@propertyWrapper
+struct RawRepresentableArray<Element>: RawRepresentable where Element: Codable {
+    typealias RawValue = String
+
+    private var value: [Element] = []
+
+    var wrappedValue: [Element] {
+        get { value }
+        set { value = newValue }
+    }
+
+    init(wrappedValue: [Element]) {
+        value = wrappedValue
+    }
 
     public var rawValue: RawValue {
         do {
@@ -16,11 +28,11 @@ extension Array: RawRepresentable where Element: Codable {
             encoder.nonConformingFloatEncodingStrategy = .convertToString(positiveInfinity: "inf",
                                                                           negativeInfinity: "-inf",
                                                                           nan: "NaN")
-            let data = try encoder.encode(self)
+            let data = try encoder.encode(value)
             let val = String(data: data, encoding: .utf8)
             return val ?? "[]"
         } catch {
-            print("Encode array error: \(error)")
+            print("Encode error: \(error)")
             return "[]"
         }
     }
@@ -37,9 +49,9 @@ extension Array: RawRepresentable where Element: Codable {
                                                                             negativeInfinity: "-inf",
                                                                             nan: "NaN")
             let val = try decoder.decode([Element].self, from: data)
-            self = val
+            value = val
         } catch {
-            print("Decode array error: \(error)")
+            print("Decode error: \(error)")
             return nil
         }
     }
