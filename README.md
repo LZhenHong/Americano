@@ -32,7 +32,7 @@ You need launch Americano first.
 
 3. Use your own Team and change the Bundle Identifier.
 
-<!-- (<img src="build.png" />) -->
+<img src="build.png" />
 
 ## Contributions
 
