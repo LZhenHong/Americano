@@ -1,9 +1,9 @@
-import { exit, shell_var_get } from "std/env"
-import { parse, slice } from "std/text"
+import { env_var_get } from "std/env"
+import { parse_number, slice } from "std/text"
 
-unsafe {
-    let src_root = shell_var_get("SRCROOT")
-    let product_name = shell_var_get("PRODUCT_NAME")
+trust {
+    let src_root = env_var_get("SRCROOT")
+    let product_name = env_var_get("PRODUCT_NAME")
     cd "{src_root}/{product_name}/Resources"
 }
 
@@ -15,9 +15,9 @@ fun increase_build_number() {
         fail status
     }
 
-    let current_date = unsafe $date "+%Y%m%d"$
+    let current_date = trust $date "+%Y%m%d"$
     let previous_date = slice(previous_build, 0, 8)
-    let counter = parse(slice(previous_build, 8)) failed {
+    let counter = parse_number(slice(previous_build, 8)) failed {
         echo "Failed to parse previous build number"
         fail status
     }
@@ -45,11 +45,11 @@ fun increase_version() {
 
     echo "Previous Version: {version}"
 
-    let major = parse($echo {version} | cut -d. -f1$?)?
-    let minor = parse($echo {version} | cut -d. -f2$?)?
-    let patch = parse($echo {version} | cut -d. -f3$?)?
+    let major = parse_number($echo {version} | cut -d. -f1$?)?
+    let minor = parse_number($echo {version} | cut -d. -f2$?)?
+    let patch = parse_number($echo {version} | cut -d. -f3$?)?
 
-    let configuration = shell_var_get("CONFIGURATION")?
+    let configuration = env_var_get("CONFIGURATION")?
     if configuration == "Release" {
         patch = patch + 1
     }
@@ -69,9 +69,9 @@ main {
     increase_build_number()?
 
     let bump = false
-    unsafe silent {
-        let bump_version = shell_var_get("BUMP_VERSION")
-        bump = parse(bump_version) == 1
+    trust silent {
+        let bump_version = env_var_get("BUMP_VERSION")
+        bump = parse_number(bump_version) == 1
     }
 
     if bump {
