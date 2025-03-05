@@ -1,0 +1,67 @@
+import { echo_error, env_var_get } from "std/env"
+
+let project_name = "Americano"
+let app_name = "{project_name}.app"
+let archive_name = "{project_name}.xcarchive"
+let path = trust env_var_get("PATH")
+
+#[allow_generic_return]
+fun prepare(shell_file: Text) {
+    $set -e$?
+    $set -o pipefail$?
+
+    let root_dir = trust $dirname shell_file$
+    cd "{root_dir}/.."
+
+    trust $rm -rf Build *.xcarchive *.zip || true$
+
+    trust {
+        $rm -rf Build *.xcarchive || true$
+        $export PATH={path}:/opt/homebrew/bin/$
+    }
+}
+
+fun build() {
+    $xcodebuild \
+        -scheme {project_name} \
+        -derivedDataPath Build \
+        -configuration Release \
+        -destination 'platform=macOS' \
+        -archivePath {archive_name} \
+        clean archive \
+        CODE_SIGN_IDENTITY="" CODE_SIGN_ENTITLEMENTS="" CODE_SIGNING_ALLOWED=NO \
+        | xcbeautify$?
+}
+
+#[allow_generic_return]
+fun extract(target_dir: Text) {
+    silent $pushd {archive_name}/Products/Applications/$?
+
+    let version = $/usr/libexec/PlistBuddy -c "Print CFBundleShortVersionString" {app_name}/Contents/Info.plist$?
+
+    let zip_name = "{target_dir}/{app_name}-{version}.zip"
+    $zip -r {zip_name} {app_name}$?
+
+    silent $popd$?
+}
+
+main(args) {
+    prepare(args[0]) failed {
+        echo_error("Failed to prepare.", status)
+    }
+
+    build() failed {
+        echo_error("Failed to build.", status)
+    }
+
+    let target_dir = trust $pwd$
+    if len(args) > 1 and len(args[1]) > 0 {
+        target_dir = args[1]
+    }
+    
+    extract(target_dir) failed {
+        echo_error("Failed to extract.", status)
+    }
+
+    echo "[*] done build."
+}
