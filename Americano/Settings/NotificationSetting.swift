@@ -8,90 +8,90 @@
 import SwiftUI
 
 struct NotificationSetting: SettingContentRepresentable {
-    var tabViewImage: NSImage? {
-        NSImage(systemSymbolName: "bell.badge", accessibilityDescription: nil)
-    }
+  var tabViewImage: NSImage? {
+    NSImage(systemSymbolName: "bell.badge", accessibilityDescription: nil)
+  }
 
-    var preferredTitle: String {
-        String(localized: "Notification")
-    }
+  var preferredTitle: String {
+    String(localized: "Notification")
+  }
 
-    var view: AnyView {
-        NotificationSettingView(state: .shared)
-            .frame(width: 400)
-            .eraseToAnyView()
-    }
+  var view: AnyView {
+    NotificationSettingView(state: .shared)
+      .frame(width: 400)
+      .eraseToAnyView()
+  }
 }
 
 struct NotificationSettingView: View {
-    @ObservedObject var state: AppState
+  @ObservedObject var state: AppState
 
-    @State private var loading = true
-    @State private var status: UserNotifications.Status = .undetermined
+  @State private var loading = true
+  @State private var status: UserNotifications.Status = .undetermined
 
-    var requestPermissionView: some View {
+  var requestPermissionView: some View {
+    VStack(alignment: .leading) {
+      Text("Undetermined.")
+      Button("Request permission") {
+        Task.init {
+          try await UserNotifications.requestNotificationAuthorization()
+          status = await UserNotifications.requestAuthorizationStatus()
+        }
+      }
+    }
+  }
+
+  var denyPermissionView: some View {
+    VStack(alignment: .leading) {
+      Text("Denied.")
+        .foregroundColor(.red)
+        .bold()
+      Button("Open notification settings") {
+        Task.init {
+          try await UserNotifications.openSystemNotificationSetting()
+        }
+      }
+    }
+  }
+
+  var grantPermissionView: some View {
+    Text("Granted.")
+      .foregroundColor(.green)
+      .bold()
+  }
+
+  var body: some View {
+    Form {
+      HStack(alignment: .top) {
+        Text("Notification permission status:")
+        if loading {
+          ProgressView()
+            .scaleEffect(0.5)
+        } else {
+          switch status {
+          case .undetermined:
+            requestPermissionView
+          case .granted:
+            grantPermissionView
+          case .denied:
+            denyPermissionView
+          }
+        }
+      }
+      Divider()
+      HStack(alignment: .top) {
+        Text("Notify when:")
         VStack(alignment: .leading) {
-            Text("Undetermined.")
-            Button("Request permission") {
-                Task.init {
-                    try await UserNotifications.requestNotificationAuthorization()
-                    status = await UserNotifications.requestAuthorizationStatus()
-                }
-            }
+          Toggle("activate prevention", isOn: $state.notifyWhenActivate)
+          Toggle("deactivate prevention", isOn: $state.notifyWhenDeactivate)
         }
+      }
     }
-
-    var denyPermissionView: some View {
-        VStack(alignment: .leading) {
-            Text("Denied.")
-                .foregroundColor(.red)
-                .bold()
-            Button("Open notification settings") {
-                Task.init {
-                    try await UserNotifications.openSystemNotificationSetting()
-                }
-            }
-        }
+    .task {
+      loading = true
+      status = await UserNotifications.requestAuthorizationStatus()
+      loading = false
     }
-
-    var grantPermissionView: some View {
-        Text("Granted.")
-            .foregroundColor(.green)
-            .bold()
-    }
-
-    var body: some View {
-        Form {
-            HStack(alignment: .top) {
-                Text("Notification permission status:")
-                if loading {
-                    ProgressView()
-                        .scaleEffect(0.5)
-                } else {
-                    switch status {
-                    case .undetermined:
-                        requestPermissionView
-                    case .granted:
-                        grantPermissionView
-                    case .denied:
-                        denyPermissionView
-                    }
-                }
-            }
-            Divider()
-            HStack(alignment: .top) {
-                Text("Notify when:")
-                VStack(alignment: .leading) {
-                    Toggle("activate prevention", isOn: $state.notifyWhenActivate)
-                    Toggle("deactivate prevention", isOn: $state.notifyWhenDeactivate)
-                }
-            }
-        }
-        .task {
-            loading = true
-            status = await UserNotifications.requestAuthorizationStatus()
-            loading = false
-        }
-        .padding()
-    }
+    .padding()
+  }
 }

@@ -8,43 +8,43 @@
 import Cocoa
 
 final class AppDelegate: NSObject, NSApplicationDelegate {
-    static var bundleIdentifier: String {
-        Bundle.main.bundleIdentifier ?? "io.lzhlovesjyq.Americano"
-    }
+  static var bundleIdentifier: String {
+    Bundle.main.bundleIdentifier ?? "io.lzhlovesjyq.Americano"
+  }
 
-    func applicationWillFinishLaunching(_ notification: Notification) {
-        populateMainMenu()
-    }
+  func applicationWillFinishLaunching(_: Notification) {
+    populateMainMenu()
+  }
 
-    func applicationDidFinishLaunching(_ aNotification: Notification) {
-        URLSchemeUtils.register()
+  func applicationDidFinishLaunching(_: Notification) {
+    URLSchemeUtils.register()
 
-        CaffeinateController.shared.setUp()
-        MenuBarItemController.shared.setUp()
-    }
+    CaffeinateController.shared.setUp()
+    MenuBarItemController.shared.setUp()
+  }
 
-    func applicationWillTerminate(_ aNotification: Notification) {
-        CaffeinateController.shared.stop()
-    }
+  func applicationWillTerminate(_: Notification) {
+    CaffeinateController.shared.stop()
+  }
 
-    func applicationSupportsSecureRestorableState(_ app: NSApplication) -> Bool {
-        return true
-    }
+  func applicationSupportsSecureRestorableState(_: NSApplication) -> Bool {
+    return true
+  }
 }
 
 extension AppDelegate {
-    func populateMainMenu() {
-        let mainMenu = NSMenu(title: "Main Menu")
-        let fileMenuItem = mainMenu.addItem(withTitle: "File", action: nil, keyEquivalent: "")
-        let submenu = NSMenu(title: String(localized: "File"))
+  func populateMainMenu() {
+    let mainMenu = NSMenu(title: "Main Menu")
+    let fileMenuItem = mainMenu.addItem(withTitle: "File", action: nil, keyEquivalent: "")
+    let submenu = NSMenu(title: String(localized: "File"))
 
-        let closeWindowItem = NSMenuItem(title: String(localized: "Close Window"),
-                                         action: #selector(NSWindow.performClose(_:)),
-                                         keyEquivalent: "w")
-        submenu.addItem(closeWindowItem)
+    let closeWindowItem = NSMenuItem(title: String(localized: "Close Window"),
+                                     action: #selector(NSWindow.performClose(_:)),
+                                     keyEquivalent: "w")
+    submenu.addItem(closeWindowItem)
 
-        mainMenu.setSubmenu(submenu, for: fileMenuItem)
+    mainMenu.setSubmenu(submenu, for: fileMenuItem)
 
-        NSApp.mainMenu = mainMenu
-    }
+    NSApp.mainMenu = mainMenu
+  }
 }
