@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Written in [Amber](https://amber-lang.com/)
 # version: 0.4.0-alpha
-# date: 2025-03-05 22:14:41
+# date: 2025-03-06 20:26:21
 
 
 env_var_get__91_v0() {
@@ -66,9 +66,11 @@ fi
         __AS=$?
         export PATH=${__3_path}:/opt/homebrew/bin/;
         __AS=$?
+        export https_proxy=http://127.0.0.1:6152;export http_proxy=http://127.0.0.1:6152;export all_proxy=socks5://127.0.0.1:6153;
+        __AS=$?
 }
 build__113_v0() {
-    xcodebuild         -scheme ${__0_project_name}         -derivedDataPath Build         -configuration Release         -destination 'platform=macOS'         -archivePath ${__2_archive_name}         clean archive         CODE_SIGN_IDENTITY="" CODE_SIGN_ENTITLEMENTS="" CODE_SIGNING_ALLOWED=NO         | xcbeautify;
+    xcodebuild archive         -scheme ${__0_project_name}         -derivedDataPath Build         -configuration Release         -destination 'platform=macOS'         -archivePath ${__2_archive_name}         clean archive         CODE_SIGN_IDENTITY="" CODE_SIGN_ENTITLEMENTS="" CODE_SIGNING_ALLOWED=NO         | xcbeautify;
     __AS=$?;
 if [ $__AS != 0 ]; then
 __AF_build113_v0=''
@@ -109,20 +111,20 @@ declare -r args=("$0" "$@")
     __AS=$?;
 if [ $__AS != 0 ]; then
         echo_error__109_v0 "Failed to prepare." $__AS;
-        __AF_echo_error109_v0__50_9="$__AF_echo_error109_v0";
-        echo "$__AF_echo_error109_v0__50_9" > /dev/null 2>&1
+        __AF_echo_error109_v0__51_9="$__AF_echo_error109_v0";
+        echo "$__AF_echo_error109_v0__51_9" > /dev/null 2>&1
 fi;
-    __AF_prepare112_v0__49_5="$__AF_prepare112_v0";
-    echo "$__AF_prepare112_v0__49_5" > /dev/null 2>&1
+    __AF_prepare112_v0__50_5="$__AF_prepare112_v0";
+    echo "$__AF_prepare112_v0__50_5" > /dev/null 2>&1
     build__113_v0 ;
     __AS=$?;
 if [ $__AS != 0 ]; then
         echo_error__109_v0 "Failed to build." $__AS;
-        __AF_echo_error109_v0__54_9="$__AF_echo_error109_v0";
-        echo "$__AF_echo_error109_v0__54_9" > /dev/null 2>&1
+        __AF_echo_error109_v0__55_9="$__AF_echo_error109_v0";
+        echo "$__AF_echo_error109_v0__55_9" > /dev/null 2>&1
 fi;
-    __AF_build113_v0__53_5="$__AF_build113_v0";
-    echo "$__AF_build113_v0__53_5" > /dev/null 2>&1
+    __AF_build113_v0__54_5="$__AF_build113_v0";
+    echo "$__AF_build113_v0__54_5" > /dev/null 2>&1
     __AMBER_VAL_4=$(pwd);
     __AS=$?;
     target_dir="${__AMBER_VAL_4}"
@@ -134,9 +136,9 @@ fi
     __AS=$?;
 if [ $__AS != 0 ]; then
         echo_error__109_v0 "Failed to extract." $__AS;
-        __AF_echo_error109_v0__63_9="$__AF_echo_error109_v0";
-        echo "$__AF_echo_error109_v0__63_9" > /dev/null 2>&1
+        __AF_echo_error109_v0__64_9="$__AF_echo_error109_v0";
+        echo "$__AF_echo_error109_v0__64_9" > /dev/null 2>&1
 fi;
-    __AF_extract114_v0__62_5="$__AF_extract114_v0";
-    echo "$__AF_extract114_v0__62_5" > /dev/null 2>&1
+    __AF_extract114_v0__63_5="$__AF_extract114_v0";
+    echo "$__AF_extract114_v0__63_5" > /dev/null 2>&1
     echo "[*] done build."

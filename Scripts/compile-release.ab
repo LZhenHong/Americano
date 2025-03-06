@@ -18,11 +18,12 @@ fun prepare(shell_file: Text) {
     trust {
         $rm -rf Build *.xcarchive || true$
         $export PATH={path}:/opt/homebrew/bin/$
+        $export https_proxy=http://127.0.0.1:6152;export http_proxy=http://127.0.0.1:6152;export all_proxy=socks5://127.0.0.1:6153$
     }
 }
 
 fun build() {
-    $xcodebuild \
+    $xcodebuild archive \
         -scheme {project_name} \
         -derivedDataPath Build \
         -configuration Release \
