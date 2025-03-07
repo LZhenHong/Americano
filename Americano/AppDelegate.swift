@@ -6,11 +6,18 @@
 //
 
 import Cocoa
+import Sparkle
 
 final class AppDelegate: NSObject, NSApplicationDelegate {
   static var bundleIdentifier: String {
     Bundle.main.bundleIdentifier ?? "io.lzhlovesjyq.Americano"
   }
+
+  static let updaterController = SPUStandardUpdaterController(
+    startingUpdater: true,
+    updaterDelegate: nil,
+    userDriverDelegate: nil
+  )
 
   func applicationWillFinishLaunching(_: Notification) {
     populateMainMenu()

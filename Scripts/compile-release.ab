@@ -44,7 +44,7 @@ fun extract(target_dir: Text) {
 
     let version = $/usr/libexec/PlistBuddy -c "Print CFBundleShortVersionString" {app_name}/Contents/Info.plist$?
 
-    let zip_name = "{target_dir}/{project_name}-{version}.zip"
+    let zip_name = "{target_dir}/{project_name}.zip"
     $zip -r {zip_name} {app_name}$?
 
     silent $popd$?

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Written in [Amber](https://amber-lang.com/)
 # version: 0.4.0-alpha
-# date: 2025-03-06 22:07:07
+# date: 2025-03-07 15:53:00
 
 dir_exists__32_v0() {
     local path=$1
@@ -115,7 +115,7 @@ __AF_extract115_v0=''
 return $__AS
 fi;
     local version="${__AMBER_VAL_3}"
-    local zip_name="${target_dir}/${__0_project_name}-${version}.zip"
+    local zip_name="${target_dir}/${__0_project_name}.zip"
     zip -r ${zip_name} ${__2_app_name};
     __AS=$?;
 if [ $__AS != 0 ]; then
