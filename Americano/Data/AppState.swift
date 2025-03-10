@@ -10,43 +10,43 @@ import SwiftUI
 
 @storage
 final class AppState: ObservableObject {
-    @nonstorage
-    @Published var preventSleep = false
-    @nonstorage
-    @Published var launchAtLogin = LaunchAtLogin.isEnabled
+  @nonstorage
+  @Published var preventSleep = false
+  @nonstorage
+  @Published var launchAtLogin = LaunchAtLogin.isEnabled
 
-    // MARK: - General
+  // MARK: - General
 
-    var activateOnLaunch = false
-    var activateScreenSaver = false
-    var allowDisplaySleep = false
+  var activateOnLaunch = false
+  var activateScreenSaver = false
+  var allowDisplaySleep = false
 
-    // MARK: - Durations
+  // MARK: - Durations
 
-    var awakeDurations = AwakeDurations()
+  var awakeDurations = AwakeDurations()
 
-    // MARK: - Battery
+  // MARK: - Battery
 
-    var batteryMonitorEnable = false
-    var batteryLowThreshold = 50
-    var lowPowerMonitorEnable = false
-    var activatePlug = false
-    var deactivateUnplug = false
+  var batteryMonitorEnable = false
+  var batteryLowThreshold = 50
+  var lowPowerMonitorEnable = false
+  var activatePlug = false
+  var deactivateUnplug = false
 
-    // MARK: - Nofitication
+  // MARK: - Nofitication
 
-    var notifyWhenActivate = false
-    var notifyWhenDeactivate = false
+  var notifyWhenActivate = false
+  var notifyWhenDeactivate = false
 
-    static let shared = AppState()
+  static let shared = AppState()
 
-    fileprivate init() {}
+  fileprivate init() {}
 }
 
 #if DEBUG
-extension AppState {
+  extension AppState {
     static var sample: AppState {
-        .shared
+      .shared
     }
-}
+  }
 #endif

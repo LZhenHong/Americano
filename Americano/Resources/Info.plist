@@ -15,5 +15,14 @@
 			</array>
 		</dict>
 	</array>
+	<key>SUPublicEDKey</key>
+	<string>YaUM0Vhf56BC8RDStiPVLLXr8etVciAvfl6/MnZ+1xI=</string>
+	<key>SUFeedURL</key>
+	<string>https://raw.githubusercontent.com/LZhenHong/Americano/main/appcast.xml</string>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
 </dict>
 </plist>

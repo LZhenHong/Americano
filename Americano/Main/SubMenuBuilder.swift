@@ -8,15 +8,15 @@
 import Cocoa
 
 enum SubMenuBuilder {
-    static func build(with intervals: [AwakeDurations.Interval]) -> NSMenu {
-        NSMenu {
-            for interval in intervals {
-                MenuItemBuilder()
-                    .title(interval.localizedTime)
-                    .onSelect {
-                        CaffeinateController.shared.start(interval: interval.time)
-                    }
-            }
-        }
+  static func build(with intervals: [AwakeDurations.Interval]) -> NSMenu {
+    NSMenu {
+      for interval in intervals {
+        MenuItemBuilder()
+          .title(interval.localizedTime)
+          .onSelect {
+            CaffeinateController.shared.start(interval: interval.time)
+          }
+      }
     }
+  }
 }

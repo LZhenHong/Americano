@@ -8,29 +8,29 @@
 import Foundation
 
 protocol BinWrapper {
-    var binPath: String { get }
-    var process: Process? { get }
+  var binPath: String { get }
+  var process: Process? { get }
 }
 
 extension BinWrapper {
-    var process: Process? {
-        nil
-    }
+  var process: Process? {
+    nil
+  }
 
-    var running: Bool {
-        guard let running = process?.isRunning else {
-            return false
-        }
-        return running
+  var running: Bool {
+    guard let running = process?.isRunning else {
+      return false
     }
+    return running
+  }
 
-    var isValid: Bool {
-        FileManager.default.fileExists(atPath: binPath)
-    }
+  var isValid: Bool {
+    FileManager.default.fileExists(atPath: binPath)
+  }
 
-    func newProcess() -> Process {
-        let process = Process()
-        process.launchPath = binPath
-        return process
-    }
+  func newProcess() -> Process {
+    let process = Process()
+    process.launchPath = binPath
+    return process
+  }
 }

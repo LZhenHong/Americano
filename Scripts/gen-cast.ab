@@ -1,0 +1,69 @@
+import { echo_error, env_var_get } from "std/env"
+import { file_exists, file_chmod } from "std/fs"
+
+let user_name = "LZhenHong"
+let project_name = "Americano"
+let app_name = "{project_name}.app"
+let archive_name = "{project_name}.xcarchive"
+let release_folder = "./Releases"
+let version = "1.0.0"
+let path = trust env_var_get("PATH")
+
+#[allow_generic_return]
+fun prepare(shell_file: Text) {
+    $set -e$?
+    $set -o pipefail$?
+
+    let root_dir = trust $dirname shell_file$
+    cd "{root_dir}/.."
+
+    trust {
+        $export PATH={path}:/opt/homebrew/bin/$
+        $export https_proxy=http://127.0.0.1:6152;export http_proxy=http://127.0.0.1:6152;export all_proxy=socks5://127.0.0.1:6153$
+    }
+
+    silent $pushd {archive_name}/Products/Applications/$?
+    version = $/usr/libexec/PlistBuddy -c "Print CFBundleShortVersionString" {app_name}/Contents/Info.plist$?
+    silent $popd$?
+}
+
+fun gen_cast() {
+    let gen_path = "./Build/SourcePackages/artifacts/sparkle/Sparkle/bin/generate_appcast"
+    if file_exists(gen_path) {
+        if file_chmod(gen_path, "+x") {
+            let appcast_file = "./appcast.xml"
+            let download_prefix = "https://github.com/{user_name}/{project_name}/releases/download/{version}/"
+            ${gen_path} -o {appcast_file} --download-url-prefix {download_prefix} {release_folder}$?
+        } else {
+            echo "[*] generate_appcast chmod failed."
+        }
+    } else {
+        echo "[*] generate_appcast not found."
+    }
+}
+
+fun git_commit() {
+    trust {
+        $git add appcast.xml$
+        $git commit -m "[UPDATE] Version {version}."$
+        $git tag -a v{version} -m "Version {version}."$
+    }
+
+    if status == 0 {
+        echo "[*] git commit success."
+    } else {
+        echo_error("git commit failed.", status)
+    }
+}
+
+main(input_args) {
+    prepare(input_args[0]) failed {
+        echo_error("Failed to prepare.", status)
+    }
+
+    gen_cast() failed {
+        echo_error("Failed to generate appcast.", status)
+    }
+
+    git_commit()
+}
