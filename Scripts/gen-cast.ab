@@ -32,7 +32,7 @@ fun gen_cast() {
     if file_exists(gen_path) {
         if file_chmod(gen_path, "+x") {
             let appcast_file = "./appcast.xml"
-            let download_prefix = "https://github.com/{user_name}/{project_name}/releases/download/{version}/"
+            let download_prefix = "https://github.com/{user_name}/{project_name}/releases/download/v{version}/"
             ${gen_path} -o {appcast_file} --download-url-prefix {download_prefix} {release_folder}$?
         } else {
             echo "[*] generate_appcast chmod failed."

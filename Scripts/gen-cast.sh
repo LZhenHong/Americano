@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Written in [Amber](https://amber-lang.com/)
 # version: 0.4.0-alpha
-# date: 2025-03-10 15:51:50
+# date: 2025-03-10 16:24:33
 
 file_exists__33_v0() {
     local path=$1
@@ -121,7 +121,7 @@ gen_cast__115_v0() {
         __AF_file_chmod39_v0__33_12="$__AF_file_chmod39_v0";
         if [ "$__AF_file_chmod39_v0__33_12" != 0 ]; then
             local appcast_file="./appcast.xml"
-            local download_prefix="https://github.com/${__0_user_name}/${__1_project_name}/releases/download/${__5_version}/"
+            local download_prefix="https://github.com/${__0_user_name}/${__1_project_name}/releases/download/v${__5_version}/"
             ${gen_path} -o ${appcast_file} --download-url-prefix ${download_prefix} ${__4_release_folder};
             __AS=$?;
 if [ $__AS != 0 ]; then
