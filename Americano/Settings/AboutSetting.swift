@@ -6,7 +6,9 @@
 //
 
 import SwiftUI
-import Sparkle
+#if USE_SPARKLE
+  import Sparkle
+#endif
 
 struct AboutSetting: SettingContentRepresentable {
   var tabViewImage: NSImage? {
@@ -28,10 +30,6 @@ struct AboutSettingView: View {
     "\(Bundle.main.appVersion ?? "1.0.0") (\(Bundle.main.buildVersion ?? "1"))"
   }
 
-  var updater: SPUUpdater {
-    AppDelegate.updaterController.updater
-  }
-
   var body: some View {
     VStack {
       Image(nsImage: NSApp.applicationIconImage)
@@ -39,13 +37,15 @@ struct AboutSettingView: View {
         .font(.title)
         .fontWeight(.bold)
         .padding(.top, -5)
-      Button {
-        updater.checkForUpdates()
-      } label: {
-        Text("Check for Updates")
-      }
-      .disabled(!updater.canCheckForUpdates)
-      .padding(.bottom, 5)
+      #if USE_SPARKLE
+        Button {
+          AppDelegate.updaterController.updater.checkForUpdates()
+        } label: {
+          Text("Check for Updates")
+        }
+        .disabled(!AppDelegate.updaterController.updater.canCheckForUpdates)
+        .padding(.bottom, 5)
+      #endif
       Text("Version: \(displayVersion)")
         .font(.subheadline)
         .foregroundStyle(.secondary)

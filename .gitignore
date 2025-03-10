@@ -22,6 +22,8 @@ DerivedData/
 *.perspectivev3
 !default.perspectivev3
 *.xcarchive
+Archive/
+Releases/
 
 ## Obj-C/Swift specific
 *.hmap
