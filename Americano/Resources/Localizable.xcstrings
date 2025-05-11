@@ -34,13 +34,13 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@已经存在。"
+            "value" : "%@ 已存在。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%@已經存在。"
+            "value" : "%@ 已經存在。"
           }
         }
       }
@@ -122,13 +122,13 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "启动后防止休眠"
+            "value" : "启动时防休眠"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "啟動後防止休眠"
+            "value" : "啟動時防休眠"
           }
         }
       }
@@ -144,13 +144,13 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "充电时防止休眠"
+            "value" : "充电时防休眠"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "充電時防止休眠"
+            "value" : "充電時防休眠"
           }
         }
       }
@@ -188,13 +188,13 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "添加自定义持续时间"
+            "value" : "添加自定义时长"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "新增自訂持續時間"
+            "value" : "新增自訂時長"
           }
         }
       }
@@ -232,13 +232,13 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "允许 Mac 显示器进入休眠状态。"
+            "value" : "允许 Mac 显示器休眠。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "允許 Mac 顯示器進入休眠狀態。"
+            "value" : "允許 Mac 顯示器休眠。"
           }
         }
       }
@@ -254,13 +254,13 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "当 Mac 连接到充电器时开启防止休眠。"
+            "value" : "Mac 连接电源时自动防休眠。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "當 Mac 連接到充電器時開啟防止休眠。"
+            "value" : "Mac 連接電源時自動防休眠。"
           }
         }
       }
@@ -276,13 +276,13 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "当 Mac 未连接到充电器时自动结束防止休眠。"
+            "value" : "Mac 未连接电源时自动结束防休眠。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "當 Mac 未連接到充電器時自動結束防止休眠。"
+            "value" : "Mac 未連接電源時自動結束防休眠。"
           }
         }
       }
@@ -298,13 +298,13 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "当 Mac 处于低电量模式时自动结束防止休眠。"
+            "value" : "Mac 进入低电量模式时自动结束防休眠。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "当 Mac 处于低电量模式时自动结束防止休眠。"
+            "value" : "Mac 進入低電量模式時自動結束防休眠。"
           }
         }
       }
@@ -320,13 +320,13 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "当 Mac 登录时自动启动应用程序。"
+            "value" : "Mac 启动时自动打开应用。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "当 Mac 登录时自动启动应用程序。"
+            "value" : "Mac 啟動時自動開啟應用。"
           }
         }
       }
@@ -431,7 +431,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "當前電池電量：%lld%%"
+            "value" : "目前電池電量：%lld%%"
           }
         }
       }
@@ -447,13 +447,13 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "结束防止休眠"
+            "value" : "结束防休眠"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "結束防止休眠"
+            "value" : "結束防休眠"
           }
         }
       }
@@ -469,13 +469,13 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "结束防止休眠"
+            "value" : "结束防休眠"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "結束防止休眠"
+            "value" : "結束防休眠"
           }
         }
       }
@@ -491,13 +491,13 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "当电池电量低于结束防止休眠："
+            "value" : "当电池低于此电量时结束防休眠："
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "當電池電量低於時結束防止休眠："
+            "value" : "當電池低於此電量時結束防休眠："
           }
         }
       }
@@ -513,13 +513,13 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "当电池电量低时结束防止休眠"
+            "value" : "当电池电量低时结束防休眠"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "當電池電量低時結束防止休眠"
+            "value" : "當電池電量低時結束防休眠"
           }
         }
       }
@@ -535,13 +535,13 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "低电量结束防止休眠"
+            "value" : "低电量时结束防休眠"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "低電量結束防止休眠"
+            "value" : "低電量時結束防休眠"
           }
         }
       }
@@ -557,13 +557,13 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "未充电结束防止休眠"
+            "value" : "未充电时结束防休眠"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "未充電時防止休眠"
+            "value" : "未充電時結束防休眠"
           }
         }
       }
@@ -585,7 +585,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "默認"
+            "value" : "預設"
           }
         }
       }
@@ -645,13 +645,13 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "持续时间"
+            "value" : "时长"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "持續時間"
+            "value" : "時長"
           }
         }
       }
@@ -667,13 +667,13 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "防止休眠结束进入屏幕保护"
+            "value" : "防休眠结束后进入屏保"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "防止休眠結束後進入屏幕保護"
+            "value" : "防休眠結束後進入螢幕保護"
           }
         }
       }
@@ -778,13 +778,13 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "如果手动开启防止休眠，此设置将被忽略。"
+            "value" : "手动开启防休眠时，此设置无效。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "如果手動啟動防止休眠，此設置將被忽略。"
+            "value" : "手動啟動防休眠時，此設置無效。"
           }
         }
       }
@@ -800,13 +800,13 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "当防止休眠结束时立即进入屏幕保护程序。"
+            "value" : "防休眠结束后立即进入屏保。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "當防止休眠結束時立即進入螢幕保護程式。"
+            "value" : "防休眠結束後立即進入螢幕保護。"
           }
         }
       }
@@ -850,7 +850,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "登錄時啟動"
+            "value" : "登入時啟動"
           }
         }
       }
@@ -910,13 +910,13 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "通知权限状态："
+            "value" : "通知权限："
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "通知权限狀態："
+            "value" : "通知權限："
           }
         }
       }
@@ -960,7 +960,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "開啟通知設置"
+            "value" : "開啟通知設定"
           }
         }
       }
@@ -976,13 +976,13 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "防止休眠时长"
+            "value" : "防休眠时长"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "防止休眠時長"
+            "value" : "防休眠時長"
           }
         }
       }
@@ -1064,13 +1064,13 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "重置为默认值"
+            "value" : "重置为默认"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "重設為預設值"
+            "value" : "重設為預設"
           }
         }
       }
@@ -1108,13 +1108,13 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "设置为默认"
+            "value" : "设为默认"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "設定為預設"
+            "value" : "設為預設"
           }
         }
       }
@@ -1136,7 +1136,7 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "設置"
+            "value" : "設定"
           }
         }
       }
@@ -1196,13 +1196,13 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "防止休眠将会一直保持，除非您手动结束。"
+            "value" : "防休眠将持续，除非手动结束。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "防止休眠將會一直保持，除非您手動結束。"
+            "value" : "防休眠將持續，除非手動結束。"
           }
         }
       }
@@ -1218,13 +1218,13 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "防止休眠将在%@后结束。"
+            "value" : "防休眠将在 %@ 后结束。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : " 防止休眠將在%@後結束。"
+            "value" : "防休眠將於 %@ 後結束。"
           }
         }
       }
@@ -1262,13 +1262,13 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "此操作会删除所有自定义时长。"
+            "value" : "此操作将删除所有自定义时长。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "此操作會刪除所有自訂持續時間。"
+            "value" : "此操作將刪除所有自訂時長。"
           }
         }
       }
@@ -1306,13 +1306,13 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "版本: %@"
+            "value" : "版本：%@"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "版本: %@"
+            "value" : "版本：%@"
           }
         }
       }
