@@ -94,3 +94,5 @@ iOSInjectionProject/
 
 # macOS
 .DS_Store
+
+buildServer.json

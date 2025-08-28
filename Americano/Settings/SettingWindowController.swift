@@ -35,7 +35,7 @@ final class SettingWindowController: NSWindowController {
     fatalError("init(coder:) can not been called.")
   }
 
-  func show(_ level: NSWindow.Level = .screenSaver) {
+  func show(_ level: NSWindow.Level = .normal) {
     guard let window else { return }
 
     NSApp.activate(ignoringOtherApps: true)
@@ -45,6 +45,7 @@ final class SettingWindowController: NSWindowController {
     }
     window.level = level
     window.makeKeyAndOrderFront(NSApp)
+    window.orderFrontRegardless()
     showWindow(self)
   }
 }
