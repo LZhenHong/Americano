@@ -23,7 +23,11 @@ fun increase_build_number() {
     }
 
     let new_counter = (current_date == previous_date) then counter + 1 else 1
-    let new_build = current_date + new_counter as Text
+    let counter_suffix = $printf "%03d" {new_counter}$ failed {
+        echo "Failed to format build number"
+        fail status
+    }
+    let new_build = current_date + counter_suffix
 
     $sed -i -e "/BUILD_NUMBER =/ s/= .*/= {new_build}/" {file_name}$ failed {
         echo "Failed to update build number"

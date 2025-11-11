@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Written in [Amber](https://amber-lang.com/)
 # version: 0.4.0-alpha
-# date: 2025-02-17 10:05:19
+# date: 2025-11-11 11:58:55
 parse_number__12_v0() {
     local text=$1
      [ -n "${text}" ] && [ "${text}" -eq "${text}" ] 2>/dev/null ;
@@ -79,7 +79,15 @@ fi;
     __AF_parse_number12_v0__20_19="$__AF_parse_number12_v0";
     local counter="$__AF_parse_number12_v0__20_19"
     local new_counter=$(if [ $([ "_${current_date}" != "_${previous_date}" ]; echo $?) != 0 ]; then echo $(echo ${counter} '+' 1 | bc -l | sed '/\./ s/\.\{0,1\}0\{1,\}$//'); else echo 1; fi)
-    local new_build="${current_date}"${new_counter}
+    __AMBER_VAL_4=$(printf "%03d" ${new_counter});
+    __AS=$?;
+if [ $__AS != 0 ]; then
+        echo "Failed to format build number"
+        __AF_increase_build_number113_v0='';
+        return $__AS
+fi;
+    local counter_suffix="${__AMBER_VAL_4}"
+    local new_build="${current_date}""${counter_suffix}"
     sed -i -e "/BUILD_NUMBER =/ s/= .*/= ${new_build}/" ${__0_file_name};
     __AS=$?;
 if [ $__AS != 0 ]; then
@@ -97,30 +105,16 @@ fi
     echo "Bumped Build Number: ${new_build}"
 }
 increase_version__114_v0() {
-    __AMBER_VAL_4=$(awk -F "=" '/VERSION/ {print $2}' ${__0_file_name} |         tr -d ' ');
+    __AMBER_VAL_5=$(awk -F "=" '/VERSION/ {print $2}' ${__0_file_name} |         tr -d ' ');
     __AS=$?;
 if [ $__AS != 0 ]; then
         echo "Failed to get previous version"
         __AF_increase_version114_v0='';
         return $__AS
 fi;
-    local version="${__AMBER_VAL_4}"
+    local version="${__AMBER_VAL_5}"
     echo "Previous Version: ${version}"
-    __AMBER_VAL_5=$(echo ${version} | cut -d. -f1);
-    __AS=$?;
-if [ $__AS != 0 ]; then
-__AF_increase_version114_v0=''
-return $__AS
-fi;
-    parse_number__12_v0 "${__AMBER_VAL_5}";
-    __AS=$?;
-if [ $__AS != 0 ]; then
-__AF_increase_version114_v0=''
-return $__AS
-fi;
-    __AF_parse_number12_v0__48_17="$__AF_parse_number12_v0";
-    local major="$__AF_parse_number12_v0__48_17"
-    __AMBER_VAL_6=$(echo ${version} | cut -d. -f2);
+    __AMBER_VAL_6=$(echo ${version} | cut -d. -f1);
     __AS=$?;
 if [ $__AS != 0 ]; then
 __AF_increase_version114_v0=''
@@ -132,9 +126,9 @@ if [ $__AS != 0 ]; then
 __AF_increase_version114_v0=''
 return $__AS
 fi;
-    __AF_parse_number12_v0__49_17="$__AF_parse_number12_v0";
-    local minor="$__AF_parse_number12_v0__49_17"
-    __AMBER_VAL_7=$(echo ${version} | cut -d. -f3);
+    __AF_parse_number12_v0__52_17="$__AF_parse_number12_v0";
+    local major="$__AF_parse_number12_v0__52_17"
+    __AMBER_VAL_7=$(echo ${version} | cut -d. -f2);
     __AS=$?;
 if [ $__AS != 0 ]; then
 __AF_increase_version114_v0=''
@@ -146,16 +140,30 @@ if [ $__AS != 0 ]; then
 __AF_increase_version114_v0=''
 return $__AS
 fi;
-    __AF_parse_number12_v0__50_17="$__AF_parse_number12_v0";
-    local patch="$__AF_parse_number12_v0__50_17"
+    __AF_parse_number12_v0__53_17="$__AF_parse_number12_v0";
+    local minor="$__AF_parse_number12_v0__53_17"
+    __AMBER_VAL_8=$(echo ${version} | cut -d. -f3);
+    __AS=$?;
+if [ $__AS != 0 ]; then
+__AF_increase_version114_v0=''
+return $__AS
+fi;
+    parse_number__12_v0 "${__AMBER_VAL_8}";
+    __AS=$?;
+if [ $__AS != 0 ]; then
+__AF_increase_version114_v0=''
+return $__AS
+fi;
+    __AF_parse_number12_v0__54_17="$__AF_parse_number12_v0";
+    local patch="$__AF_parse_number12_v0__54_17"
     env_var_get__91_v0 "CONFIGURATION";
     __AS=$?;
 if [ $__AS != 0 ]; then
 __AF_increase_version114_v0=''
 return $__AS
 fi;
-    __AF_env_var_get91_v0__52_25="${__AF_env_var_get91_v0}";
-    local configuration="${__AF_env_var_get91_v0__52_25}"
+    __AF_env_var_get91_v0__56_25="${__AF_env_var_get91_v0}";
+    local configuration="${__AF_env_var_get91_v0__56_25}"
     if [ $([ "_${configuration}" != "_Release" ]; echo $?) != 0 ]; then
         patch=$(echo ${patch} '+' 1 | bc -l | sed '/\./ s/\.\{0,1\}0\{1,\}$//')
 fi
@@ -183,17 +191,17 @@ if [ $__AS != 0 ]; then
 
 exit $__AS
 fi;
-    __AF_increase_build_number113_v0__69_5="$__AF_increase_build_number113_v0";
-    echo "$__AF_increase_build_number113_v0__69_5" > /dev/null 2>&1
+    __AF_increase_build_number113_v0__73_5="$__AF_increase_build_number113_v0";
+    echo "$__AF_increase_build_number113_v0__73_5" > /dev/null 2>&1
     bump=0
             env_var_get__91_v0 "BUMP_VERSION" > /dev/null 2>&1;
         __AS=$?;
-        __AF_env_var_get91_v0__73_28="${__AF_env_var_get91_v0}";
-        bump_version="${__AF_env_var_get91_v0__73_28}"
+        __AF_env_var_get91_v0__77_28="${__AF_env_var_get91_v0}";
+        bump_version="${__AF_env_var_get91_v0__77_28}"
         parse_number__12_v0 "${bump_version}" > /dev/null 2>&1;
         __AS=$?;
-        __AF_parse_number12_v0__74_16="$__AF_parse_number12_v0";
-        bump=$(echo "$__AF_parse_number12_v0__74_16" '==' 1 | bc -l | sed '/\./ s/\.\{0,1\}0\{1,\}$//')
+        __AF_parse_number12_v0__78_16="$__AF_parse_number12_v0";
+        bump=$(echo "$__AF_parse_number12_v0__78_16" '==' 1 | bc -l | sed '/\./ s/\.\{0,1\}0\{1,\}$//')
     if [ ${bump} != 0 ]; then
         increase_version__114_v0 ;
         __AS=$?;
@@ -201,8 +209,8 @@ if [ $__AS != 0 ]; then
 
 exit $__AS
 fi;
-        __AF_increase_version114_v0__78_9="$__AF_increase_version114_v0";
-        echo "$__AF_increase_version114_v0__78_9" > /dev/null 2>&1
+        __AF_increase_version114_v0__82_9="$__AF_increase_version114_v0";
+        echo "$__AF_increase_version114_v0__82_9" > /dev/null 2>&1
 else
         echo "Skipping version bump"
 fi
