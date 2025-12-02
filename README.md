@@ -18,7 +18,7 @@ You need launch Americano first.
 
 ## System requirements
 
-- macOS 13.5 and later
+- macOS 14.0 and later
 
 ## How to build
 

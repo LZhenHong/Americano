@@ -10,6 +10,7 @@
 		F225ADD42BF119970024283A /* Storage in Frameworks */ = {isa = PBXBuildFile; productRef = F225ADD32BF119970024283A /* Storage */; };
 		F2811B322B678C0300C85719 /* Storage in Frameworks */ = {isa = PBXBuildFile; productRef = F2811B312B678C0300C85719 /* Storage */; };
 		F290F3652D79A86000BC2F65 /* Sparkle in Frameworks */ = {isa = PBXBuildFile; productRef = F290F3642D79A86000BC2F65 /* Sparkle */; };
+		F2AC9A2B2EDEC45700A5EDD1 /* SettingsKit in Frameworks */ = {isa = PBXBuildFile; productRef = F2AC9A2A2EDEC45700A5EDD1 /* SettingsKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F2AC9A2B2EDEC45700A5EDD1 /* SettingsKit in Frameworks */,
 				F290F3652D79A86000BC2F65 /* Sparkle in Frameworks */,
 				F225ADD42BF119970024283A /* Storage in Frameworks */,
 				F2811B322B678C0300C85719 /* Storage in Frameworks */,
@@ -84,6 +86,7 @@
 				F2811B312B678C0300C85719 /* Storage */,
 				F225ADD32BF119970024283A /* Storage */,
 				F290F3642D79A86000BC2F65 /* Sparkle */,
+				F2AC9A2A2EDEC45700A5EDD1 /* SettingsKit */,
 			);
 			productName = Americano;
 			productReference = F2CACC482ABACDA600CB2BE4 /* Americano.app */;
@@ -97,7 +100,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1500;
-				LastUpgradeCheck = 1540;
+				LastUpgradeCheck = 2610;
 				TargetAttributes = {
 					F2CACC472ABACDA600CB2BE4 = {
 						CreatedOnToolsVersion = 15.0;
@@ -118,6 +121,7 @@
 			packageReferences = (
 				F225ADD22BF119970024283A /* XCRemoteSwiftPackageReference "StorageMacro" */,
 				F290F3632D79A86000BC2F65 /* XCRemoteSwiftPackageReference "Sparkle" */,
+				F2AC9A292EDEC45700A5EDD1 /* XCRemoteSwiftPackageReference "SettingsKit" */,
 			);
 			productRefGroup = F2CACC492ABACDA600CB2BE4 /* Products */;
 			projectDirPath = "";
@@ -186,6 +190,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = V65YCRQZ2M;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -204,11 +209,12 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MACOSX_DEPLOYMENT_TARGET = 13.5;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -251,6 +257,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = V65YCRQZ2M;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -263,10 +270,11 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MACOSX_DEPLOYMENT_TARGET = 13.5;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 			};
 			name = Release;
@@ -285,7 +293,6 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = "${BUILD_NUMBER}";
 				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_TEAM = V65YCRQZ2M;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Americano/Resources/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Americano;
@@ -320,7 +327,6 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = "${BUILD_NUMBER}";
 				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_TEAM = V65YCRQZ2M;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Americano/Resources/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Americano;
@@ -370,7 +376,7 @@
 			repositoryURL = "https://github.com/LZhenHong/StorageMacro";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 0.0.1;
+				minimumVersion = 0.0.2;
 			};
 		};
 		F290F3632D79A86000BC2F65 /* XCRemoteSwiftPackageReference "Sparkle" */ = {
@@ -379,6 +385,14 @@
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 2.7.0;
+			};
+		};
+		F2AC9A292EDEC45700A5EDD1 /* XCRemoteSwiftPackageReference "SettingsKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/LZhenHong/SettingsKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.0.1;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -397,6 +411,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = F290F3632D79A86000BC2F65 /* XCRemoteSwiftPackageReference "Sparkle" */;
 			productName = Sparkle;
+		};
+		F2AC9A2A2EDEC45700A5EDD1 /* SettingsKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F2AC9A292EDEC45700A5EDD1 /* XCRemoteSwiftPackageReference "SettingsKit" */;
+			productName = SettingsKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
