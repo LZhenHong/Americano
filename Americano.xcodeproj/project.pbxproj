@@ -376,7 +376,7 @@
 			repositoryURL = "https://github.com/LZhenHong/StorageMacro";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 0.0.2;
+				minimumVersion = 0.0.3;
 			};
 		};
 		F290F3632D79A86000BC2F65 /* XCRemoteSwiftPackageReference "Sparkle" */ = {
@@ -392,7 +392,7 @@
 			repositoryURL = "https://github.com/LZhenHong/SettingsKit.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 0.0.1;
+				minimumVersion = 0.0.3;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

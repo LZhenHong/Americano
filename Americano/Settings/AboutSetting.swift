@@ -5,12 +5,13 @@
 //  Created by Eden on 2023/10/19.
 //
 
+import SettingsKit
 import SwiftUI
 #if USE_SPARKLE
   import Sparkle
 #endif
 
-struct AboutSetting: SettingContentRepresentable {
+struct AboutSetting: SettingsPane {
   var tabViewImage: NSImage? {
     NSImage(systemSymbolName: "info.circle", accessibilityDescription: nil)
   }
@@ -19,9 +20,8 @@ struct AboutSetting: SettingContentRepresentable {
     String(localized: "About")
   }
 
-  var view: AnyView {
+  var view: some View {
     AboutSettingView()
-      .eraseToAnyView()
   }
 }
 

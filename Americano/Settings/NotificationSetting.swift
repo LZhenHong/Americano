@@ -5,9 +5,10 @@
 //  Created by Eden on 2024/2/25.
 //
 
+import SettingsKit
 import SwiftUI
 
-struct NotificationSetting: SettingContentRepresentable {
+struct NotificationSetting: SettingsPane {
   var tabViewImage: NSImage? {
     NSImage(systemSymbolName: "bell.badge", accessibilityDescription: nil)
   }
@@ -16,10 +17,9 @@ struct NotificationSetting: SettingContentRepresentable {
     String(localized: "Notification")
   }
 
-  var view: AnyView {
+  var view: some View {
     NotificationSettingView(state: .shared)
       .frame(width: 400)
-      .eraseToAnyView()
   }
 }
 
@@ -33,7 +33,7 @@ struct NotificationSettingView: View {
     VStack(alignment: .leading) {
       Text("Undetermined.")
       Button("Request permission") {
-        Task.init {
+        Task {
           try await UserNotifications.requestNotificationAuthorization()
           status = await UserNotifications.requestAuthorizationStatus()
         }
@@ -47,7 +47,7 @@ struct NotificationSettingView: View {
         .foregroundColor(.red)
         .bold()
       Button("Open notification settings") {
-        Task.init {
+        Task {
           try await UserNotifications.openSystemNotificationSetting()
         }
       }

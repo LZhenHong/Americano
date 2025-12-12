@@ -195,7 +195,7 @@ final class CaffeinateController {
 extension CaffeinateController: CaffeinateDelegate {
   func caffeinateDidStart(_: CaffeinateWrapper, interval: TimeInterval) {
     guard AppState.shared.notifyWhenActivate else { return }
-    Task.init {
+    Task {
       let body = interval.isInfinite
         ? String(localized: "Sleep prevention will keep unless manually stopped.")
         : String(localized: "Sleep prevention will stop after \(interval.localizedTime).")
@@ -205,7 +205,7 @@ extension CaffeinateController: CaffeinateDelegate {
 
   func caffeinateDidTerminate(_: CaffeinateWrapper) {
     guard AppState.shared.notifyWhenDeactivate else { return }
-    Task.init {
+    Task {
       try await UserNotifications.post(String(localized: "Sleep prevention deactivate."))
     }
   }

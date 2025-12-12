@@ -30,7 +30,7 @@ extension BinWrapper {
 
   func newProcess() -> Process {
     let process = Process()
-    process.launchPath = binPath
+    process.executableURL = URL(fileURLWithPath: binPath)
     return process
   }
 }

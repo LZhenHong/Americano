@@ -5,9 +5,10 @@
 //  Created by Eden on 2024/1/9.
 //
 
+import SettingsKit
 import SwiftUI
 
-struct BatterySetting: SettingContentRepresentable {
+struct BatterySetting: SettingsPane {
   var tabViewImage: NSImage? {
     NSImage(systemSymbolName: BatteryMonitor.shared.capacitySymbol, accessibilityDescription: nil)
   }
@@ -20,10 +21,9 @@ struct BatterySetting: SettingContentRepresentable {
     BatteryMonitor.shared.hasBattery
   }
 
-  var view: AnyView {
+  var view: some View {
     BatterySettingView(state: .shared)
       .frame(width: 400)
-      .eraseToAnyView()
   }
 }
 
@@ -43,7 +43,7 @@ struct BatterySettingView: View {
   var body: some View {
     Form {
       Toggle(batteryText, isOn: $state.batteryMonitorEnable)
-        .onChange(of: state.batteryMonitorEnable) { enable in
+        .onChange(of: state.batteryMonitorEnable) { _, enable in
           guard enable,
                 BatteryMonitor.shared.currentCapacity < AppState.shared.batteryLowThreshold
           else {
@@ -75,7 +75,7 @@ struct BatterySettingView: View {
 
       Divider()
       Toggle("Deactivate prevention when Low Power Mode", isOn: $state.lowPowerMonitorEnable)
-        .onChange(of: state.lowPowerMonitorEnable) { enable in
+        .onChange(of: state.lowPowerMonitorEnable) { _, enable in
           guard enable, BatteryMonitor.shared.isLowPowerModeEnabled else { return }
           stopCaffeinate()
         }
@@ -83,14 +83,14 @@ struct BatterySettingView: View {
         .settingPropmt()
       Divider()
       Toggle("Activate prevention when charging", isOn: $state.activatePlug)
-        .onChange(of: state.activatePlug) { activate in
+        .onChange(of: state.activatePlug) { _, activate in
           guard activate, BatteryMonitor.shared.isCharging else { return }
           CaffeinateController.shared.startIfAllowed()
         }
       Text("Automatically activate prevention when Mac is connected to the charger.")
         .settingPropmt()
       Toggle("Deactivate prevention when not charging", isOn: $state.deactivateUnplug)
-        .onChange(of: state.deactivateUnplug) { deactivate in
+        .onChange(of: state.deactivateUnplug) { _, deactivate in
           guard deactivate, !BatteryMonitor.shared.isCharging else { return }
           stopCaffeinate()
         }

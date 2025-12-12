@@ -5,9 +5,10 @@
 //  Created by Eden on 2023/10/19.
 //
 
+import SettingsKit
 import SwiftUI
 
-struct GeneralSetting: SettingContentRepresentable {
+struct GeneralSetting: SettingsPane {
   var tabViewImage: NSImage? {
     NSImage(systemSymbolName: "gearshape", accessibilityDescription: nil)
   }
@@ -16,10 +17,9 @@ struct GeneralSetting: SettingContentRepresentable {
     String(localized: "General")
   }
 
-  var view: AnyView {
+  var view: some View {
     GeneralSettingView(state: .shared)
       .frame(width: 400)
-      .eraseToAnyView()
   }
 }
 
@@ -29,9 +29,9 @@ struct GeneralSettingView: View {
   var body: some View {
     Form {
       Toggle("Launch at Login", isOn: $state.launchAtLogin)
-        .onChange(of: state.launchAtLogin, perform: { _ in
+        .onChange(of: state.launchAtLogin) {
           LaunchAtLogin.toggle()
-        })
+        }
       Text("Automatically launch the app when Mac starts.")
         .settingPropmt()
       Toggle("Activate prevention on Launch", isOn: $state.activateOnLaunch)

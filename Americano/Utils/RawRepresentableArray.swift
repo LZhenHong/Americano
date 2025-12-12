@@ -22,7 +22,7 @@ struct RawRepresentableArray<Element>: RawRepresentable where Element: Codable {
     value = wrappedValue
   }
 
-  public var rawValue: RawValue {
+  var rawValue: RawValue {
     do {
       let encoder = JSONEncoder()
       encoder.nonConformingFloatEncodingStrategy = .convertToString(positiveInfinity: "inf",
@@ -37,7 +37,7 @@ struct RawRepresentableArray<Element>: RawRepresentable where Element: Codable {
     }
   }
 
-  public init?(rawValue: RawValue) {
+  init?(rawValue: RawValue) {
     do {
       let data = rawValue.data(using: .utf8)
       guard let data else {

@@ -8,6 +8,7 @@
 import Cocoa
 import Combine
 import os.log
+import SettingsKit
 
 private extension String {
   static let CupOn = "cup.and.saucer.fill"
@@ -23,15 +24,15 @@ final class MenuBarItemController {
   private var subscriptions = Set<AnyCancellable>()
   private var statusItem: NSStatusItem!
 
-  private lazy var settingWindowController: SettingWindowController = {
-    let settings: [SettingContentRepresentable] = [
+  private lazy var settingsWindowController: SettingsWindowController = {
+    let panes: [any SettingsPane] = [
       GeneralSetting(),
       IntervalSetting(),
       BatterySetting(),
       NotificationSetting(),
       AboutSetting(),
     ]
-    return SettingWindowController(settings: settings)
+    return SettingsWindowController(panes: panes, title: String(localized: "Settings"))
   }()
 
   private var awakePublisher: AnyPublisher<Bool, Never> {
@@ -133,7 +134,7 @@ final class MenuBarItemController {
         .title(String(localized: "Settings"))
         .shortcuts(",")
         .onSelect {
-          self.settingWindowController.show()
+          self.settingsWindowController.show()
         }
       NSMenuItem.separator()
       MenuItemBuilder()
@@ -154,8 +155,8 @@ final class MenuBarItemController {
       .print("Status Bar Item")
     #endif
       .sink { [weak self] in
-        guard let self = self else { return }
-        self.changeMenuBarItemImage(with: $0)
+        guard let self else { return }
+        changeMenuBarItemImage(with: $0)
       }
       .store(in: &subscriptions)
   }

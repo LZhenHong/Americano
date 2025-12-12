@@ -1,13 +1,13 @@
 {
-  "originHash" : "117552408c57eadaf95c3146b5a4ac2adda85a5d55eada22a0cf1b8605177eb5",
+  "originHash" : "99e8c3789ebf2d1d095a0bfb38405cb9a1fa0e2c62080129e14a15be5206adf6",
   "pins" : [
     {
       "identity" : "settingskit",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/LZhenHong/SettingsKit.git",
       "state" : {
-        "revision" : "4fc0e89a929a9b0cfa7ceff81590fa909de345f3",
-        "version" : "0.0.1"
+        "revision" : "49f74177cf5aa2c97438212437687739e5d52d34",
+        "version" : "0.0.3"
       }
     },
     {
@@ -24,8 +24,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/LZhenHong/StorageMacro",
       "state" : {
-        "revision" : "3c8426cb7629009f6df3dc8cc0fb708187f75750",
-        "version" : "0.0.2"
+        "revision" : "4a8c12b505399e6e6893bb4ac4f22b4d9ffc98ee",
+        "version" : "0.0.3"
       }
     },
     {
