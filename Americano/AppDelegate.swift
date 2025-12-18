@@ -7,7 +7,7 @@
 
 import Cocoa
 #if USE_SPARKLE
-  import Sparkle
+import Sparkle
 #endif
 
 final class AppDelegate: NSObject, NSApplicationDelegate {
@@ -16,11 +16,11 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
   }
 
   #if USE_SPARKLE
-    static let updaterController = SPUStandardUpdaterController(
-      startingUpdater: true,
-      updaterDelegate: nil,
-      userDriverDelegate: nil
-    )
+  static let updaterController = SPUStandardUpdaterController(
+    startingUpdater: true,
+    updaterDelegate: nil,
+    userDriverDelegate: nil
+  )
   #endif
 
   func applicationWillFinishLaunching(_: Notification) {
@@ -39,7 +39,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
   }
 
   func applicationSupportsSecureRestorableState(_: NSApplication) -> Bool {
-    return true
+    true
   }
 }
 

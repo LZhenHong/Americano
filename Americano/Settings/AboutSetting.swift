@@ -8,7 +8,7 @@
 import SettingsKit
 import SwiftUI
 #if USE_SPARKLE
-  import Sparkle
+import Sparkle
 #endif
 
 struct AboutSetting: SettingsPane {
@@ -38,13 +38,13 @@ struct AboutSettingView: View {
         .fontWeight(.bold)
         .padding(.top, -5)
       #if USE_SPARKLE
-        Button {
-          AppDelegate.updaterController.updater.checkForUpdates()
-        } label: {
-          Text("Check for Updates")
-        }
-        .disabled(!AppDelegate.updaterController.updater.canCheckForUpdates)
-        .padding(.bottom, 5)
+      Button {
+        AppDelegate.updaterController.updater.checkForUpdates()
+      } label: {
+        Text("Check for Updates")
+      }
+      .disabled(!AppDelegate.updaterController.updater.canCheckForUpdates)
+      .padding(.bottom, 5)
       #endif
       Text("Version: \(displayVersion)")
         .font(.subheadline)

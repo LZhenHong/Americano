@@ -107,8 +107,8 @@ struct BatterySettingView: View {
 }
 
 #if DEBUG
-  #Preview {
-    BatterySettingView(state: .sample)
-      .frame(width: 400)
-  }
+#Preview {
+  BatterySettingView(state: .sample)
+    .frame(width: 400)
+}
 #endif

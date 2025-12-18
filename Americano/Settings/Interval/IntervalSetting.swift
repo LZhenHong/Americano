@@ -199,7 +199,7 @@ private struct IntervalSettingCell: View {
 }
 
 #if DEBUG
-  #Preview {
-    IntervalSettingView(state: .sample)
-  }
+#Preview {
+  IntervalSettingView(state: .sample)
+}
 #endif

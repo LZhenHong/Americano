@@ -32,7 +32,7 @@ struct BatterySlider: View {
             currentValue = Int($0)
           }
         ),
-        in: Double(minValue) ... Double(maxValue),
+        in: Double(minValue)...Double(maxValue),
         step: 10
       )
       .disabled(!enabled)

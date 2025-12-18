@@ -184,7 +184,7 @@ final class CaffeinateController {
 
   @discardableResult
   func start(interval: TimeInterval, force: Bool = false) -> Bool {
-    return caffWrapper.start(interval: interval, allowDisplaySleep: allowDisplaySleep, force: force)
+    caffWrapper.start(interval: interval, allowDisplaySleep: allowDisplaySleep, force: force)
   }
 
   func stop() {

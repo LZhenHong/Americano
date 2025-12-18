@@ -77,11 +77,11 @@ public struct AwakeDurations: RawRepresentable {
   }
 
   func has(_ time: TimeInterval) -> Bool {
-    return intervals.contains { $0.time == time }
+    intervals.contains { $0.time == time }
   }
 
   func has(_ interval: Interval) -> Bool {
-    return intervals.contains(interval)
+    intervals.contains(interval)
   }
 
   @discardableResult

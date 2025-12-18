@@ -68,18 +68,18 @@ final class BatteryMonitor {
 
   private var currentCapacityImageName: String {
     switch currentCapacity {
-    case 0 ..< 10:
-      return "battery.0percent"
-    case 10 ..< 25:
-      return "battery.25percent"
-    case 25 ..< 50:
-      return "battery.50percent"
-    case 50 ..< 75:
-      return "battery.75percent"
-    case 75 ... 100:
-      return "battery.100percent"
+    case 0..<10:
+      "battery.0percent"
+    case 10..<25:
+      "battery.25percent"
+    case 25..<50:
+      "battery.50percent"
+    case 50..<75:
+      "battery.75percent"
+    case 75...100:
+      "battery.100percent"
     default:
-      return "battery.50percent"
+      "battery.50percent"
     }
   }
 

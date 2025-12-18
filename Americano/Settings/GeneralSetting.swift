@@ -50,7 +50,7 @@ struct GeneralSettingView: View {
 }
 
 #if DEBUG
-  #Preview {
-    GeneralSettingView(state: .sample)
-  }
+#Preview {
+  GeneralSettingView(state: .sample)
+}
 #endif

@@ -44,9 +44,9 @@ final class AppState: ObservableObject {
 }
 
 #if DEBUG
-  extension AppState {
-    static var sample: AppState {
-      .shared
-    }
+extension AppState {
+  static var sample: AppState {
+    .shared
   }
+}
 #endif

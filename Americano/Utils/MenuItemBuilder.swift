@@ -27,7 +27,7 @@ final class MenuItemBuilder {
 
   @discardableResult
   func title(_ title: LocalizedStringResource) -> Self {
-    return self.title(String(localized: title))
+    self.title(String(localized: title))
   }
 
   @discardableResult
@@ -82,6 +82,6 @@ final class MenuItemBuilder {
   }
 
   func build() -> NSMenuItem {
-    return menuItem
+    menuItem
   }
 }
