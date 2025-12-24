@@ -39,11 +39,14 @@ final class CaffeinateWrapper: BinWrapper {
     allowDisplaySleep _: Bool = false,
     force: Bool = false
   ) -> Bool {
-    guard caffeinate == nil || !running || force else {
-      // There was already a process running.
-      return false
+    if caffeinate != nil && !force {
+      if running {
+        // There was already a process running.
+        return false
+      }
+      // Process exists but not running, clean it up
+      stopCurrent()
     }
-    stopCurrent()
     return start(interval: interval)
   }
 
