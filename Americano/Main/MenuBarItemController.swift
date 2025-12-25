@@ -87,22 +87,6 @@ final class MenuBarItemController {
 
   private func showMenu(_: NSStatusBarButton) {
     let menu = setUpMenu()
-    // guard let event = NSApp.currentEvent else {
-    //    return
-    // }
-    // This method doesn't show menu at right place.
-    // NSMenu.popUpContextMenu(menu, with: event, for: sender)
-
-    // This method was deprecated in macOS 10.14.
-    // statusItem.popUpMenu(menu)
-
-    // Make app active.
-    // if #available(macOS 14.0, *) {
-    //    NSApp.activate()
-    // } else {
-    //    NSApp.activate(ignoringOtherApps: true)
-    // }
-    // workaround: https://stackoverflow.com/a/57612963/5350993
     guard let statusItem else { return }
     showMenu(menu, for: statusItem)
   }
