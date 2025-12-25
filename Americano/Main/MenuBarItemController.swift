@@ -22,7 +22,7 @@ final class MenuBarItemController {
                               category: String(describing: MenuBarItemController.self))
 
   private var subscriptions = Set<AnyCancellable>()
-  private var statusItem: NSStatusItem!
+  private var statusItem: NSStatusItem?
 
   private lazy var settingsWindowController: SettingsWindowController = {
     let panes: [any SettingsPane] = [
@@ -98,6 +98,7 @@ final class MenuBarItemController {
     //    NSApp.activate(ignoringOtherApps: true)
     // }
     // workaround: https://stackoverflow.com/a/57612963/5350993
+    guard let statusItem else { return }
     showMenu(menu, for: statusItem)
   }
 
