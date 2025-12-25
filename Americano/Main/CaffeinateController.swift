@@ -196,17 +196,25 @@ extension CaffeinateController: CaffeinateDelegate {
   func caffeinateDidStart(_: CaffeinateWrapper, interval: TimeInterval) {
     guard AppState.shared.notifyWhenActivate else { return }
     Task {
-      let body = interval.isInfinite
-        ? String(localized: "Sleep prevention will keep unless manually stopped.")
-        : String(localized: "Sleep prevention will stop after \(interval.localizedTime).")
-      try await UserNotifications.post(String(localized: "Sleep prevention activate."), body: body)
+      do {
+        let body = interval.isInfinite
+          ? String(localized: "Sleep prevention will keep unless manually stopped.")
+          : String(localized: "Sleep prevention will stop after \(interval.localizedTime).")
+        try await UserNotifications.post(String(localized: "Sleep prevention activate."), body: body)
+      } catch {
+        logger.error("Failed to post notification: \(error)")
+      }
     }
   }
 
   func caffeinateDidTerminate(_: CaffeinateWrapper) {
     guard AppState.shared.notifyWhenDeactivate else { return }
     Task {
-      try await UserNotifications.post(String(localized: "Sleep prevention deactivate."))
+      do {
+        try await UserNotifications.post(String(localized: "Sleep prevention deactivate."))
+      } catch {
+        logger.error("Failed to post notification: \(error)")
+      }
     }
   }
 
