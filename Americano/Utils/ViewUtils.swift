@@ -8,7 +8,7 @@
 import SwiftUI
 
 extension View {
-  func settingPropmt() -> some View {
+  func settingPrompt() -> some View {
     font(.system(size: 11))
       .foregroundColor(.secondary)
   }

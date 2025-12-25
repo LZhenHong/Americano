@@ -68,7 +68,7 @@ struct BatterySettingView: View {
           Text("If manually activate prevention, this setting will be ignored.")
             // https://stackoverflow.com/a/59277022/5350993
             .fixedSize(horizontal: false, vertical: true)
-            .settingPropmt()
+            .settingPrompt()
         }
         .padding(.horizontal)
       }
@@ -80,7 +80,7 @@ struct BatterySettingView: View {
           stopCaffeinate()
         }
       Text("Automatically deactivate prevention when Mac's Low Power Mode is activated.")
-        .settingPropmt()
+        .settingPrompt()
       Divider()
       Toggle("Activate prevention when charging", isOn: $state.activatePlug)
         .onChange(of: state.activatePlug) { _, activate in
@@ -88,14 +88,14 @@ struct BatterySettingView: View {
           CaffeinateController.shared.startIfAllowed()
         }
       Text("Automatically activate prevention when Mac is connected to the charger.")
-        .settingPropmt()
+        .settingPrompt()
       Toggle("Deactivate prevention when not charging", isOn: $state.deactivateUnplug)
         .onChange(of: state.deactivateUnplug) { _, deactivate in
           guard deactivate, !BatteryMonitor.shared.isCharging else { return }
           stopCaffeinate()
         }
       Text("Automatically deactivate prevention when Mac isn't connected to the charger.")
-        .settingPropmt()
+        .settingPrompt()
     }
     .padding()
   }

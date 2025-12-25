@@ -33,17 +33,17 @@ struct GeneralSettingView: View {
           LaunchAtLogin.toggle()
         }
       Text("Automatically launch the app when Mac starts.")
-        .settingPropmt()
+        .settingPrompt()
       Toggle("Activate prevention on Launch", isOn: $state.activateOnLaunch)
       Text("Immediately prevents Mac going to sleep when app launched.")
-        .settingPropmt()
+        .settingPrompt()
       Divider()
       Toggle("Enter ScreenSaver when deactivate prevention", isOn: $state.activateScreenSaver)
       Text("Immediately enter ScreenSaver when sleep prevention is over.")
-        .settingPropmt()
+        .settingPrompt()
       Toggle("Allow display sleep", isOn: $state.allowDisplaySleep)
       Text("Allow Mac's display go to sleep.")
-        .settingPropmt()
+        .settingPrompt()
     }
     .padding()
   }
