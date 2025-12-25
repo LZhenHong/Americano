@@ -36,7 +36,7 @@ final class CaffeinateWrapper: BinWrapper {
   @discardableResult
   func start(
     interval: TimeInterval = .infinity,
-    allowDisplaySleep _: Bool = false,
+    allowDisplaySleep: Bool = false,
     force: Bool = false
   ) -> Bool {
     if caffeinate != nil && !force {
@@ -47,7 +47,7 @@ final class CaffeinateWrapper: BinWrapper {
       // Process exists but not running, clean it up
       stopCurrent()
     }
-    return start(interval: interval)
+    return start(interval: interval, allowDisplaySleep: allowDisplaySleep)
   }
 
   private func stopCurrent() {
