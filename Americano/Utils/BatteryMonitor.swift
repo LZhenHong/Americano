@@ -126,8 +126,10 @@ final class BatteryMonitor {
       guard let ctx = context else { return }
 
       let monitor = Unmanaged<BatteryMonitor>.fromOpaque(ctx).takeUnretainedValue()
-      monitor.state.isCharging = monitor.isCharging
-      monitor.state.currentCapacity = monitor.currentCapacity
+      DispatchQueue.main.async {
+        monitor.state.isCharging = monitor.isCharging
+        monitor.state.currentCapacity = monitor.currentCapacity
+      }
     }, ctx).takeRetainedValue()
     CFRunLoopAddSource(CFRunLoopGetCurrent(), loopSource, .defaultMode)
   }
