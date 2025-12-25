@@ -15,6 +15,7 @@ class SubscriptionToken {
   }
 
   func unseal() {
+    cancellable?.cancel()
     cancellable = nil
   }
 }

@@ -87,6 +87,11 @@ final class BatteryMonitor {
     setUpStates()
   }
 
+  deinit {
+    observeOffBatteryState()
+    observeOffLowPowerMode()
+  }
+
   private func setUpStates() {
     state.isLowPowerModeEnabled = isLowPowerModeEnabled
     state.isCharging = isCharging
@@ -111,6 +116,7 @@ final class BatteryMonitor {
     guard isListeningPowerSourceInfo, let source = loopSource else { return }
 
     CFRunLoopRemoveSource(CFRunLoopGetCurrent(), source, .defaultMode)
+    loopSource = nil
   }
 
   func observeOnLowPowerMode() {
