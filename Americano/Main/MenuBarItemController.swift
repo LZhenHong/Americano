@@ -15,6 +15,11 @@ private extension String {
   static let CupOff = "cup.and.saucer"
 }
 
+private enum Constants {
+  static let statusBarIconSize = NSSize(width: 18, height: 18)
+  static let debounceMilliseconds = 100
+}
+
 final class MenuBarItemController {
   static let shared = MenuBarItemController()
 
@@ -57,7 +62,7 @@ final class MenuBarItemController {
     statusItem.behavior = .terminationOnRemoval
 
     btn.image = NSImage(systemSymbolName: .CupOn, accessibilityDescription: "Americano")
-    btn.image?.size = NSSize(width: 18, height: 18)
+    btn.image?.size = Constants.statusBarIconSize
     btn.image?.isTemplate = true
 
     btn.target = self
@@ -150,7 +155,7 @@ final class MenuBarItemController {
   private func subscribePublishers() {
     awakePublisher
       .receive(on: DispatchQueue.main)
-      .debounce(for: .milliseconds(100), scheduler: DispatchQueue.main)
+      .debounce(for: .milliseconds(Constants.debounceMilliseconds), scheduler: DispatchQueue.main)
       .map { $0 ? String.CupOn : String.CupOff }
     #if DEBUG
       .print("Status Bar Item")
@@ -166,11 +171,5 @@ final class MenuBarItemController {
     guard let btn = statusItem?.button else { return }
 
     btn.image = NSImage(systemSymbolName: name, accessibilityDescription: "Americano")
-  }
-
-  private func changeMenuBarItemToolTip(with tip: String) {
-    guard let btn = statusItem?.button else { return }
-
-    btn.toolTip = tip
   }
 }
