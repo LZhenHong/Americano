@@ -7,14 +7,11 @@
 
 import Foundation
 
-let dateFormatter: DateComponentsFormatter = {
-  let formatter = DateComponentsFormatter()
-  formatter.unitsStyle = DateComponentsFormatter.UnitsStyle.full
-  return formatter
-}()
-
 extension TimeInterval {
   var localizedTime: String {
-    isInfinite ? "∞" : dateFormatter.string(from: self) ?? ""
+    if isInfinite { return "∞" }
+    let formatter = DateComponentsFormatter()
+    formatter.unitsStyle = .full
+    return formatter.string(from: self) ?? ""
   }
 }
