@@ -12,9 +12,9 @@ import os.log
 final class CaffeinateController {
   static let shared = CaffeinateController()
 
-  let logger = Logger(subsystem: AppDelegate.bundleIdentifier,
-                      category: String(describing: CaffeinateController.self))
-  let caffWrapper: CaffeinateWrapper
+  private let logger = Logger(subsystem: AppDelegate.bundleIdentifier,
+                              category: String(describing: CaffeinateController.self))
+  private let caffWrapper: CaffeinateWrapper
 
   private var lowPowerToken = SubscriptionToken()
   private var batteryInfoSubscriptions = Set<AnyCancellable>()
@@ -78,7 +78,7 @@ final class CaffeinateController {
     logger.info("Activate on Launch.")
   }
 
-  func observeBatteryLowPowerModeIfNeed() {
+  private func observeBatteryLowPowerModeIfNeed() {
     guard AppState.shared.lowPowerMonitorEnable else { return }
 
     BatteryMonitor.shared.observeOnLowPowerMode()
@@ -90,12 +90,12 @@ final class CaffeinateController {
       .seal(in: lowPowerToken)
   }
 
-  func stopObserveBatteryLowPowerMode() {
+  private func stopObserveBatteryLowPowerMode() {
     BatteryMonitor.shared.observeOffLowPowerMode()
     lowPowerToken.unseal()
   }
 
-  func observeBatteryPowerInfoIfNeed() {
+  private func observeBatteryPowerInfoIfNeed() {
     guard shouldObservePowerInfo else { return }
 
     BatteryMonitor.shared.observeOnBatteryState()
@@ -157,7 +157,7 @@ final class CaffeinateController {
     stopObserveBatteryPowerInfo()
   }
 
-  func stopObserveBatteryPowerInfo() {
+  private func stopObserveBatteryPowerInfo() {
     BatteryMonitor.shared.observeOffBatteryState()
     batteryInfoSubscriptions.removeAll()
   }
