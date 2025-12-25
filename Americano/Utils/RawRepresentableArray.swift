@@ -6,6 +6,10 @@
 //
 
 import Foundation
+import os.log
+
+private let logger = Logger(subsystem: AppDelegate.bundleIdentifier,
+                            category: "RawRepresentableArray")
 
 @propertyWrapper
 struct RawRepresentableArray<Element>: RawRepresentable where Element: Codable {
@@ -32,7 +36,7 @@ struct RawRepresentableArray<Element>: RawRepresentable where Element: Codable {
       let val = String(data: data, encoding: .utf8)
       return val ?? "[]"
     } catch {
-      print("Encode error: \(error)")
+      logger.error("Encode error: \(error)")
       return "[]"
     }
   }
@@ -51,7 +55,7 @@ struct RawRepresentableArray<Element>: RawRepresentable where Element: Codable {
       let val = try decoder.decode([Element].self, from: data)
       value = val
     } catch {
-      print("Decode error: \(error)")
+      logger.error("Decode error: \(error)")
       return nil
     }
   }
