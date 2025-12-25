@@ -84,8 +84,8 @@ final class CaffeinateController {
     BatteryMonitor.shared.observeOnLowPowerMode()
     BatteryMonitor.shared.state.$isLowPowerModeEnabled
       .filter(!)
-      .sink { _ in
-        self.stop()
+      .sink { [weak self] _ in
+        self?.stop()
       }
       .seal(in: lowPowerToken)
   }
@@ -106,9 +106,9 @@ final class CaffeinateController {
 
   private func observeBatteryToStartCaffeinate() {
     BatteryMonitor.shared.state.$isCharging
-      .filter { $0 && AppState.shared.activatePlug && !self.caffWrapper.running }
-      .sink { _ in
-        self.startIfAllowed()
+      .filter { [weak self] in $0 && AppState.shared.activatePlug && self?.caffWrapper.running == false }
+      .sink { [weak self] _ in
+        self?.startIfAllowed()
       }
       .store(in: &batteryInfoSubscriptions)
   }
@@ -122,10 +122,10 @@ final class CaffeinateController {
       }
       .filter { $0 }
     chargeStopPulisher.merge(with: batteryCapacityPulisher)
-      .filter { _ in self.caffWrapper.running }
+      .filter { [weak self] _ in self?.caffWrapper.running == true }
       .receive(on: DispatchQueue.main)
-      .sink { _ in
-        self.stop()
+      .sink { [weak self] _ in
+        self?.stop()
       }
       .store(in: &batteryInfoSubscriptions)
   }
