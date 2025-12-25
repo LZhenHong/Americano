@@ -9,15 +9,24 @@ import Cocoa
 import Combine
 import IOKit.ps
 
+/// Observable state object for battery information.
 final class BatteryState: ObservableObject {
+  /// Whether Low Power Mode is currently enabled.
   @Published var isLowPowerModeEnabled = false
+  /// Whether the Mac is currently charging.
   @Published var isCharging = false
+  /// Current battery capacity percentage (0-100).
   @Published var currentCapacity = 0
 }
 
+/// Monitors battery state and power source changes using IOKit.
+///
+/// This singleton provides real-time battery information and can observe
+/// changes to charging state, capacity, and Low Power Mode.
 final class BatteryMonitor {
   static let shared = BatteryMonitor()
 
+  /// Observable battery state for SwiftUI/Combine bindings.
   private(set) var state = BatteryState()
   private let token = SubscriptionToken()
 
@@ -37,10 +46,12 @@ final class BatteryMonitor {
     loopSource != nil
   }
 
+  /// Whether Low Power Mode is currently enabled on the system.
   var isLowPowerModeEnabled: Bool {
     ProcessInfo.processInfo.isLowPowerModeEnabled
   }
 
+  /// Whether the device has an internal battery.
   var hasBattery: Bool {
     guard let batteryType = powerSourceInfo[kIOPSTypeKey] as? String else {
       return false
@@ -48,6 +59,7 @@ final class BatteryMonitor {
     return batteryType == kIOPSInternalBatteryType
   }
 
+  /// Whether the Mac is currently connected to power and charging.
   var isCharging: Bool {
     guard let charging = powerSourceInfo[kIOPSIsChargingKey] as? Bool else {
       return false
@@ -55,6 +67,7 @@ final class BatteryMonitor {
     return charging
   }
 
+  /// Current battery charge level as a percentage (0-100).
   var currentCapacity: Int {
     guard let capacity = powerSourceInfo[kIOPSCurrentCapacityKey] as? Int else {
       return 0
@@ -62,6 +75,9 @@ final class BatteryMonitor {
     return capacity
   }
 
+  /// SF Symbol name representing the current battery state.
+  ///
+  /// Returns a bolt icon when charging, otherwise a capacity-based battery icon.
   var capacitySymbol: String {
     isCharging ? "battery.100percent.bolt" : currentCapacityImageName
   }
@@ -98,6 +114,10 @@ final class BatteryMonitor {
     state.currentCapacity = currentCapacity
   }
 
+  /// Starts observing battery state changes (charging and capacity).
+  ///
+  /// Sets up an IOKit run loop source to receive power source notifications.
+  /// Updates `state.isCharging` and `state.currentCapacity` when changes occur.
   func observeOnBatteryState() {
     guard !isListeningPowerSourceInfo else { return }
 
@@ -112,6 +132,9 @@ final class BatteryMonitor {
     CFRunLoopAddSource(CFRunLoopGetCurrent(), loopSource, .defaultMode)
   }
 
+  /// Stops observing battery state changes.
+  ///
+  /// Removes the IOKit run loop source and cleans up resources.
   func observeOffBatteryState() {
     guard isListeningPowerSourceInfo, let source = loopSource else { return }
 
@@ -119,6 +142,10 @@ final class BatteryMonitor {
     loopSource = nil
   }
 
+  /// Starts observing Low Power Mode state changes.
+  ///
+  /// Subscribes to `NSProcessInfoPowerStateDidChange` notifications and updates
+  /// `state.isLowPowerModeEnabled` when the system's Low Power Mode setting changes.
   func observeOnLowPowerMode() {
     guard !token.isValid else { return }
 
@@ -130,6 +157,7 @@ final class BatteryMonitor {
       .seal(in: token)
   }
 
+  /// Stops observing Low Power Mode state changes.
   func observeOffLowPowerMode() {
     token.unseal()
   }

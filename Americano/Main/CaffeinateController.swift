@@ -9,6 +9,10 @@ import Combine
 import Foundation
 import os.log
 
+/// Controls the caffeinate process to prevent Mac from sleeping.
+///
+/// This singleton manages the lifecycle of the system's `caffeinate` command,
+/// handles battery monitoring integration, and responds to URL scheme commands.
 final class CaffeinateController {
   static let shared = CaffeinateController()
 
@@ -64,6 +68,7 @@ final class CaffeinateController {
     caffWrapper.delegate = self
   }
 
+  /// Initializes the controller and sets up URL schemes, battery monitoring, and auto-activation.
   func setUp() {
     registerURLSchemes()
     activateIfNeed()
@@ -152,6 +157,7 @@ final class CaffeinateController {
     return start(interval: TimeInterval(interval))
   }
 
+  /// Stops observing battery power info if no longer needed based on current settings.
   func stopObserveBatteryPowerInfoIfShould() {
     guard !shouldObservePowerInfo else { return }
     stopObserveBatteryPowerInfo()
@@ -162,6 +168,7 @@ final class CaffeinateController {
     batteryInfoSubscriptions.removeAll()
   }
 
+  /// Toggles sleep prevention on or off.
   func toggle() {
     if caffWrapper.running {
       stop()
@@ -170,23 +177,32 @@ final class CaffeinateController {
     }
   }
 
+  /// Starts sleep prevention if battery and power conditions allow.
   func startIfAllowed() {
     guard canActivate else { return }
 
     start()
   }
 
+  /// Starts sleep prevention with the default duration from settings.
+  /// - Returns: `true` if caffeinate started successfully.
   @discardableResult
   func start() -> Bool {
     let interval = AppState.shared.awakeDurations.default.time
     return start(interval: interval)
   }
 
+  /// Starts sleep prevention for a specific duration.
+  /// - Parameters:
+  ///   - interval: Duration in seconds. Use `.infinity` for indefinite prevention.
+  ///   - force: If `true`, restarts even if already running.
+  /// - Returns: `true` if caffeinate started successfully.
   @discardableResult
   func start(interval: TimeInterval, force: Bool = false) -> Bool {
     caffWrapper.start(interval: interval, allowDisplaySleep: allowDisplaySleep, force: force)
   }
 
+  /// Stops sleep prevention and terminates the caffeinate process.
   func stop() {
     caffWrapper.stop()
   }
