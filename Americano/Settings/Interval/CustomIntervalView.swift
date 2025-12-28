@@ -78,8 +78,7 @@ private struct IntervalComponent: View {
     Stepper(String(localized: prompt),
             value: $stepperValue,
             in: 0...Double(maxValue),
-            format: .number)
-    { start in
+            format: .number) { start in
       if !start {
         value = Int(stepperValue)
       }

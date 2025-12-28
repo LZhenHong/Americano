@@ -29,20 +29,17 @@ final class CaffeinateController {
 
   private var canActivate: Bool {
     if AppState.shared.batteryMonitorEnable,
-       BatteryMonitor.shared.currentCapacity <= AppState.shared.batteryLowThreshold
-    {
+       BatteryMonitor.shared.currentCapacity <= AppState.shared.batteryLowThreshold {
       return false
     }
 
     if AppState.shared.lowPowerMonitorEnable,
-       BatteryMonitor.shared.isLowPowerModeEnabled
-    {
+       BatteryMonitor.shared.isLowPowerModeEnabled {
       return false
     }
 
     if AppState.shared.deactivateUnplug,
-       !BatteryMonitor.shared.isCharging
-    {
+       !BatteryMonitor.shared.isCharging {
       return false
     }
 
@@ -51,8 +48,7 @@ final class CaffeinateController {
 
   private var shouldObservePowerInfo: Bool {
     if AppState.shared.batteryMonitorEnable,
-       BatteryMonitor.shared.currentCapacity > AppState.shared.batteryLowThreshold
-    {
+       BatteryMonitor.shared.currentCapacity > AppState.shared.batteryLowThreshold {
       return true
     }
 
