@@ -8,19 +8,30 @@
 import AppKit
 import Combine
 
+/// Handles menu item action invocation and subscription storage.
 final class MenuInvoker {
   static let shared = MenuInvoker()
+
+  /// Storage for menu item subscriptions, keyed by menu item identity.
+  /// This prevents retain cycles by keeping subscriptions outside of the menu item.
+  private var subscriptions: [ObjectIdentifier: Set<AnyCancellable>] = [:]
 
   private init() {}
 
   @objc func execute(_ item: NSMenuItem) {
-    guard let (handler, _) = item.representedObject as? (() -> Void, Set<AnyCancellable>) else {
+    guard let handler = item.representedObject as? () -> Void else {
       return
     }
     handler()
   }
+
+  /// Stores subscriptions for a menu item.
+  func storeSubscriptions(_ subs: Set<AnyCancellable>, for menuItem: NSMenuItem) {
+    subscriptions[ObjectIdentifier(menuItem)] = subs
+  }
 }
 
+/// Fluent builder for creating NSMenuItem instances with Combine bindings.
 final class MenuItemBuilder {
   private let menuItem = NSMenuItem()
   private var subscriptions = Set<AnyCancellable>()
@@ -40,7 +51,7 @@ final class MenuItemBuilder {
   func onSelect(_ handler: @escaping () -> Void) -> Self {
     menuItem.target = MenuInvoker.shared
     menuItem.action = #selector(MenuInvoker.execute(_:))
-    menuItem.representedObject = (handler, subscriptions)
+    menuItem.representedObject = handler
     return self
   }
 
@@ -48,7 +59,9 @@ final class MenuItemBuilder {
   func onEnable(_ publisher: AnyPublisher<Bool, Never>) -> Self {
     publisher
       .receive(on: DispatchQueue.main)
-      .assign(to: \.isEnabled, on: menuItem)
+      .sink { [weak menuItem] isEnabled in
+        menuItem?.isEnabled = isEnabled
+      }
       .store(in: &subscriptions)
     return self
   }
@@ -58,7 +71,9 @@ final class MenuItemBuilder {
     publisher
       .receive(on: DispatchQueue.main)
       .map { $0 ? NSControl.StateValue.on : NSControl.StateValue.off }
-      .assign(to: \.state, on: menuItem)
+      .sink { [weak menuItem] state in
+        menuItem?.state = state
+      }
       .store(in: &subscriptions)
     return self
   }
@@ -82,6 +97,9 @@ final class MenuItemBuilder {
   }
 
   func build() -> NSMenuItem {
-    menuItem
+    if !subscriptions.isEmpty {
+      MenuInvoker.shared.storeSubscriptions(subscriptions, for: menuItem)
+    }
+    return menuItem
   }
 }
