@@ -1,5 +1,5 @@
 import { env_var_get } from "std/env"
-import { parse_number, slice } from "std/text"
+import { parse_int, parse_num, slice } from "std/text"
 
 trust {
     let src_root = env_var_get("SRCROOT")
@@ -17,7 +17,7 @@ fun increase_build_number() {
 
     let current_date = trust $date "+%Y%m%d"$
     let previous_date = slice(previous_build, 0, 8)
-    let counter = parse_number(slice(previous_build, 8)) failed {
+    let counter = parse_int(slice(previous_build, 8)) failed {
         echo "Failed to parse previous build number"
         fail status
     }
@@ -49,9 +49,9 @@ fun increase_version() {
 
     echo "Previous Version: {version}"
 
-    let major = parse_number($echo {version} | cut -d. -f1$?)?
-    let minor = parse_number($echo {version} | cut -d. -f2$?)?
-    let patch = parse_number($echo {version} | cut -d. -f3$?)?
+    let major = parse_int($echo {version} | cut -d. -f1$?)?
+    let minor = parse_int($echo {version} | cut -d. -f2$?)?
+    let patch = parse_int($echo {version} | cut -d. -f3$?)?
 
     let configuration = env_var_get("CONFIGURATION")?
     if configuration == "Release" {
@@ -75,7 +75,7 @@ main {
     let bump = false
     trust silent {
         let bump_version = env_var_get("BUMP_VERSION")
-        bump = parse_number(bump_version) == 1
+        bump = parse_num(bump_version) == 1
     }
 
     if bump {

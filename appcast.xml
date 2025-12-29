@@ -4,6 +4,52 @@
         <title>Americano</title>
         <language>en</language>
         <item>
+            <title>1.0.3</title>
+            <pubDate>Tue, 30 Dec 2025 01:51:49 +0800</pubDate>
+            <sparkle:version>20251230003</sparkle:version>
+            <sparkle:shortVersionString>1.0.3</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+            <description><![CDATA[<h2>What's New</h2>
+
+<p class="section-title">New Features</p>
+<ul>
+  <li>
+    <strong>Redesigned Settings Window</strong> – Modern native macOS settings
+    experience
+  </li>
+  <li>
+    <strong>macOS 14 Sonoma Support</strong> – Fully compatible with the latest
+    macOS
+  </li>
+</ul>
+
+<p class="section-title">Improvements</p>
+<ul>
+  <li>
+    <strong>Better Battery Monitoring</strong> – More reliable auto-pause when
+    battery is low
+  </li>
+  <li>
+    <strong>Reduced Memory Usage</strong> – Fixed memory leaks for improved
+    long-term stability
+  </li>
+  <li>
+    <strong>Updated Localizations</strong> – Improved translations and interface
+    text
+  </li>
+</ul>
+
+<p class="section-title">Bug Fixes</p>
+<ul>
+  <li>Fixed an issue where sleep prevention could stop working unexpectedly</li>
+  <li>Fixed "Allow Display Sleep" option not being applied correctly</li>
+  <li>Fixed notifications not showing in some cases</li>
+  <li>Various stability improvements and crash fixes</li>
+</ul>
+]]></description>
+            <enclosure url="https://github.com/LZhenHong/Americano/releases/download/v1.0.3/Americano.app.zip" length="4476013" type="application/octet-stream" sparkle:edSignature="Fiz94AfDpvPhB6FMYzsgTCrQ7wrCBBbhHINMthjBO0gu3GB+Zzk7ifeHsn68vKOrhqiXCBi97yrdvVHfHoTEBA=="/>
+        </item>
+        <item>
             <title>1.0.0</title>
             <pubDate>Mon, 10 Mar 2025 16:38:08 +0800</pubDate>
             <sparkle:version>2025031020</sparkle:version>

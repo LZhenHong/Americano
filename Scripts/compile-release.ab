@@ -15,7 +15,7 @@ fun prepare(shell_file: Text) {
     let root_dir = trust $dirname shell_file$
     cd "{root_dir}/.."
 
-    dir_create(release_folder)
+    trust dir_create(release_folder)
 
     trust {
         $rm -rf Build Archive *.xcarchive *.zip || true$
@@ -32,7 +32,9 @@ fun build() {
         -destination 'platform=macOS' \
         -archivePath {archive_name} \
         clean archive \
-        CODE_SIGN_IDENTITY="" CODE_SIGN_ENTITLEMENTS="" CODE_SIGNING_ALLOWED=NO \
+        CODE_SIGN_IDENTITY="-" \
+        CODE_SIGNING_REQUIRED=YES \
+        CODE_SIGNING_ALLOWED=YES \
         | xcbeautify$?
 }
 

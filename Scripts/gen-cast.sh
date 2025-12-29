@@ -1,174 +1,166 @@
 #!/usr/bin/env bash
 # Written in [Amber](https://amber-lang.com/)
-# version: 0.4.0-alpha
-# date: 2025-03-10 16:24:33
-
-file_exists__33_v0() {
+# version: 0.5.1-alpha
+# We cannot import `bash_version` from `env.ab` because it imports `text.ab` making a circular dependency.
+# This is a workaround to avoid that issue and the import system should be improved in the future.
+file_exists__37_v0() {
     local path=$1
-     [ -f "${path}" ] ;
-    __AS=$?;
-if [ $__AS != 0 ]; then
-        __AF_file_exists33_v0=0;
-        return 0
-fi
-    __AF_file_exists33_v0=1;
+    [ -f "${path}" ]
+    __status=$?
+    ret_file_exists37_v0="$(( ${__status} == 0 ))"
     return 0
 }
-file_chmod__39_v0() {
+
+file_chmod__45_v0() {
     local path=$1
     local mode=$2
-    file_exists__33_v0 "${path}";
-    __AF_file_exists33_v0__61_8="$__AF_file_exists33_v0";
-    if [ "$__AF_file_exists33_v0__61_8" != 0 ]; then
-         chmod "${mode}" "${path}" ;
-        __AS=$?
-        __AF_file_chmod39_v0=1;
+    file_exists__37_v0 "${path}"
+    ret_file_exists37_v0__153_8="${ret_file_exists37_v0}"
+    if [ "${ret_file_exists37_v0__153_8}" != 0 ]; then
+        chmod "${mode}" "${path}"
+        __status=$?
+        if [ "${__status}" != 0 ]; then
+            ret_file_chmod45_v0=''
+            return "${__status}"
+        fi
+        ret_file_chmod45_v0=''
         return 0
-fi
+    fi
     echo "The file ${path} doesn't exist"'!'""
-    __AF_file_chmod39_v0=0;
-    return 0
+    ret_file_chmod45_v0=''
+    return 1
 }
-env_var_get__91_v0() {
+
+env_var_get__98_v0() {
     local name=$1
-    __AMBER_VAL_0=$( echo ${!name} );
-    __AS=$?;
-if [ $__AS != 0 ]; then
-__AF_env_var_get91_v0=''
-return $__AS
-fi;
-    __AF_env_var_get91_v0="${__AMBER_VAL_0}";
+    command_0="$(echo ${!name})"
+    __status=$?
+    if [ "${__status}" != 0 ]; then
+        ret_env_var_get98_v0=''
+        return "${__status}"
+    fi
+    ret_env_var_get98_v0="${command_0}"
     return 0
 }
-printf__99_v0() {
+
+printf__106_v0() {
     local format=$1
     local args=("${!2}")
-     args=("${format}" "${args[@]}") ;
-    __AS=$?
-     printf "${args[@]}" ;
-    __AS=$?
+    args=("${format}" "${args[@]}")
+    __status=$?
+    printf "${args[@]}"
+    __status=$?
 }
-echo_error__109_v0() {
+
+echo_error__116_v0() {
     local message=$1
     local exit_code=$2
-    __AMBER_ARRAY_1=("${message}");
-    printf__99_v0 "\x1b[1;3;97;41m%s\x1b[0m
-" __AMBER_ARRAY_1[@];
-    __AF_printf99_v0__162_5="$__AF_printf99_v0";
-    echo "$__AF_printf99_v0__162_5" > /dev/null 2>&1
-    if [ $(echo ${exit_code} '>' 0 | bc -l | sed '/\./ s/\.\{0,1\}0\{1,\}$//') != 0 ]; then
-        exit ${exit_code}
-fi
+    array_1=("${message}")
+    printf__106_v0 "\\x1b[1;3;97;41m%s\\x1b[0m
+" array_1[@]
+    if [ "$(( ${exit_code} > 0 ))" != 0 ]; then
+        exit "${exit_code}"
+    fi
 }
-__0_user_name="LZhenHong"
-__1_project_name="Americano"
-__2_app_name="${__1_project_name}.app"
-__3_archive_name="${__1_project_name}.xcarchive"
-__4_release_folder="./Releases"
-__5_version="1.0.0"
-env_var_get__91_v0 "PATH";
-__AS=$?;
-__AF_env_var_get91_v0__10_18="${__AF_env_var_get91_v0}";
-__6_path="${__AF_env_var_get91_v0__10_18}"
-prepare__114_v0() {
+
+user_name_3="LZhenHong"
+project_name_4="Americano"
+app_name_5="${project_name_4}.app"
+archive_name_6="${project_name_4}.xcarchive"
+release_folder_7="./Releases"
+version_8="1.0.0"
+env_var_get__98_v0 "PATH"
+__status=$?
+path_9="${ret_env_var_get98_v0}"
+prepare__122_v0() {
     local shell_file=$1
-    set -e;
-    __AS=$?;
-if [ $__AS != 0 ]; then
-__AF_prepare114_v0=''
-return $__AS
-fi
-    set -o pipefail;
-    __AS=$?;
-if [ $__AS != 0 ]; then
-__AF_prepare114_v0=''
-return $__AS
-fi
-    __AMBER_VAL_2=$(dirname shell_file);
-    __AS=$?;
-    local root_dir="${__AMBER_VAL_2}"
-    cd "${root_dir}/.." || exit
-            export PATH=${__6_path}:/opt/homebrew/bin/;
-        __AS=$?
-        export https_proxy=http://127.0.0.1:6152;export http_proxy=http://127.0.0.1:6152;export all_proxy=socks5://127.0.0.1:6153;
-        __AS=$?
-    pushd ${__3_archive_name}/Products/Applications/ > /dev/null 2>&1;
-    __AS=$?;
-if [ $__AS != 0 ]; then
-__AF_prepare114_v0=''
-return $__AS
-fi
-    __AMBER_VAL_3=$(/usr/libexec/PlistBuddy -c "Print CFBundleShortVersionString" ${__2_app_name}/Contents/Info.plist);
-    __AS=$?;
-if [ $__AS != 0 ]; then
-__AF_prepare114_v0=''
-return $__AS
-fi;
-    __5_version="${__AMBER_VAL_3}"
-    popd > /dev/null 2>&1;
-    __AS=$?;
-if [ $__AS != 0 ]; then
-__AF_prepare114_v0=''
-return $__AS
-fi
+    set -e
+    __status=$?
+    if [ "${__status}" != 0 ]; then
+        ret_prepare122_v0=''
+        return "${__status}"
+    fi
+    set -o pipefail
+    __status=$?
+    if [ "${__status}" != 0 ]; then
+        ret_prepare122_v0=''
+        return "${__status}"
+    fi
+    command_2="$(dirname shell_file)"
+    __status=$?
+    root_dir_11="${command_2}"
+    cd "${root_dir_11}/.." || exit
+    export PATH=${path_9}:/opt/homebrew/bin/
+    __status=$?
+    export https_proxy=http://127.0.0.1:6152;export http_proxy=http://127.0.0.1:6152;export all_proxy=socks5://127.0.0.1:6153
+    __status=$?
+    pushd ${archive_name_6}/Products/Applications/ >/dev/null 2>&1
+    __status=$?
+    if [ "${__status}" != 0 ]; then
+        ret_prepare122_v0=''
+        return "${__status}"
+    fi
+    command_3="$(/usr/libexec/PlistBuddy -c "Print CFBundleShortVersionString" ${app_name_5}/Contents/Info.plist)"
+    __status=$?
+    if [ "${__status}" != 0 ]; then
+        ret_prepare122_v0=''
+        return "${__status}"
+    fi
+    version_8="${command_3}"
+    popd >/dev/null 2>&1
+    __status=$?
+    if [ "${__status}" != 0 ]; then
+        ret_prepare122_v0=''
+        return "${__status}"
+    fi
 }
-gen_cast__115_v0() {
-    local gen_path="./Build/SourcePackages/artifacts/sparkle/Sparkle/bin/generate_appcast"
-    file_exists__33_v0 "${gen_path}";
-    __AF_file_exists33_v0__32_8="$__AF_file_exists33_v0";
-    if [ "$__AF_file_exists33_v0__32_8" != 0 ]; then
-        file_chmod__39_v0 "${gen_path}" "+x";
-        __AF_file_chmod39_v0__33_12="$__AF_file_chmod39_v0";
-        if [ "$__AF_file_chmod39_v0__33_12" != 0 ]; then
-            local appcast_file="./appcast.xml"
-            local download_prefix="https://github.com/${__0_user_name}/${__1_project_name}/releases/download/v${__5_version}/"
-            ${gen_path} -o ${appcast_file} --download-url-prefix ${download_prefix} ${__4_release_folder};
-            __AS=$?;
-if [ $__AS != 0 ]; then
-__AF_gen_cast115_v0=''
-return $__AS
-fi
-else
+
+gen_cast__123_v0() {
+    gen_path_12="./Build/SourcePackages/artifacts/sparkle/Sparkle/bin/generate_appcast"
+    file_exists__37_v0 "${gen_path_12}"
+    ret_file_exists37_v0__32_8="${ret_file_exists37_v0}"
+    if [ "${ret_file_exists37_v0__32_8}" != 0 ]; then
+        file_chmod__45_v0 "${gen_path_12}" "+x"
+        __status=$?
+        if [ "${__status}" != 0 ]; then
             echo "[*] generate_appcast chmod failed."
-fi
-else
+        fi
+        appcast_file_13="./appcast.xml"
+        download_prefix_14="https://github.com/${user_name_3}/${project_name_4}/releases/download/v${version_8}/"
+        ${gen_path_12} -o ${appcast_file_13} --download-url-prefix ${download_prefix_14} ${release_folder_7}
+        __status=$?
+        if [ "${__status}" != 0 ]; then
+            ret_gen_cast123_v0=''
+            return "${__status}"
+        fi
+    else
         echo "[*] generate_appcast not found."
-fi
+    fi
 }
-git_commit__116_v0() {
-            git add appcast.xml;
-        __AS=$?
-        git commit -m "[UPDATE] Version ${__5_version}.";
-        __AS=$?
-        git tag -a v${__5_version} -m "Version ${__5_version}.";
-        __AS=$?
-    if [ $(echo $__AS '==' 0 | bc -l | sed '/\./ s/\.\{0,1\}0\{1,\}$//') != 0 ]; then
+
+git_commit__124_v0() {
+    git add appcast.xml
+    __status=$?
+    git commit -m "[UPDATE] Version ${version_8}."
+    __status=$?
+    git tag -a v${version_8} -m "Version ${version_8}."
+    __status=$?
+    if [ "$(( ${__status} == 0 ))" != 0 ]; then
         echo "[*] git commit success."
-else
-        echo_error__109_v0 "git commit failed." $__AS;
-        __AF_echo_error109_v0__55_9="$__AF_echo_error109_v0";
-        echo "$__AF_echo_error109_v0__55_9" > /dev/null 2>&1
-fi
+    else
+        echo_error__116_v0 "git commit failed." "${__status}"
+    fi
 }
-declare -r input_args=("$0" "$@")
-    prepare__114_v0 "${input_args[0]}";
-    __AS=$?;
-if [ $__AS != 0 ]; then
-        echo_error__109_v0 "Failed to prepare." $__AS;
-        __AF_echo_error109_v0__61_9="$__AF_echo_error109_v0";
-        echo "$__AF_echo_error109_v0__61_9" > /dev/null 2>&1
-fi;
-    __AF_prepare114_v0__60_5="$__AF_prepare114_v0";
-    echo "$__AF_prepare114_v0__60_5" > /dev/null 2>&1
-    gen_cast__115_v0 ;
-    __AS=$?;
-if [ $__AS != 0 ]; then
-        echo_error__109_v0 "Failed to generate appcast." $__AS;
-        __AF_echo_error109_v0__65_9="$__AF_echo_error109_v0";
-        echo "$__AF_echo_error109_v0__65_9" > /dev/null 2>&1
-fi;
-    __AF_gen_cast115_v0__64_5="$__AF_gen_cast115_v0";
-    echo "$__AF_gen_cast115_v0__64_5" > /dev/null 2>&1
-    git_commit__116_v0 ;
-    __AF_git_commit116_v0__68_5="$__AF_git_commit116_v0";
-    echo "$__AF_git_commit116_v0__68_5" > /dev/null 2>&1
+
+declare -r input_args_10=("$0" "$@")
+prepare__122_v0 "${input_args_10[0]}"
+__status=$?
+if [ "${__status}" != 0 ]; then
+    echo_error__116_v0 "Failed to prepare." "${__status}"
+fi
+gen_cast__123_v0 
+__status=$?
+if [ "${__status}" != 0 ]; then
+    echo_error__116_v0 "Failed to generate appcast." "${__status}"
+fi
+git_commit__124_v0 
