@@ -31,6 +31,7 @@ final class BatteryMonitor {
   private let token = SubscriptionToken()
 
   private var loopSource: CFRunLoopSource?
+  private var observerContext: UnsafeMutableRawPointer?
 
   private var powerSourceInfo: [String: Any] {
     guard let snapshot = IOPSCopyPowerSourcesInfo()?.takeRetainedValue(),
@@ -121,7 +122,8 @@ final class BatteryMonitor {
   func observeOnBatteryState() {
     guard !isListeningPowerSourceInfo else { return }
 
-    let ctx = UnsafeMutableRawPointer(Unmanaged.passUnretained(self).toOpaque())
+    // Retain self for the duration of the observation to ensure safe callback access
+    observerContext = UnsafeMutableRawPointer(Unmanaged.passRetained(self).toOpaque())
     loopSource = IOPSNotificationCreateRunLoopSource({ context in
       guard let ctx = context else { return }
 
@@ -130,7 +132,7 @@ final class BatteryMonitor {
         monitor.state.isCharging = monitor.isCharging
         monitor.state.currentCapacity = monitor.currentCapacity
       }
-    }, ctx).takeRetainedValue()
+    }, observerContext).takeRetainedValue()
     CFRunLoopAddSource(CFRunLoopGetCurrent(), loopSource, .defaultMode)
   }
 
@@ -141,6 +143,13 @@ final class BatteryMonitor {
     guard isListeningPowerSourceInfo, let source = loopSource else { return }
 
     CFRunLoopRemoveSource(CFRunLoopGetCurrent(), source, .defaultMode)
+
+    // Release the retained reference to balance passRetained in observeOnBatteryState
+    if let ctx = observerContext {
+      Unmanaged<BatteryMonitor>.fromOpaque(ctx).release()
+      observerContext = nil
+    }
+
     loopSource = nil
   }
 
