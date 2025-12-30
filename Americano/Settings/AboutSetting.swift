@@ -33,15 +33,13 @@ struct AboutSettingView: View {
   var body: some View {
     VStack(spacing: SettingsDesignTokens.sectionSpacing) {
       // App Info Card
-      GroupBox {
+      SettingsCard("Application", icon: "cup.and.saucer.fill") {
         VStack(spacing: SettingsDesignTokens.cardItemSpacing) {
-          // App Icon
           Image(nsImage: NSApp.applicationIconImage)
             .resizable()
             .aspectRatio(contentMode: .fit)
             .frame(width: 80, height: 80)
 
-          // App Name and Version
           VStack(spacing: 4) {
             Text(Bundle.main.appName ?? "Americano")
               .font(.title2)
@@ -53,14 +51,11 @@ struct AboutSettingView: View {
           }
         }
         .frame(maxWidth: .infinity)
-      } label: {
-        Label("Application", systemImage: "cup.and.saucer.fill")
       }
-      .groupBoxStyle(SettingsCardStyle())
 
       #if USE_SPARKLE
       // Update Card
-      GroupBox {
+      SettingsCard("Updates", icon: "arrow.triangle.2.circlepath") {
         HStack {
           VStack(alignment: .leading, spacing: 2) {
             Text("Software Update")
@@ -77,10 +72,7 @@ struct AboutSettingView: View {
           }
           .disabled(!AppDelegate.updaterController.updater.canCheckForUpdates)
         }
-      } label: {
-        Label("Updates", systemImage: "arrow.triangle.2.circlepath")
       }
-      .groupBoxStyle(SettingsCardStyle())
       #endif
     }
     .padding(SettingsDesignTokens.formPadding)

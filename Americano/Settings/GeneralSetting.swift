@@ -30,47 +30,37 @@ struct GeneralSettingView: View {
     VStack(alignment: .leading, spacing: SettingsDesignTokens.sectionSpacing) {
       // MARK: - Startup Behavior Section
 
-      GroupBox {
-        VStack(alignment: .leading, spacing: SettingsDesignTokens.cardItemSpacing) {
-          SettingToggleRow(
-            "Launch at Login",
-            description: "Automatically launch the app when Mac starts.",
-            isOn: $state.launchAtLogin
-          ) { _ in
-            LaunchAtLogin.toggle()
-          }
-
-          SettingToggleRow(
-            "Activate prevention on Launch",
-            description: "Immediately prevents Mac going to sleep when app launched.",
-            isOn: $state.activateOnLaunch
-          )
+      SettingsCard("Startup", icon: "power") {
+        SettingToggleRow(
+          "Launch at Login",
+          description: "Automatically launch the app when Mac starts.",
+          isOn: $state.launchAtLogin
+        ) { _ in
+          LaunchAtLogin.toggle()
         }
-      } label: {
-        Label("Startup", systemImage: "power")
+
+        SettingToggleRow(
+          "Activate prevention on Launch",
+          description: "Immediately prevents Mac going to sleep when app launched.",
+          isOn: $state.activateOnLaunch
+        )
       }
-      .groupBoxStyle(SettingsCardStyle())
 
       // MARK: - Sleep Behavior Section
 
-      GroupBox {
-        VStack(alignment: .leading, spacing: SettingsDesignTokens.cardItemSpacing) {
-          SettingToggleRow(
-            "Enter ScreenSaver when deactivate prevention",
-            description: "Immediately enter ScreenSaver when sleep prevention is over.",
-            isOn: $state.activateScreenSaver
-          )
+      SettingsCard("Sleep Behavior", icon: "moon.zzz") {
+        SettingToggleRow(
+          "Enter ScreenSaver when deactivate prevention",
+          description: "Immediately enter ScreenSaver when sleep prevention is over.",
+          isOn: $state.activateScreenSaver
+        )
 
-          SettingToggleRow(
-            "Allow display sleep",
-            description: "Allow Mac's display go to sleep.",
-            isOn: $state.allowDisplaySleep
-          )
-        }
-      } label: {
-        Label("Sleep Behavior", systemImage: "moon.zzz")
+        SettingToggleRow(
+          "Allow display sleep",
+          description: "Allow Mac's display go to sleep.",
+          isOn: $state.allowDisplaySleep
+        )
       }
-      .groupBoxStyle(SettingsCardStyle())
     }
     .padding(SettingsDesignTokens.formPadding)
   }

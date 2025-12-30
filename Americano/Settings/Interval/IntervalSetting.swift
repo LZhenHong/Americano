@@ -120,17 +120,11 @@ private struct IntervalSettingView: View {
   }
 
   private func canIntervalSetToDefault(_ interval: AwakeDurations.Interval?) -> Bool {
-    guard let interval else {
-      return false
-    }
-    return !interval.default
+    interval.map { !$0.default } ?? false
   }
 
   private func canIntervalBeDeleted(_ interval: AwakeDurations.Interval?) -> Bool {
-    guard let interval else {
-      return false
-    }
-    return interval.deletable
+    interval?.deletable ?? false
   }
 
   @ViewBuilder
@@ -171,21 +165,19 @@ private struct IntervalSettingView: View {
   private func delete(at indexSet: IndexSet) {
     guard let index = indexSet.first else { return }
 
-    let interval = state.awakeDurations.removeInterval(at: index)
-    clearSelectionIfNeeded(interval)
+    let deleted = state.awakeDurations.removeInterval(at: index)
+    if selectedInterval == deleted {
+      selectedInterval = nil
+    }
   }
 
   private func delete(interval: AwakeDurations.Interval?) {
     guard let interval else { return }
 
     state.awakeDurations.remove(interval: interval)
-    clearSelectionIfNeeded(interval)
-  }
-
-  private func clearSelectionIfNeeded(_ interval: AwakeDurations.Interval?) {
-    guard let selectedInterval, let interval, selectedInterval == interval else { return }
-
-    self.selectedInterval = nil
+    if selectedInterval == interval {
+      selectedInterval = nil
+    }
   }
 }
 

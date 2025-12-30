@@ -29,19 +29,11 @@ struct NotificationSettingView: View {
   @State private var loading = true
   @State private var status: UserNotifications.Status = .undetermined
 
-  private var statusColor: Color {
+  private var statusDisplay: (color: Color, text: String) {
     switch status {
-    case .undetermined: .secondary
-    case .granted: .green
-    case .denied: .red
-    }
-  }
-
-  private var statusText: String {
-    switch status {
-    case .undetermined: String(localized: "Undetermined")
-    case .granted: String(localized: "Granted")
-    case .denied: String(localized: "Denied")
+    case .undetermined: (.secondary, String(localized: "Undetermined"))
+    case .granted: (.green, String(localized: "Granted"))
+    case .denied: (.red, String(localized: "Denied"))
     }
   }
 
@@ -49,64 +41,54 @@ struct NotificationSettingView: View {
     VStack(alignment: .leading, spacing: SettingsDesignTokens.sectionSpacing) {
       // MARK: - Permission Status Section
 
-      GroupBox {
-        VStack(alignment: .leading, spacing: SettingsDesignTokens.cardItemSpacing) {
-          HStack {
-            Text("Permission status:")
-            Spacer()
-            if loading {
-              ProgressView()
-                .scaleEffect(0.5)
-            } else {
-              HStack(spacing: 6) {
-                Circle()
-                  .fill(statusColor)
-                  .frame(width: 8, height: 8)
-                Text(statusText)
-                  .fontWeight(.medium)
-                  .foregroundStyle(statusColor)
-              }
-            }
-          }
-
-          if !loading {
-            switch status {
-            case .undetermined:
-              Button("Request permission") {
-                Task {
-                  try await UserNotifications.requestNotificationAuthorization()
-                  status = await UserNotifications.requestAuthorizationStatus()
-                }
-              }
-
-            case .denied:
-              Button("Open notification settings") {
-                Task {
-                  try await UserNotifications.openSystemNotificationSetting()
-                }
-              }
-
-            case .granted:
-              EmptyView()
+      SettingsCard("Permission", icon: "lock.shield") {
+        HStack {
+          Text("Permission status:")
+          Spacer()
+          if loading {
+            ProgressView()
+              .scaleEffect(0.5)
+          } else {
+            HStack(spacing: 6) {
+              Circle()
+                .fill(statusDisplay.color)
+                .frame(width: 8, height: 8)
+              Text(statusDisplay.text)
+                .fontWeight(.medium)
+                .foregroundStyle(statusDisplay.color)
             }
           }
         }
-      } label: {
-        Label("Permission", systemImage: "lock.shield")
+
+        if !loading {
+          switch status {
+          case .undetermined:
+            Button("Request permission") {
+              Task {
+                try await UserNotifications.requestNotificationAuthorization()
+                status = await UserNotifications.requestAuthorizationStatus()
+              }
+            }
+
+          case .denied:
+            Button("Open notification settings") {
+              Task {
+                try await UserNotifications.openSystemNotificationSetting()
+              }
+            }
+
+          case .granted:
+            EmptyView()
+          }
+        }
       }
-      .groupBoxStyle(SettingsCardStyle())
 
       // MARK: - Notification Preferences Section
 
-      GroupBox {
-        VStack(alignment: .leading, spacing: SettingsDesignTokens.cardItemSpacing) {
-          Toggle("Notify when activate prevention", isOn: $state.notifyWhenActivate)
-          Toggle("Notify when deactivate prevention", isOn: $state.notifyWhenDeactivate)
-        }
-      } label: {
-        Label("Notify when", systemImage: "bell")
+      SettingsCard("Notify when", icon: "bell") {
+        Toggle("Notify when activate prevention", isOn: $state.notifyWhenActivate)
+        Toggle("Notify when deactivate prevention", isOn: $state.notifyWhenDeactivate)
       }
-      .groupBoxStyle(SettingsCardStyle())
     }
     .padding(SettingsDesignTokens.formPadding)
     .task {

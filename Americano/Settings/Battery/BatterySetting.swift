@@ -45,49 +45,44 @@ struct BatterySettingView: View {
       VStack(alignment: .leading, spacing: SettingsDesignTokens.sectionSpacing) {
         // MARK: - Battery Level Monitoring Section
 
-        GroupBox {
-          VStack(alignment: .leading, spacing: SettingsDesignTokens.cardItemSpacing) {
-            Toggle(batteryText, isOn: $state.batteryMonitorEnable)
-              .onChange(of: state.batteryMonitorEnable) { _, enable in
-                guard enable,
-                      BatteryMonitor.shared.currentCapacity < AppState.shared.batteryLowThreshold
-                else {
-                  return
-                }
-                stopCaffeinate()
+        SettingsCard("Battery Level", icon: "battery.50percent") {
+          Toggle(batteryText, isOn: $state.batteryMonitorEnable)
+            .onChange(of: state.batteryMonitorEnable) { _, enable in
+              guard enable,
+                    BatteryMonitor.shared.currentCapacity < AppState.shared.batteryLowThreshold
+              else {
+                return
               }
-
-            if state.batteryMonitorEnable {
-              VStack(alignment: .leading, spacing: 8) {
-                BatterySlider(
-                  minValue: 10,
-                  maxValue: 90,
-                  currentValue: $state.batteryLowThreshold,
-                  enabled: $state.batteryMonitorEnable
-                )
-
-                HStack(spacing: 4) {
-                  Text("Current battery capacity: \(BatteryMonitor.shared.currentCapacity)%")
-                    .font(.caption)
-                  Image(systemName: BatteryMonitor.shared.capacitySymbol)
-                    .foregroundStyle(batteryColor)
-                }
-
-                Text("If manually activate prevention, this setting will be ignored.")
-                  .fixedSize(horizontal: false, vertical: true)
-                  .settingDescription()
-              }
-              .padding(.top, SettingsDesignTokens.toggleDescriptionSpacing)
+              stopCaffeinate()
             }
+
+          if state.batteryMonitorEnable {
+            VStack(alignment: .leading, spacing: 8) {
+              BatterySlider(
+                minValue: 10,
+                maxValue: 90,
+                currentValue: $state.batteryLowThreshold,
+                enabled: $state.batteryMonitorEnable
+              )
+
+              HStack(spacing: 4) {
+                Text("Current battery capacity: \(BatteryMonitor.shared.currentCapacity)%")
+                  .font(.caption)
+                Image(systemName: BatteryMonitor.shared.capacitySymbol)
+                  .foregroundStyle(batteryColor)
+              }
+
+              Text("If manually activate prevention, this setting will be ignored.")
+                .fixedSize(horizontal: false, vertical: true)
+                .settingDescription()
+            }
+            .padding(.top, SettingsDesignTokens.toggleDescriptionSpacing)
           }
-        } label: {
-          Label("Battery Level", systemImage: "battery.50percent")
         }
-        .groupBoxStyle(SettingsCardStyle())
 
         // MARK: - Low Power Mode Section
 
-        GroupBox {
+        SettingsCard("Low Power Mode", icon: "leaf") {
           SettingToggleRow(
             "Deactivate prevention when Low Power Mode",
             description: "Automatically deactivate prevention when Mac's Low Power Mode is activated.",
@@ -96,37 +91,29 @@ struct BatterySettingView: View {
             guard enable, BatteryMonitor.shared.isLowPowerModeEnabled else { return }
             stopCaffeinate()
           }
-        } label: {
-          Label("Low Power Mode", systemImage: "leaf")
         }
-        .groupBoxStyle(SettingsCardStyle())
 
         // MARK: - Charging Behavior Section
 
-        GroupBox {
-          VStack(alignment: .leading, spacing: SettingsDesignTokens.cardItemSpacing) {
-            SettingToggleRow(
-              "Activate prevention when charging",
-              description: "Automatically activate prevention when Mac is connected to the charger.",
-              isOn: $state.activatePlug
-            ) { activate in
-              guard activate, BatteryMonitor.shared.isCharging else { return }
-              CaffeinateController.shared.startIfAllowed()
-            }
-
-            SettingToggleRow(
-              "Deactivate prevention when not charging",
-              description: "Automatically deactivate prevention when Mac isn't connected to the charger.",
-              isOn: $state.deactivateUnplug
-            ) { deactivate in
-              guard deactivate, !BatteryMonitor.shared.isCharging else { return }
-              stopCaffeinate()
-            }
+        SettingsCard("Charging", icon: "bolt.fill") {
+          SettingToggleRow(
+            "Activate prevention when charging",
+            description: "Automatically activate prevention when Mac is connected to the charger.",
+            isOn: $state.activatePlug
+          ) { activate in
+            guard activate, BatteryMonitor.shared.isCharging else { return }
+            CaffeinateController.shared.startIfAllowed()
           }
-        } label: {
-          Label("Charging", systemImage: "bolt.fill")
+
+          SettingToggleRow(
+            "Deactivate prevention when not charging",
+            description: "Automatically deactivate prevention when Mac isn't connected to the charger.",
+            isOn: $state.deactivateUnplug
+          ) { deactivate in
+            guard deactivate, !BatteryMonitor.shared.isCharging else { return }
+            stopCaffeinate()
+          }
         }
-        .groupBoxStyle(SettingsCardStyle())
       }
       .padding(SettingsDesignTokens.formPadding)
     }

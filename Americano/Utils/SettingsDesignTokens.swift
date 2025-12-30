@@ -7,6 +7,14 @@
 
 import SwiftUI
 
+/// Time-related constants
+enum TimeConstants {
+  static let secondsPerMinute = 60
+  static let secondsPerHour = 3600
+  static let maxHours = 999
+  static let maxMinutesOrSeconds = 59
+}
+
 /// Design system constants for consistent settings UI
 enum SettingsDesignTokens {
   // MARK: - Spacing
@@ -69,6 +77,30 @@ struct SettingsCardStyle: GroupBoxStyle {
 }
 
 // MARK: - Reusable Setting Components
+
+/// A card container for grouping related settings
+struct SettingsCard<Content: View>: View {
+  let title: LocalizedStringKey
+  let icon: String
+  @ViewBuilder let content: () -> Content
+
+  init(_ title: LocalizedStringKey, icon: String, @ViewBuilder content: @escaping () -> Content) {
+    self.title = title
+    self.icon = icon
+    self.content = content
+  }
+
+  var body: some View {
+    GroupBox {
+      VStack(alignment: .leading, spacing: SettingsDesignTokens.cardItemSpacing) {
+        content()
+      }
+    } label: {
+      Label(title, systemImage: icon)
+    }
+    .groupBoxStyle(SettingsCardStyle())
+  }
+}
 
 /// A setting row with a toggle and description text
 struct SettingToggleRow: View {

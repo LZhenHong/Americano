@@ -33,7 +33,7 @@ struct CustomIntervalView: View {
   }
 
   private var currentInterval: TimeInterval {
-    TimeInterval(hours * 3600 + minutes * 60 + seconds)
+    TimeInterval(hours * TimeConstants.secondsPerHour + minutes * TimeConstants.secondsPerMinute + seconds)
   }
 
   private var previewText: String {
@@ -55,7 +55,7 @@ struct CustomIntervalView: View {
           label: String(localized: "Hours"),
           text: $hoursText,
           placeholder: "0",
-          maxValue: 999
+          maxValue: TimeConstants.maxHours
         )
         .focused($focusedField, equals: .hours)
 
@@ -67,7 +67,7 @@ struct CustomIntervalView: View {
           label: String(localized: "Min", comment: "Minutes abbreviation"),
           text: $minutesText,
           placeholder: "00",
-          maxValue: 59
+          maxValue: TimeConstants.maxMinutesOrSeconds
         )
         .focused($focusedField, equals: .minutes)
 
@@ -79,7 +79,7 @@ struct CustomIntervalView: View {
           label: String(localized: "Sec", comment: "Seconds abbreviation"),
           text: $secondsText,
           placeholder: "00",
-          maxValue: 59
+          maxValue: TimeConstants.maxMinutesOrSeconds
         )
         .focused($focusedField, equals: .seconds)
       }
