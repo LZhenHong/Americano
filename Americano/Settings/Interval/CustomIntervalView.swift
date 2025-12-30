@@ -97,11 +97,6 @@ struct CustomIntervalView: View {
           .foregroundStyle(isIntervalInvalid ? .secondary : .primary)
       }
 
-      // Set as Default Toggle
-      Toggle("Set as default", isOn: $asDefault)
-        .toggleStyle(.checkbox)
-        .help(Text("Set as default", comment: "Toggle help"))
-
       // Validation Error
       if let description = intervalValidator(currentInterval) {
         Label(description, systemImage: "exclamationmark.triangle.fill")
@@ -110,21 +105,27 @@ struct CustomIntervalView: View {
           .fixedSize(horizontal: false, vertical: true)
       }
 
-      Divider()
-
-      // Action Buttons
+      // Footer: Toggle + Action Buttons
       HStack {
-        Button("Cancel", role: .cancel) {
-          interval = interval(from: 0)
-          dismiss()
-        }
-        .keyboardShortcut(.escape)
+        Toggle("Set as default", isOn: $asDefault)
+          .toggleStyle(.checkbox)
 
         Spacer()
 
-        Button("Add") {
+        Button(role: .cancel) {
+          interval = interval(from: 0)
+          dismiss()
+        } label: {
+          Label("Cancel", systemImage: "xmark.circle")
+        }
+        .keyboardShortcut(.escape)
+        .buttonStyle(.bordered)
+
+        Button {
           interval = interval(from: currentInterval)
           dismiss()
+        } label: {
+          Label("Add", systemImage: "plus.circle.fill")
         }
         .keyboardShortcut(.return)
         .disabled(isIntervalInvalid || intervalValidator(currentInterval) != nil)
