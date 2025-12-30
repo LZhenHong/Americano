@@ -1,6 +1,22 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    ":" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ":"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ":"
+          }
+        }
+      }
+    },
     "%@" : {
       "localizations" : {
         "en" : {
@@ -89,28 +105,6 @@
         }
       }
     },
-    "activate prevention" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "activate prevention"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "开启防止休眠"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "開啟防止休眠"
-          }
-        }
-      }
-    },
     "Activate prevention on Launch" : {
       "localizations" : {
         "en" : {
@@ -178,6 +172,7 @@
       }
     },
     "Add Custom Duration" : {
+      "comment" : "Dialog title",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -195,6 +190,29 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "新增自訂時長"
+          }
+        }
+      }
+    },
+    "Add duration" : {
+      "comment" : "Tooltip for add duration button",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add duration"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "添加时长"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "新增時長"
           }
         }
       }
@@ -239,6 +257,29 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "允許 Mac 顯示器休眠。"
+          }
+        }
+      }
+    },
+    "Application" : {
+      "comment" : "Section label in About settings",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Application"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "应用程序"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "應用程式"
           }
         }
       }
@@ -353,6 +394,29 @@
         }
       }
     },
+    "Battery Level" : {
+      "comment" : "Section label in Battery settings",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Battery Level"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "电池电量"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "電池電量"
+          }
+        }
+      }
+    },
     "Cancel" : {
       "localizations" : {
         "en" : {
@@ -375,8 +439,60 @@
         }
       }
     },
+    "Charging" : {
+      "comment" : "Section label in Battery settings",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Charging"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "充电"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "充電"
+          }
+        }
+      }
+    },
+    "Check for the latest version" : {
+      "comment" : "Description in About settings",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Check for the latest version"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "检查最新版本"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "檢查最新版本"
+          }
+        }
+      }
+    },
     "Check for Updates" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Check for Updates"
+          }
+        },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
@@ -432,28 +548,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "目前電池電量：%lld%%"
-          }
-        }
-      }
-    },
-    "deactivate prevention" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "deactivate prevention"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "结束防休眠"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "結束防休眠"
           }
         }
       }
@@ -612,24 +706,48 @@
         }
       }
     },
-    "Denied." : {
+    "Denied" : {
+      "comment" : "Notification permission status",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Denied."
+            "value" : "Denied"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "已拒绝。"
+            "value" : "已拒绝"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "已拒絕。"
+            "value" : "已拒絕"
+          }
+        }
+      }
+    },
+    "Duration:" : {
+      "comment" : "Label for duration preview",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Duration:"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "时长："
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "時長："
           }
         }
       }
@@ -652,6 +770,29 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "時長"
+          }
+        }
+      }
+    },
+    "Enter a duration" : {
+      "comment" : "Placeholder in CustomIntervalView",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enter a duration"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "输入时长"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "輸入時長"
           }
         }
       }
@@ -723,29 +864,31 @@
         }
       }
     },
-    "Granted." : {
+    "Granted" : {
+      "comment" : "Notification permission status",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Granted."
+            "value" : "Granted"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "已允许。"
+            "value" : "已允许"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "已允許。"
+            "value" : "已允許"
           }
         }
       }
     },
     "Hours" : {
+      "comment" : "Time unit label in CustomIntervalView",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -855,24 +998,48 @@
         }
       }
     },
-    "Minutes" : {
+    "Low Power Mode" : {
+      "comment" : "Section label in Battery settings",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Minutes"
+            "value" : "Low Power Mode"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "分钟"
+            "value" : "低电量模式"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "分鐘"
+            "value" : "低電量模式"
+          }
+        }
+      }
+    },
+    "Min" : {
+      "comment" : "Minutes abbreviation",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Min"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "分"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "分"
           }
         }
       }
@@ -899,46 +1066,69 @@
         }
       }
     },
-    "Notification permission status:" : {
+    "Notify when" : {
+      "comment" : "Section label in Notification settings",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Notification permission status:"
+            "value" : "Notify when"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "通知权限："
+            "value" : "通知时机"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "通知權限："
+            "value" : "通知時機"
           }
         }
       }
     },
-    "Notify when:" : {
+    "Notify when activate prevention" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Notify when:"
+            "value" : "Notify when activate prevention"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "发送消息通知："
+            "value" : "开启防休眠时发送通知"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "發送訊息通知："
+            "value" : "開啟防休眠時發送通知"
+          }
+        }
+      }
+    },
+    "Notify when deactivate prevention" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Notify when deactivate prevention"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "结束防休眠时发送通知"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "結束防休眠時發送通知"
           }
         }
       }
@@ -961,6 +1151,52 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "開啟通知設定"
+          }
+        }
+      }
+    },
+    "Permission" : {
+      "comment" : "Section label in Notification settings",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Permission"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "权限"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "權限"
+          }
+        }
+      }
+    },
+    "Permission status:" : {
+      "comment" : "Label in Notification settings",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Permission status:"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "权限状态："
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "權限狀態："
           }
         }
       }
@@ -1005,6 +1241,29 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "退出"
+          }
+        }
+      }
+    },
+    "Remove duration" : {
+      "comment" : "Tooltip for remove duration button",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Remove duration"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "移除时长"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "移除時長"
           }
         }
       }
@@ -1075,12 +1334,13 @@
         }
       }
     },
-    "Seconds" : {
+    "Sec" : {
+      "comment" : "Seconds abbreviation",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Seconds"
+            "value" : "Sec"
           }
         },
         "zh-Hans" : {
@@ -1093,6 +1353,29 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "秒"
+          }
+        }
+      }
+    },
+    "Set as default" : {
+      "comment" : "Toggle help",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Set as default"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "设为默认"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "設為預設"
           }
         }
       }
@@ -1137,6 +1420,29 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "設定"
+          }
+        }
+      }
+    },
+    "Sleep Behavior" : {
+      "comment" : "Section label in General settings",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sleep Behavior"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "睡眠行为"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "睡眠行為"
           }
         }
       }
@@ -1229,6 +1535,29 @@
         }
       }
     },
+    "Software Update" : {
+      "comment" : "Section label in About settings",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Software Update"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "软件更新"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "軟體更新"
+          }
+        }
+      }
+    },
     "Sort by time" : {
       "localizations" : {
         "en" : {
@@ -1247,6 +1576,29 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "按時間排序"
+          }
+        }
+      }
+    },
+    "Startup" : {
+      "comment" : "Section label in General settings",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Startup"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "启动"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "啟動"
           }
         }
       }
@@ -1273,24 +1625,48 @@
         }
       }
     },
-    "Undetermined." : {
+    "Undetermined" : {
+      "comment" : "Notification permission status",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Undetermined."
+            "value" : "Undetermined"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "未确定。"
+            "value" : "未确定"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "未確定。"
+            "value" : "未確定"
+          }
+        }
+      }
+    },
+    "Updates" : {
+      "comment" : "Section label in About settings",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Updates"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "更新"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "更新"
           }
         }
       }

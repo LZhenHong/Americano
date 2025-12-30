@@ -33,69 +33,79 @@ private struct IntervalSettingView: View {
 
   @State private var showResetAlert = false
 
-  var listView: some View {
-    List(selection: $selectedInterval) {
-      ForEach(state.awakeDurations.intervals) { interval in
-        IntervalSettingCell(interval: interval)
-          .tag(interval)
-          .contextMenu {
-            contextMenu(for: interval)
-          }
-      }
-      .onDelete(perform: delete(at:))
-    }
-    .cornerRadius(10)
-    .padding(8)
-  }
-
-  var operationView: some View {
-    HStack {
-      Button("Sort by time") {
-        state.awakeDurations.sort()
-      }
-      Button {
-        showResetAlert.toggle()
-      } label: {
-        Text("Reset")
-          .foregroundStyle(.red)
-      }
-      Spacer()
-      Button("Set default") {
-        markIntervalAsDefault(selectedInterval)
-      }
-      .disabled(!canIntervalSetToDefault(selectedInterval))
-      Button {
-        showPickerSheet.toggle()
-      } label: {
-        Image(systemName: "plus")
-      }
-      Button {
-        delete(interval: selectedInterval)
-      } label: {
-        Image(systemName: "minus")
-      }
-      .disabled(!canIntervalBeDeleted(selectedInterval))
-    }
-    .padding(.bottom, 15)
-    .padding(.horizontal, 10)
-  }
-
-  var intervalPickerView: some View {
-    CustomIntervalView(interval: $interval) { time in
-      if time > 0, state.awakeDurations.has(time) {
-        return String(localized: "\(time.localizedTime) already exists.")
-      }
-      return nil
-    }
-  }
-
   var body: some View {
-    VStack {
-      listView
-      operationView
+    VStack(spacing: 0) {
+      // Toolbar
+      HStack(spacing: 8) {
+        Button {
+          state.awakeDurations.sort()
+        } label: {
+          Image(systemName: "arrow.up.arrow.down")
+        }
+        .help("Sort by time")
+
+        Button(role: .destructive) {
+          showResetAlert.toggle()
+        } label: {
+          Image(systemName: "arrow.counterclockwise")
+        }
+        .help("Reset to default")
+
+        Spacer()
+
+        Button {
+          markIntervalAsDefault(selectedInterval)
+        } label: {
+          Image(systemName: "star")
+        }
+        .disabled(!canIntervalSetToDefault(selectedInterval))
+        .help("Set as default")
+
+        Button {
+          showPickerSheet.toggle()
+        } label: {
+          Image(systemName: "plus")
+        }
+        .help("Add duration")
+
+        Button {
+          delete(interval: selectedInterval)
+        } label: {
+          Image(systemName: "minus")
+        }
+        .disabled(!canIntervalBeDeleted(selectedInterval))
+        .help("Remove duration")
+      }
+      .padding(.horizontal, SettingsDesignTokens.cardPadding)
+      .padding(.vertical, 8)
+      .background(SettingsDesignTokens.cardBackgroundColor)
+
+      Divider()
+
+      // Duration List
+      List(selection: $selectedInterval) {
+        ForEach(state.awakeDurations.intervals) { interval in
+          IntervalSettingCell(interval: interval)
+            .tag(interval)
+            .contextMenu {
+              contextMenu(for: interval)
+            }
+        }
+        .onDelete(perform: delete(at:))
+      }
+      .listStyle(.inset)
+      .scrollContentBackground(.hidden)
     }
+    .background(SettingsDesignTokens.cardBackgroundColor)
+    .cornerRadius(SettingsDesignTokens.cardCornerRadius)
+    .padding(SettingsDesignTokens.formPadding)
     .sheet(isPresented: $showPickerSheet, onDismiss: didDismiss) {
-      intervalPickerView
+      CustomIntervalView(interval: $interval) { time in
+        if time > 0, state.awakeDurations.has(time) {
+          return String(localized: "\(time.localizedTime) already exists.")
+        }
+        return nil
+      }
     }
     .alert("Reset to default", isPresented: $showResetAlert) {
       Button("Reset", role: .destructive) {
@@ -106,7 +116,7 @@ private struct IntervalSettingView: View {
     } message: {
       Text("This will remove all custom durations.")
     }
-    .frame(width: 400, height: 350)
+    .frame(width: SettingsDesignTokens.settingsPaneWidth, height: 320)
   }
 
   private func canIntervalSetToDefault(_ interval: AwakeDurations.Interval?) -> Bool {
@@ -131,11 +141,10 @@ private struct IntervalSettingView: View {
       }
       .disabled(!canIntervalSetToDefault(interval))
       Divider()
-      Button {
+      Button(role: .destructive) {
         delete(interval: interval)
       } label: {
         Text("Delete")
-          .foregroundStyle(.red)
       }
       .disabled(!interval.deletable)
     }
@@ -186,14 +195,15 @@ private struct IntervalSettingCell: View {
   var body: some View {
     HStack {
       Text("\(interval.localizedTime)")
-        .frame(height: 30)
-        .font(interval.default ? .system(size: 15, weight: .semibold) : .system(size: 14))
+        .font(interval.default ? .system(size: 14, weight: .semibold) : .system(size: 14))
       Spacer()
       if interval.default {
-        Text("Default")
-          .foregroundColor(.secondary)
+        Label("Default", systemImage: "star.fill")
+          .font(.caption)
+          .foregroundStyle(.orange)
       }
     }
+    .padding(.vertical, 4)
     .deleteDisabled(!interval.deletable)
   }
 }

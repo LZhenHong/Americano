@@ -19,7 +19,7 @@ struct GeneralSetting: SettingsPane {
 
   var view: some View {
     GeneralSettingView(state: .shared)
-      .frame(width: 400)
+      .frame(width: SettingsDesignTokens.settingsPaneWidth)
   }
 }
 
@@ -27,25 +27,52 @@ struct GeneralSettingView: View {
   @ObservedObject var state: AppState
 
   var body: some View {
-    Form {
-      Toggle("Launch at Login", isOn: $state.launchAtLogin)
-        .onChange(of: state.launchAtLogin) {
-          LaunchAtLogin.toggle()
+    VStack(alignment: .leading, spacing: SettingsDesignTokens.sectionSpacing) {
+      // MARK: - Startup Behavior Section
+
+      GroupBox {
+        VStack(alignment: .leading, spacing: SettingsDesignTokens.cardItemSpacing) {
+          SettingToggleRow(
+            "Launch at Login",
+            description: "Automatically launch the app when Mac starts.",
+            isOn: $state.launchAtLogin
+          ) { _ in
+            LaunchAtLogin.toggle()
+          }
+
+          SettingToggleRow(
+            "Activate prevention on Launch",
+            description: "Immediately prevents Mac going to sleep when app launched.",
+            isOn: $state.activateOnLaunch
+          )
         }
-      Text("Automatically launch the app when Mac starts.")
-        .settingPrompt()
-      Toggle("Activate prevention on Launch", isOn: $state.activateOnLaunch)
-      Text("Immediately prevents Mac going to sleep when app launched.")
-        .settingPrompt()
-      Divider()
-      Toggle("Enter ScreenSaver when deactivate prevention", isOn: $state.activateScreenSaver)
-      Text("Immediately enter ScreenSaver when sleep prevention is over.")
-        .settingPrompt()
-      Toggle("Allow display sleep", isOn: $state.allowDisplaySleep)
-      Text("Allow Mac's display go to sleep.")
-        .settingPrompt()
+      } label: {
+        Label("Startup", systemImage: "power")
+      }
+      .groupBoxStyle(SettingsCardStyle())
+
+      // MARK: - Sleep Behavior Section
+
+      GroupBox {
+        VStack(alignment: .leading, spacing: SettingsDesignTokens.cardItemSpacing) {
+          SettingToggleRow(
+            "Enter ScreenSaver when deactivate prevention",
+            description: "Immediately enter ScreenSaver when sleep prevention is over.",
+            isOn: $state.activateScreenSaver
+          )
+
+          SettingToggleRow(
+            "Allow display sleep",
+            description: "Allow Mac's display go to sleep.",
+            isOn: $state.allowDisplaySleep
+          )
+        }
+      } label: {
+        Label("Sleep Behavior", systemImage: "moon.zzz")
+      }
+      .groupBoxStyle(SettingsCardStyle())
     }
-    .padding()
+    .padding(SettingsDesignTokens.formPadding)
   }
 }
 

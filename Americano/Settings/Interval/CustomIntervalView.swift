@@ -13,10 +13,20 @@ struct CustomIntervalView: View {
   @Binding var interval: AwakeDurations.Interval
   let intervalValidator: (TimeInterval) -> String?
 
-  @State private var hours: Int = 0
-  @State private var minutes: Int = 0
-  @State private var seconds: Int = 0
+  @State private var hoursText: String = ""
+  @State private var minutesText: String = ""
+  @State private var secondsText: String = ""
   @State private var asDefault = false
+
+  @FocusState private var focusedField: Field?
+
+  private enum Field {
+    case hours, minutes, seconds
+  }
+
+  private var hours: Int { Int(hoursText) ?? 0 }
+  private var minutes: Int { Int(minutesText) ?? 0 }
+  private var seconds: Int { Int(secondsText) ?? 0 }
 
   private var isIntervalInvalid: Bool {
     hours == 0 && minutes == 0 && seconds == 0
@@ -26,41 +36,106 @@ struct CustomIntervalView: View {
     TimeInterval(hours * 3600 + minutes * 60 + seconds)
   }
 
+  private var previewText: String {
+    if isIntervalInvalid {
+      return String(localized: "Enter a duration")
+    }
+    return currentInterval.localizedTime
+  }
+
   var body: some View {
-    VStack {
-      Text("Add Custom Duration")
-        .font(.title3)
-      VStack(alignment: .trailing) {
-        IntervalComponent(prompt: "Hours", maxValue: 999, value: $hours)
-        IntervalComponent(prompt: "Minutes", value: $minutes)
-        IntervalComponent(prompt: "Seconds", value: $seconds)
-      }
-      .padding(.top, 10)
-      Toggle("Set default", isOn: $asDefault)
-        .padding(.bottom, 10)
+    VStack(spacing: SettingsDesignTokens.sectionSpacing) {
+      // Header
+      Text("Add Custom Duration", comment: "Dialog title")
+        .font(.headline)
 
-      if let description = intervalValidator(currentInterval) {
-        Text(description)
-          .font(.system(size: 12, weight: .bold))
-          .foregroundColor(.red)
-          .padding(.bottom, 10)
-      }
+      // Time Input Fields
+      HStack(spacing: 12) {
+        TimeInputField(
+          label: String(localized: "Hours"),
+          text: $hoursText,
+          placeholder: "0",
+          maxValue: 999
+        )
+        .focused($focusedField, equals: .hours)
 
+        Text(":")
+          .font(.title2)
+          .foregroundStyle(.secondary)
+
+        TimeInputField(
+          label: String(localized: "Min", comment: "Minutes abbreviation"),
+          text: $minutesText,
+          placeholder: "00",
+          maxValue: 59
+        )
+        .focused($focusedField, equals: .minutes)
+
+        Text(":")
+          .font(.title2)
+          .foregroundStyle(.secondary)
+
+        TimeInputField(
+          label: String(localized: "Sec", comment: "Seconds abbreviation"),
+          text: $secondsText,
+          placeholder: "00",
+          maxValue: 59
+        )
+        .focused($focusedField, equals: .seconds)
+      }
+      .padding(SettingsDesignTokens.cardPadding)
+      .background(SettingsDesignTokens.cardBackgroundColor)
+      .cornerRadius(SettingsDesignTokens.cardCornerRadius)
+
+      // Duration Preview
       HStack {
-        Button("Cancel") {
+        Text("Duration:", comment: "Label for duration preview")
+          .foregroundStyle(.secondary)
+        Spacer()
+        Text(previewText)
+          .fontWeight(isIntervalInvalid ? .regular : .semibold)
+          .foregroundStyle(isIntervalInvalid ? .secondary : .primary)
+      }
+
+      // Set as Default Toggle
+      Toggle("Set as default", isOn: $asDefault)
+        .toggleStyle(.checkbox)
+        .help(Text("Set as default", comment: "Toggle help"))
+
+      // Validation Error
+      if let description = intervalValidator(currentInterval) {
+        Label(description, systemImage: "exclamationmark.triangle.fill")
+          .font(.caption)
+          .foregroundStyle(.red)
+          .fixedSize(horizontal: false, vertical: true)
+      }
+
+      Divider()
+
+      // Action Buttons
+      HStack {
+        Button("Cancel", role: .cancel) {
           interval = interval(from: 0)
           dismiss()
         }
+        .keyboardShortcut(.escape)
+
         Spacer()
+
         Button("Add") {
           interval = interval(from: currentInterval)
           dismiss()
         }
-        .disabled(isIntervalInvalid)
+        .keyboardShortcut(.return)
+        .disabled(isIntervalInvalid || intervalValidator(currentInterval) != nil)
+        .buttonStyle(.borderedProminent)
       }
     }
-    .padding()
-    .frame(width: 280)
+    .padding(SettingsDesignTokens.formPadding)
+    .frame(minWidth: 280)
+    .onAppear {
+      focusedField = .hours
+    }
   }
 
   private func interval(from duration: TimeInterval) -> AwakeDurations.Interval {
@@ -68,20 +143,38 @@ struct CustomIntervalView: View {
   }
 }
 
-private struct IntervalComponent: View {
-  var prompt: LocalizedStringResource
-  var maxValue: Int = 59
-  @Binding var value: Int
-  @State private var stepperValue: Double = 0
+// MARK: - Time Input Field
+
+private struct TimeInputField: View {
+  let label: String
+  @Binding var text: String
+  let placeholder: String
+  let maxValue: Int
 
   var body: some View {
-    Stepper(String(localized: prompt),
-            value: $stepperValue,
-            in: 0...Double(maxValue),
-            format: .number) { start in
-      if !start {
-        value = Int(stepperValue)
-      }
+    VStack(spacing: 4) {
+      Text(label)
+        .font(.caption)
+        .foregroundStyle(.secondary)
+
+      TextField(placeholder, text: $text)
+        .textFieldStyle(.plain)
+        .font(.system(size: 24, weight: .medium, design: .rounded))
+        .multilineTextAlignment(.center)
+        .frame(width: 50)
+        .padding(.vertical, 8)
+        .background(Color(NSColor.textBackgroundColor))
+        .cornerRadius(6)
+        .onChange(of: text) { _, newValue in
+          // Only allow digits
+          let filtered = newValue.filter(\.isNumber)
+          // Limit to maxValue
+          if let value = Int(filtered), value > maxValue {
+            text = String(maxValue)
+          } else {
+            text = filtered
+          }
+        }
     }
   }
 }

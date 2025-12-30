@@ -31,28 +31,60 @@ struct AboutSettingView: View {
   }
 
   var body: some View {
-    VStack {
-      Image(nsImage: NSApp.applicationIconImage)
-      Text(Bundle.main.appName ?? "Americano")
-        .font(.title)
-        .fontWeight(.bold)
-        .padding(.top, -5)
-      #if USE_SPARKLE
-      Button {
-        AppDelegate.updaterController.updater.checkForUpdates()
+    VStack(spacing: SettingsDesignTokens.sectionSpacing) {
+      // App Info Card
+      GroupBox {
+        VStack(spacing: SettingsDesignTokens.cardItemSpacing) {
+          // App Icon
+          Image(nsImage: NSApp.applicationIconImage)
+            .resizable()
+            .aspectRatio(contentMode: .fit)
+            .frame(width: 80, height: 80)
+
+          // App Name and Version
+          VStack(spacing: 4) {
+            Text(Bundle.main.appName ?? "Americano")
+              .font(.title2)
+              .fontWeight(.bold)
+
+            Text("Version: \(displayVersion)")
+              .font(.subheadline)
+              .foregroundStyle(.secondary)
+          }
+        }
+        .frame(maxWidth: .infinity)
       } label: {
-        Text("Check for Updates")
+        Label("Application", systemImage: "cup.and.saucer.fill")
       }
-      .disabled(!AppDelegate.updaterController.updater.canCheckForUpdates)
-      .padding(.bottom, 5)
+      .groupBoxStyle(SettingsCardStyle())
+
+      #if USE_SPARKLE
+      // Update Card
+      GroupBox {
+        HStack {
+          VStack(alignment: .leading, spacing: 2) {
+            Text("Software Update")
+              .font(.body)
+            Text("Check for the latest version")
+              .font(.caption)
+              .foregroundStyle(.secondary)
+          }
+          Spacer()
+          Button {
+            AppDelegate.updaterController.updater.checkForUpdates()
+          } label: {
+            Text("Check for Updates")
+          }
+          .disabled(!AppDelegate.updaterController.updater.canCheckForUpdates)
+        }
+      } label: {
+        Label("Updates", systemImage: "arrow.triangle.2.circlepath")
+      }
+      .groupBoxStyle(SettingsCardStyle())
       #endif
-      Text("Version: \(displayVersion)")
-        .font(.subheadline)
-        .foregroundStyle(.secondary)
     }
-    .padding(.top, 10)
-    .padding(.bottom, 20)
-    .frame(width: 400)
+    .padding(SettingsDesignTokens.formPadding)
+    .frame(width: SettingsDesignTokens.settingsPaneWidth)
   }
 }
 
