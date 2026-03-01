@@ -26,7 +26,6 @@ final class ScreenSaverWrapper: BinWrapper {
     screenSaver.arguments = ["-a", "ScreenSaverEngine"]
     do {
       try screenSaver.run()
-      screenSaver.waitUntilExit()
       return true
     } catch {
       logger.warning("Enter screen saver fail: \(error)")

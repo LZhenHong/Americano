@@ -84,7 +84,7 @@ final class CaffeinateController {
 
     BatteryMonitor.shared.observeOnLowPowerMode()
     BatteryMonitor.shared.state.$isLowPowerModeEnabled
-      .filter(!)
+      .filter(\.self)
       .sink { [weak self] _ in
         self?.stop()
       }
@@ -115,14 +115,14 @@ final class CaffeinateController {
   }
 
   private func observeBatteryToStopCaffeinate() {
-    let chargeStopPulisher = BatteryMonitor.shared.state.$isCharging
+    let chargeStopPublisher = BatteryMonitor.shared.state.$isCharging
       .filter { !$0 && AppState.shared.deactivateUnplug }
-    let batteryCapacityPulisher = BatteryMonitor.shared.state.$currentCapacity
+    let batteryCapacityPublisher = BatteryMonitor.shared.state.$currentCapacity
       .map { capacity in
         AppState.shared.batteryMonitorEnable && capacity <= AppState.shared.batteryLowThreshold
       }
       .filter { $0 }
-    chargeStopPulisher.merge(with: batteryCapacityPulisher)
+    chargeStopPublisher.merge(with: batteryCapacityPublisher)
       .filter { [weak self] _ in self?.caffWrapper.running == true }
       .receive(on: DispatchQueue.main)
       .sink { [weak self] _ in
@@ -132,15 +132,16 @@ final class CaffeinateController {
   }
 
   private func registerURLSchemes() {
-    URLSchemeInvoker.shared.register("/activate") { params in
-      guard self.canActivate else { return }
-      _ = params.isEmpty ? self.start() : self.start(params)
+    URLSchemeInvoker.shared.register("/activate") { [weak self] params in
+      guard let self, canActivate else { return }
+      _ = params.isEmpty ? start() : start(params)
     }
 
-    URLSchemeInvoker.shared.register("/deactivate") { _ in self.stop() }
+    URLSchemeInvoker.shared.register("/deactivate") { [weak self] _ in self?.stop() }
 
-    URLSchemeInvoker.shared.register("/toggle") { _ in
-      self.caffWrapper.running ? self.stop() : self.startIfAllowed()
+    URLSchemeInvoker.shared.register("/toggle") { [weak self] _ in
+      guard let self else { return }
+      caffWrapper.running ? stop() : startIfAllowed()
     }
   }
 
@@ -157,6 +158,24 @@ final class CaffeinateController {
   func stopObserveBatteryPowerInfoIfShould() {
     guard !shouldObservePowerInfo else { return }
     stopObserveBatteryPowerInfo()
+  }
+
+  /// Starts or stops the Low Power Mode observer based on the current setting.
+  func updateLowPowerModeObserver() {
+    if AppState.shared.lowPowerMonitorEnable {
+      observeBatteryLowPowerModeIfNeed()
+    } else {
+      stopObserveBatteryLowPowerMode()
+    }
+  }
+
+  /// Starts or stops battery power info observers based on current settings.
+  func updateBatteryPowerInfoObserver() {
+    if shouldObservePowerInfo {
+      observeBatteryPowerInfoIfNeed()
+    } else {
+      stopObserveBatteryPowerInfo()
+    }
   }
 
   private func stopObserveBatteryPowerInfo() {

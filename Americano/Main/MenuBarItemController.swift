@@ -99,6 +99,7 @@ final class MenuBarItemController {
   }
 
   private func setUpMenu() -> NSMenu {
+    MenuInvoker.shared.removeAllSubscriptions()
     let menu = createMenu()
     // https://github.com/onmyway133/blog/issues/428
     menu.autoenablesItems = false

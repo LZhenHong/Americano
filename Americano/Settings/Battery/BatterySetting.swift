@@ -88,6 +88,7 @@ struct BatterySettingView: View {
             description: "Automatically deactivate prevention when Mac's Low Power Mode is activated.",
             isOn: $state.lowPowerMonitorEnable
           ) { enable in
+            CaffeinateController.shared.updateLowPowerModeObserver()
             guard enable, BatteryMonitor.shared.isLowPowerModeEnabled else { return }
             stopCaffeinate()
           }
@@ -101,6 +102,7 @@ struct BatterySettingView: View {
             description: "Automatically activate prevention when Mac is connected to the charger.",
             isOn: $state.activatePlug
           ) { activate in
+            CaffeinateController.shared.updateBatteryPowerInfoObserver()
             guard activate, BatteryMonitor.shared.isCharging else { return }
             CaffeinateController.shared.startIfAllowed()
           }
@@ -110,6 +112,7 @@ struct BatterySettingView: View {
             description: "Automatically deactivate prevention when Mac isn't connected to the charger.",
             isOn: $state.deactivateUnplug
           ) { deactivate in
+            CaffeinateController.shared.updateBatteryPowerInfoObserver()
             guard deactivate, !BatteryMonitor.shared.isCharging else { return }
             stopCaffeinate()
           }

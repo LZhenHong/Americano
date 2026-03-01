@@ -29,6 +29,11 @@ final class MenuInvoker {
   func storeSubscriptions(_ subs: Set<AnyCancellable>, for menuItem: NSMenuItem) {
     subscriptions[ObjectIdentifier(menuItem)] = subs
   }
+
+  /// Removes all stored subscriptions, cancelling any active Combine pipelines.
+  func removeAllSubscriptions() {
+    subscriptions.removeAll()
+  }
 }
 
 /// Fluent builder for creating NSMenuItem instances with Combine bindings.

@@ -8,8 +8,6 @@
 import Foundation
 import os.log
 
-let ONE_MINUTE_IN_SECONDS = 60
-
 /// Delegate protocol for receiving caffeinate process lifecycle events.
 protocol CaffeinateDelegate: AnyObject {
   /// Called when the caffeinate process starts successfully.
