@@ -26,6 +26,8 @@ struct AboutSetting: SettingsPane {
 }
 
 struct AboutSettingView: View {
+  @State private var onboardingWindowController: OnboardingWindowController?
+
   var displayVersion: String {
     "\(Bundle.main.appVersion ?? "1.0.0") (\(Bundle.main.buildVersion ?? "1"))"
   }
@@ -51,6 +53,27 @@ struct AboutSettingView: View {
           }
         }
         .frame(maxWidth: .infinity)
+      }
+
+      // Welcome Card
+      SettingsCard("Welcome", icon: "hand.wave") {
+        HStack {
+          VStack(alignment: .leading, spacing: 2) {
+            Text(String(localized: "Welcome Window"))
+              .font(.body)
+            Text(String(localized: "Show the onboarding welcome window again."))
+              .font(.caption)
+              .foregroundStyle(.secondary)
+          }
+          Spacer()
+          Button {
+            AppState.shared.hasSeenOnboarding = false
+            onboardingWindowController = OnboardingWindowController()
+            onboardingWindowController?.showWindow(nil)
+          } label: {
+            Text(String(localized: "Show"))
+          }
+        }
       }
 
       #if USE_SPARKLE

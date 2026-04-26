@@ -32,6 +32,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
     CaffeinateController.shared.setUp()
     MenuBarItemController.shared.setUp()
+
+    if !AppState.shared.hasSeenOnboarding {
+      OnboardingWindowController().showWindow(nil)
+    }
   }
 
   func applicationWillTerminate(_: Notification) {
@@ -49,9 +53,11 @@ extension AppDelegate {
     let fileMenuItem = mainMenu.addItem(withTitle: "File", action: nil, keyEquivalent: "")
     let submenu = NSMenu(title: String(localized: "File"))
 
-    let closeWindowItem = NSMenuItem(title: String(localized: "Close Window"),
-                                     action: #selector(NSWindow.performClose(_:)),
-                                     keyEquivalent: "w")
+    let closeWindowItem = NSMenuItem(
+      title: String(localized: "Close Window"),
+      action: #selector(NSWindow.performClose(_:)),
+      keyEquivalent: "w"
+    )
     submenu.addItem(closeWindowItem)
 
     mainMenu.setSubmenu(submenu, for: fileMenuItem)
