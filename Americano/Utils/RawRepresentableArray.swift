@@ -8,11 +8,13 @@
 import Foundation
 import os.log
 
-private let logger = Logger(subsystem: AppDelegate.bundleIdentifier,
-                            category: "RawRepresentableArray")
+private let logger = Logger(
+  subsystem: AppDelegate.bundleIdentifier,
+  category: "RawRepresentableArray"
+)
 
 @propertyWrapper
-struct RawRepresentableArray<Element>: RawRepresentable where Element: Codable {
+struct RawRepresentableArray<Element: Codable>: RawRepresentable {
   typealias RawValue = String
 
   private var value: [Element] = []
@@ -29,9 +31,11 @@ struct RawRepresentableArray<Element>: RawRepresentable where Element: Codable {
   var rawValue: RawValue {
     do {
       let encoder = JSONEncoder()
-      encoder.nonConformingFloatEncodingStrategy = .convertToString(positiveInfinity: "inf",
-                                                                    negativeInfinity: "-inf",
-                                                                    nan: "NaN")
+      encoder.nonConformingFloatEncodingStrategy = .convertToString(
+        positiveInfinity: "inf",
+        negativeInfinity: "-inf",
+        nan: "NaN"
+      )
       let data = try encoder.encode(value)
       let val = String(data: data, encoding: .utf8)
       return val ?? "[]"
@@ -49,9 +53,11 @@ struct RawRepresentableArray<Element>: RawRepresentable where Element: Codable {
       }
 
       let decoder = JSONDecoder()
-      decoder.nonConformingFloatDecodingStrategy = .convertFromString(positiveInfinity: "inf",
-                                                                      negativeInfinity: "-inf",
-                                                                      nan: "NaN")
+      decoder.nonConformingFloatDecodingStrategy = .convertFromString(
+        positiveInfinity: "inf",
+        negativeInfinity: "-inf",
+        nan: "NaN"
+      )
       let val = try decoder.decode([Element].self, from: data)
       value = val
     } catch {

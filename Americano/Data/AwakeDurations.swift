@@ -43,8 +43,7 @@ public struct AwakeDurations: RawRepresentable {
     }
   }
 
-  @RawRepresentableArray
-  private(set) var intervals: [Interval] = []
+  @RawRepresentableArray private(set) var intervals: [Interval] = []
 
   private var defaultIntervals: [Interval] {
     [

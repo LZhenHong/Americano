@@ -11,8 +11,10 @@ import os.log
 import ServiceManagement
 
 enum LaunchAtLogin {
-  private static let logger = Logger(subsystem: AppDelegate.bundleIdentifier,
-                                     category: String(describing: LaunchAtLogin.self))
+  private static let logger = Logger(
+    subsystem: AppDelegate.bundleIdentifier,
+    category: String(describing: LaunchAtLogin.self)
+  )
 
   static var isEnabled: Bool {
     SMAppService.mainApp.status == .enabled

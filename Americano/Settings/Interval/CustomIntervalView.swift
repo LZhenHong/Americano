@@ -21,7 +21,9 @@ struct CustomIntervalView: View {
   @FocusState private var focusedField: Field?
 
   private enum Field {
-    case hours, minutes, seconds
+    case hours
+    case minutes
+    case seconds
   }
 
   private var hours: Int { Int(hoursText) ?? 0 }

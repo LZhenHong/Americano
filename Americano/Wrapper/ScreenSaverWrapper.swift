@@ -11,8 +11,10 @@ import os.log
 final class ScreenSaverWrapper: BinWrapper {
   static let shared = ScreenSaverWrapper()
 
-  let logger = Logger(subsystem: AppDelegate.bundleIdentifier,
-                      category: String(describing: ScreenSaverWrapper.self))
+  let logger = Logger(
+    subsystem: AppDelegate.bundleIdentifier,
+    category: String(describing: ScreenSaverWrapper.self)
+  )
 
   var binPath: String {
     "/usr/bin/open"

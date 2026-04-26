@@ -16,8 +16,10 @@ import os.log
 final class CaffeinateController {
   static let shared = CaffeinateController()
 
-  private let logger = Logger(subsystem: AppDelegate.bundleIdentifier,
-                              category: String(describing: CaffeinateController.self))
+  private let logger = Logger(
+    subsystem: AppDelegate.bundleIdentifier,
+    category: String(describing: CaffeinateController.self)
+  )
   private let caffWrapper: CaffeinateWrapper
 
   private var lowPowerToken = SubscriptionToken()

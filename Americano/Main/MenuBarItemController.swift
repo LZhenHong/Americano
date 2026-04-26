@@ -23,8 +23,10 @@ private enum Constants {
 final class MenuBarItemController {
   static let shared = MenuBarItemController()
 
-  private let logger = Logger(subsystem: AppDelegate.bundleIdentifier,
-                              category: String(describing: MenuBarItemController.self))
+  private let logger = Logger(
+    subsystem: AppDelegate.bundleIdentifier,
+    category: String(describing: MenuBarItemController.self)
+  )
 
   private var subscriptions = Set<AnyCancellable>()
   private var statusItem: NSStatusItem?
@@ -72,7 +74,8 @@ final class MenuBarItemController {
     return statusItem
   }
 
-  @objc private func onStatusBarItemHandle(_ sender: NSStatusBarButton) {
+  @objc
+  private func onStatusBarItemHandle(_ sender: NSStatusBarButton) {
     guard let event = NSApp.currentEvent else { return }
 
     switch event.type {

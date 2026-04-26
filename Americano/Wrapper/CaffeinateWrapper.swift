@@ -34,8 +34,10 @@ final class CaffeinateWrapper: BinWrapper {
   /// Delegate to receive process lifecycle events.
   weak var delegate: CaffeinateDelegate?
 
-  private let logger = Logger(subsystem: AppDelegate.bundleIdentifier,
-                              category: String(describing: CaffeinateWrapper.self))
+  private let logger = Logger(
+    subsystem: AppDelegate.bundleIdentifier,
+    category: String(describing: CaffeinateWrapper.self)
+  )
 
   private var caffeinate: Process?
 

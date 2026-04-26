@@ -11,7 +11,9 @@ import UserNotifications
 
 enum UserNotifications {
   enum Status {
-    case granted, undetermined, denied
+    case granted
+    case undetermined
+    case denied
   }
 
   private static var center: UNUserNotificationCenter {
@@ -47,9 +49,11 @@ enum UserNotifications {
       return
     }
 
-    let request = UNNotificationRequest(identifier: .notificationIdentifier,
-                                        content: content,
-                                        trigger: nil)
+    let request = UNNotificationRequest(
+      identifier: .notificationIdentifier,
+      content: content,
+      trigger: nil
+    )
     try await center.add(request)
   }
 

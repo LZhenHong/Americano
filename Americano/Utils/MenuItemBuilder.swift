@@ -18,7 +18,8 @@ final class MenuInvoker {
 
   private init() {}
 
-  @objc func execute(_ item: NSMenuItem) {
+  @objc
+  func execute(_ item: NSMenuItem) {
     guard let handler = item.representedObject as? () -> Void else {
       return
     }
