@@ -10,8 +10,10 @@ import Foundation
 import os.log
 
 final class URLSchemeInvoker {
-  private let logger = Logger(subsystem: AppDelegate.bundleIdentifier,
-                              category: String(describing: URLSchemeInvoker.self))
+  private let logger = Logger(
+    subsystem: AppDelegate.bundleIdentifier,
+    category: String(describing: URLSchemeInvoker.self)
+  )
 
   static let shared = URLSchemeInvoker()
 
@@ -19,7 +21,8 @@ final class URLSchemeInvoker {
 
   private init() {}
 
-  @objc fileprivate func handleEvent(_ event: NSAppleEventDescriptor?, with _: NSAppleEventDescriptor?) {
+  @objc
+  fileprivate func handleEvent(_ event: NSAppleEventDescriptor?, with _: NSAppleEventDescriptor?) {
     guard let event,
           let param = event.paramDescriptor(forKeyword: keyDirectObject)?.stringValue,
           let url = URL(string: param),
@@ -53,15 +56,19 @@ final class URLSchemeInvoker {
 enum URLSchemeUtils {
   static func register() {
     NSAppleEventManager.shared()
-      .setEventHandler(URLSchemeInvoker.shared,
-                       andSelector: #selector(URLSchemeInvoker.handleEvent(_:with:)),
-                       forEventClass: AEEventClass(kInternetEventClass),
-                       andEventID: AEEventID(kAEGetURL))
+      .setEventHandler(
+        URLSchemeInvoker.shared,
+        andSelector: #selector(URLSchemeInvoker.handleEvent(_:with:)),
+        forEventClass: AEEventClass(kInternetEventClass),
+        andEventID: AEEventID(kAEGetURL)
+      )
   }
 
   static func unregister() {
     NSAppleEventManager.shared()
-      .removeEventHandler(forEventClass: AEEventClass(kInternetEventClass),
-                          andEventID: AEEventID(kAEGetURL))
+      .removeEventHandler(
+        forEventClass: AEEventClass(kInternetEventClass),
+        andEventID: AEEventID(kAEGetURL)
+      )
   }
 }

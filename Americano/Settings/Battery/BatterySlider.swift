@@ -50,9 +50,11 @@ struct BatterySlider: View {
 }
 
 #Preview {
-  BatterySlider(minValue: 10,
-                maxValue: 90,
-                currentValue: .constant(40),
-                enabled: .constant(true))
-    .padding()
+  BatterySlider(
+    minValue: 10,
+    maxValue: 90,
+    currentValue: .constant(40),
+    enabled: .constant(true)
+  )
+  .padding()
 }

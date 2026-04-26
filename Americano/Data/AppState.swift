@@ -55,6 +55,9 @@ final class AppState: ObservableObject {
   /// Show notification when sleep prevention is deactivated.
   var notifyWhenDeactivate = false
 
+  /// Whether the user has seen the onboarding welcome window.
+  var hasSeenOnboarding = false
+
   /// Shared singleton instance.
   static let shared = AppState()
 
