@@ -41,38 +41,4 @@ increase_build_number() {
     echo "Bumped Build Number: ${new_build}"
 }
 
-increase_version() {
-    local version
-    version="$(awk -F "=" '/VERSION/ {print $2}' "${FILE_NAME}" | tr -d ' ')"
-    echo "Previous Version: ${version}"
-
-    local major minor patch
-    major="$(echo "${version}" | cut -d. -f1)"
-    minor="$(echo "${version}" | cut -d. -f2)"
-    patch="$(echo "${version}" | cut -d. -f3)"
-
-    local configuration="${CONFIGURATION:-}"
-    if [[ "${configuration}" == "Release" ]]; then
-        patch=$((patch + 1))
-    fi
-
-    local new_version="${major}.${minor}.${patch}"
-
-    sed -i -e "/VERSION =/ s/= .*/= ${new_version}/" "${FILE_NAME}"
-    rm -f "${FILE_NAME}-e"
-
-    echo "Bumped Version: ${new_version}"
-}
-
 increase_build_number
-
-bump=false
-if [[ "${BUMP_VERSION:-}" == "1" ]]; then
-    bump=true
-fi
-
-if [[ "${bump}" == true ]]; then
-    increase_version
-else
-    echo "Skipping version bump"
-fi
