@@ -2,7 +2,7 @@
 
 Americano is a macOS app designed to prevent your Mac from entering sleep mode. This small utility comes in handy when you need to keep your system awake during specific tasks such as downloads, presentations, or any other scenario where automatic sleep could be disruptive.
 
-<img src="screenshot.png" />
+<img src="Images/screenshot.png" />
 
 ## How it works
 
@@ -32,7 +32,7 @@ You need launch Americano first.
 
 3. Use your own Team and change the Bundle Identifier.
 
-<img src="build.png" />
+<img src="Images/build.png" />
 
 ## Contributions
 
