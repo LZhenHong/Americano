@@ -10,7 +10,7 @@ Americano is a macOS menu bar app that prevents Mac from sleeping by wrapping th
 
 ## Build & Run
 
-Open `Americano.xcodeproj` in Xcode and build. No external package manager needed—SPM dependencies are resolved automatically.
+Open `Americano.xcodeproj` in Xcode and build. SPM dependencies are resolved automatically.
 
 To build from command line:
 ```bash
@@ -21,25 +21,68 @@ xcodebuild -project Americano.xcodeproj -scheme Americano build
 
 ### Core Flow
 - `main.swift` → `AppDelegate` → initializes `CaffeinateController` and `MenuBarItemController`
+- On first launch, `OnboardingWindowController` presents the welcome window
 - App runs as a menu bar item only (no dock icon, no main window)
 
 ### Key Singletons
-- **`AppState`** (`Data/AppState.swift`): Observable state container using `@storage` macro for persistence. All app preferences flow through here.
+
+- **`AppState`** (`Data/AppState.swift`): Observable state container using the `@storage` macro from `StorageMacro` SPM package for automatic persistence. All app preferences flow through here.
 - **`CaffeinateController`** (`Main/CaffeinateController.swift`): Business logic for caffeinate activation/deactivation, battery monitoring integration, and URL scheme handling.
-- **`MenuBarItemController`** (`Main/MenuBarItemController.swift`): Manages the NSStatusItem (menu bar icon). Left-click shows menu, right-click toggles caffeinate.
+- **`MenuBarItemController`** (`Main/MenuBarItemController.swift`): Manages the `NSStatusItem` (menu bar icon). Left-click shows menu, right-click toggles caffeinate.
 - **`BatteryMonitor`** (`Utils/BatteryMonitor.swift`): IOKit-based power source monitoring for battery-aware caffeinate control.
 
+### Onboarding
+
+- **`OnboardingWindowController`** (`Onboarding/OnboardingWindowController.swift`): Manages the welcome window presentation.
+- **`OnboardingView`** (`Onboarding/OnboardingView.swift`): SwiftUI view for first-launch onboarding. Shows app identity, interaction guide (left-click vs right-click), and quick setup toggle for `activateOnLaunch`.
+- Dismissal state tracked in `AppState.hasSeenOnboarding`. Users can re-open onboarding from Settings > About.
+
 ### Wrapper Layer
-- **`BinWrapper`** protocol: Abstraction for spawning command-line processes
-- **`CaffeinateWrapper`**: Manages `/usr/bin/caffeinate` process lifecycle with delegate callbacks
+
+- **`BinWrapper`** protocol (`Wrapper/BinWrapper.swift`): Abstraction for spawning command-line processes.
+- **`CaffeinateWrapper`** (`Wrapper/CaffeinateWrapper.swift`): Manages `/usr/bin/caffeinate` process lifecycle with delegate callbacks (`CaffeinateDelegate`).
+- **`ScreenSaverWrapper`** (`Wrapper/ScreenSaverWrapper.swift`): Spawns `ScreenSaverEngine` via `/usr/bin/open` when caffeinate auto-terminates (if `activateScreenSaver` is enabled).
 
 ### Menu System
+
 Uses custom `@resultBuilder` DSL for declarative menu construction:
-- `MenuBuilder`: Result builder for `NSMenu`
-- `MenuItemBuilder`: Fluent builder for `NSMenuItem` with Combine-based enable/disable
+- `MenuBuilder` (`Utils/MenuBuilder.swift`): Result builder for `NSMenu`
+- `MenuItemBuilder` (`Utils/MenuItemBuilder.swift`): Fluent builder for `NSMenuItem` with Combine-based enable/disable
+- `SubMenuBuilder` (`Main/SubMenuBuilder.swift`): Builds duration submenu from `AwakeDurations.intervals`
 
 ### Settings
-Settings window uses `SettingWindowController` with multiple `SettingContentRepresentable` tabs (General, Interval, Battery, Notification, About).
+
+Settings window uses `SettingsWindowController` from `SettingsKit` SPM package, with 5 `SettingsPane` tabs:
+
+| Pane | File | Key Features |
+|------|------|-------------|
+| General | `Settings/GeneralSetting.swift` | Launch at login, activate on launch, screen saver, display sleep |
+| Durations | `Settings/Interval/IntervalSetting.swift` | Add/remove/sort duration presets, set default, custom interval picker |
+| Battery | `Settings/Battery/BatterySetting.swift` | Low threshold auto-stop, Low Power Mode monitoring, plug/unplug behavior |
+| Notification | `Settings/NotificationSetting.swift` | Permission status, activate/deactivate notifications |
+| About | `Settings/AboutSetting.swift` | App version, re-open onboarding, Sparkle update check |
+
+Design system: `SettingsDesignTokens` (`Utils/SettingsDesignTokens.swift`) provides spacing, dimensions, and reusable components (`SettingsCard`, `SettingToggleRow`, `SettingsCardStyle`).
+
+### Utilities
+
+- **`SubscriptionToken`** (`Utils/SubscriptionToken.swift`): Lightweight single-subscription holder for Combine. Use `.seal(in:)` on `AnyCancellable` instead of `Set<AnyCancellable>` when only one subscription needs management.
+- **`URLSchemeUtils` / `URLSchemeInvoker`** (`Utils/URLSchemeUtils.swift`): Registers Apple Event handlers for `americano://` URL schemes. Routes path-based commands with query parameter parsing.
+- **`UserNotifications`** (`Utils/UserNotifications.swift`): Wraps `UNUserNotificationCenter` for requesting permission and posting activate/deactivate alerts.
+- **`LaunchAtLogin`** (`Utils/LaunchAtLogin.swift`): Thin wrapper around `SMAppService` for login item registration.
+
+### Data Layer
+
+- **`AwakeDurations`** (`Data/AwakeDurations.swift`): Configurable duration preset collection using `@RawRepresentableArray` property wrapper for `String`-based persistence. Supports default marking, custom intervals, sorting, and validation.
+
+## SPM Dependencies
+
+| Package | Purpose | Version |
+|---------|---------|---------|
+| [StorageMacro](https://github.com/LZhenHong/StorageMacro) | `@storage` macro for automatic `ObservableObject` + `UserDefaults` persistence | 0.0.3 |
+| [SettingsKit](https://github.com/LZhenHong/SettingsKit.git) | Settings window framework with `SettingsPane` protocol | 0.0.3 |
+| [Sparkle](https://github.com/sparkle-project/Sparkle) | Auto-update framework | 2.7.0 |
+| [swift-syntax](https://github.com/apple/swift-syntax.git) | StorageMacro dependency | 509.1.1 |
 
 ## Compilation Flags
 
@@ -47,21 +90,21 @@ Settings window uses `SettingWindowController` with multiple `SettingContentRepr
 
 ## URL Schemes
 
-Registered in `CaffeinateController.registerURLSchemes()`:
-- `americano:///activate?hours=&minutes=&seconds=`
-- `americano:///deactivate`
-- `americano:///toggle`
+Registered in `CaffeinateController.registerURLSchemes()` via `URLSchemeInvoker`:
+- `americano:///activate?hours=&minutes=&seconds=` — Activates with optional duration. Empty params = default duration.
+- `americano:///deactivate` — Stops sleep prevention.
+- `americano:///toggle` — Toggles sleep prevention on/off.
 
 ## Localization
 
-String resources in `Resources/Localizable.xcstrings`. Use `String(localized:)` for new strings.
+String resources in `Resources/Localizable.xcstrings`. Use `String(localized:)` for new strings. The app supports multiple languages through Xcode's localization system.
 
 ## Scripts
 
 Release tooling in `Scripts/`:
-- `bump-version.sh`: Version/build number management
+- `bump-version.sh`: Build number auto-increment (runs via Xcode scheme pre-action)
 - `compile-release.sh`: Build release archive
-- `gen-cast.sh`: Generate Sparkle appcast
+- `gen-cast.sh`: Generate Sparkle appcast, commit, and tag
 
 ## Design Context
 
