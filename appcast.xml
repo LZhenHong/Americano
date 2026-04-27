@@ -4,6 +4,34 @@
         <title>Americano</title>
         <language>en</language>
         <item>
+            <title>1.0.8</title>
+            <pubDate>Mon, 27 Apr 2026 10:41:18 +0800</pubDate>
+            <sparkle:version>20260427008</sparkle:version>
+            <sparkle:shortVersionString>1.0.8</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+            <description><![CDATA[<h2>Version 1.0.8</h2>
+
+<h3>✨ New Features</h3>
+<ul>
+  <li>Added onboarding welcome window for first launch</li>
+</ul>
+
+<h3>🐛 Bug Fixes</h3>
+<ul>
+  <li>Fixed Low Power Mode handling and observer lifecycle issues</li>
+  <li>Resolved memory safety issues in battery monitoring</li>
+</ul>
+
+<h3>🔧 Improvements</h3>
+<ul>
+  <li>Migrated build scripts to pure shell for better maintainability</li>
+  <li>Unified code formatting across the project</li>
+  <li>Added release workflow documentation</li>
+</ul>
+]]></description>
+            <enclosure url="https://github.com/LZhenHong/Americano/releases/download/v1.0.8/Americano.app.zip" length="4550694" type="application/octet-stream" sparkle:edSignature="2A6y+7bsltOEVsq8Uw6cC64f1RX2b7CJkObVPgYqq6Cp1LA/YruaUjq5KmArPU/KHwOtJwlPv8ecC+pNlbcIBQ=="/>
+        </item>
+        <item>
             <title>1.0.7</title>
             <pubDate>Tue, 30 Dec 2025 23:41:31 +0800</pubDate>
             <sparkle:version>20251230005</sparkle:version>
