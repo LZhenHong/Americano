@@ -1,0 +1,142 @@
+name: Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      commit_changes:
+        description: 'Commit build changes to repository'
+        type: boolean
+        default: true
+      update_homebrew:
+        description: 'Update Homebrew tap'
+        type: boolean
+        default: true
+
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+jobs:
+  release:
+    runs-on: macos-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Xcode
+        uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: latest-stable
+
+      - name: Print Environment Info
+        run: |
+          echo "macOS Version: $(sw_vers -productVersion)"
+          echo "Xcode Version: $(xcodebuild -version | head -1)"
+          echo "Xcode Path: $(xcode-select -p)"
+
+      - name: Verify Required Secrets
+        env:
+          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
+          SPARKLE_PRIVATE_KEY: ${{ secrets.SPARKLE_PRIVATE_KEY }}
+          TAP_GITHUB_TOKEN: ${{ secrets.TAP_GITHUB_TOKEN }}
+          UPDATE_HOMEBREW: ${{ inputs.update_homebrew }}
+        run: |
+          set -euo pipefail
+          missing=()
+          if [[ -z "${DEEPSEEK_API_KEY}" ]]; then missing+=("DEEPSEEK_API_KEY"); fi
+          if [[ -z "${SPARKLE_PRIVATE_KEY}" ]]; then missing+=("SPARKLE_PRIVATE_KEY"); fi
+          if [[ "${UPDATE_HOMEBREW}" = "true" && -z "${TAP_GITHUB_TOKEN}" ]]; then
+            missing+=("TAP_GITHUB_TOKEN")
+          fi
+          if (( ${#missing[@]} > 0 )); then
+            echo "Error: missing required secret(s): ${missing[*]}"
+            echo "Configure them in Settings → Secrets and variables → Actions."
+            exit 1
+          fi
+          echo "All required secrets present."
+
+      - name: Get Version
+        id: version
+        run: |
+          VERSION=$(xcodebuild -project Americano.xcodeproj -showBuildSettings -scheme Americano 2>/dev/null | grep MARKETING_VERSION | head -1 | awk '{print $3}')
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+
+      - name: Generate Changelog
+        env:
+          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
+        run: bash Scripts/changelog.sh
+
+      - name: Build
+        run: bash Scripts/ci-build.sh
+
+      - name: Import Sparkle Signing Key
+        env:
+          SPARKLE_PRIVATE_KEY: ${{ secrets.SPARKLE_PRIVATE_KEY }}
+        run: |
+          if [[ -z "$SPARKLE_PRIVATE_KEY" ]]; then
+            echo "Error: SPARKLE_PRIVATE_KEY secret is not set"
+            exit 1
+          fi
+          printf "%s" "$SPARKLE_PRIVATE_KEY" > /tmp/sparkle_ed25519.key
+
+      - name: Generate Appcast
+        env:
+          SPARKLE_PRIVATE_KEY_FILE: /tmp/sparkle_ed25519.key
+        run: bash Scripts/gen-appcast.sh
+
+      - name: Commit & Tag
+        env:
+          VERSION: ${{ steps.version.outputs.version }}
+          COMMIT_CHANGES: ${{ inputs.commit_changes }}
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          TAG="v${VERSION}"
+          if git rev-parse -q --verify "refs/tags/${TAG}" >/dev/null \
+            || git ls-remote --exit-code --tags origin "refs/tags/${TAG}" >/dev/null 2>&1; then
+            echo "Error: tag ${TAG} already exists (local or remote). Bump VERSION in Config.xcconfig before re-running."
+            exit 1
+          fi
+
+          if [ "${COMMIT_CHANGES}" = "true" ]; then
+            git add appcast.xml Americano/Resources/Config.xcconfig
+            if git diff --cached --quiet; then
+              echo "No changes to commit"
+            else
+              git commit -m "[RELEASE] v${VERSION}"
+            fi
+          fi
+
+          git tag -a "${TAG}" -m "Release ${TAG}"
+          git push --atomic origin HEAD "refs/tags/${TAG}"
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v${{ steps.version.outputs.version }}
+          name: Americano v${{ steps.version.outputs.version }}
+          body_path: Releases/CHANGELOG.md
+          files: |
+            Releases/Americano.app.zip
+            Releases/Americano.app.html
+            appcast.xml
+
+      - name: Update Homebrew Tap
+        if: ${{ inputs.update_homebrew }}
+        env:
+          TAP_GITHUB_TOKEN: ${{ secrets.TAP_GITHUB_TOKEN }}
+        run: |
+          git clone https://x-access-token:${TAP_GITHUB_TOKEN}@github.com/LZhenHong/homebrew-tap.git ../homebrew-tap
+          bash Scripts/homebrew.sh ../homebrew-tap
+          cd ../homebrew-tap && git push
+
+      - name: Cleanup Sparkle Signing Key
+        if: always()
+        run: rm -f /tmp/sparkle_ed25519.key

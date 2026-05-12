@@ -8,7 +8,7 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string>io.lzhlovesjqy.Americano</string>
+			<string>io.lzhlovesjyq.Americano</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>americano</string>
