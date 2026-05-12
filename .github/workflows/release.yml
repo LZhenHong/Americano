@@ -125,6 +125,7 @@ jobs:
           body_path: Releases/CHANGELOG.md
           files: |
             Releases/Americano.app.zip
+            Releases/Americano.app.html
             appcast.xml
 
       - name: Update Homebrew Tap
