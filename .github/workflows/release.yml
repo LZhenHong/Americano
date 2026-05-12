@@ -12,6 +12,10 @@ on:
         type: boolean
         default: true
 
+concurrency:
+  group: release
+  cancel-in-progress: false
+
 jobs:
   release:
     runs-on: macos-latest
@@ -34,6 +38,27 @@ jobs:
           echo "macOS Version: $(sw_vers -productVersion)"
           echo "Xcode Version: $(xcodebuild -version | head -1)"
           echo "Xcode Path: $(xcode-select -p)"
+
+      - name: Verify Required Secrets
+        env:
+          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
+          SPARKLE_PRIVATE_KEY: ${{ secrets.SPARKLE_PRIVATE_KEY }}
+          TAP_GITHUB_TOKEN: ${{ secrets.TAP_GITHUB_TOKEN }}
+          UPDATE_HOMEBREW: ${{ inputs.update_homebrew }}
+        run: |
+          set -euo pipefail
+          missing=()
+          if [[ -z "${DEEPSEEK_API_KEY}" ]]; then missing+=("DEEPSEEK_API_KEY"); fi
+          if [[ -z "${SPARKLE_PRIVATE_KEY}" ]]; then missing+=("SPARKLE_PRIVATE_KEY"); fi
+          if [[ "${UPDATE_HOMEBREW}" = "true" && -z "${TAP_GITHUB_TOKEN}" ]]; then
+            missing+=("TAP_GITHUB_TOKEN")
+          fi
+          if (( ${#missing[@]} > 0 )); then
+            echo "Error: missing required secret(s): ${missing[*]}"
+            echo "Configure them in Settings → Secrets and variables → Actions."
+            exit 1
+          fi
+          echo "All required secrets present."
 
       - name: Get Version
         id: version
