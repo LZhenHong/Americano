@@ -63,6 +63,8 @@ echo "Updated: $TAP_REPO/Casks/americano.rb"
 
 cd "$TAP_REPO"
 if [[ -n $(git status --porcelain) ]]; then
+    git config user.name "github-actions[bot]"
+    git config user.email "github-actions[bot]@users.noreply.github.com"
     git add -A
     git commit -m "Update Americano to $VERSION"
     echo "Committed changes"
