@@ -22,9 +22,7 @@ xcodebuild archive \
     -destination 'platform=macOS' \
     -archivePath "${ARCHIVE_NAME}" \
     clean archive \
-    CODE_SIGN_IDENTITY="-" \
-    CODE_SIGNING_REQUIRED=YES \
-    CODE_SIGNING_ALLOWED=YES
+    CODE_SIGNING_ALLOWED=NO
 
 TARGET_DIR="${PWD}/${RELEASE_FOLDER}"
 if [[ $# -gt 0 && -n "$1" ]]; then
