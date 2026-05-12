@@ -21,6 +21,7 @@ xcodebuild archive \
     -configuration Release \
     -destination 'platform=macOS' \
     -archivePath "${ARCHIVE_NAME}" \
+    -skipMacroValidation \
     clean archive \
     CODE_SIGNING_ALLOWED=NO
 
