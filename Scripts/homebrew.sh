@@ -1,5 +1,5 @@
-#!/bin/bash
-set -e
+#!/usr/bin/env bash
+set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd "$(dirname "$SCRIPT_DIR")" || exit 1
@@ -9,7 +9,7 @@ USER_NAME="LZhenHong"
 BUNDLE_ID="io.lzhlovesjqy.Americano"
 RELEASE_FOLDER="Releases"
 
-if [[ -z "$1" ]]; then
+if [[ -z "${1:-}" ]]; then
     echo "Usage: $0 <tap_repo_path>"
     exit 1
 fi
@@ -21,16 +21,25 @@ if [[ ! -d "$TAP_REPO" ]]; then
 fi
 
 VERSION=$(xcodebuild -project "${PROJECT_NAME}.xcodeproj" -showBuildSettings -scheme "${PROJECT_NAME}" 2>/dev/null | grep "MARKETING_VERSION" | head -1 | awk '{print $3}')
-ZIP_PATH="${RELEASE_FOLDER}/${PROJECT_NAME}.app.zip"
+if [[ -z "$VERSION" ]]; then
+    echo "Error: failed to read MARKETING_VERSION from xcodebuild"
+    exit 1
+fi
 
+ZIP_PATH="${RELEASE_FOLDER}/${PROJECT_NAME}.app.zip"
 if [[ ! -f "$ZIP_PATH" ]]; then
     echo "Error: ZIP not found: $ZIP_PATH"
     exit 1
 fi
 
 SHA256=$(shasum -a 256 "$ZIP_PATH" | awk '{print $1}')
+if [[ -z "$SHA256" ]]; then
+    echo "Error: failed to compute SHA256 of $ZIP_PATH"
+    exit 1
+fi
+
 echo "Version: $VERSION"
-echo "SHA256: $SHA256"
+echo "SHA256:  $SHA256"
 
 mkdir -p "$TAP_REPO/Casks"
 cat > "$TAP_REPO/Casks/americano.rb" << EOF

@@ -45,10 +45,23 @@ call_api() {
         '{model:$m, messages:[{role:"user",content:$p}], stream:false}')
 
     local resp
-    resp=$(curl -s "${DEEPSEEK_BASE_URL}/chat/completions" \
-        -H "Content-Type: application/json" \
-        -H "Authorization: Bearer $DEEPSEEK_API_KEY" \
-        -d "$body")
+    local attempt
+    for attempt in 1 2 3; do
+        if resp=$(curl -sS --max-time 60 --retry 0 \
+            "${DEEPSEEK_BASE_URL}/chat/completions" \
+            -H "Content-Type: application/json" \
+            -H "Authorization: Bearer $DEEPSEEK_API_KEY" \
+            -d "$body"); then
+            break
+        fi
+        info "API request failed (attempt $attempt/3), retrying..."
+        sleep $((attempt * 2))
+    done
+
+    if [[ -z "${resp:-}" ]]; then
+        err "API: no response after 3 attempts"
+        return 1
+    fi
 
     if echo "$resp" | jq -e '.error' >/dev/null 2>&1; then
         err "API: $(echo "$resp" | jq -r '.error.message // "Unknown"')"
@@ -112,6 +125,11 @@ main() {
     local content
     content=$(get_commits "$prev")
 
+    if [[ -z "$content" ]]; then
+        err "No commits since $prev — nothing to release"
+        exit 1
+    fi
+
     info "Version: $version"
     info "Generating changelog..."
 
@@ -125,9 +143,11 @@ main() {
 
     mkdir -p "${RELEASE_FOLDER}"
 
-    # Save HTML for appcast
-    echo "$html" > "${RELEASE_FOLDER}/release-notes.html"
-    ok "Generated: ${RELEASE_FOLDER}/release-notes.html"
+    # Save HTML next to the ZIP using its basename so `generate_appcast`
+    # auto-embeds it into the new appcast item's <description> CDATA.
+    local html_path="${RELEASE_FOLDER}/${PROJECT_NAME}.app.html"
+    echo "$html" > "$html_path"
+    ok "Generated: $html_path"
 
     # Convert simple HTML to markdown for GitHub Release body
     local md
