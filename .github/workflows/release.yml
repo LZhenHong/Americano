@@ -52,7 +52,15 @@ jobs:
       - name: Build
         run: bash Scripts/ci-build.sh
 
+      - name: Import Sparkle Signing Key
+        env:
+          SPARKLE_PRIVATE_KEY: ${{ secrets.SPARKLE_PRIVATE_KEY }}
+        run: |
+          printf "%s" "$SPARKLE_PRIVATE_KEY" > /tmp/sparkle_ed25519.key
+
       - name: Generate Appcast
+        env:
+          SPARKLE_PRIVATE_KEY_FILE: /tmp/sparkle_ed25519.key
         run: bash Scripts/gen-appcast.sh
 
       - name: Commit & Tag

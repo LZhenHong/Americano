@@ -30,7 +30,12 @@ if [[ -f "${GEN_PATH}" ]]; then
     APPCAST_FILE="./appcast.xml"
     DOWNLOAD_PREFIX="https://github.com/${USER_NAME}/${PROJECT_NAME}/releases/download/v${VERSION}/"
 
-    "${GEN_PATH}" -o "${APPCAST_FILE}" --download-url-prefix "${DOWNLOAD_PREFIX}" "${RELEASE_FOLDER}"
+    GEN_ARGS=()
+    if [[ -n "${SPARKLE_PRIVATE_KEY_FILE:-}" && -f "${SPARKLE_PRIVATE_KEY_FILE}" ]]; then
+        GEN_ARGS+=(--ed-key-file "${SPARKLE_PRIVATE_KEY_FILE}")
+    fi
+
+    "${GEN_PATH}" -o "${APPCAST_FILE}" --download-url-prefix "${DOWNLOAD_PREFIX}" "${GEN_ARGS[@]}" "${RELEASE_FOLDER}"
     echo "[*] appcast generated."
 
     # Embed changelog if available
