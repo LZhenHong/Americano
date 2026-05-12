@@ -6,7 +6,7 @@ cd "$(dirname "$SCRIPT_DIR")" || exit 1
 
 PROJECT_NAME="Americano"
 USER_NAME="LZhenHong"
-BUNDLE_ID="io.lzhlovesjqy.Americano"
+BUNDLE_ID="io.lzhlovesjyq.Americano"
 RELEASE_FOLDER="Releases"
 
 if [[ -z "${1:-}" ]]; then

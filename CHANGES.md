@@ -19,8 +19,8 @@ For internal engineering decisions see `docs/adr/`.
   snapshots of architecture and the release pipeline; a postmortem template.
 
 ### Fixed
-- `AppDelegate.bundleIdentifier` fallback string had a typo (`io.lzhlovesjyq.Americano`
-  → `io.lzhlovesjqy.Americano`). This affected only the `os.Logger` subsystem
+- `AppDelegate.bundleIdentifier` fallback string had a typo (`io.lzhlovesjqy.Americano`
+  → `io.lzhlovesjyq.Americano`). This affected only the `os.Logger` subsystem
   label in the rare case `Bundle.main.bundleIdentifier` is `nil`; no user-visible
   impact.
 
