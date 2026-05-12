@@ -35,9 +35,6 @@ jobs:
           echo "Xcode Version: $(xcodebuild -version | head -1)"
           echo "Xcode Path: $(xcode-select -p)"
 
-      - name: Bump Build Number
-        run: bash Scripts/bump-version.sh
-
       - name: Get Version
         id: version
         run: |

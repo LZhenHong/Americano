@@ -59,13 +59,12 @@ Go to **Actions → Release → Run workflow** (on `main` branch).
 
 The workflow performs the following automatically:
 
-1. **Bump Build Number** — runs `Scripts/bump-version.sh`
-2. **Generate Changelog** — calls DeepSeek API with `git log`, produces HTML for appcast + Markdown for GitHub Release
-3. **Build** — `xcodebuild archive` in Release configuration, outputs `Releases/Americano.app.zip`
-4. **Generate Appcast** — runs Sparkle `generate_appcast`, embeds AI-generated changelog into `appcast.xml`
-5. **Commit & Tag** — commits `appcast.xml` and `Config.xcconfig` changes, creates signed tag `vX.Y.Z`
-6. **Create GitHub Release** — uploads `Americano.app.zip` and `appcast.xml`, body uses generated Markdown changelog
-7. **Update Homebrew Tap** — clones `homebrew-tap`, updates Cask with new version + SHA256, commits and pushes
+1. **Generate Changelog** — calls DeepSeek API with `git log`, produces HTML for appcast + Markdown for GitHub Release
+2. **Build** — `xcodebuild archive` in Release configuration, outputs `Releases/Americano.app.zip` (build number is bumped by the Xcode scheme pre-action during archive)
+3. **Generate Appcast** — runs Sparkle `generate_appcast`, embeds AI-generated changelog into `appcast.xml`
+4. **Commit & Tag** — commits `appcast.xml` and `Config.xcconfig` changes, creates signed tag `vX.Y.Z`
+5. **Create GitHub Release** — uploads `Americano.app.zip` and `appcast.xml`, body uses generated Markdown changelog
+6. **Update Homebrew Tap** — clones `homebrew-tap`, updates Cask with new version + SHA256, commits and pushes
 
 ### 4. Verify
 
@@ -96,7 +95,7 @@ Configure in **Settings → Secrets and variables → Actions**:
 
 | Script | Purpose | When to Run |
 |--------|---------|-------------|
-| `Scripts/bump-version.sh` | Auto-increment build number | Automatically on every Xcode build (pre-action); also in CI |
+| `Scripts/bump-version.sh` | Auto-increment build number | Automatically on every Xcode build (pre-action), including CI archive |
 | `Scripts/changelog.sh` | Generate AI changelog from git log | Automatically in CI |
 | `Scripts/ci-build.sh` | Build Release archive + zip | Automatically in CI |
 | `Scripts/gen-appcast.sh` | Generate appcast + embed changelog | Automatically in CI |
