@@ -15,8 +15,8 @@ Single source of truth:
 
 ```
 Americano/Resources/Config.xcconfig
-  VERSION      = 1.0.8        ← marketing version (you edit this)
-  BUILD_NUMBER = 20260427005  ← auto-incremented by pre-action script
+  VERSION      = 1.0.9        ← marketing version (you edit this)
+  BUILD_NUMBER = 20260512002  ← auto-incremented by pre-action script
 ```
 
 Xcode project wires these into the app bundle:
@@ -31,7 +31,7 @@ Config.xcconfig ──► project.pbxproj ──► Info.plist
 
 `YYYYMMDD` + 3-digit counter, reset daily.
 
-Example: `20260427005` = April 27, 2026, 5th build of the day.
+Example: `20260512002` = May 12, 2026, 2nd build of the day.
 
 ## Release Steps
 
@@ -40,7 +40,7 @@ Example: `20260427005` = April 27, 2026, 5th build of the day.
 Edit `Americano/Resources/Config.xcconfig` and update `VERSION` to the desired value.
 
 ```xcconfig
-VERSION = 1.0.9
+VERSION = 1.0.10
 ```
 
 Build number will auto-increment on the next build — no need to touch it.
@@ -49,7 +49,7 @@ Build number will auto-increment on the next build — no need to touch it.
 
 ```bash
 git add Americano/Resources/Config.xcconfig
-git commit -m "bump version to 1.0.9"
+git commit -m "bump version to 1.0.10"
 git push origin main
 ```
 
@@ -60,10 +60,10 @@ Go to **Actions → Release → Run workflow** (on `main` branch).
 The workflow performs the following automatically:
 
 1. **Generate Changelog** — calls DeepSeek API with `git log`, produces `Releases/Americano.app.html` (auto-embedded by Sparkle as `<description>`) + `Releases/CHANGELOG.md` (used as GitHub Release body). Bails out if there are no commits since the previous tag.
-2. **Build** — `xcodebuild archive` in Release configuration, outputs `Releases/Americano.app.zip` (build number is bumped by the Xcode scheme pre-action during archive)
+2. **Build** — `xcodebuild archive` in Release configuration with `-skipMacroValidation` and `CODE_SIGNING_ALLOWED=NO` (so the unsigned Swift macro plugins from `StorageMacro`/`swift-syntax` build on hosted runners), reusing the SPM/build-products cache between runs. Outputs `Releases/Americano.app.zip`; the build number is bumped by the Xcode scheme pre-action during archive.
 3. **Generate Appcast** — runs Sparkle `generate_appcast`; the AI changelog is embedded via the basename convention (`Americano.app.zip` ↔ `Americano.app.html`)
 4. **Commit & Tag** — commits `appcast.xml` and `Config.xcconfig` as `[RELEASE] vX.Y.Z` via `github-actions[bot]`, rejects if the tag already exists locally or on `origin`, then atomically pushes `HEAD` + annotated tag `vX.Y.Z`
-5. **Create GitHub Release** — uploads `Americano.app.zip` and `appcast.xml`, body uses generated Markdown changelog
+5. **Create GitHub Release** — uploads `Americano.app.zip`, `Americano.app.html`, and `appcast.xml`; release body uses the generated Markdown changelog
 6. **Update Homebrew Tap** — clones `homebrew-tap`, updates Cask with new version + SHA256, commits and pushes
 7. **Cleanup** — removes the temporary Sparkle private key file, always
 
@@ -98,7 +98,7 @@ Configure in **Settings → Secrets and variables → Actions**:
 |--------|---------|-------------|
 | `Scripts/bump-version.sh` | Auto-increment build number | Automatically on every Xcode build (pre-action), including CI archive |
 | `Scripts/changelog.sh` | Generate AI changelog from git log; writes `Releases/Americano.app.html` so Sparkle auto-embeds it as `<description>` | Automatically in CI |
-| `Scripts/ci-build.sh` | Build Release archive + zip | Automatically in CI |
+| `Scripts/ci-build.sh` | Build Release archive + zip. Passes `-skipMacroValidation` and `CODE_SIGNING_ALLOWED=NO`; preserves `Build/` to reuse the workflow's SPM cache. | Automatically in CI |
 | `Scripts/gen-appcast.sh` | Generate appcast (Sparkle auto-embeds the HTML next to the ZIP) | Automatically in CI |
 | `Scripts/homebrew.sh` | Update Homebrew tap cask | Automatically in CI |
 

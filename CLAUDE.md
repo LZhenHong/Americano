@@ -104,7 +104,7 @@ String resources in `Resources/Localizable.xcstrings`. Use `String(localized:)` 
 Release tooling in `Scripts/`:
 - `bump-version.sh`: Build number auto-increment (runs via Xcode scheme pre-action)
 - `changelog.sh`: Generate AI changelog from git log (DeepSeek API, CI only). Writes `Releases/Americano.app.html` so Sparkle's `generate_appcast` auto-embeds it as the new entry's `<description>`.
-- `ci-build.sh`: Build release archive (CI only)
+- `ci-build.sh`: Build release archive (CI only). Passes `-skipMacroValidation` and `CODE_SIGNING_ALLOWED=NO` so unsigned Swift macro plugins (`StorageMacro` / `swift-syntax`) compile on hosted runners; preserves `Build/` to reuse the workflow's SPM cache.
 - `gen-appcast.sh`: Generate Sparkle appcast (CI only)
 - `homebrew.sh`: Update Homebrew tap cask (CI only)
 
