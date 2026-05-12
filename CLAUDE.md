@@ -103,8 +103,13 @@ String resources in `Resources/Localizable.xcstrings`. Use `String(localized:)` 
 
 Release tooling in `Scripts/`:
 - `bump-version.sh`: Build number auto-increment (runs via Xcode scheme pre-action)
-- `compile-release.sh`: Build release archive
-- `gen-cast.sh`: Generate Sparkle appcast, commit, and tag
+- `changelog.sh`: Generate AI changelog from git log (DeepSeek API, CI only)
+- `ci-build.sh`: Build release archive (CI only)
+- `gen-appcast.sh`: Generate Sparkle appcast and embed AI changelog (CI only)
+- `homebrew.sh`: Update Homebrew tap cask (CI only)
+- `embed-changelog.py`: Embed HTML changelog into appcast XML (called by `gen-appcast.sh`)
+
+Releases are fully automated via GitHub Actions (`.github/workflows/release.yml`). See `RELEASE.md` for details.
 
 ## Design Context
 

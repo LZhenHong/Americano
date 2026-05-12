@@ -11,12 +11,7 @@ cd "${SCRIPT_DIR}/.." || exit 1
 
 mkdir -p "${RELEASE_FOLDER}"
 
-rm -rf Build Archive *.xcarchive *.zip || true
-
-export PATH="${PATH}:/opt/homebrew/bin/"
-export https_proxy=http://127.0.0.1:6152
-export http_proxy=http://127.0.0.1:6152
-export all_proxy=socks5://127.0.0.1:6153
+rm -rf Build Archive *.xcarchive || true
 
 echo "[*] start build."
 
@@ -29,8 +24,7 @@ xcodebuild archive \
     clean archive \
     CODE_SIGN_IDENTITY="-" \
     CODE_SIGNING_REQUIRED=YES \
-    CODE_SIGNING_ALLOWED=YES \
-    | xcbeautify
+    CODE_SIGNING_ALLOWED=YES
 
 TARGET_DIR="${PWD}/${RELEASE_FOLDER}"
 if [[ $# -gt 0 && -n "$1" ]]; then

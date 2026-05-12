@@ -10,11 +10,6 @@ RELEASE_FOLDER="./Releases"
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd "${SCRIPT_DIR}/.." || exit 1
 
-export PATH="${PATH}:/opt/homebrew/bin/"
-export https_proxy=http://127.0.0.1:6152
-export http_proxy=http://127.0.0.1:6152
-export all_proxy=socks5://127.0.0.1:6153
-
 echo "[*] preparing..."
 
 pushd "${ARCHIVE_NAME}/Products/Applications/" >/dev/null 2>&1 || {
@@ -36,12 +31,15 @@ if [[ -f "${GEN_PATH}" ]]; then
     DOWNLOAD_PREFIX="https://github.com/${USER_NAME}/${PROJECT_NAME}/releases/download/v${VERSION}/"
 
     "${GEN_PATH}" -o "${APPCAST_FILE}" --download-url-prefix "${DOWNLOAD_PREFIX}" "${RELEASE_FOLDER}"
+    echo "[*] appcast generated."
+
+    # Embed changelog if available
+    if [[ -f "${RELEASE_FOLDER}/release-notes.html" ]]; then
+        echo "[*] embedding changelog..."
+        python3 "${SCRIPT_DIR}/embed-changelog.py" "${APPCAST_FILE}" "${RELEASE_FOLDER}/release-notes.html"
+    fi
 else
-    echo "[*] generate_appcast not found."
+    echo "[!] generate_appcast not found, skipping."
 fi
 
-git add appcast.xml
-git commit -m "[UPDATE] Version ${VERSION}." || true
-git tag -a "v${VERSION}" -m "Version ${VERSION}." || true
-
-echo "[*] done.
+echo "[*] done."
