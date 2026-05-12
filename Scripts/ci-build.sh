@@ -11,7 +11,9 @@ cd "${SCRIPT_DIR}/.." || exit 1
 
 mkdir -p "${RELEASE_FOLDER}"
 
-rm -rf Build Archive *.xcarchive || true
+# Preserve Build/ across CI runs so cached SPM checkouts and compiled
+# dependencies (swift-syntax, Sparkle, etc.) can be reused.
+rm -rf Archive *.xcarchive || true
 
 echo "[*] start build."
 
@@ -22,7 +24,6 @@ xcodebuild archive \
     -destination 'platform=macOS' \
     -archivePath "${ARCHIVE_NAME}" \
     -skipMacroValidation \
-    clean archive \
     CODE_SIGNING_ALLOWED=NO
 
 TARGET_DIR="${PWD}/${RELEASE_FOLDER}"

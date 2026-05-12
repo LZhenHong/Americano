@@ -34,9 +34,12 @@ jobs:
           xcode-version: latest-stable
 
       - name: Print Environment Info
+        id: env
         run: |
+          XCODE_VERSION=$(xcodebuild -version | head -1 | awk '{print $2}')
+          echo "xcode-version=$XCODE_VERSION" >> $GITHUB_OUTPUT
           echo "macOS Version: $(sw_vers -productVersion)"
-          echo "Xcode Version: $(xcodebuild -version | head -1)"
+          echo "Xcode Version: $XCODE_VERSION"
           echo "Xcode Path: $(xcode-select -p)"
 
       - name: Verify Required Secrets
@@ -63,8 +66,22 @@ jobs:
       - name: Get Version
         id: version
         run: |
-          VERSION=$(xcodebuild -project Americano.xcodeproj -showBuildSettings -scheme Americano 2>/dev/null | grep MARKETING_VERSION | head -1 | awk '{print $3}')
+          VERSION=$(awk -F'=' '/^VERSION/ {gsub(/ /,"",$2); print $2}' Americano/Resources/Config.xcconfig)
           echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "Version: $VERSION"
+
+      - name: Cache SPM & Build Products
+        uses: actions/cache@v4
+        with:
+          path: |
+            Build/SourcePackages
+            Build/Build/Intermediates.noindex
+            Build/Build/Products
+            ~/Library/Caches/org.swift.swiftpm
+          key: ${{ runner.os }}-xcode-${{ steps.env.outputs.xcode-version }}-spm-${{ hashFiles('**/Package.resolved') }}
+          restore-keys: |
+            ${{ runner.os }}-xcode-${{ steps.env.outputs.xcode-version }}-spm-
+            ${{ runner.os }}-xcode-
 
       - name: Generate Changelog
         env:
