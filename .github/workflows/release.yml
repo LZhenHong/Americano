@@ -56,6 +56,10 @@ jobs:
         env:
           SPARKLE_PRIVATE_KEY: ${{ secrets.SPARKLE_PRIVATE_KEY }}
         run: |
+          if [[ -z "$SPARKLE_PRIVATE_KEY" ]]; then
+            echo "Error: SPARKLE_PRIVATE_KEY secret is not set"
+            exit 1
+          fi
           printf "%s" "$SPARKLE_PRIVATE_KEY" > /tmp/sparkle_ed25519.key
 
       - name: Generate Appcast

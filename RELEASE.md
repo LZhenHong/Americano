@@ -80,6 +80,7 @@ Configure in **Settings → Secrets and variables → Actions**:
 | Secret | Purpose | How to Obtain |
 |--------|---------|---------------|
 | `DEEPSEEK_API_KEY` | AI-generated changelog | [DeepSeek Platform](https://platform.deepseek.com) |
+| `SPARKLE_PRIVATE_KEY` | Sign Sparkle appcast updates | Export from Keychain via `generate_keys -x` (see Sparkle docs) |
 | `TAP_GITHUB_TOKEN` | Push to `homebrew-tap` repo | GitHub Settings → Developer settings → Fine-grained PAT with **Contents: Read and write** on `LZhenHong/homebrew-tap` |
 
 ## Sparkle Setup
