@@ -1,6 +1,6 @@
 # Americano
 
-Americano is a macOS app designed to prevent your Mac from entering sleep mode. This small utility comes in handy when you need to keep your system awake during specific tasks such as downloads, presentations, or any other scenario where automatic sleep could be disruptive.
+Americano is a macOS menu bar app that prevents your Mac from sleeping — handy during downloads, presentations, or any long-running task.
 
 <img src="Images/screenshot.png" />
 
@@ -15,20 +15,10 @@ Americano is a macOS app designed to prevent your Mac from entering sleep mode. 
 - **Onboarding** — Welcome window on first launch explains menu bar interaction and quick setup.
 - **URL Schemes** — Control the app programmatically via custom URL schemes.
 
-## How it works
-
-The app primarily functions as a wrapper for the macOS [caffeinate][2] command-line utility.
-
-## Menu Bar Interaction
-
-| Action | Behavior |
-|--------|----------|
-| Left-click | Opens the menu to choose duration, open settings, or quit |
-| Right-click | Quickly toggles sleep prevention on/off |
-
 ## URL Schemes
 
-You need to launch Americano first.
+> [!NOTE]
+> You need to launch Americano first.
 
 * **Activate** (with optional duration): `americano:///activate?hours={hours}&minutes={minutes}&seconds={seconds}`
   * Example: `americano:///activate?hours=1&minutes=30` — Activates for 1 hour 30 minutes
@@ -38,35 +28,15 @@ You need to launch Americano first.
 
 ## Settings
 
-Open Settings from the menu bar menu (or press **⌘,** when the menu is open).
+Open from the menu bar menu (**⌘,**).
 
-### General
-- **Launch at Login** — Automatically start Americano when you log in
-- **Activate prevention on Launch** — Immediately prevent sleep when the app starts
-- **Enter ScreenSaver when deactivate prevention** — Trigger screen saver when the timer ends
-- **Allow display sleep** — Keep the system awake but let the display sleep
-
-### Durations
-Manage preset time intervals:
-- Add custom durations with a time picker
-- Remove or reorder intervals
-- Mark any interval as the default
-- Reset to built-in presets
-
-### Battery
-Available on Macs with a battery:
-- **Battery Level** — Auto-deactivate when battery drops below a set percentage
-- **Low Power Mode** — Auto-deactivate when macOS Low Power Mode turns on
-- **Charging** — Auto-activate when plugged in, auto-deactivate when unplugged
-
-### Notification
-- Request macOS notification permission
-- Enable notifications for activation and/or deactivation events
-
-### About
-- View current version and build number
-- Re-open the welcome onboarding window
-- Check for software updates
+| Pane | Highlights |
+|------|-----------|
+| General | Launch at login, activate on launch, screen saver, display sleep |
+| Durations | Add/remove/sort presets, set default |
+| Battery | Auto-stop by battery level, Low Power Mode, charger status |
+| Notification | Permission + activate/deactivate alerts |
+| About | Version info, re-open onboarding, check for updates |
 
 ## System requirements
 
@@ -103,7 +73,6 @@ Pull requests and issues are welcome! If you encounter any issues or have sugges
 This project is licensed under the [MIT License][1].
 
 > [!NOTE]
-> If you are using **Bartender 5** and have hidden the menu bar icon, please be aware that the status display of the Americano menu bar icon may be inaccurate.
+> If you are using **Bartender**, **Ice**, or similar menu bar management apps and have hidden the Americano icon, the status display of the menu bar icon may be inaccurate.
 
 [1]: https://github.com/LZhenHong/Americano/blob/main/LICENSE
-[2]: https://ss64.com/osx/caffeinate.html
