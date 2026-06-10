@@ -52,7 +52,7 @@ cask "americano" do
   desc "Prevent your Mac from sleeping"
   homepage "https://github.com/${USER_NAME}/${PROJECT_NAME}"
 
-  depends_on macos: ">= :sonoma"
+  depends_on macos: :sonoma
 
   app "${PROJECT_NAME}.app"
 
