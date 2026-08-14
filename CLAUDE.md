@@ -17,6 +17,10 @@ To build from command line:
 xcodebuild -project Americano.xcodeproj -scheme Americano build
 ```
 
+## App Icon
+
+macOS 26 Icon Composer format: `Americano/Resources/Americano.icon/` (`icon.json` + layered SVGs in `Assets/`: `bg.svg` / `mid.svg` / `fg.svg`). Picked up automatically via the synchronized `Americano` folder; `ASSETCATALOG_COMPILER_APPICON_NAME = Americano` in `project.pbxproj` points at it. Edit visually in Icon Composer.app, or edit the SVGs directly. The legacy `AppIcon.appiconset` was removed.
+
 ## Architecture
 
 ### Core Flow
