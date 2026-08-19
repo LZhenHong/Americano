@@ -145,9 +145,13 @@ APP_PATH="${EXPORT_DIR}/${APP_NAME}"
 
 echo "[*] verifying signature."
 codesign --verify --deep --strict --verbose=2 "${APP_PATH}"
-codesign -dv --verbose=4 "${APP_PATH}" 2>&1 | grep -q "flags=.*runtime" \
+# Capture once and grep the captured text: piping codesign into `grep -q`
+# SIGPIPEs codesign (grep exits on first match), which `pipefail` turns
+# into a spurious failure.
+SIG_INFO="$(codesign -dv --verbose=4 "${APP_PATH}" 2>&1)"
+grep -q "flags=.*runtime" <<< "${SIG_INFO}" \
     || fail "hardened runtime flag missing on ${APP_NAME}."
-codesign -dv --verbose=4 "${APP_PATH}" 2>&1 | grep -q "Authority=Developer ID Application" \
+grep -q "Authority=Developer ID Application" <<< "${SIG_INFO}" \
     || fail "${APP_NAME} is not signed with a Developer ID certificate."
 
 # --- Notarize ----------------------------------------------------------------
