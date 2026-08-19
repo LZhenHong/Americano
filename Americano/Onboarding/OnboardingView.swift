@@ -95,7 +95,7 @@ struct OnboardingView: View {
       .padding(SettingsDesignTokens.formPadding)
       .background(.ultraThinMaterial)
     }
-    .frame(width: 440, height: 420)
+    .frame(width: 440, height: 500)
   }
 
   private func interactionCard(icon: String, title: String, description: String) -> some View {
