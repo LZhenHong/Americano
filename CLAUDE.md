@@ -106,13 +106,14 @@ String resources in `Resources/Localizable.xcstrings`. Use `String(localized:)` 
 ## Scripts
 
 Release tooling in `Scripts/`:
+- `release-local.sh`: Signed + notarized release from a local Mac — Developer ID archive, Apple notarization, Sparkle appcast, GitHub Release via `gh`, Homebrew tap update. All credentials stay in the local Keychain; see `RELEASE.md` for the one-time setup.
 - `bump-version.sh`: Build number auto-increment (runs via Xcode scheme pre-action)
-- `changelog.sh`: Generate AI changelog from git log (DeepSeek API, CI only). Writes `Releases/Americano.app.html` so Sparkle's `generate_appcast` auto-embeds it as the new entry's `<description>`.
-- `ci-build.sh`: Build release archive (CI only). Passes `-skipMacroValidation` and `CODE_SIGNING_ALLOWED=NO` so unsigned Swift macro plugins (`StorageMacro` / `swift-syntax`) compile on hosted runners; preserves `Build/` to reuse the workflow's SPM cache.
-- `gen-appcast.sh`: Generate Sparkle appcast (CI only)
-- `homebrew.sh`: Update Homebrew tap cask (CI only)
+- `changelog.sh`: Generate AI changelog from git log (DeepSeek API; used by `release-local.sh` when `DEEPSEEK_API_KEY` is set, otherwise a plain commit list is used). Writes `Releases/Americano.app.html` so Sparkle's `generate_appcast` auto-embeds it as the new entry's `<description>`.
+- `gen-appcast.sh`: Generate Sparkle appcast (used by `release-local.sh`)
+- `homebrew.sh`: Update Homebrew tap cask (used by `release-local.sh`)
+- `ci-build.sh`: Unsigned CI archive (legacy GitHub Actions workflow only). Passes `-skipMacroValidation` and `CODE_SIGNING_ALLOWED=NO` so unsigned Swift macro plugins (`StorageMacro` / `swift-syntax`) compile on hosted runners.
 
-Releases are fully automated via GitHub Actions (`.github/workflows/release.yml`). See `RELEASE.md` for details.
+Releases run locally via `Scripts/release-local.sh` (Developer ID signed + notarized). The GitHub Actions workflow (`.github/workflows/release.yml`) produces unsigned builds and is kept for reference only. See `RELEASE.md` for details.
 
 ## Design Context
 
