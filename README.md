@@ -42,6 +42,18 @@ Open from the menu bar menu (**⌘,**).
 
 - macOS 14.0 and later
 
+## Install
+
+**Homebrew** (recommended):
+
+```bash
+brew install --cask lzhenhong/tap/americano
+```
+
+**Manual**: download `Americano.app.zip` from the [latest release](https://github.com/LZhenHong/Americano/releases/latest), unzip, and move `Americano.app` to `/Applications`.
+
+Americano is signed with an Apple Developer ID certificate and notarized by Apple, so it opens directly — no Gatekeeper workaround needed.
+
 ## How to build
 
 1. Clone this repo:

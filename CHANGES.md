@@ -9,6 +9,27 @@ For Sparkle delta detail (with HTML release notes) see `appcast.xml`.
 
 _No changes yet._
 
+## [1.1.0] — 2026-08-19
+
+### Changed
+- The app is now signed with an Apple Developer ID certificate and notarized by
+  Apple — macOS no longer shows a security warning when you download and open
+  the app.
+
+### Infrastructure
+- Releases now run locally via `Scripts/release-local.sh`: Developer ID signing,
+  Hardened Runtime, Apple notarization, Sparkle appcast, GitHub Release, and
+  Homebrew tap update in one command. Signing credentials never leave the local
+  Keychain; the legacy GitHub Actions workflow (unsigned builds) is kept for
+  reference only.
+- Project switched to the paid developer team `ND2HQQ895Z`.
+
+## [1.0.10] — 2026-08-14
+
+### Changed
+- App icon redesigned for macOS 26 (Icon Composer layered format).
+- Updated the app to meet the latest macOS compatibility requirements.
+
 ## [1.0.9] — 2026-05-12
 
 ### Fixed
@@ -69,7 +90,9 @@ _No changes yet._
 
 Initial public release.
 
-[Unreleased]: https://github.com/LZhenHong/Americano/compare/v1.0.9...HEAD
+[Unreleased]: https://github.com/LZhenHong/Americano/compare/v1.1.0...HEAD
+[1.1.0]: https://github.com/LZhenHong/Americano/releases/tag/v1.1.0
+[1.0.10]: https://github.com/LZhenHong/Americano/releases/tag/v1.0.10
 [1.0.9]: https://github.com/LZhenHong/Americano/releases/tag/v1.0.9
 [1.0.8]: https://github.com/LZhenHong/Americano/releases/tag/v1.0.8
 [1.0.7]: https://github.com/LZhenHong/Americano/releases/tag/v1.0.7
