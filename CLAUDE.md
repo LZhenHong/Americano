@@ -30,7 +30,7 @@ macOS 26 Icon Composer format: `Americano/Resources/Americano.icon/` (`icon.json
 
 ### Key Singletons
 
-- **`AppState`** (`Data/AppState.swift`): Observable state container using the `@storage` macro from `StorageMacro` SPM package for automatic persistence. All app preferences flow through here.
+- **`AppState`** (`Data/AppState.swift`): Observable state container using the `@storage` macro from `StorageMacro` SPM package for automatic persistence. All app preferences flow through here. Settings persist to the standard defaults domain (the macro's `suiteName` is set to the app's bundle id, which makes `UserDefaults(suiteName:)` fall back to `.standard` — a custom suite is unreadable inside the App Sandbox); `Utils/SettingsMigration.swift` one-time-migrates the pre-MAS shared suite (`io.lzhlovesjyq.userdefaults`).
 - **`CaffeinateController`** (`Main/CaffeinateController.swift`): Business logic for caffeinate activation/deactivation, battery monitoring integration, and URL scheme handling.
 - **`MenuBarItemController`** (`Main/MenuBarItemController.swift`): Manages the `NSStatusItem` (menu bar icon). Left-click shows menu, right-click toggles caffeinate.
 - **`BatteryMonitor`** (`Utils/BatteryMonitor.swift`): IOKit-based power source monitoring for battery-aware caffeinate control.
@@ -84,12 +84,12 @@ Design system: `SettingsDesignTokens` (`Utils/SettingsDesignTokens.swift`) provi
 |---------|---------|---------|
 | [StorageMacro](https://github.com/LZhenHong/StorageMacro) | `@storage` macro for automatic `ObservableObject` + `UserDefaults` persistence | 0.0.3 |
 | [SettingsKit](https://github.com/LZhenHong/SettingsKit.git) | Settings window framework with `SettingsPane` protocol | 0.0.3 |
-| [Sparkle](https://github.com/sparkle-project/Sparkle) | Auto-update framework | 2.7.0 |
+| [Sparkle](https://github.com/sparkle-project/Sparkle) | Auto-update framework (linked into the `Americano` target only) | 2.7.0 |
 | [swift-syntax](https://github.com/apple/swift-syntax.git) | StorageMacro dependency | 509.1.1 |
 
 ## Compilation Flags
 
-- `USE_SPARKLE`: Enables Sparkle auto-update framework (set in `Config.xcconfig`)
+- `USE_SPARKLE`: Enables the Sparkle auto-update framework. Defined in the `Americano` (direct distribution) target's build settings; the `AmericanoMAS` target does not define it and does not link Sparkle.
 
 ## URL Schemes
 
@@ -102,16 +102,24 @@ Registered in `CaffeinateController.registerURLSchemes()` via `URLSchemeInvoker`
 
 String resources in `Resources/Localizable.xcstrings`. Use `String(localized:)` for new strings. The app supports multiple languages through Xcode's localization system.
 
+## Build Variants
+
+Two targets share the synchronized `Americano` folder, split by distribution channel (see `RELEASE.md` for the full convention):
+
+- **`Americano`** — direct distribution (GitHub Releases + Sparkle + Homebrew). Developer ID signed, links Sparkle, defines `USE_SPARKLE`.
+- **`AmericanoMAS`** — Mac App Store. App Sandbox enabled (`Resources/AmericanoMAS.entitlements`), no Sparkle, no `USE_SPARKLE`. Same bundle id, version, and `PRODUCT_NAME` (`Americano`).
+
 ## Scripts
 
 Release tooling in `Scripts/`:
-- `release-local.sh`: Signed + notarized release from a local Mac — Developer ID archive, Apple notarization, Sparkle appcast, GitHub Release via `gh`, Homebrew tap update. All credentials stay in the local Keychain; see `RELEASE.md` for the one-time setup.
+- `release-local.sh`: Direct channel release — Developer ID archive, Apple notarization, Sparkle appcast, GitHub Release via `gh`, Homebrew tap update. All credentials stay in the local Keychain; see `RELEASE.md` for the one-time setup.
+- `release-mas.sh`: Mac App Store channel — archives the `AmericanoMAS` scheme and uploads to App Store Connect (`ASC_KEY_ID` / `ASC_ISSUER_ID` / `ASC_KEY_PATH` env vars).
 - `bump-version.sh`: Build number auto-increment (runs via Xcode scheme pre-action)
 - `changelog.sh`: Generate AI changelog from git log (DeepSeek API; used by `release-local.sh` when `DEEPSEEK_API_KEY` is set, otherwise a plain commit list is used). Writes `Releases/Americano.app.html` so Sparkle's `generate_appcast` auto-embeds it as the new entry's `<description>`.
 - `gen-appcast.sh`: Generate Sparkle appcast (used by `release-local.sh`)
 - `homebrew.sh`: Update Homebrew tap cask (used by `release-local.sh`)
 
-Releases run locally via `Scripts/release-local.sh` (Developer ID signed + notarized). See `RELEASE.md` for details.
+Releases run locally via `Scripts/release-local.sh` (direct) and `Scripts/release-mas.sh` (App Store). See `RELEASE.md` for details.
 
 ## Design Context
 

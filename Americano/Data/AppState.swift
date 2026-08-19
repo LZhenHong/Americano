@@ -12,7 +12,12 @@ import SwiftUI
 ///
 /// Uses the `@storage` macro for automatic persistence of user preferences.
 /// Properties marked with `@nonstorage` are transient runtime state only.
-@storage
+///
+/// `suiteName` intentionally equals the app's bundle identifier:
+/// `UserDefaults(suiteName:)` returns nil for the app's own bundle id
+/// (documented behavior), so the macro falls back to `.standard`. A custom
+/// suite is unreadable inside the App Sandbox (Mac App Store requirement).
+@storage(suiteName: "io.lzhlovesjyq.Americano")
 final class AppState: ObservableObject {
   /// Whether sleep prevention is currently active. (Runtime state, not persisted)
   @nonstorage
@@ -61,7 +66,9 @@ final class AppState: ObservableObject {
   /// Shared singleton instance.
   static let shared = AppState()
 
-  fileprivate init() {}
+  fileprivate init() {
+    SettingsMigration.migrateIfNeeded()
+  }
 }
 
 #if DEBUG

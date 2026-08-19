@@ -52,6 +52,7 @@ cask "americano" do
   desc "Prevent your Mac from sleeping"
   homepage "https://github.com/${USER_NAME}/${PROJECT_NAME}"
 
+  auto_updates true
   depends_on macos: :sonoma
 
   app "${PROJECT_NAME}.app"

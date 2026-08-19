@@ -11,10 +11,14 @@
 		F2811B322B678C0300C85719 /* Storage in Frameworks */ = {isa = PBXBuildFile; productRef = F2811B312B678C0300C85719 /* Storage */; };
 		F290F3652D79A86000BC2F65 /* Sparkle in Frameworks */ = {isa = PBXBuildFile; productRef = F290F3642D79A86000BC2F65 /* Sparkle */; };
 		F2AC9A2B2EDEC45700A5EDD1 /* SettingsKit in Frameworks */ = {isa = PBXBuildFile; productRef = F2AC9A2A2EDEC45700A5EDD1 /* SettingsKit */; };
+		F2CAFE000000000000000007 /* Storage in Frameworks */ = {isa = PBXBuildFile; productRef = F225ADD32BF119970024283A /* Storage */; };
+		F2CAFE000000000000000008 /* Storage in Frameworks */ = {isa = PBXBuildFile; productRef = F2811B312B678C0300C85719 /* Storage */; };
+		F2CAFE000000000000000009 /* SettingsKit in Frameworks */ = {isa = PBXBuildFile; productRef = F2AC9A2A2EDEC45700A5EDD1 /* SettingsKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		F2CACC482ABACDA600CB2BE4 /* Americano.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Americano.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F2CAFE000000000000000002 /* Americano.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Americano.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -26,10 +30,18 @@
 			);
 			target = F2CACC472ABACDA600CB2BE4 /* Americano */;
 		};
+		F2CAFE000000000000000001 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Resources/Config.xcconfig,
+				Resources/Info.plist,
+			);
+			target = F2CAFE000000000000000003 /* AmericanoMAS */;
+		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		F29AEFEB2D08B9DE007DCA9A /* Americano */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (F29AF0122D08B9DE007DCA9A /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = Americano; sourceTree = "<group>"; };
+		F29AEFEB2D08B9DE007DCA9A /* Americano */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (F29AF0122D08B9DE007DCA9A /* PBXFileSystemSynchronizedBuildFileExceptionSet */, F2CAFE000000000000000001 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = Americano; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,6 +53,16 @@
 				F290F3652D79A86000BC2F65 /* Sparkle in Frameworks */,
 				F225ADD42BF119970024283A /* Storage in Frameworks */,
 				F2811B322B678C0300C85719 /* Storage in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F2CAFE000000000000000005 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F2CAFE000000000000000009 /* SettingsKit in Frameworks */,
+				F2CAFE000000000000000007 /* Storage in Frameworks */,
+				F2CAFE000000000000000008 /* Storage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -59,6 +81,7 @@
 			isa = PBXGroup;
 			children = (
 				F2CACC482ABACDA600CB2BE4 /* Americano.app */,
+				F2CAFE000000000000000002 /* Americano.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -92,6 +115,31 @@
 			productReference = F2CACC482ABACDA600CB2BE4 /* Americano.app */;
 			productType = "com.apple.product-type.application";
 		};
+		F2CAFE000000000000000003 /* AmericanoMAS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F2CAFE00000000000000000C /* Build configuration list for PBXNativeTarget "AmericanoMAS" */;
+			buildPhases = (
+				F2CAFE000000000000000004 /* Sources */,
+				F2CAFE000000000000000005 /* Frameworks */,
+				F2CAFE000000000000000006 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				F29AEFEB2D08B9DE007DCA9A /* Americano */,
+			);
+			name = AmericanoMAS;
+			packageProductDependencies = (
+				F2811B312B678C0300C85719 /* Storage */,
+				F225ADD32BF119970024283A /* Storage */,
+				F2AC9A2A2EDEC45700A5EDD1 /* SettingsKit */,
+			);
+			productName = Americano;
+			productReference = F2CAFE000000000000000002 /* Americano.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -104,6 +152,9 @@
 				TargetAttributes = {
 					F2CACC472ABACDA600CB2BE4 = {
 						CreatedOnToolsVersion = 15.0;
+					};
+					F2CAFE000000000000000003 = {
+						CreatedOnToolsVersion = 26.1;
 					};
 				};
 			};
@@ -128,6 +179,7 @@
 			projectRoot = "";
 			targets = (
 				F2CACC472ABACDA600CB2BE4 /* Americano */,
+				F2CAFE000000000000000003 /* AmericanoMAS */,
 			);
 		};
 /* End PBXProject section */
@@ -140,10 +192,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F2CAFE000000000000000006 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		F2CACC442ABACDA600CB2BE4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F2CAFE000000000000000004 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -309,6 +375,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "${BUNDLE_IDENTIFIER}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) USE_SPARKLE";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 			};
@@ -344,6 +411,77 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "${BUNDLE_IDENTIFIER}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) USE_SPARKLE";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		F2CAFE00000000000000000A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = F29AEFEB2D08B9DE007DCA9A /* Americano */;
+			baseConfigurationReferenceRelativePath = Resources/Config.xcconfig;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = Americano;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Americano/Resources/AmericanoMAS.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = "${BUILD_NUMBER}";
+				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_TEAM = ND2HQQ895Z;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Americano/Resources/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Americano;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_LSUIElement = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2024 Eden. All rights reserved.";
+				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = "${VERSION}";
+				PRODUCT_BUNDLE_IDENTIFIER = "${BUNDLE_IDENTIFIER}";
+				PRODUCT_NAME = Americano;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		F2CAFE00000000000000000B /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = F29AEFEB2D08B9DE007DCA9A /* Americano */;
+			baseConfigurationReferenceRelativePath = Resources/Config.xcconfig;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = Americano;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Americano/Resources/AmericanoMAS.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = "${BUILD_NUMBER}";
+				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_TEAM = ND2HQQ895Z;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Americano/Resources/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Americano;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_LSUIElement = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2024 Eden. All rights reserved.";
+				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = "${VERSION}";
+				PRODUCT_BUNDLE_IDENTIFIER = "${BUNDLE_IDENTIFIER}";
+				PRODUCT_NAME = Americano;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 			};
@@ -366,6 +504,15 @@
 			buildConfigurations = (
 				F2CACC582ABACDA700CB2BE4 /* Debug */,
 				F2CACC592ABACDA700CB2BE4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F2CAFE00000000000000000C /* Build configuration list for PBXNativeTarget "AmericanoMAS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F2CAFE00000000000000000A /* Debug */,
+				F2CAFE00000000000000000B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
