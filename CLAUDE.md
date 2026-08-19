@@ -111,9 +111,8 @@ Release tooling in `Scripts/`:
 - `changelog.sh`: Generate AI changelog from git log (DeepSeek API; used by `release-local.sh` when `DEEPSEEK_API_KEY` is set, otherwise a plain commit list is used). Writes `Releases/Americano.app.html` so Sparkle's `generate_appcast` auto-embeds it as the new entry's `<description>`.
 - `gen-appcast.sh`: Generate Sparkle appcast (used by `release-local.sh`)
 - `homebrew.sh`: Update Homebrew tap cask (used by `release-local.sh`)
-- `ci-build.sh`: Unsigned CI archive (legacy GitHub Actions workflow only). Passes `-skipMacroValidation` and `CODE_SIGNING_ALLOWED=NO` so unsigned Swift macro plugins (`StorageMacro` / `swift-syntax`) compile on hosted runners.
 
-Releases run locally via `Scripts/release-local.sh` (Developer ID signed + notarized). The GitHub Actions workflow (`.github/workflows/release.yml`) produces unsigned builds and is kept for reference only. See `RELEASE.md` for details.
+Releases run locally via `Scripts/release-local.sh` (Developer ID signed + notarized). See `RELEASE.md` for details.
 
 ## Design Context
 

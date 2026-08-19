@@ -7,7 +7,9 @@ For Sparkle delta detail (with HTML release notes) see `appcast.xml`.
 
 ## [Unreleased]
 
-_No changes yet._
+### Infrastructure
+- Removed the legacy GitHub Actions release workflow and `Scripts/ci-build.sh`;
+  releases run only via `Scripts/release-local.sh` (see `RELEASE.md`).
 
 ## [1.1.0] — 2026-08-19
 

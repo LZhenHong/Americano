@@ -26,7 +26,7 @@ GEN_PATH="./Build/SourcePackages/artifacts/sparkle/Sparkle/bin/generate_appcast"
 
 if [[ ! -f "${GEN_PATH}" ]]; then
     echo "[!] generate_appcast not found at ${GEN_PATH}"
-    echo "    Hint: run Scripts/ci-build.sh first so SPM resolves Sparkle."
+    echo "    Hint: run Scripts/release-local.sh first so SPM resolves Sparkle."
     exit 1
 fi
 

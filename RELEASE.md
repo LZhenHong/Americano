@@ -1,8 +1,6 @@
 # Release Workflow
 
-Americano releases run **locally** via `Scripts/release-local.sh`: the build is signed with a Developer ID certificate and notarized by Apple on the machine that runs it, so no signing credentials ever leave the local Keychain.
-
-The legacy GitHub Actions workflow (`.github/workflows/release.yml`) produces **unsigned** builds and is kept for reference only — do not use it for public releases.
+Americano releases run **locally** via `Scripts/release-local.sh`: the build is signed with a Developer ID certificate and notarized by Apple on the machine that runs it, so no signing credentials ever leave the local Keychain. This is the only release path — there is no CI release workflow.
 
 ## Overview
 
@@ -97,16 +95,6 @@ The script performs the following automatically:
 - Check `LZhenHong/homebrew-tap` for the updated cask
 - On a fresh download: `spctl -a -vv Americano.app` should report `accepted source=Notarized Developer ID`
 
-## Legacy: GitHub Actions Secrets
-
-The old CI workflow (unsigned builds) used these repository secrets. They are **not** needed by the local release:
-
-| Secret | Purpose | How to Obtain |
-|--------|---------|---------------|
-| `DEEPSEEK_API_KEY` | AI-generated changelog | [DeepSeek Platform](https://platform.deepseek.com) |
-| `SPARKLE_PRIVATE_KEY` | Sign Sparkle appcast updates | Export from Keychain via `generate_keys -x` (see Sparkle docs) |
-| `TAP_GITHUB_TOKEN` | Push to `homebrew-tap` repo | GitHub Settings → Developer settings → Fine-grained PAT with **Contents: Read and write** on `LZhenHong/homebrew-tap` |
-
 ## Sparkle Setup
 
 | Item | Value |
@@ -125,11 +113,10 @@ The old CI workflow (unsigned builds) used these repository secrets. They are **
 | `Scripts/changelog.sh` | Generate AI changelog from git log; writes `Releases/Americano.app.html` so Sparkle auto-embeds it as `<description>` | By `release-local.sh` when `DEEPSEEK_API_KEY` is set |
 | `Scripts/gen-appcast.sh` | Generate appcast (Sparkle auto-embeds the HTML next to the ZIP) | By `release-local.sh` |
 | `Scripts/homebrew.sh` | Update Homebrew tap cask | By `release-local.sh` |
-| `Scripts/ci-build.sh` | Unsigned CI archive. Passes `-skipMacroValidation` and `CODE_SIGNING_ALLOWED=NO` | Legacy GitHub Actions workflow only |
 
 ## Notes
 
 - Do **not** set `BUMP_VERSION` in the scheme environment — semantic version bumping was removed to avoid accidental version increments during release builds.
 - `appcast.xml` is tracked in Git on `main`. The release script commits and pushes it automatically.
-- The Homebrew tap repository (`LZhenHong/homebrew-tap`) must exist before the first release with Homebrew enabled.
+- The Homebrew tap repository (`LZhenHong/homebrew-tap`) must exist before running a release.
 - The release script refuses to run if the tag `vVERSION` already exists locally or on `origin`. Bump `VERSION` in `Config.xcconfig` before re-triggering after a successful release.
