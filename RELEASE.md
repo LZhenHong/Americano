@@ -81,7 +81,7 @@ bash Scripts/release-local.sh
 The script performs the following automatically:
 
 1. **Preflight** — must run on `main`; checks the Developer ID certificate, `gh` auth, the notarytool keychain profile, and that the tag `vVERSION` doesn't exist locally or on `origin`.
-2. **Changelog** — AI-generated via DeepSeek if `DEEPSEEK_API_KEY` is set in the environment; otherwise falls back to a plain `git log` list. Writes `Releases/Americano.app.html` (auto-embedded by Sparkle as `<description>`) + `Releases/CHANGELOG.md` (used as the GitHub Release body).
+2. **Changelog** — AI-generated via DeepSeek if `DEEPSEEK_API_KEY` is set in the environment; otherwise falls back to a plain `git log` list. Set `SKIP_CHANGELOG=1` to keep hand-written notes already present in `Releases/`. Writes `Releases/Americano.app.html` (auto-embedded by Sparkle as `<description>`) + `Releases/CHANGELOG.md` (used as the GitHub Release body).
 3. **Build** — `xcodebuild archive` in Release configuration with `-skipMacroValidation` and `ENABLE_HARDENED_RUNTIME=YES`, then `xcodebuild -exportArchive` with the `developer-id` method (re-signs with the Developer ID certificate). The build number is bumped by the Xcode scheme pre-action during archive.
 4. **Verify Signature** — `codesign --verify --deep --strict`, plus checks for the hardened-runtime flag and the Developer ID authority.
 5. **Notarize** — `notarytool submit --wait` using the local keychain profile, then `stapler staple` and an `spctl -a -vv` Gatekeeper assessment.

@@ -75,7 +75,11 @@ echo "    version: ${VERSION}"
 
 mkdir -p "${RELEASE_FOLDER}"
 
-if [[ -n "${DEEPSEEK_API_KEY:-}" ]]; then
+if [[ "${SKIP_CHANGELOG:-0}" == "1" ]]; then
+    echo "[*] SKIP_CHANGELOG=1; using existing release notes in ${RELEASE_FOLDER}/."
+    [[ -f "${RELEASE_FOLDER}/${APP_NAME}.html" && -f "${RELEASE_FOLDER}/CHANGELOG.md" ]] \
+        || fail "SKIP_CHANGELOG=1 but ${RELEASE_FOLDER}/${APP_NAME}.html or ${RELEASE_FOLDER}/CHANGELOG.md is missing."
+elif [[ -n "${DEEPSEEK_API_KEY:-}" ]]; then
     echo "[*] generating AI changelog."
     bash Scripts/changelog.sh
 else
