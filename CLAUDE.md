@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Americano is a macOS menu bar app that prevents Mac from sleeping by wrapping the system `caffeinate` command. Built with AppKit (no SwiftUI for main UI), it uses Combine for reactive state management.
+Americano is a macOS menu bar app that prevents Mac from sleeping by holding IOKit power assertions (`IOPMAssertion`) in-process. Built with AppKit (no SwiftUI for main UI), it uses Combine for reactive state management.
 
 **Minimum Deployment Target**: macOS 14.0
 
@@ -43,9 +43,8 @@ macOS 26 Icon Composer format: `Americano/Resources/Americano.icon/` (`icon.json
 
 ### Wrapper Layer
 
-- **`BinWrapper`** protocol (`Wrapper/BinWrapper.swift`): Abstraction for spawning command-line processes.
-- **`CaffeinateWrapper`** (`Wrapper/CaffeinateWrapper.swift`): Manages `/usr/bin/caffeinate` process lifecycle with delegate callbacks (`CaffeinateDelegate`).
-- **`ScreenSaverWrapper`** (`Wrapper/ScreenSaverWrapper.swift`): Spawns `ScreenSaverEngine` via `/usr/bin/open` when caffeinate auto-terminates (if `activateScreenSaver` is enabled).
+- **`CaffeinateWrapper`** (`Wrapper/CaffeinateWrapper.swift`): Holds `IOPMAssertion` power assertions in-process (App Sandbox compatible, no subprocess) with delegate callbacks (`CaffeinateDelegate`) for start/stop/auto-terminate.
+- **`ScreenSaverWrapper`** (`Wrapper/ScreenSaverWrapper.swift`): Launches `ScreenSaverEngine` via `NSWorkspace` when sleep prevention auto-terminates (if `activateScreenSaver` is enabled).
 
 ### Menu System
 

@@ -6,32 +6,34 @@
 //
 
 import Foundation
+import IOKit.pwr_mgt
 import os.log
 
-/// Delegate protocol for receiving caffeinate process lifecycle events.
+/// Delegate protocol for receiving sleep prevention lifecycle events.
 protocol CaffeinateDelegate: AnyObject {
-  /// Called when the caffeinate process starts successfully.
+  /// Called when sleep prevention starts successfully.
   /// - Parameters:
   ///   - caffeinate: The wrapper instance that started.
   ///   - interval: The duration for which sleep prevention will be active.
   func caffeinateDidStart(_ caffeinate: CaffeinateWrapper, interval: TimeInterval)
 
-  /// Called when the caffeinate process terminates (either manually or due to error).
-  /// - Parameter caffeinate: The wrapper instance that terminated.
+  /// Called when sleep prevention stops (either manually or due to error).
+  /// - Parameter caffeinate: The wrapper instance that stopped.
   func caffeinateDidTerminate(_ caffeinate: CaffeinateWrapper)
 
-  /// Called when the caffeinate process terminates automatically after its timer expires.
+  /// Called when sleep prevention stops automatically after its timer expires.
   /// - Parameter caffeinate: The wrapper instance that auto-terminated.
   func caffeinateAutoTerminate(_ caffeinate: CaffeinateWrapper)
 }
 
-// caffeinate Man Page: https://ss64.com/osx/caffeinate.html
-/// Wrapper for the system `/usr/bin/caffeinate` command.
+/// Prevents system and display sleep using IOKit power management assertions.
 ///
-/// Manages the lifecycle of a caffeinate subprocess to prevent Mac from sleeping.
-/// Supports timed activation, display sleep options, and delegate callbacks for state changes.
-final class CaffeinateWrapper: BinWrapper {
-  /// Delegate to receive process lifecycle events.
+/// Holds `IOPMAssertion` references in-process instead of spawning `/usr/bin/caffeinate`,
+/// which keeps the app App Sandbox compatible (a Mac App Store requirement). Assertions
+/// are tied to the app process and release automatically on termination, mirroring
+/// `caffeinate -w <pid>` semantics.
+final class CaffeinateWrapper {
+  /// Delegate to receive lifecycle events.
   weak var delegate: CaffeinateDelegate?
 
   private let logger = Logger(
@@ -39,98 +41,62 @@ final class CaffeinateWrapper: BinWrapper {
     category: String(describing: CaffeinateWrapper.self)
   )
 
-  private var caffeinate: Process?
+  /// Held assertion preventing idle system sleep (`caffeinate -i` equivalent). 0 = not held.
+  private var systemSleepAssertion = IOPMAssertionID(0)
+  /// Held assertion preventing idle display sleep (`caffeinate -d` equivalent). 0 = not held.
+  private var displaySleepAssertion = IOPMAssertionID(0)
+  /// Timer driving timed auto-termination (`caffeinate -t` equivalent).
+  private var timeoutWorkItem: DispatchWorkItem?
 
-  /// The underlying caffeinate process, if running.
-  var process: Process? {
-    caffeinate
+  /// Whether sleep prevention is currently active.
+  var running: Bool {
+    systemSleepAssertion != IOPMAssertionID(0)
   }
 
-  /// Path to the caffeinate executable.
-  var binPath: String {
-    "/usr/bin/caffeinate"
-  }
-
-  /// Starts the caffeinate process to prevent system sleep.
+  /// Starts preventing system sleep.
   /// - Parameters:
   ///   - interval: Duration in seconds. Use `.infinity` for indefinite prevention.
   ///   - allowDisplaySleep: If `true`, allows display to sleep while preventing system sleep.
-  ///   - force: If `true`, terminates any existing process and starts a new one.
-  /// - Returns: `true` if the process started successfully.
+  ///   - force: If `true`, releases any active assertions and starts fresh.
+  /// - Returns: `true` if sleep prevention started successfully.
   @discardableResult
   func start(
     interval: TimeInterval = .infinity,
     allowDisplaySleep: Bool = false,
     force: Bool = false
   ) -> Bool {
-    if caffeinate != nil, !force {
-      if running {
-        // There was already a process running.
-        return false
-      }
-      // Process exists but not running, clean it up
-      stopCurrent()
+    guard interval > 0 else { return false }
+
+    if running {
+      guard force else { return false }
+      releaseAssertions()
     }
-    return start(interval: interval, allowDisplaySleep: allowDisplaySleep)
-  }
 
-  private func stopCurrent() {
-    guard let caffeinate else { return }
-
-    caffeinate.terminate()
-    caffeinate.waitUntilExit()
-    caffeinate.terminationHandler = nil
-    self.caffeinate = nil
-  }
-
-  private func start(interval: TimeInterval, allowDisplaySleep: Bool = false) -> Bool {
-    caffeinate = newProcess()
-    guard interval > 0, let caffeinate else {
+    guard createAssertion(kIOPMAssertionTypePreventUserIdleSystemSleep, id: &systemSleepAssertion) else {
       return false
     }
 
-    let pid = ProcessInfo.processInfo.processIdentifier
-    var args = allowDisplaySleep ? ["-i"] : ["-di"]
-    args += ["-w", "\(pid)"]
-    if interval.isFinite {
-      args += ["-t", "\(interval)"]
-    }
-    caffeinate.arguments = args
-
-    do {
-      try caffeinate.run()
-
-      delegate?.caffeinateDidStart(self, interval: interval)
-      AppState.shared.preventSleep = true
-
-      if interval.isFinite {
-        observeCaffeinateProcessExit()
-      }
-      return true
-    } catch {
-      logger.warning("Start caffeinate process fail: \(error)")
-    }
-    return false
-  }
-
-  private func observeCaffeinateProcessExit() {
-    guard let caffeinate else { return }
-
-    caffeinate.terminationHandler = { [weak self] _ in
-      guard let self else { return }
-
-      DispatchQueue.main.async {
-        self.stop()
-        self.delegate?.caffeinateAutoTerminate(self)
+    if !allowDisplaySleep {
+      guard createAssertion(kIOPMAssertionTypePreventUserIdleDisplaySleep, id: &displaySleepAssertion) else {
+        releaseAssertions()
+        return false
       }
     }
+
+    scheduleAutoTerminate(after: interval)
+
+    delegate?.caffeinateDidStart(self, interval: interval)
+    AppState.shared.preventSleep = true
+    return true
   }
 
-  /// Stops the caffeinate process and notifies the delegate.
+  /// Stops sleep prevention and releases all assertions.
   func stop() {
-    guard caffeinate != nil else { return }
+    guard running else { return }
 
-    stopCurrent()
+    timeoutWorkItem?.cancel()
+    timeoutWorkItem = nil
+    releaseAssertions()
 
     delegate?.caffeinateDidTerminate(self)
     AppState.shared.preventSleep = false
@@ -138,5 +104,44 @@ final class CaffeinateWrapper: BinWrapper {
 
   deinit {
     stop()
+  }
+
+  private func createAssertion(_ type: String, id: inout IOPMAssertionID) -> Bool {
+    let result = IOPMAssertionCreateWithName(
+      type as CFString,
+      IOPMAssertionLevel(kIOPMAssertionLevelOn),
+      "Americano prevents sleep" as CFString,
+      &id
+    )
+    guard result == kIOReturnSuccess else {
+      logger.warning("Create power assertion \(type) fail: \(result)")
+      return false
+    }
+    return true
+  }
+
+  private func releaseAssertions() {
+    if displaySleepAssertion != IOPMAssertionID(0) {
+      IOPMAssertionRelease(displaySleepAssertion)
+      displaySleepAssertion = 0
+    }
+    if systemSleepAssertion != IOPMAssertionID(0) {
+      IOPMAssertionRelease(systemSleepAssertion)
+      systemSleepAssertion = 0
+    }
+  }
+
+  private func scheduleAutoTerminate(after interval: TimeInterval) {
+    timeoutWorkItem?.cancel()
+    timeoutWorkItem = nil
+    guard interval.isFinite else { return }
+
+    let item = DispatchWorkItem { [weak self] in
+      guard let self else { return }
+      stop()
+      delegate?.caffeinateAutoTerminate(self)
+    }
+    timeoutWorkItem = item
+    DispatchQueue.main.asyncAfter(deadline: .now() + interval, execute: item)
   }
 }

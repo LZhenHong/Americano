@@ -9,9 +9,9 @@ import Combine
 import Foundation
 import os.log
 
-/// Controls the caffeinate process to prevent Mac from sleeping.
+/// Controls power assertions to prevent Mac from sleeping.
 ///
-/// This singleton manages the lifecycle of the system's `caffeinate` command,
+/// This singleton manages the sleep prevention lifecycle,
 /// handles battery monitoring integration, and responds to URL scheme commands.
 final class CaffeinateController {
   static let shared = CaffeinateController()
@@ -202,7 +202,7 @@ final class CaffeinateController {
   }
 
   /// Starts sleep prevention with the default duration from settings.
-  /// - Returns: `true` if caffeinate started successfully.
+  /// - Returns: `true` if sleep prevention started successfully.
   @discardableResult
   func start() -> Bool {
     let interval = AppState.shared.awakeDurations.default.time
@@ -213,13 +213,13 @@ final class CaffeinateController {
   /// - Parameters:
   ///   - interval: Duration in seconds. Use `.infinity` for indefinite prevention.
   ///   - force: If `true`, restarts even if already running.
-  /// - Returns: `true` if caffeinate started successfully.
+  /// - Returns: `true` if sleep prevention started successfully.
   @discardableResult
   func start(interval: TimeInterval, force: Bool = false) -> Bool {
     caffWrapper.start(interval: interval, allowDisplaySleep: allowDisplaySleep, force: force)
   }
 
-  /// Stops sleep prevention and terminates the caffeinate process.
+  /// Stops sleep prevention and releases the power assertions.
   func stop() {
     caffWrapper.stop()
   }
