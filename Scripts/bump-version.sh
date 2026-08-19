@@ -25,7 +25,8 @@ increase_build_number() {
 
     local new_counter
     if [[ "${current_date}" == "${previous_date}" ]]; then
-        new_counter=$((counter + 1))
+        # Force base-10: a zero-padded counter like "008" is invalid octal to $((..)).
+        new_counter=$((10#${counter} + 1))
     else
         new_counter=1
     fi
