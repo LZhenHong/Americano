@@ -113,7 +113,7 @@ Two targets share the synchronized `Americano` folder, split by distribution cha
 
 Release tooling in `Scripts/`:
 - `release-local.sh`: Direct channel release — Developer ID archive, Apple notarization, Sparkle appcast, GitHub Release via `gh`, Homebrew tap update. All credentials stay in the local Keychain; see `RELEASE.md` for the one-time setup.
-- `release-mas.sh`: Mac App Store channel — archives the `AmericanoMAS` scheme and uploads to App Store Connect (`ASC_KEY_ID` / `ASC_ISSUER_ID` / `ASC_KEY_PATH` env vars).
+- `release-mas.sh`: Mac App Store channel — archives the `AmericanoMAS` scheme and uploads to App Store Connect (`ASC_KEY_ID` / `ASC_ISSUER_ID` / `ASC_KEY_PATH` env vars). Exports with manual signing (pinned Apple Distribution + 3rd Party Mac Developer Installer certs, `Americano MAS Store` profile) because the team lacks cloud-managed certificate access; automatic signing fails with "Cloud signing permission error".
 - `bump-version.sh`: Build number auto-increment (runs via Xcode scheme pre-action)
 - `changelog.sh`: Generate AI changelog from git log (DeepSeek API; used by `release-local.sh` when `DEEPSEEK_API_KEY` is set, otherwise a plain commit list is used). Writes `Releases/Americano.app.html` so Sparkle's `generate_appcast` auto-embeds it as the new entry's `<description>`.
 - `gen-appcast.sh`: Generate Sparkle appcast (used by `release-local.sh`)

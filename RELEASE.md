@@ -66,8 +66,11 @@ Example: `20260512002` = May 12, 2026, 2nd build of the day.
 ### Mac App Store channel
 
 1. **App record** — create the app in App Store Connect with bundle id `io.lzhlovesjyq.Americano` (category: Utilities; privacy: declares no data collected). The first upload fails without it.
-2. **Apple Distribution certificate** — Xcode → Settings → Accounts → Manage Certificates → **+** → **Apple Distribution**. Verify with `security find-identity -v -p codesigning`.
-3. **App Store Connect API key** — the same key used for notarization works. Provide it to the upload lane via environment:
+2. **Certificates** — two, both created via `asc certificates create --certificate-type <TYPE> --generate-csr ...` and imported into the login Keychain (see `~/.secrets/README.md` for the asc setup):
+   - **Apple Distribution** (`DISTRIBUTION`) — signs the `.app`. Verify with `security find-identity -v -p codesigning`.
+   - **3rd Party Mac Developer Installer** (`MAC_INSTALLER_DISTRIBUTION`) — signs the upload `.pkg`; this legacy CN is what Apple issues for installer certs. Verify with `security find-identity -v -p basic`.
+3. **Provisioning profile** — `Americano MAS Store` (`MAC_APP_STORE`, embedding the Apple Distribution certificate), created via `asc profiles create`, downloaded (`asc profiles download`) and installed under `~/Library/Developer/Xcode/UserData/Provisioning Profiles/`. The lane exports with **manual signing** because this team has no access to cloud-managed distribution certificates — Xcode's automatic signing fails with "Cloud signing permission error".
+4. **App Store Connect API key** — the asc key (`AuthKey_N565K963J9.p8`). Provide it to the upload lane via environment:
 
    ```bash
    export ASC_KEY_ID=<key-id>
@@ -121,9 +124,9 @@ bash Scripts/release-mas.sh
 
 The script performs the following automatically:
 
-1. **Preflight** — must run on `main` with a clean working tree; checks the Apple Distribution certificate and the `ASC_KEY_ID` / `ASC_ISSUER_ID` / `ASC_KEY_PATH` environment variables.
+1. **Preflight** — must run on `main` with a clean working tree; checks the Apple Distribution certificate, the 3rd Party Mac Developer Installer certificate, a valid locally-installed `Americano MAS Store` profile, and the `ASC_KEY_ID` / `ASC_ISSUER_ID` / `ASC_KEY_PATH` environment variables.
 2. **Archive** — `xcodebuild archive` of the `AmericanoMAS` scheme in Release configuration (App Sandbox entitlements, no Sparkle). The build number is bumped by the scheme pre-action.
-3. **Upload** — `xcodebuild -exportArchive` with `method = app-store-connect` and `destination = upload`, signed automatically as Apple Distribution using the API key above. No notarization — App Review covers it.
+3. **Upload** — `xcodebuild -exportArchive` with `method = app-store-connect`, `destination = upload`, and **manual signing** (pins the Apple Distribution + installer certificates and the `Americano MAS Store` profile). No notarization — App Review covers it.
 
 Then finish manually in App Store Connect: select the uploaded build, fill metadata/screenshots, submit for review.
 
