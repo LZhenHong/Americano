@@ -11,7 +11,7 @@ Americano is a macOS menu bar app that prevents your Mac from sleeping — handy
 - **Battery Awareness** — Automatically stop sleep prevention when battery drops below a threshold, when Low Power Mode activates, or based on charger connection status.
 - **Notifications** — Optional macOS notifications when sleep prevention activates or deactivates.
 - **Launch at Login** — Start automatically when you log in, with optional immediate activation.
-- **Auto-Update** — Built-in Sparkle framework checks for updates automatically.
+- **Auto-Update** — Built-in Sparkle framework checks for updates automatically (GitHub/Homebrew builds; the App Store version updates through the App Store).
 - **Onboarding** — Welcome window on first launch explains menu bar interaction and quick setup.
 - **URL Schemes** — Control the app programmatically via custom URL schemes.
 
@@ -44,6 +44,10 @@ Open from the menu bar menu (**⌘,**).
 
 ## Install
 
+**Mac App Store**:
+
+<a href="https://apps.apple.com/us/app/americano-stay-awake/id6803007478"><img src="Images/download-on-mac-app-store.svg" alt="Download on the Mac App Store" height="52" /></a>
+
 **Homebrew** (recommended):
 
 ```bash
@@ -52,7 +56,7 @@ brew install --cask lzhenhong/tap/americano
 
 **Manual**: download `Americano.app.zip` from the [latest release](https://github.com/LZhenHong/Americano/releases/latest), unzip, and move `Americano.app` to `/Applications`.
 
-Americano is signed with an Apple Developer ID certificate and notarized by Apple, so it opens directly — no Gatekeeper workaround needed.
+The GitHub/Homebrew builds are signed with an Apple Developer ID certificate and notarized by Apple, so they open directly — no Gatekeeper workaround needed.
 
 ## How to build
 
