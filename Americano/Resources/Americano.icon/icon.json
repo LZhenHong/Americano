@@ -23,6 +23,14 @@
           "name" : "middle"
         },
         {
+          "image-name-specializations" : [
+            {
+              "value" : "coaster.svg"
+            }
+          ],
+          "name" : "coaster"
+        },
+        {
           "fill" : "automatic",
           "image-name" : "bg.svg",
           "name" : "background"
