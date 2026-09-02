@@ -1,0 +1,14 @@
+# Store screenshot captions: locale|shot|headline|subtitle
+# Headlines/subtitles double as OCR-indexed search terms — keep real query words in them.
+en-US|onboarding|Keep your Mac awake|One-click sleep prevention from the menu bar
+en-US|general|Set it and forget it|Launch at login, display sleep optional
+en-US|durations|A sleep timer that fits|Presets from five minutes to indefinite
+en-US|battery|Kind to your battery|Auto-pause on low battery, Low Power Mode, or unplug
+zh-Hans|onboarding|让 Mac 保持唤醒|菜单栏一键防休眠
+zh-Hans|general|设置好，就忘掉|登录即启动，屏幕可睡、Mac 不睡
+zh-Hans|durations|定时恰到好处|从 5 分钟到不限时，预设可自定义
+zh-Hans|battery|善待电池|低电量、低电量模式、拔电源自动收手
+zh-Hant|onboarding|讓 Mac 保持喚醒|選單列一鍵防休眠
+zh-Hant|general|設定好，就忘掉|登入即啟動，螢幕可睡、Mac 不睡
+zh-Hant|durations|定時恰到好處|從 5 分鐘到不限時，預設可自訂
+zh-Hant|battery|善待電池|低電量、低耗電模式、拔電源自動收手

@@ -97,3 +97,9 @@ iOSInjectionProject/
 .DS_Store
 
 buildServer.json
+
+# ASC local reports
+.asc/
+
+# Compiled helper (rebuilt by Scripts/store/compose_all.sh)
+Scripts/store/compose

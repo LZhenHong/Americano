@@ -119,6 +119,13 @@ Release tooling in `Scripts/`:
 - `gen-appcast.sh`: Generate Sparkle appcast (used by `release-local.sh`)
 - `homebrew.sh`: Update Homebrew tap cask (used by `release-local.sh`)
 
+Store asset tooling in `Scripts/store/` (App Store metadata + screenshot pipeline, driven by the `asc` CLI):
+- `metadata/` (repo root): canonical App Store metadata pulled via `asc metadata pull`. Edit local files, then `asc metadata validate` + `asc metadata push`; released versions are locked, so changes target the next editable version.
+- `captions.txt`: Screenshot headline/subtitle table (locale|shot|headline|subtitle). Captions are OCR-indexed by App Store search — keep real query words in them.
+- `shoot.sh` / `shoot_all.sh`: Capture raw window screenshots per locale. Requires a Debug build with a temporary `-showSettings` hook (add → build → capture → revert) and forces light appearance + onboarding via launch-arg defaults overrides.
+- `compose.swift` / `compose_all.sh`: Render 2560×1600 marketing screenshots into `Store/screenshots/<locale>/` from raw captures.
+- Upload with `asc screenshots upload --version-localization <id> --path Store/screenshots/<locale> --device-type APP_DESKTOP --replace --confirm`.
+
 Releases run locally via `Scripts/release-local.sh` (direct) and `Scripts/release-mas.sh` (App Store). See `RELEASE.md` for details.
 
 ## Design Context
