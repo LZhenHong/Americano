@@ -4,6 +4,21 @@
         <title>Americano</title>
         <language>en</language>
         <item>
+            <title>1.1.1</title>
+            <pubDate>Wed, 02 Sep 2026 16:15:32 +0800</pubDate>
+            <sparkle:version>20260902003</sparkle:version>
+            <sparkle:shortVersionString>1.1.1</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+            <description><![CDATA[<h2>Version 1.1.1</h2>
+<h3>✨ Improvements</h3>
+<ul>
+<li>Refined app icon — the coffee cup now rests on a wooden coaster.</li>
+<li>No functional changes in this release.</li>
+</ul>
+]]></description>
+            <enclosure url="https://github.com/LZhenHong/Americano/releases/download/v1.1.1/Americano.app.zip" length="2174422" type="application/octet-stream" sparkle:edSignature="uLF92EymOD6ULbXomRtkAhfo6jnRhhW1G2yd+LDNQuzzle+aRLxHOR9vqZJ3hPoty1loYQGyex4e+RBXLqA/BQ=="/>
+        </item>
+        <item>
             <title>1.1.0</title>
             <pubDate>Wed, 19 Aug 2026 13:09:14 +0800</pubDate>
             <sparkle:version>20260819005</sparkle:version>
@@ -30,28 +45,6 @@
 <ul><li>Updated the app to meet the latest macOS compatibility requirements.</li></ul>
 ]]></description>
             <enclosure url="https://github.com/LZhenHong/Americano/releases/download/v1.0.10/Americano.app.zip" length="4759847" type="application/octet-stream" sparkle:edSignature="zzmLQbHT/+3MXcfXrS9aMAyzkZUCszmuKJ73rztDndB2zKgY8ySjKETidUR5qlksFWoDvGT0cWRG50xLK5HjCw=="/>
-        </item>
-        <item>
-            <title>1.0.9</title>
-            <pubDate>Tue, 12 May 2026 09:25:32 +0000</pubDate>
-            <sparkle:version>20260512002</sparkle:version>
-            <sparkle:shortVersionString>1.0.9</sparkle:shortVersionString>
-            <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
-            <description><![CDATA[<h2>Version 1.0.9</h2>
-<h3>✨ New Features</h3>
-<ul>
-<li>Americano now automatically checks for updates and notifies you when a new version is available.</li>
-<li>Added a "Check for Updates" option in the app menu to manually see if a newer version is ready.</li>
-</ul>
-<h3>🔧 Improvements</h3>
-<ul>
-<li>The app icon and menu bar icon have been refreshed with updated graphics for a cleaner look.</li>
-<li>Updated the app name and internal references to ensure consistent identification across your Mac.</li>
-<li>Improved the release note display so update descriptions are easier to read.</li>
-<li>Fine-tuned the build process to deliver a more reliable installation experience.</li>
-</ul>
-]]></description>
-            <enclosure url="https://github.com/LZhenHong/Americano/releases/download/v1.0.9/Americano.app.zip" length="4546952" type="application/octet-stream" sparkle:edSignature="YiRWV9vUMMe58W7qO7sja2pmwX2U6ewKhYvWmbY5hrzG0BpCOe4hh2h/dOFyripdLJ0npepzKRrAjylUT5yNBg=="/>
         </item>
         <item>
             <title>1.0.0</title>
