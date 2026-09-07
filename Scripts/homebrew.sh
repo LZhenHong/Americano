@@ -57,10 +57,8 @@ cask "americano" do
 
   app "${PROJECT_NAME}.app"
 
-  postflight do
-    system_command "/usr/bin/xattr",
-                   args: ["-cr", "#{appdir}/${PROJECT_NAME}.app"],
-                   sudo: false
+  postflight_steps do
+    run "/usr/bin/xattr", args: ["-cr", "{{appdir}}/${PROJECT_NAME}.app"]
   end
 
   zap trash: [
