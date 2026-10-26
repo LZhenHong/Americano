@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Americano is a macOS menu bar app that prevents Mac from sleeping by holding IOKit power assertions (`IOPMAssertion`) in-process. Built with AppKit (no SwiftUI for main UI), it uses Combine for reactive state management.
 
-**Minimum Deployment Target**: macOS 14.0
+**Minimum Deployment Target**: macOS 26.0
 
 ## Build & Run
 

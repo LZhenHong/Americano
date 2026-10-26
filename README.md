@@ -40,7 +40,7 @@ Open from the menu bar menu (**⌘,**).
 
 ## System requirements
 
-- macOS 14.0 and later
+- macOS 26.0 and later
 
 ## Install
 
